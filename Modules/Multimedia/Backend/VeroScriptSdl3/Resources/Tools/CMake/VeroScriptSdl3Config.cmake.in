@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+@PACKAGE_INIT@
+include(CMakeFindDependencyMacro)
+set(VeroScriptSdl3_FOUND TRUE)
+set(VeroScriptSdl3_Bindings_FOUND FALSE)
+set(VeroScriptSdl3_SDL3_AUDIO @VEROSCRIPT_SDL3_AUDIO@)
+set(VeroScriptSdl3_SDL3_GRAPHICS @VEROSCRIPT_SDL3_GRAPHICS@)
+set(VeroScriptSdl3_SDL3_CONTROLLERS @VEROSCRIPT_SDL3_CONTROLLERS@)
+set(VeroScriptSdl3_NATIVE_EXTENSION @VEROSCRIPT_SDL3_NATIVE_EXTENSION@)
+find_dependency(VeroScriptPlatform 0.1.1 EXACT CONFIG)
+if(@VEROSCRIPT_SDL3_GRAPHICS@)
+	find_dependency(VeroScriptGraphics 0.1.1 EXACT CONFIG)
+endif()
+if(@VEROSCRIPT_SDL3_AUDIO@)
+	find_dependency(VeroScriptAudio 0.1.1 EXACT CONFIG)
+endif()
+find_dependency(SDL3 3.4.18 EXACT CONFIG)
+find_dependency(Threads)
+include("${CMAKE_CURRENT_LIST_DIR}/../VeroScriptVisual/VeroScriptVisualSdl3Targets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptSdl3Release.cmake" OPTIONAL)
+check_required_components(VeroScriptSdl3)

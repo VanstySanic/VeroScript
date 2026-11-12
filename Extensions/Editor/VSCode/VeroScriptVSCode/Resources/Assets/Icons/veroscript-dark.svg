@@ -1,0 +1,7 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+	<!-- Match the default file-icon font's optical column within the padded label. -->
+	<path d="M24 32H78C91 65 111 115 128 157C145 115 165 65 178 32H232C205 83 168 154 128 226C88 154 51 83 24 32Z" transform="translate(10 8.5) scale(0.05625) translate(-128 -129)" fill="#60A5FA"/>
+</svg>

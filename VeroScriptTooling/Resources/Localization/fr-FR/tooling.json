@@ -1,0 +1,9 @@
+{
+  "diag.document_is_not_open_in_workspace": "le document n'est pas ouvert dans l'espace de travail",
+  "diag.format_failed_lexer_error": "format a échoué : erreur du lexer",
+  "tooling.builtin_type.detail": "type intégré",
+  "tooling.builtin_type.documentation": "Type VeroScript intégré.",
+  "tooling.hover.builtin": "Symbole intégré.",
+  "tooling.source_documentation.parameter": "Paramètre `{0}` :",
+  "tooling.source_documentation.returns": "Retour :"
+}

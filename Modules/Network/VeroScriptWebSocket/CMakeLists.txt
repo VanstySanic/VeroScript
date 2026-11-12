@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+add_library(VeroScriptWebSocket STATIC Private/WebSocketBackend.cpp Private/WebSocketReconnect.cpp)
+add_library(VeroScript::WebSocket ALIAS VeroScriptWebSocket)
+veroscript_network_target(VeroScriptWebSocket)
+target_include_directories(VeroScriptWebSocket PRIVATE Internal)
+set_target_properties(VeroScriptWebSocket PROPERTIES EXPORT_NAME WebSocket)
+install(TARGETS VeroScriptWebSocket EXPORT VeroScriptWebSocketTargets ARCHIVE DESTINATION lib COMPONENT VeroScriptWebSocket)
+install(FILES Public/VeroScriptWebSocket.h Public/VeroScriptWebSocketBackend.h Public/VeroScriptWebSocketJson.h Public/VeroScriptWebSocketReconnect.h DESTINATION include/VeroScriptWebSocket COMPONENT VeroScriptWebSocket)
+veroscript_network_binding(VeroScriptWebSocket)
+target_link_libraries(VeroScriptWebSocket PUBLIC VeroScriptNetwork)
+install(DIRECTORY Resources/Examples DESTINATION share/VeroScriptWebSocket/Resources COMPONENT VeroScriptWebSocketExamples)
+install(DIRECTORY Resources/Localization DESTINATION share/VeroScriptWebSocket/Resources COMPONENT VeroScriptWebSocket)
+
+install(DIRECTORY Resources/Docs DESTINATION share/VeroScriptWebSocket/Resources COMPONENT VeroScriptWebSocket)
+
+install(FILES Internal/WebSocketProtocols.h DESTINATION include/VeroScriptWebSocket/Backend COMPONENT VeroScriptWebSocket)

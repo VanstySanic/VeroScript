@@ -1,0 +1,11 @@
+{
+  "diag.variant_requires_concrete_null_type": "请先将 nullptr 转为有具体类型的空引用再装箱",
+  "diag.variant_expected": "需要 variant 值",
+  "diag.variant_not_allowed_as_key": "variant 不能作为关联容器的键",
+  "diag.variant_not_allowed_in_channel": "variant 不能通过 channel 传输",
+  "diag.variant_worker_transfer_unsupported": "variant 不能传递给工作线程",
+  "diag.variant_empty_cast": "不能从空 variant 中提取值",
+  "diag.try_cast_variant_target_is_meaningless": "不支持 try_cast<variant>；请使用 variant(value)",
+  "diag.aot_variant_unsupported": "variant 需要 VeroScript 运行时，不支持独立 AOT 输出",
+  "diag.variant_reserved_name": "variant 类型及其内建函数名称为保留名称"
+}

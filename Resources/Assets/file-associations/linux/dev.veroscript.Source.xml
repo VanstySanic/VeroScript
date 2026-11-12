@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+	<mime-type type="text/x-veroscript">
+		<comment>VeroScript source</comment>
+		<comment xml:lang="zh-CN">VeroScript 源文件</comment>
+		<comment xml:lang="zh-TW">VeroScript 原始碼檔案</comment>
+		<comment xml:lang="ja">VeroScript ソース</comment>
+		<comment xml:lang="ko">VeroScript 소스</comment>
+		<comment xml:lang="fr">Source VeroScript</comment>
+		<icon name="text-x-veroscript"/>
+		<glob pattern="*.vs" weight="80"/>
+	</mime-type>
+</mime-info>

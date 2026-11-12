@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+@PACKAGE_INIT@
+include(CMakeFindDependencyMacro)
+set(VeroScriptNetwork_MODULE_DIR "${PACKAGE_PREFIX_DIR}/lib/veroscript/modules")
+find_dependency(Threads)
+include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptNetworkTargets.cmake")
+set(VeroScriptNetwork_Bindings_FOUND FALSE)
+if("Bindings" IN_LIST VeroScriptNetwork_FIND_COMPONENTS AND
+		EXISTS "${CMAKE_CURRENT_LIST_DIR}/VeroScriptNetworkBindingsTargets.cmake")
+	find_dependency(VeroScript 0.1.1 EXACT CONFIG)
+	include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptNetworkBindingsTargets.cmake")
+	set(VeroScriptNetwork_Bindings_FOUND TRUE)
+endif()
+check_required_components(VeroScriptNetwork)

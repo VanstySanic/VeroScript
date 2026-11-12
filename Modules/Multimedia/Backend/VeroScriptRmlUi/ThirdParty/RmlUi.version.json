@@ -1,0 +1,16 @@
+{
+    "name": "RmlUi",
+    "version": "6.3",
+    "repository": "https://github.com/mikke89/RmlUi",
+    "tag": "6.3",
+    "commit": "ba95ffe8bfb6370efb2cdcca927eaad4710c5413",
+    "archive": "https://codeload.github.com/mikke89/RmlUi/tar.gz/refs/tags/6.3",
+    "sha256": "d977298bb6147610e5984d5db85ddf284020d655a8713913f6982074f1dbdede",
+    "license": "MIT",
+    "modifications": [
+        "VeroScript Unicode bidirectional text integration: optional paragraph, line-run and visual-caret APIs; default font engines retain the legacy path.",
+        "Preserve normalized logical paragraph ranges through inline layout, soft wrapping, styled fragments and ellipsis; reorder visual fragments and inline decoration boxes per line.",
+        "Keep editable text in logical order while using full-line shaping for selection, visual cursor navigation, hit testing and IME placement; retain selection affinity across rebuilds.",
+        "Recognize UTF-8 line/paragraph separators and CRLF in the advanced text layout path without changing the existing ASCII whitespace-collapse behavior."
+    ]
+}

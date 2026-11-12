@@ -1,0 +1,11 @@
+{
+  "format": "veroscript-package",
+  "formatVersion": "0.1.1",
+  "name": "sample-build-package",
+  "version": "0.1.1",
+  "entries": {
+    "modules": {
+      "sample/utility.vs": "scripts/library.vs"
+    }
+  }
+}

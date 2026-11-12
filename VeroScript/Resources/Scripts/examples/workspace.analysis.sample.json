@@ -1,0 +1,8 @@
+{
+  "importPaths": [],
+  "implicitImportPaths": [],
+  "allowCircularImports": true,
+  "allowProjectWideAccess": false,
+  "defines": ["FEATURE_SCORE=1"],
+  "bindingCatalogPaths": ["bindings.sample.json"]
+}

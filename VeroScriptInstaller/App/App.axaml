@@ -1,0 +1,51 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="VeroScriptInstaller.App"
+             RequestedThemeVariant="Default">
+	<Application.Styles>
+		<FluentTheme />
+		<Style Selector="Window">
+			<Setter Property="FontFamily" Value="Inter,Segoe UI" />
+			<Setter Property="FontSize" Value="13" />
+		</Style>
+		<Style Selector="TextBox.path">
+			<Setter Property="MinHeight" Value="34" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
+		<Style Selector="Button.browse">
+			<Setter Property="MinWidth" Value="92" />
+			<Setter Property="MinHeight" Value="34" />
+		</Style>
+		<Style Selector="Border.card">
+			<Setter Property="Padding" Value="16" />
+			<Setter Property="BorderThickness" Value="1" />
+			<Setter Property="BorderBrush" Value="#406B7280" />
+			<Setter Property="CornerRadius" Value="7" />
+		</Style>
+		<Style Selector="Button.action">
+			<Setter Property="MinWidth" Value="104" />
+			<Setter Property="Height" Value="38" />
+			<Setter Property="Padding" Value="18,0" />
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="CornerRadius" Value="5" />
+		</Style>
+		<Style Selector="Button.primary">
+			<Setter Property="Background" Value="#2563EB" />
+			<Setter Property="Foreground" Value="White" />
+		</Style>
+		<Style Selector="Button.primary:pointerover">
+			<Setter Property="Background" Value="#3473F1" />
+		</Style>
+		<Style Selector="Button.primary:pressed">
+			<Setter Property="Background" Value="#1D4ED8" />
+		</Style>
+		<Style Selector="Button.primary:disabled">
+			<Setter Property="Background" Value="#586983" />
+			<Setter Property="Foreground" Value="#C7CDD7" />
+		</Style>
+	</Application.Styles>
+</Application>

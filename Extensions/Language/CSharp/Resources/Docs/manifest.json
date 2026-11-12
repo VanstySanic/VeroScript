@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "module": "Extensions/Language/CSharp",
+  "user": [
+    {
+      "source": "User/{locale}/aot.md",
+      "output": "{locale}/csharp/aot.md"
+    },
+    {
+      "source": "User/{locale}/bindgen.md",
+      "output": "{locale}/csharp/bindgen.md"
+    },
+    {
+      "source": "User/{locale}/frontend.md",
+      "output": "{locale}/csharp/frontend.md"
+    },
+    {
+      "source": "User/{locale}/host-bindings.md",
+      "output": "{locale}/csharp/host-bindings.md"
+    },
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/csharp/index.md"
+    },
+    {
+      "source": "User/{locale}/packages.md",
+      "output": "{locale}/csharp/packages.md"
+    },
+    {
+      "source": "User/{locale}/session.md",
+      "output": "{locale}/csharp/session.md"
+    },
+    {
+      "source": "User/{locale}/transpiler.md",
+      "output": "{locale}/csharp/transpiler.md"
+    },
+    {
+      "source": "User/{locale}/values.md",
+      "output": "{locale}/csharp/values.md"
+    },
+    {
+      "source": "User/{locale}/mobile.md",
+      "output": "{locale}/csharp/mobile.md"
+    },
+    {
+      "source": "User/{locale}/memory.md",
+      "output": "{locale}/csharp/memory.md"
+    }
+  ],
+  "developer": true
+}

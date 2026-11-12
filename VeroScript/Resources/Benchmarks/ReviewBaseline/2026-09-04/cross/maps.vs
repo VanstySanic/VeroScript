@@ -1,0 +1,2 @@
+int work(int limit, int seed) { int size=1021; map<int,double> values=map<int,double>(); values.reserve(size); for(int i=0;i<size;i++) values[i]=(i%31)*0.25+1.0; int state=seed; double total=0.0; for(int i=0;i<limit;i++) { state=(state*75+74)%65521; int key=(state+i*13)%size; double value=values[key]*1.000001+(state%7)*0.25; if(value>10000.0) value*=0.5; values[key]=value; total+=value; } return to_int(total)+state; } void main(){int checksum=0;for(int rep=0;rep<20;rep++){checksum=(checksum+work(100000,173))%1000000007;}print(checksum);}
+

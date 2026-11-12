@@ -1,0 +1,80 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<idea-plugin>
+	<id>com.vanstysanic.veroscript.gui</id>
+	<name>VeroScript GUI</name>
+	<vendor>VanstySanic</vendor>
+	<description><![CDATA[
+		<p>VeroScript GUI markup and style editing, checking, application baking and standalone preview for JetBrains Rider.</p>
+		<h3>Features</h3>
+		<ul>
+			<li>Edit <code>.vswml</code> markup and <code>.vswcss</code> styles with syntax highlighting and built-in suggestions.</li>
+			<li>Complete built-in controls, inherited properties, bindings, events, style properties and supported pseudo states.</li>
+			<li>Navigate local <code>src</code> references and update plain file paths through Rider file and folder renames.</li>
+			<li>Highlight inline script and style blocks, including CDATA sections.</li>
+			<li>Check GUI entries, preview them in a native application window, or bake source entries into <code>.vsapp</code> application packages.</li>
+		</ul>
+		<h3>Get started</h3>
+		<ol>
+			<li>Install the <b>VeroScript</b> plugin, then install <b>VeroScript GUI</b>.</li>
+			<li>Configure a matching GUI-enabled Runtime under <b>Settings &gt; Languages &amp; Frameworks &gt; VeroScript</b>. Keep its GUI script libraries and required native providers installed together.</li>
+			<li>Right-click a local <code>.vswml</code>, <code>.vs</code> or <code>.vsapp</code> entry and open <b>VeroScript GUI</b> to check or preview it. To bake a source entry, choose <b>Configure GUI Application Baking</b>, review the output and assets, then run the configuration.</li>
+		</ol>
+		<h3>Requirements and scope</h3>
+		<p>Requires the VeroScript plugin and Rider 2026.2.2 (build 262.10315.191) or later within the 262 branch.
+		GUI tasks use a separately installed, matching GUI-enabled Runtime.
+		Local markup/style highlighting and built-in suggestions work without Runtime.</p>
+		<p>Preview opens a separate native window. This plugin provides no embedded visual designer,
+		automatic reload or GUI-specific debug launch. External <code>.vs</code> files use the base plugin's language services.
+		Inline script/binding semantics and custom widget schemas are not analyzed by this add-on; use <b>Check GUI</b> for native validation.</p>
+		<h3>Documentation</h3>
+		<p>The source checkout includes this plugin's user and developer guides in its <code>Resources/Docs</code> directory,
+		in English, French, Japanese, Korean, Simplified Chinese and Traditional Chinese.</p>
+		<p><a href="https://github.com/VanstySanic/VeroScript">VeroScript project repository</a></p>
+	]]></description>
+	<change-notes><![CDATA[
+		<h3>0.1.1</h3>
+		<ul>
+			<li>GUI markup/style editing, built-in completion, local file references and inline lexical highlighting.</li>
+			<li>Native GUI checking, application baking and standalone preview through the configured Runtime.</li>
+			<li>Shared VeroScript product outline in GUI icons and expanded plugin details with setup and dependency guidance.</li>
+		</ul>
+	]]></change-notes>
+	<idea-version strict-until-build="262.*"/>
+	<depends>com.intellij.modules.platform</depends>
+	<depends>com.intellij.modules.rider</depends>
+	<depends>com.vanstysanic.veroscript</depends>
+	<resource-bundle>Localization.messages.VeroScriptGuiBundle</resource-bundle>
+	<extensions defaultExtensionNs="com.intellij">
+		<fileType name="VeroScript GUI Markup" language="VeroScriptGuiMarkup" implementationClass="com.vanstysanic.veroscript.gui.jetbrains.language.GuiMarkupFileType" fieldName="INSTANCE" extensions="vswml"/>
+		<fileType name="VeroScript GUI Style" language="VeroScriptGuiStyle" implementationClass="com.vanstysanic.veroscript.gui.jetbrains.language.GuiStyleFileType" fieldName="INSTANCE" extensions="vswcss"/>
+		<lang.parserDefinition language="VeroScriptGuiMarkup" implementationClass="com.vanstysanic.veroscript.gui.jetbrains.language.GuiMarkupParserDefinition"/>
+		<lang.parserDefinition language="VeroScriptGuiStyle" implementationClass="com.vanstysanic.veroscript.gui.jetbrains.language.GuiStyleParserDefinition"/>
+		<lang.syntaxHighlighterFactory language="VeroScriptGuiMarkup" implementationClass="com.vanstysanic.veroscript.gui.jetbrains.language.GuiMarkupHighlighterFactory"/>
+		<lang.syntaxHighlighterFactory language="VeroScriptGuiStyle" implementationClass="com.vanstysanic.veroscript.gui.jetbrains.language.GuiStyleHighlighterFactory"/>
+		<lang.commenter language="VeroScriptGuiMarkup" implementationClass="com.vanstysanic.veroscript.gui.jetbrains.language.GuiMarkupCommenter"/>
+		<lang.commenter language="VeroScriptGuiStyle" implementationClass="com.vanstysanic.veroscript.gui.jetbrains.language.GuiStyleCommenter"/>
+		<lang.quoteHandler fileType="VeroScript GUI Markup" className="com.vanstysanic.veroscript.gui.jetbrains.language.GuiQuoteHandler"/>
+		<lang.quoteHandler fileType="VeroScript GUI Style" className="com.vanstysanic.veroscript.gui.jetbrains.language.GuiQuoteHandler"/>
+		<lang.braceMatcher language="VeroScriptGuiStyle" implementationClass="com.vanstysanic.veroscript.gui.jetbrains.language.GuiBraceMatcher"/>
+		<completion.contributor language="VeroScriptGuiMarkup" implementationClass="com.vanstysanic.veroscript.gui.jetbrains.language.GuiCompletion"/>
+		<completion.contributor language="VeroScriptGuiStyle" implementationClass="com.vanstysanic.veroscript.gui.jetbrains.language.GuiCompletion"/>
+		<psi.referenceContributor language="VeroScriptGuiMarkup" implementation="com.vanstysanic.veroscript.gui.jetbrains.language.GuiReferences"/>
+		<lang.elementManipulator forClass="com.vanstysanic.veroscript.gui.jetbrains.language.GuiStringLiteral" implementationClass="com.vanstysanic.veroscript.gui.jetbrains.language.GuiStringLiteralManipulator"/>
+		<platform.backend.documentation.targetProvider implementation="com.vanstysanic.veroscript.gui.jetbrains.language.GuiDocumentation"/>
+		<typedHandler implementation="com.vanstysanic.veroscript.gui.jetbrains.language.GuiTypedHandler"/>
+		<rider.completion.preselectionStrategy implementation="com.vanstysanic.veroscript.gui.jetbrains.language.GuiCompletionPreselection"/>
+		<configurationType implementation="com.vanstysanic.veroscript.gui.jetbrains.run.GuiConfigurationType"/>
+		<runConfigurationProducer implementation="com.vanstysanic.veroscript.gui.jetbrains.run.GuiRunProducer"/>
+	</extensions>
+	<actions>
+		<group id="VeroScriptGui.Tasks" text="VeroScript GUI" popup="true">
+			<add-to-group group-id="EditorPopupMenu" anchor="last"/>
+			<add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+			<action id="VeroScriptGui.Preview" class="com.vanstysanic.veroscript.gui.jetbrains.run.GuiPreviewAction" text="Preview GUI"/>
+			<action id="VeroScriptGui.Check" class="com.vanstysanic.veroscript.gui.jetbrains.run.GuiCheckAction" text="Check GUI"/>
+			<action id="VeroScriptGui.Compile" class="com.vanstysanic.veroscript.gui.jetbrains.run.GuiCompileAction" text="Configure GUI Application Baking"/>
+		</group>
+	</actions>
+</idea-plugin>

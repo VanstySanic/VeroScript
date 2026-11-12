@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "module": "Modules/Network/VeroScriptWebSocket",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/websocket/index.md"
+    },
+    {
+      "source": "User/{locale}/Reference",
+      "output": "{locale}/websocket/reference"
+    }
+  ],
+  "developer": true
+}

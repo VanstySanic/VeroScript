@@ -1,0 +1,6 @@
+{
+  "python_tools.python_version_required": "Les outils Python de VeroScript nécessitent Python 3.11 à 3.15",
+  "python_tools.source_read_failed": "Échec de lecture du code source Python : {0}",
+  "python_tools.syntax_error": "Syntaxe Python non valide : {0}",
+  "python_tools.unsupported_top_level": "Construction Python de niveau supérieur non prise en charge : {0}"
+}

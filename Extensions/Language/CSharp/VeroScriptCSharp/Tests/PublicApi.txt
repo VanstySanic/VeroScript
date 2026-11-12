@@ -1,0 +1,1090 @@
+type sealed class VeroScript.VeroScriptAnnotation : System.IEquatable<VeroScript.VeroScriptAnnotation>
+  ctor VeroScript.VeroScriptAnnotation(System.String Name, System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptAnnotationArgument>? Arguments = null)
+  property System.String Name { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptAnnotationArgument>? Arguments { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptAnnotation? left, VeroScript.VeroScriptAnnotation? right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptAnnotation? left, VeroScript.VeroScriptAnnotation? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.VeroScriptAnnotation? other)
+  method VeroScript.VeroScriptAnnotation <Clone>$()
+  method System.Void Deconstruct(out System.String Name, out System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptAnnotationArgument> Arguments)
+
+type sealed class VeroScript.VeroScriptAnnotationArgument : System.IEquatable<VeroScript.VeroScriptAnnotationArgument>
+  ctor VeroScript.VeroScriptAnnotationArgument(System.String Name, System.String? Value = null)
+  property System.String Name { get; init; }
+  property System.String? Value { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptAnnotationArgument? left, VeroScript.VeroScriptAnnotationArgument? right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptAnnotationArgument? left, VeroScript.VeroScriptAnnotationArgument? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.VeroScriptAnnotationArgument? other)
+  method VeroScript.VeroScriptAnnotationArgument <Clone>$()
+  method System.Void Deconstruct(out System.String Name, out System.String Value)
+
+type sealed class VeroScript.VeroScriptAnnotationArgumentDefinition : System.IEquatable<VeroScript.VeroScriptAnnotationArgumentDefinition>
+  ctor VeroScript.VeroScriptAnnotationArgumentDefinition(System.String Name, System.String Detail = "", System.String Documentation = "")
+  property System.String Name { get; init; }
+  property System.String Detail { get; init; }
+  property System.String Documentation { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptAnnotationArgumentDefinition? left, VeroScript.VeroScriptAnnotationArgumentDefinition? right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptAnnotationArgumentDefinition? left, VeroScript.VeroScriptAnnotationArgumentDefinition? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.VeroScriptAnnotationArgumentDefinition? other)
+  method VeroScript.VeroScriptAnnotationArgumentDefinition <Clone>$()
+  method System.Void Deconstruct(out System.String Name, out System.String Detail, out System.String Documentation)
+
+type sealed class VeroScript.VeroScriptAnnotationDefinition : System.IEquatable<VeroScript.VeroScriptAnnotationDefinition>
+  ctor VeroScript.VeroScriptAnnotationDefinition(System.String Name, System.String Detail = "", System.String Documentation = "", System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptAnnotationArgumentDefinition>? Arguments = null)
+  property System.String Name { get; init; }
+  property System.String Detail { get; init; }
+  property System.String Documentation { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptAnnotationArgumentDefinition>? Arguments { get; init; }
+  property System.Boolean CaseSensitive { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptAnnotationDefinition? left, VeroScript.VeroScriptAnnotationDefinition? right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptAnnotationDefinition? left, VeroScript.VeroScriptAnnotationDefinition? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.VeroScriptAnnotationDefinition? other)
+  method VeroScript.VeroScriptAnnotationDefinition <Clone>$()
+  method System.Void Deconstruct(out System.String Name, out System.String Detail, out System.String Documentation, out System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptAnnotationArgumentDefinition> Arguments)
+
+type sealed class VeroScript.VeroScriptBindingAttribute : System.Attribute
+  ctor VeroScript.VeroScriptBindingAttribute()
+
+type sealed class VeroScript.VeroScriptBorrowedValue : VeroScript.VeroScriptValue, System.IDisposable
+
+type enum VeroScript.VeroScriptByteOrder : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptByteOrder Little = 0
+  field static const VeroScript.VeroScriptByteOrder Big = 1
+
+type sealed class VeroScript.VeroScriptCallContext
+  property VeroScript.VeroScriptMemory Memory { get; }
+  property System.UInt64 ArgumentCount { get; }
+  property System.UInt64 ProgramGeneration { get; }
+  method System.UInt64 GetArgumentAddress(System.UInt64 index)
+  method T GetHostThis<T>() where T : class
+  method VeroScript.VeroScriptBorrowedValue GetArgument(System.UInt64 index)
+  method VeroScript.VeroScriptBorrowedValue GetMutableArgument(System.UInt64 index)
+  method System.Void SetError(System.String message)
+  method VeroScript.VeroScriptValue InvokeFunction(System.String name, params VeroScript.VeroScriptValue[] arguments)
+  method VeroScript.VeroScriptValue InvokeCallable(VeroScript.VeroScriptValue functionValue, params VeroScript.VeroScriptValue[] arguments)
+
+type sealed class VeroScript.VeroScriptCallable : System.IDisposable
+  property System.Boolean IsValid { get; }
+  method System.ValueTuple<VeroScript.VeroScriptValue, VeroScript.VeroScriptRunResult> Invoke(params VeroScript.VeroScriptValue[] arguments)
+  method System.Void Dispose()
+
+type enum VeroScript.VeroScriptCapabilities : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt64 value__
+  field static const VeroScript.VeroScriptCapabilities None = 0
+  field static const VeroScript.VeroScriptCapabilities Packages = 1
+  field static const VeroScript.VeroScriptCapabilities HotReload = 2
+  field static const VeroScript.VeroScriptCapabilities HostBindings = 4
+  field static const VeroScript.VeroScriptCapabilities BindingJson = 8
+  field static const VeroScript.VeroScriptCapabilities ReflectionJson = 16
+  field static const VeroScript.VeroScriptCapabilities InstanceIntercept = 32
+  field static const VeroScript.VeroScriptCapabilities MutationCallback = 64
+  field static const VeroScript.VeroScriptCapabilities ContainerValues = 128
+  field static const VeroScript.VeroScriptCapabilities RetainedCallables = 256
+  field static const VeroScript.VeroScriptCapabilities GenericHostTypes = 512
+  field static const VeroScript.VeroScriptCapabilities ExternalSerialization = 1024
+  field static const VeroScript.VeroScriptCapabilities JitDiagnostics = 2048
+  field static const VeroScript.VeroScriptCapabilities Localization = 4096
+  field static const VeroScript.VeroScriptCapabilities DistinctNumericPrimitives = 8192
+  field static const VeroScript.VeroScriptCapabilities ContainerEnumeration = 16384
+  field static const VeroScript.VeroScriptCapabilities ExecutionGovernance = 32768
+  field static const VeroScript.VeroScriptCapabilities SessionJitCache = 65536
+  field static const VeroScript.VeroScriptCapabilities NativeJit = 131072
+  field static const VeroScript.VeroScriptCapabilities NativeTypedLoops = 262144
+  field static const VeroScript.VeroScriptCapabilities JitBackendSelection = 524288
+  field static const VeroScript.VeroScriptCapabilities EvalOnce = 1048576
+  field static const VeroScript.VeroScriptCapabilities Memory = 2097152
+  field static const VeroScript.VeroScriptCapabilities ModuleEnvironment = 4194304
+  field static const VeroScript.VeroScriptCapabilities Numerics = 8388608
+  field static const VeroScript.VeroScriptCapabilities Variant = 16777216
+  field static const VeroScript.VeroScriptCapabilities VmBackendSelection = 33554432
+  field static const VeroScript.VeroScriptCapabilities ReloadStatus = 67108864
+
+type enum VeroScript.VeroScriptCompileCapabilities : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt64 value__
+  field static const VeroScript.VeroScriptCompileCapabilities None = 0
+  field static const VeroScript.VeroScriptCompileCapabilities AnnotationProcessing = 1
+  field static const VeroScript.VeroScriptCompileCapabilities ScriptExtensions = 2
+  field static const VeroScript.VeroScriptCompileCapabilities GeneralProcessing = 4
+
+type sealed class VeroScript.VeroScriptCompileExtensionRoot : System.IEquatable<VeroScript.VeroScriptCompileExtensionRoot>
+  ctor VeroScript.VeroScriptCompileExtensionRoot(System.String Path, System.String RegistrationEntry = "")
+  property System.String Path { get; init; }
+  property System.String RegistrationEntry { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptCompileExtensionRoot? left, VeroScript.VeroScriptCompileExtensionRoot? right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptCompileExtensionRoot? left, VeroScript.VeroScriptCompileExtensionRoot? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.VeroScriptCompileExtensionRoot? other)
+  method VeroScript.VeroScriptCompileExtensionRoot <Clone>$()
+  method System.Void Deconstruct(out System.String Path, out System.String RegistrationEntry)
+
+type sealed class VeroScript.VeroScriptCompileExtensionsOptions
+  ctor VeroScript.VeroScriptCompileExtensionsOptions()
+  property System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptCompileExtensionRoot> Roots { get; init; }
+  property System.Collections.Generic.IReadOnlyDictionary<System.String, System.String> Configuration { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> AllowedRoots { get; init; }
+  property System.Boolean AllowSourceImports { get; init; }
+  property System.UInt64 MaxInstructions { get; init; }
+  property System.UInt64 TimeoutMilliseconds { get; init; }
+
+type sealed class VeroScript.VeroScriptConfiguration
+  ctor VeroScript.VeroScriptConfiguration()
+  property System.Collections.Generic.IReadOnlyList<System.String> ImportPaths { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> ImplicitImportPaths { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> ScriptArguments { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> Defines { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> StandardLibrarySearchPaths { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptSourceOverlay> SourceOverlays { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptPredefinedMacro> PredefinedMacros { get; init; }
+  property System.String BytecodeCacheDirectory { get; init; }
+  property System.UInt64 MaxCallDepth { get; init; }
+  property System.UInt64 MaxInstructions { get; init; }
+  property System.UInt64 TimeoutMilliseconds { get; init; }
+  property System.Boolean EnableExecutionControl { get; init; }
+  property System.Boolean CapabilityPolicyEnabled { get; init; }
+  property VeroScript.VeroScriptScriptCapabilities AllowedScriptCapabilities { get; init; }
+  property VeroScript.VeroScriptExecutionBackend ExecutionBackend { get; init; }
+  property System.Boolean UseBytecodeCache { get; init; }
+  property System.Boolean AllowCircularImports { get; init; }
+  property System.Boolean AllowProjectWideAccess { get; init; }
+
+type sealed class VeroScript.VeroScriptConsoleInfo : System.IEquatable<VeroScript.VeroScriptConsoleInfo>
+  ctor VeroScript.VeroScriptConsoleInfo(System.Boolean OutputTerminal = false, System.Boolean Color = false, System.Boolean Cursor = false, System.Boolean Clear = false, System.Int32 Width = 0, System.Int32 Height = 0)
+  property System.Boolean OutputTerminal { get; init; }
+  property System.Boolean Color { get; init; }
+  property System.Boolean Cursor { get; init; }
+  property System.Boolean Clear { get; init; }
+  property System.Int32 Width { get; init; }
+  property System.Int32 Height { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptConsoleInfo? left, VeroScript.VeroScriptConsoleInfo? right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptConsoleInfo? left, VeroScript.VeroScriptConsoleInfo? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.VeroScriptConsoleInfo? other)
+  method VeroScript.VeroScriptConsoleInfo <Clone>$()
+  method System.Void Deconstruct(out System.Boolean OutputTerminal, out System.Boolean Color, out System.Boolean Cursor, out System.Boolean Clear, out System.Int32 Width, out System.Int32 Height)
+
+type enum VeroScript.VeroScriptConsoleOperation : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptConsoleOperation Clear = 0
+  field static const VeroScript.VeroScriptConsoleOperation ClearLine = 1
+  field static const VeroScript.VeroScriptConsoleOperation SetColor = 2
+  field static const VeroScript.VeroScriptConsoleOperation ResetStyle = 3
+  field static const VeroScript.VeroScriptConsoleOperation MoveCursor = 4
+  field static const VeroScript.VeroScriptConsoleOperation SetCursorVisible = 5
+
+type readonly struct VeroScript.VeroScriptDiagnostic : System.IEquatable<VeroScript.VeroScriptDiagnostic>
+  ctor VeroScript.VeroScriptDiagnostic(System.String Message, System.String MessageId, System.String FileLabel, System.UInt32 Line, System.UInt32 Column)
+  property System.String Message { get; init; }
+  property System.String MessageId { get; init; }
+  property System.String FileLabel { get; init; }
+  property System.UInt32 Line { get; init; }
+  property System.UInt32 Column { get; init; }
+  property VeroScript.VeroScriptDiagnosticSeverity Severity { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptDiagnostic left, VeroScript.VeroScriptDiagnostic right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptDiagnostic left, VeroScript.VeroScriptDiagnostic right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object obj)
+  method System.Boolean Equals(VeroScript.VeroScriptDiagnostic other)
+  method System.Void Deconstruct(out System.String Message, out System.String MessageId, out System.String FileLabel, out System.UInt32 Line, out System.UInt32 Column)
+
+type enum VeroScript.VeroScriptDiagnosticSeverity : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptDiagnosticSeverity Error = 0
+  field static const VeroScript.VeroScriptDiagnosticSeverity Warning = 1
+  field static const VeroScript.VeroScriptDiagnosticSeverity Information = 2
+  field static const VeroScript.VeroScriptDiagnosticSeverity Hint = 3
+
+type readonly struct VeroScript.VeroScriptEnumValue : System.IEquatable<VeroScript.VeroScriptEnumValue>
+  ctor VeroScript.VeroScriptEnumValue(System.String TypeName, System.Int64 Value)
+  property System.String TypeName { get; init; }
+  property System.Int64 Value { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptEnumValue left, VeroScript.VeroScriptEnumValue right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptEnumValue left, VeroScript.VeroScriptEnumValue right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object obj)
+  method System.Boolean Equals(VeroScript.VeroScriptEnumValue other)
+  method System.Void Deconstruct(out System.String TypeName, out System.Int64 Value)
+
+type sealed class VeroScript.VeroScriptException : System.Exception, System.Runtime.Serialization.ISerializable
+  ctor VeroScript.VeroScriptException(VeroScript.VeroScriptStatus status, System.String message)
+  property VeroScript.VeroScriptStatus Status { get; }
+
+type enum VeroScript.VeroScriptExecutionBackend : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptExecutionBackend Vm = 0
+  field static const VeroScript.VeroScriptExecutionBackend Mixed = 1
+  field static const VeroScript.VeroScriptExecutionBackend Jit = 2
+
+type sealed class VeroScript.VeroScriptExternalDeserializeContext
+  property System.UInt32 EncodedVersion { get; }
+  method System.Byte[] GetBytes()
+  method System.Void AddField(System.String fieldName, VeroScript.VeroScriptValue value)
+  method System.Void SetError(System.String message)
+
+type delegate VeroScript.VeroScriptExternalDeserializeHandler : System.ICloneable, System.Runtime.Serialization.ISerializable
+  ctor VeroScript.VeroScriptExternalDeserializeHandler(System.Object object, System.IntPtr method)
+  method System.Void Invoke(VeroScript.VeroScriptExternalDeserializeContext context)
+  method System.IAsyncResult BeginInvoke(VeroScript.VeroScriptExternalDeserializeContext context, System.AsyncCallback callback, System.Object object)
+  method System.Void EndInvoke(System.IAsyncResult result)
+
+type enum VeroScript.VeroScriptExternalReferenceKind : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptExternalReferenceKind ScriptObject = 0
+  field static const VeroScript.VeroScriptExternalReferenceKind HostObject = 1
+
+type delegate VeroScript.VeroScriptExternalReferenceVisitor : System.ICloneable, System.Runtime.Serialization.ISerializable
+  ctor VeroScript.VeroScriptExternalReferenceVisitor(System.Object object, System.IntPtr method)
+  method System.Void Invoke(VeroScript.VeroScriptExternalReferenceKind kind, VeroScript.VeroScriptBorrowedValue value)
+  method System.IAsyncResult BeginInvoke(VeroScript.VeroScriptExternalReferenceKind kind, VeroScript.VeroScriptBorrowedValue value, System.AsyncCallback callback, System.Object object)
+  method System.Void EndInvoke(System.IAsyncResult result)
+
+type sealed class VeroScript.VeroScriptExternalSerializeContext
+  property System.String TypeName { get; }
+  property System.UInt64 MutationVersion { get; }
+  property System.UInt64 FieldCount { get; }
+  method VeroScript.VeroScriptSerializedField GetField(System.UInt64 index)
+  method System.Void SetBytes(System.ReadOnlySpan<System.Byte> bytes)
+  method System.Void SetError(System.String message)
+
+type delegate VeroScript.VeroScriptExternalSerializeHandler : System.ICloneable, System.Runtime.Serialization.ISerializable
+  ctor VeroScript.VeroScriptExternalSerializeHandler(System.Object object, System.IntPtr method)
+  method System.Void Invoke(VeroScript.VeroScriptExternalSerializeContext context)
+  method System.IAsyncResult BeginInvoke(VeroScript.VeroScriptExternalSerializeContext context, System.AsyncCallback callback, System.Object object)
+  method System.Void EndInvoke(System.IAsyncResult result)
+
+type sealed class VeroScript.VeroScriptGenericHostTypeContext
+  property System.UInt64 ArgumentCount { get; }
+  method System.String GetArgument(System.UInt64 index)
+  method System.Void SetType(VeroScript.VeroScriptHostTypeDefinition definition)
+  method System.Void AddMember(VeroScript.VeroScriptHostMemberDefinition definition)
+  method System.Void SetProtocol(VeroScript.VeroScriptHostTypeProtocolDefinition definition)
+  method System.Void SetError(System.String message)
+
+type delegate VeroScript.VeroScriptGenericHostTypeFactory : System.ICloneable, System.Runtime.Serialization.ISerializable
+  ctor VeroScript.VeroScriptGenericHostTypeFactory(System.Object object, System.IntPtr method)
+  method System.Void Invoke(VeroScript.VeroScriptGenericHostTypeContext context)
+  method System.IAsyncResult BeginInvoke(VeroScript.VeroScriptGenericHostTypeContext context, System.AsyncCallback callback, System.Object object)
+  method System.Void EndInvoke(System.IAsyncResult result)
+
+type sealed class VeroScript.VeroScriptHostFunctionDefinition
+  ctor VeroScript.VeroScriptHostFunctionDefinition()
+  property required System.String Name { get; init; }
+  property required VeroScript.VeroScriptNativeType ReturnType { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptNativeParameter> Parameters { get; init; }
+  property required VeroScript.VeroScriptNativeFunction Callback { get; init; }
+  property System.String Documentation { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> ParameterNames { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> ParameterDocumentation { get; init; }
+  property System.String ReturnDocumentation { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptAnnotation> Annotations { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptAnnotation>> ParameterAnnotations { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> TypeParameters { get; init; }
+  property System.String ScriptReturnTypeName { get; init; }
+  property System.Boolean IsGenericHostObjectCast { get; init; }
+
+type sealed class VeroScript.VeroScriptHostMemberDefinition
+  ctor VeroScript.VeroScriptHostMemberDefinition()
+  property VeroScript.VeroScriptHostMemberKind Kind { get; init; }
+  property required System.String Name { get; init; }
+  property VeroScript.VeroScriptNativeType ReturnType { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptNativeParameter> Parameters { get; init; }
+  property VeroScript.VeroScriptNativeFunction? Callback { get; init; }
+  property System.Int64 EnumValue { get; init; }
+  property System.String Documentation { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> ParameterNames { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> ParameterDocumentation { get; init; }
+  property System.String ReturnDocumentation { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptAnnotation> Annotations { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptAnnotation>> ParameterAnnotations { get; init; }
+  property System.Boolean IsOperator { get; init; }
+  property System.Boolean IsConstMethod { get; init; }
+  property System.Boolean MutableThis { get; init; }
+
+type enum VeroScript.VeroScriptHostMemberKind : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptHostMemberKind Constructor = 0
+  field static const VeroScript.VeroScriptHostMemberKind Method = 1
+  field static const VeroScript.VeroScriptHostMemberKind StaticMethod = 2
+  field static const VeroScript.VeroScriptHostMemberKind PropertyGetter = 3
+  field static const VeroScript.VeroScriptHostMemberKind PropertySetter = 4
+  field static const VeroScript.VeroScriptHostMemberKind EnumMember = 5
+  field static const VeroScript.VeroScriptHostMemberKind Field = 6
+  field static const VeroScript.VeroScriptHostMemberKind StaticConstant = 7
+
+type readonly struct VeroScript.VeroScriptHostObjectInfo : System.IEquatable<VeroScript.VeroScriptHostObjectInfo>
+  ctor VeroScript.VeroScriptHostObjectInfo(System.UInt32 TypeId, System.String TypeName, System.Object Value)
+  property System.UInt32 TypeId { get; init; }
+  property System.String TypeName { get; init; }
+  property System.Object Value { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptHostObjectInfo left, VeroScript.VeroScriptHostObjectInfo right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptHostObjectInfo left, VeroScript.VeroScriptHostObjectInfo right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object obj)
+  method System.Boolean Equals(VeroScript.VeroScriptHostObjectInfo other)
+  method System.Void Deconstruct(out System.UInt32 TypeId, out System.String TypeName, out System.Object Value)
+
+type sealed class VeroScript.VeroScriptHostTypeDefinition
+  ctor VeroScript.VeroScriptHostTypeDefinition()
+  property required System.String Name { get; init; }
+  property VeroScript.VeroScriptHostTypeKind Kind { get; init; }
+  property System.String Documentation { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptAnnotation> Annotations { get; init; }
+  property System.Boolean Inheritable { get; init; }
+  property System.Boolean ScopedEnum { get; init; }
+  property System.String EnumUnderlyingTypeName { get; init; }
+
+type enum VeroScript.VeroScriptHostTypeKind : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptHostTypeKind Enum = 0
+  field static const VeroScript.VeroScriptHostTypeKind Struct = 1
+  field static const VeroScript.VeroScriptHostTypeKind Class = 2
+
+type sealed class VeroScript.VeroScriptHostTypeProtocolDefinition
+  ctor VeroScript.VeroScriptHostTypeProtocolDefinition()
+  property VeroScript.VeroScriptNativeFunction? CloneCallback { get; init; }
+  property VeroScript.VeroScriptNativeFunction? EqualsCallback { get; init; }
+  property VeroScript.VeroScriptNativeFunction? HashCallback { get; init; }
+  property VeroScript.VeroScriptNativeFunction? SubclassFactoryCallback { get; init; }
+
+type sealed class VeroScript.VeroScriptIgnoreAttribute : System.Attribute
+  ctor VeroScript.VeroScriptIgnoreAttribute()
+
+type delegate VeroScript.VeroScriptInstanceInterceptor : System.ICloneable, System.Runtime.Serialization.ISerializable
+  ctor VeroScript.VeroScriptInstanceInterceptor(System.Object object, System.IntPtr method)
+  method VeroScript.VeroScriptInterceptResult Invoke(VeroScript.VeroScriptInterceptContext context, VeroScript.VeroScriptBorrowedValue returnValue)
+  method System.IAsyncResult BeginInvoke(VeroScript.VeroScriptInterceptContext context, VeroScript.VeroScriptBorrowedValue returnValue, System.AsyncCallback callback, System.Object object)
+  method VeroScript.VeroScriptInterceptResult EndInvoke(System.IAsyncResult result)
+
+type sealed class VeroScript.VeroScriptInterceptContext
+  property VeroScript.VeroScriptBorrowedValue Receiver { get; }
+  property System.UInt64 ArgumentCount { get; }
+  method VeroScript.VeroScriptResolvedMethod GetTarget()
+  method VeroScript.VeroScriptBorrowedValue GetArgument(System.UInt64 index)
+  method System.Void Proceed(VeroScript.VeroScriptBorrowedValue returnValue)
+  method System.Void SetError(System.String message)
+
+type enum VeroScript.VeroScriptInterceptResult : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptInterceptResult Unhandled = 0
+  field static const VeroScript.VeroScriptInterceptResult Handled = 1
+  field static const VeroScript.VeroScriptInterceptResult Failed = 2
+
+type enum VeroScript.VeroScriptJitBackend : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptJitBackend None = 0
+  field static const VeroScript.VeroScriptJitBackend External = 1
+
+type enum VeroScript.VeroScriptJitBackendCapabilities : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt64 value__
+  field static const VeroScript.VeroScriptJitBackendCapabilities None = 0
+  field static const VeroScript.VeroScriptJitBackendCapabilities NativeCode = 1
+  field static const VeroScript.VeroScriptJitBackendCapabilities PortableExecution = 2
+  field static const VeroScript.VeroScriptJitBackendCapabilities NativeTypedLoops = 4
+  field static const VeroScript.VeroScriptJitBackendCapabilities DirectScalarCalls = 8
+  field static const VeroScript.VeroScriptJitBackendCapabilities ControlledExecution = 16
+
+type sealed class VeroScript.VeroScriptJitBackendInfo : System.IEquatable<VeroScript.VeroScriptJitBackendInfo>
+  ctor VeroScript.VeroScriptJitBackendInfo(System.String Id, System.String Target, System.UInt64 Capabilities, System.Boolean NativeCode)
+  property System.String Id { get; init; }
+  property System.String Target { get; init; }
+  property System.UInt64 Capabilities { get; init; }
+  property System.Boolean NativeCode { get; init; }
+  property VeroScript.VeroScriptJitBackendCapabilities CapabilityFlags { get; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptJitBackendInfo? left, VeroScript.VeroScriptJitBackendInfo? right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptJitBackendInfo? left, VeroScript.VeroScriptJitBackendInfo? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.VeroScriptJitBackendInfo? other)
+  method VeroScript.VeroScriptJitBackendInfo <Clone>$()
+  method System.Void Deconstruct(out System.String Id, out System.String Target, out System.UInt64 Capabilities, out System.Boolean NativeCode)
+
+type readonly struct VeroScript.VeroScriptJitCacheLimits : System.IEquatable<VeroScript.VeroScriptJitCacheLimits>
+  ctor VeroScript.VeroScriptJitCacheLimits(System.UInt64 MaxNativeBytes, System.UInt64 MaxRetainedPayloadBytes)
+  property System.UInt64 MaxNativeBytes { get; init; }
+  property System.UInt64 MaxRetainedPayloadBytes { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptJitCacheLimits left, VeroScript.VeroScriptJitCacheLimits right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptJitCacheLimits left, VeroScript.VeroScriptJitCacheLimits right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object obj)
+  method System.Boolean Equals(VeroScript.VeroScriptJitCacheLimits other)
+  method System.Void Deconstruct(out System.UInt64 MaxNativeBytes, out System.UInt64 MaxRetainedPayloadBytes)
+
+type sealed class VeroScript.VeroScriptJitCacheStats
+  ctor VeroScript.VeroScriptJitCacheStats()
+  property System.UInt64 CompileAttempts { get; }
+  property System.UInt64 RetainedPayloadBytes { get; }
+  property System.UInt64 NativeBytes { get; }
+  property System.Boolean ResourceLimitReached { get; }
+
+type readonly struct VeroScript.VeroScriptJitPolicy : System.IEquatable<VeroScript.VeroScriptJitPolicy>
+  ctor VeroScript.VeroScriptJitPolicy(System.UInt32 MixedHotCallThreshold, System.UInt64 MaxCompileAttempts, System.UInt64 MaxCachedEntries, System.UInt64 EagerCompileBudget)
+  property System.UInt32 MixedHotCallThreshold { get; init; }
+  property System.UInt64 MaxCompileAttempts { get; init; }
+  property System.UInt64 MaxCachedEntries { get; init; }
+  property System.UInt64 EagerCompileBudget { get; init; }
+  property System.Boolean ReuseSessionCode { get; init; }
+  property System.Boolean EnableControlledMixed { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptJitPolicy left, VeroScript.VeroScriptJitPolicy right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptJitPolicy left, VeroScript.VeroScriptJitPolicy right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object obj)
+  method System.Boolean Equals(VeroScript.VeroScriptJitPolicy other)
+  method System.Void Deconstruct(out System.UInt32 MixedHotCallThreshold, out System.UInt64 MaxCompileAttempts, out System.UInt64 MaxCachedEntries, out System.UInt64 EagerCompileBudget)
+
+type sealed class VeroScript.VeroScriptJitStats
+  ctor VeroScript.VeroScriptJitStats()
+  property System.UInt64 CompileAttempts { get; }
+  property System.UInt64 CacheHits { get; }
+  property System.UInt64 CompiledEntries { get; }
+  property System.UInt64 NativeLeafEntries { get; }
+  property System.UInt64 NativeCfgEntries { get; }
+  property System.UInt64 BridgeTrampolineEntries { get; }
+  property System.UInt64 LinearTrampolineEntries { get; }
+  property System.UInt64 VmTrampolineEntries { get; }
+  property System.UInt64 UnsupportedEntries { get; }
+  property System.UInt64 DispatchAttempts { get; }
+  property System.UInt64 Dispatches { get; }
+  property System.UInt64 Fallbacks { get; }
+  property System.UInt64 CostModelVmFallbacks { get; }
+  property System.UInt64 Failures { get; }
+  property System.UInt64 CacheInvalidations { get; }
+  property System.UInt64 HotnessDeferrals { get; }
+  property System.UInt64 HotFunctions { get; }
+  property System.UInt64 CompileBudgetSkips { get; }
+  property System.UInt64 CacheCapacitySkips { get; }
+  property System.UInt64 EagerCompileSkips { get; }
+  property System.UInt64 ArrayFastPathPushes { get; }
+  property System.UInt64 ArrayFastPathGets { get; }
+  property System.UInt64 ArrayFastPathSets { get; }
+  property System.UInt64 ScalarMapFastPathGets { get; }
+  property System.UInt64 ScalarMapFastPathSets { get; }
+  property System.UInt64 NativeTypedLoopExecutions { get; }
+  property System.UInt64 ControlledNativeExecutions { get; }
+  property System.UInt64 AotExecutions { get; }
+  property System.UInt64 NativeLeafExecutions { get; }
+  property System.UInt64 NativeCfgExecutions { get; }
+  property System.UInt64 BridgeExecutions { get; }
+  property System.UInt64 LinearExecutions { get; }
+  property System.UInt64 VmTrampolineExecutions { get; }
+  property System.UInt64 ScalarMethodFastPathInt32 { get; }
+  property System.UInt64 ScalarMethodFastPathUInt32 { get; }
+  property System.UInt64 ScalarMethodFastPathDouble { get; }
+  property System.UInt64 ScalarMethodFastPathMixed { get; }
+  property System.UInt64 ScalarFunctionFastPathInt32 { get; }
+  property System.UInt64 ScalarFunctionFastPathUInt32 { get; }
+  property System.UInt64 ScalarFunctionFastPathDouble { get; }
+  property System.UInt64 ScalarFunctionFastPathMixed { get; }
+  property System.UInt64 ScalarNativeFastPathCalls { get; }
+  property System.UInt64 DirectNativeCalls { get; }
+  property System.UInt64 InlinedCallSites { get; }
+  property System.UInt64 LinearFrameReuses { get; }
+  property System.UInt64 LinearScratchReuses { get; }
+  property System.UInt64 LinearScratchAllocations { get; }
+  property System.UInt64 LinearArgumentScratchLeases { get; }
+  property System.UInt64 LinearArgumentScratchReuses { get; }
+
+type sealed class VeroScript.VeroScriptMemory
+  property VeroScript.VeroScriptMemoryStats Stats { get; }
+  property System.Boolean NativeAddressesAvailable { get; }
+  method VeroScript.VeroScriptValue CreateBuffer(System.Int64 size = 0)
+  method VeroScript.VeroScriptValue CreateView(System.Boolean readOnly = false)
+  method VeroScript.VeroScriptValue Slice(VeroScript.VeroScriptValue region, System.Int64 offset, System.Int64 count, System.Boolean readOnly = false)
+  method VeroScript.VeroScriptValue Clone(VeroScript.VeroScriptValue source)
+  method VeroScript.VeroScriptValue FromArray(VeroScript.VeroScriptValue source)
+  method VeroScript.VeroScriptValue ToArray(VeroScript.VeroScriptValue source)
+  method VeroScript.VeroScriptValue Read(VeroScript.VeroScriptValue source, System.Int64 offset, VeroScript.VeroScriptNativeTypeKind type, VeroScript.VeroScriptByteOrder order = Little)
+  method System.Void Write(VeroScript.VeroScriptValue destination, System.Int64 offset, VeroScript.VeroScriptNativeTypeKind type, VeroScript.VeroScriptValue value, VeroScript.VeroScriptByteOrder order = Little)
+  method System.Int64 Size(VeroScript.VeroScriptValue region)
+  method System.Int64 Capacity(VeroScript.VeroScriptValue buffer)
+  method System.Void Resize(VeroScript.VeroScriptValue buffer, System.Int64 size, System.Boolean reserveOnly = false)
+  method System.Void Copy(VeroScript.VeroScriptValue destination, System.Int64 destinationOffset, VeroScript.VeroScriptValue source, System.Int64 sourceOffset, System.Int64 count)
+  method System.Void Fill(VeroScript.VeroScriptValue destination, System.Int64 offset, System.Int64 count, System.Byte value)
+  method System.Boolean Equal(VeroScript.VeroScriptValue left, System.Int64 leftOffset, VeroScript.VeroScriptValue right, System.Int64 rightOffset, System.Int64 count)
+  method System.UInt64 ObjectId(VeroScript.VeroScriptValue value)
+  method System.UInt64 ObjectAddress(VeroScript.VeroScriptValue value)
+  method System.UInt64 DataAddress(VeroScript.VeroScriptValue value)
+  method System.UInt64 MutationVersion(VeroScript.VeroScriptValue region)
+  method System.Void InvalidateExternal(VeroScript.VeroScriptValue region)
+  method VeroScript.VeroScriptMemoryLease AcquireLease(VeroScript.VeroScriptValue region, System.Boolean write = false)
+  method VeroScript.VeroScriptValue WrapExternal(System.Memory<System.Byte> memory, System.Boolean readOnly = false)
+
+type sealed class VeroScript.VeroScriptMemoryLease : System.IDisposable
+  property System.UInt64 Size { get; }
+  property System.IntPtr Data { get; }
+  property System.Boolean Writable { get; }
+  property System.ReadOnlySpan<System.Byte> Bytes { get; }
+  property System.Span<System.Byte> WritableBytes { get; }
+  method System.Void Dispose()
+
+type readonly struct VeroScript.VeroScriptMemoryLimits : System.IEquatable<VeroScript.VeroScriptMemoryLimits>
+  ctor VeroScript.VeroScriptMemoryLimits(System.UInt64 MaxBufferBytes = 0, System.UInt64 MaxRetainedBytes = 0)
+  property System.UInt64 MaxBufferBytes { get; init; }
+  property System.UInt64 MaxRetainedBytes { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptMemoryLimits left, VeroScript.VeroScriptMemoryLimits right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptMemoryLimits left, VeroScript.VeroScriptMemoryLimits right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object obj)
+  method System.Boolean Equals(VeroScript.VeroScriptMemoryLimits other)
+  method System.Void Deconstruct(out System.UInt64 MaxBufferBytes, out System.UInt64 MaxRetainedBytes)
+
+type readonly struct VeroScript.VeroScriptMemoryStats : System.IEquatable<VeroScript.VeroScriptMemoryStats>
+  ctor VeroScript.VeroScriptMemoryStats(System.UInt64 OwnedBytes, System.UInt64 BorrowedBytes, System.UInt64 PeakOwnedBytes)
+  property System.UInt64 OwnedBytes { get; init; }
+  property System.UInt64 BorrowedBytes { get; init; }
+  property System.UInt64 PeakOwnedBytes { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptMemoryStats left, VeroScript.VeroScriptMemoryStats right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptMemoryStats left, VeroScript.VeroScriptMemoryStats right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object obj)
+  method System.Boolean Equals(VeroScript.VeroScriptMemoryStats other)
+  method System.Void Deconstruct(out System.UInt64 OwnedBytes, out System.UInt64 BorrowedBytes, out System.UInt64 PeakOwnedBytes)
+
+type static class VeroScript.VeroScriptMobileResources
+  method static System.Threading.Tasks.Task<System.String> InstallAsync(System.String directory, System.Func<System.String, System.Threading.CancellationToken, System.Threading.Tasks.Task<System.IO.Stream>> openAsset, System.Threading.CancellationToken cancellationToken = null)
+
+type sealed class VeroScript.VeroScriptMutationEvent
+  ctor VeroScript.VeroScriptMutationEvent()
+  property required VeroScript.VeroScriptBorrowedValue Object { get; init; }
+  property required System.String ObjectTypeName { get; init; }
+  property required System.String FieldName { get; init; }
+  property required System.UInt32 FieldIndex { get; init; }
+  property required VeroScript.VeroScriptMutationKind Kind { get; init; }
+  property VeroScript.VeroScriptBorrowedValue? Value { get; init; }
+  property required System.UInt64 ObjectMutationVersion { get; init; }
+
+type delegate VeroScript.VeroScriptMutationHandler : System.ICloneable, System.Runtime.Serialization.ISerializable
+  ctor VeroScript.VeroScriptMutationHandler(System.Object object, System.IntPtr method)
+  method System.Void Invoke(VeroScript.VeroScriptMutationEvent mutation)
+  method System.IAsyncResult BeginInvoke(VeroScript.VeroScriptMutationEvent mutation, System.AsyncCallback callback, System.Object object)
+  method System.Void EndInvoke(System.IAsyncResult result)
+
+type enum VeroScript.VeroScriptMutationKind : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptMutationKind FieldWrite = 0
+  field static const VeroScript.VeroScriptMutationKind ContainerAdd = 1
+  field static const VeroScript.VeroScriptMutationKind ContainerRemove = 2
+  field static const VeroScript.VeroScriptMutationKind ContainerSet = 3
+  field static const VeroScript.VeroScriptMutationKind ContainerClear = 4
+
+type delegate VeroScript.VeroScriptNativeFunction : System.ICloneable, System.Runtime.Serialization.ISerializable
+  ctor VeroScript.VeroScriptNativeFunction(System.Object object, System.IntPtr method)
+  method System.Void Invoke(VeroScript.VeroScriptCallContext context, VeroScript.VeroScriptBorrowedValue returnValue)
+  method System.IAsyncResult BeginInvoke(VeroScript.VeroScriptCallContext context, VeroScript.VeroScriptBorrowedValue returnValue, System.AsyncCallback callback, System.Object object)
+  method System.Void EndInvoke(System.IAsyncResult result)
+
+type readonly struct VeroScript.VeroScriptNativeParameter : System.IEquatable<VeroScript.VeroScriptNativeParameter>
+  ctor VeroScript.VeroScriptNativeParameter(VeroScript.VeroScriptNativeType Type, VeroScript.VeroScriptParameterFlags Flags = None)
+  property VeroScript.VeroScriptNativeType Type { get; init; }
+  property VeroScript.VeroScriptParameterFlags Flags { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptNativeParameter left, VeroScript.VeroScriptNativeParameter right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptNativeParameter left, VeroScript.VeroScriptNativeParameter right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object obj)
+  method System.Boolean Equals(VeroScript.VeroScriptNativeParameter other)
+  method System.Void Deconstruct(out VeroScript.VeroScriptNativeType Type, out VeroScript.VeroScriptParameterFlags Flags)
+
+type sealed class VeroScript.VeroScriptNativeType : System.IEquatable<VeroScript.VeroScriptNativeType>
+  ctor VeroScript.VeroScriptNativeType(VeroScript.VeroScriptNativeTypeKind Kind, System.String? Name = null, params VeroScript.VeroScriptNativeType[] TypeArguments)
+  property VeroScript.VeroScriptNativeTypeKind Kind { get; init; }
+  property System.String? Name { get; init; }
+  property VeroScript.VeroScriptNativeType[] TypeArguments { get; init; }
+  property static VeroScript.VeroScriptNativeType Void { get; }
+  property static VeroScript.VeroScriptNativeType Variant { get; }
+  property static VeroScript.VeroScriptNativeType Int8 { get; }
+  property static VeroScript.VeroScriptNativeType UInt8 { get; }
+  property static VeroScript.VeroScriptNativeType Int16 { get; }
+  property static VeroScript.VeroScriptNativeType UInt16 { get; }
+  property static VeroScript.VeroScriptNativeType Int32 { get; }
+  property static VeroScript.VeroScriptNativeType UInt32 { get; }
+  property static VeroScript.VeroScriptNativeType Int64 { get; }
+  property static VeroScript.VeroScriptNativeType UInt64 { get; }
+  property static VeroScript.VeroScriptNativeType Float { get; }
+  property static VeroScript.VeroScriptNativeType Double { get; }
+  property static VeroScript.VeroScriptNativeType Bool { get; }
+  property static VeroScript.VeroScriptNativeType String { get; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptNativeType? left, VeroScript.VeroScriptNativeType? right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptNativeType? left, VeroScript.VeroScriptNativeType? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.VeroScriptNativeType? other)
+  method VeroScript.VeroScriptNativeType <Clone>$()
+  method System.Void Deconstruct(out VeroScript.VeroScriptNativeTypeKind Kind, out System.String Name, out VeroScript.VeroScriptNativeType[] TypeArguments)
+
+type enum VeroScript.VeroScriptNativeTypeKind : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptNativeTypeKind Void = 0
+  field static const VeroScript.VeroScriptNativeTypeKind Int32 = 1
+  field static const VeroScript.VeroScriptNativeTypeKind Bool = 2
+  field static const VeroScript.VeroScriptNativeTypeKind Double = 3
+  field static const VeroScript.VeroScriptNativeTypeKind String = 4
+  field static const VeroScript.VeroScriptNativeTypeKind UInt32 = 5
+  field static const VeroScript.VeroScriptNativeTypeKind HostObject = 6
+  field static const VeroScript.VeroScriptNativeTypeKind Array = 7
+  field static const VeroScript.VeroScriptNativeTypeKind Map = 8
+  field static const VeroScript.VeroScriptNativeTypeKind Set = 9
+  field static const VeroScript.VeroScriptNativeTypeKind Int64 = 10
+  field static const VeroScript.VeroScriptNativeTypeKind UInt64 = 11
+  field static const VeroScript.VeroScriptNativeTypeKind Enum = 12
+  field static const VeroScript.VeroScriptNativeTypeKind Queue = 13
+  field static const VeroScript.VeroScriptNativeTypeKind Stack = 14
+  field static const VeroScript.VeroScriptNativeTypeKind OrderedMap = 15
+  field static const VeroScript.VeroScriptNativeTypeKind Deque = 16
+  field static const VeroScript.VeroScriptNativeTypeKind Channel = 17
+  field static const VeroScript.VeroScriptNativeTypeKind MultiMap = 18
+  field static const VeroScript.VeroScriptNativeTypeKind OrderedMultiMap = 19
+  field static const VeroScript.VeroScriptNativeTypeKind PriorityQueue = 20
+  field static const VeroScript.VeroScriptNativeTypeKind MultiSet = 21
+  field static const VeroScript.VeroScriptNativeTypeKind OrderedMultiSet = 22
+  field static const VeroScript.VeroScriptNativeTypeKind Function = 23
+  field static const VeroScript.VeroScriptNativeTypeKind Float = 24
+  field static const VeroScript.VeroScriptNativeTypeKind Int8 = 25
+  field static const VeroScript.VeroScriptNativeTypeKind UInt8 = 26
+  field static const VeroScript.VeroScriptNativeTypeKind Int16 = 27
+  field static const VeroScript.VeroScriptNativeTypeKind UInt16 = 28
+  field static const VeroScript.VeroScriptNativeTypeKind Variant = 29
+
+type sealed class VeroScript.VeroScriptPackage : System.IDisposable
+  property VeroScript.VeroScriptPackageKind Kind { get; }
+  property System.String Name { get; }
+  property System.UInt64 Version { get; }
+  property System.Boolean HasCompiledModule { get; }
+  method static VeroScript.VeroScriptPackage Read(System.ReadOnlySpan<System.Byte> bytes)
+  method System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptPackageMetadata> GetMetadata()
+  method System.Byte[] GetCanonicalSignedBytes()
+  method System.Void Dispose()
+
+type sealed class VeroScript.VeroScriptPackageBuildOptions
+  ctor VeroScript.VeroScriptPackageBuildOptions()
+  property VeroScript.VeroScriptPackageKind Kind { get; init; }
+  property System.String PackageName { get; init; }
+  property System.UInt64 PackageVersion { get; init; }
+  property System.Collections.Generic.IReadOnlyDictionary<System.String, System.Byte[]> HostMetadata { get; init; }
+  property System.Boolean StripDebugInfo { get; init; }
+
+type enum VeroScript.VeroScriptPackageKind : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptPackageKind Application = 1
+  field static const VeroScript.VeroScriptPackageKind Library = 2
+
+type readonly struct VeroScript.VeroScriptPackageMetadata : System.IEquatable<VeroScript.VeroScriptPackageMetadata>
+  ctor VeroScript.VeroScriptPackageMetadata(System.String Key, System.Byte[] Value)
+  property System.String Key { get; init; }
+  property System.Byte[] Value { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptPackageMetadata left, VeroScript.VeroScriptPackageMetadata right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptPackageMetadata left, VeroScript.VeroScriptPackageMetadata right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object obj)
+  method System.Boolean Equals(VeroScript.VeroScriptPackageMetadata other)
+  method System.Void Deconstruct(out System.String Key, out System.Byte[] Value)
+
+type enum VeroScript.VeroScriptParameterFlags : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptParameterFlags None = 0
+  field static const VeroScript.VeroScriptParameterFlags Ref = 1
+  field static const VeroScript.VeroScriptParameterFlags ConstRef = 2
+
+type sealed class VeroScript.VeroScriptPredefinedMacro : System.IEquatable<VeroScript.VeroScriptPredefinedMacro>
+  ctor VeroScript.VeroScriptPredefinedMacro(System.String Name, System.String Body, System.Collections.Generic.IReadOnlyList<System.String>? Parameters = null, System.String SourceName = "<host>", System.Boolean Variadic = false)
+  property System.String Name { get; init; }
+  property System.String Body { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String>? Parameters { get; init; }
+  property System.String SourceName { get; init; }
+  property System.Boolean Variadic { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptPredefinedMacro? left, VeroScript.VeroScriptPredefinedMacro? right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptPredefinedMacro? left, VeroScript.VeroScriptPredefinedMacro? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.VeroScriptPredefinedMacro? other)
+  method VeroScript.VeroScriptPredefinedMacro <Clone>$()
+  method System.Void Deconstruct(out System.String Name, out System.String Body, out System.Collections.Generic.IReadOnlyList<System.String> Parameters, out System.String SourceName, out System.Boolean Variadic)
+
+type enum VeroScript.VeroScriptReloadState : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptReloadState None = 0
+  field static const VeroScript.VeroScriptReloadState Rejected = 1
+  field static const VeroScript.VeroScriptReloadState Pending = 2
+  field static const VeroScript.VeroScriptReloadState RolledBack = 3
+  field static const VeroScript.VeroScriptReloadState Applied = 4
+  field static const VeroScript.VeroScriptReloadState AppliedWithErrors = 5
+  field static const VeroScript.VeroScriptReloadState ResetRequired = 6
+
+type readonly struct VeroScript.VeroScriptReloadStatus : System.IEquatable<VeroScript.VeroScriptReloadStatus>
+  ctor VeroScript.VeroScriptReloadStatus(VeroScript.VeroScriptReloadState State, System.UInt64 OperationId, System.UInt64 PreviousGeneration, System.UInt64 CandidateGeneration, System.UInt64 CurrentGeneration, System.UInt64 CommittedGeneration)
+  property VeroScript.VeroScriptReloadState State { get; init; }
+  property System.UInt64 OperationId { get; init; }
+  property System.UInt64 PreviousGeneration { get; init; }
+  property System.UInt64 CandidateGeneration { get; init; }
+  property System.UInt64 CurrentGeneration { get; init; }
+  property System.UInt64 CommittedGeneration { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptReloadStatus left, VeroScript.VeroScriptReloadStatus right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptReloadStatus left, VeroScript.VeroScriptReloadStatus right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object obj)
+  method System.Boolean Equals(VeroScript.VeroScriptReloadStatus other)
+  method System.Void Deconstruct(out VeroScript.VeroScriptReloadState State, out System.UInt64 OperationId, out System.UInt64 PreviousGeneration, out System.UInt64 CandidateGeneration, out System.UInt64 CurrentGeneration, out System.UInt64 CommittedGeneration)
+
+type readonly struct VeroScript.VeroScriptResolvedMethod : System.IEquatable<VeroScript.VeroScriptResolvedMethod>
+  ctor VeroScript.VeroScriptResolvedMethod(System.UInt64 ProgramGeneration, System.UInt64 ModuleIdentity, System.UInt64 DeclaringTypeIdentity, System.UInt64 MethodIdentity, System.UInt32 FunctionIndex, System.String ModuleName, System.String DeclaringTypeName, System.String MethodName, System.String QualifiedName, System.Boolean IsVirtual, System.Boolean IsConst, System.Boolean ReturnsVoid)
+  property System.UInt64 ProgramGeneration { get; init; }
+  property System.UInt64 ModuleIdentity { get; init; }
+  property System.UInt64 DeclaringTypeIdentity { get; init; }
+  property System.UInt64 MethodIdentity { get; init; }
+  property System.UInt32 FunctionIndex { get; init; }
+  property System.String ModuleName { get; init; }
+  property System.String DeclaringTypeName { get; init; }
+  property System.String MethodName { get; init; }
+  property System.String QualifiedName { get; init; }
+  property System.Boolean IsVirtual { get; init; }
+  property System.Boolean IsConst { get; init; }
+  property System.Boolean ReturnsVoid { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptResolvedMethod left, VeroScript.VeroScriptResolvedMethod right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptResolvedMethod left, VeroScript.VeroScriptResolvedMethod right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object obj)
+  method System.Boolean Equals(VeroScript.VeroScriptResolvedMethod other)
+  method System.Void Deconstruct(out System.UInt64 ProgramGeneration, out System.UInt64 ModuleIdentity, out System.UInt64 DeclaringTypeIdentity, out System.UInt64 MethodIdentity, out System.UInt32 FunctionIndex, out System.String ModuleName, out System.String DeclaringTypeName, out System.String MethodName, out System.String QualifiedName, out System.Boolean IsVirtual, out System.Boolean IsConst, out System.Boolean ReturnsVoid)
+
+type enum VeroScript.VeroScriptRunMode : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptRunMode Eval = 0
+  field static const VeroScript.VeroScriptRunMode Script = 1
+  field static const VeroScript.VeroScriptRunMode EvalOnce = 2
+
+type readonly struct VeroScript.VeroScriptRunResult : System.IEquatable<VeroScript.VeroScriptRunResult>
+  ctor VeroScript.VeroScriptRunResult(System.Boolean Success, System.Boolean ExitRequested, System.Int32 ExitCode, System.UInt32 DiagnosticCount)
+  property System.Boolean Success { get; init; }
+  property System.Boolean ExitRequested { get; init; }
+  property System.Int32 ExitCode { get; init; }
+  property System.UInt32 DiagnosticCount { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptRunResult left, VeroScript.VeroScriptRunResult right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptRunResult left, VeroScript.VeroScriptRunResult right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object obj)
+  method System.Boolean Equals(VeroScript.VeroScriptRunResult other)
+  method System.Void Deconstruct(out System.Boolean Success, out System.Boolean ExitRequested, out System.Int32 ExitCode, out System.UInt32 DiagnosticCount)
+
+type static class VeroScript.VeroScriptRuntime
+  field static const System.UInt32 SupportedAbiVersion = 257
+  property static System.UInt32 AbiVersion { get; }
+  property static System.String RuntimeVersion { get; }
+  property static System.String HostPlatform { get; }
+  property static VeroScript.VeroScriptCapabilities Capabilities { get; }
+  property static VeroScript.VeroScriptCompileCapabilities CompileCapabilities { get; }
+  property static System.String CurrentLanguage { get; set; }
+  method static System.String GetAvailableLanguagesJson()
+  method static System.String Translate(System.String englishMessage)
+  method static System.Void LoadCatalogDirectory(System.String directory)
+  method static System.Void MergeCatalogDirectory(System.String directory, System.Boolean overrideExisting = false)
+
+type enum VeroScript.VeroScriptScriptCapabilities : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptScriptCapabilities None = 0
+  field static const VeroScript.VeroScriptScriptCapabilities FileRead = 1
+  field static const VeroScript.VeroScriptScriptCapabilities FileWrite = 2
+  field static const VeroScript.VeroScriptScriptCapabilities FileDelete = 4
+  field static const VeroScript.VeroScriptScriptCapabilities EnvironmentRead = 8
+  field static const VeroScript.VeroScriptScriptCapabilities EnvironmentWrite = 16
+  field static const VeroScript.VeroScriptScriptCapabilities ConsoleInput = 32
+  field static const VeroScript.VeroScriptScriptCapabilities ConsoleOutput = 64
+  field static const VeroScript.VeroScriptScriptCapabilities TaskSpawn = 128
+  field static const VeroScript.VeroScriptScriptCapabilities ProcessDirectoryChange = 256
+  field static const VeroScript.VeroScriptScriptCapabilities MemoryAddress = 512
+  field static const VeroScript.VeroScriptScriptCapabilities All = 1023
+
+type readonly struct VeroScript.VeroScriptSerializedField : System.IEquatable<VeroScript.VeroScriptSerializedField>
+  ctor VeroScript.VeroScriptSerializedField(System.String Name, System.String DeclaredType, System.String RuntimeType, System.UInt32 FieldIndex, VeroScript.VeroScriptBorrowedValue Value)
+  property System.String Name { get; init; }
+  property System.String DeclaredType { get; init; }
+  property System.String RuntimeType { get; init; }
+  property System.UInt32 FieldIndex { get; init; }
+  property VeroScript.VeroScriptBorrowedValue Value { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptSerializedField left, VeroScript.VeroScriptSerializedField right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptSerializedField left, VeroScript.VeroScriptSerializedField right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object obj)
+  method System.Boolean Equals(VeroScript.VeroScriptSerializedField other)
+  method System.Void Deconstruct(out System.String Name, out System.String DeclaredType, out System.String RuntimeType, out System.UInt32 FieldIndex, out VeroScript.VeroScriptBorrowedValue Value)
+
+type sealed class VeroScript.VeroScriptSession : System.IDisposable
+  ctor VeroScript.VeroScriptSession(VeroScript.VeroScriptSessionOptions? options = null)
+  property VeroScript.VeroScriptMemory Memory { get; }
+  property System.Boolean IsLoaded { get; }
+  property System.Boolean HotReloadEnabled { get; set; }
+  method VeroScript.VeroScriptRunResult LoadApplication(System.String absolutePath, System.String optionsJson = "{}")
+  method System.Void SetMemoryLimits(VeroScript.VeroScriptMemoryLimits limits)
+  method System.Void ApplyConfiguration(VeroScript.VeroScriptConfiguration configuration)
+  method System.Void ApplyConfiguration(VeroScript.VeroScriptConfiguration configuration, System.IntPtr moduleEnvironment)
+  method System.Void RequestCancellation()
+  method System.Void SetAnnotationProcessingService(System.IntPtr service)
+  method System.Void SetCompileProcessingService(System.IntPtr service)
+  method System.Void SetScriptCompileExtensions(VeroScript.VeroScriptCompileExtensionsOptions? options)
+  method System.Void SetJitBackend(System.String? path)
+  method System.Void SetVmBackend(System.String? path)
+  method VeroScript.VeroScriptVmBackendInfo GetVmBackendInfo()
+  method VeroScript.VeroScriptJitBackend GetJitBackend()
+  method VeroScript.VeroScriptJitBackendInfo GetJitBackendInfo()
+  method System.Void SetJitPolicy(VeroScript.VeroScriptJitPolicy policy)
+  method System.Void SetJitCacheLimits(VeroScript.VeroScriptJitCacheLimits limits)
+  method VeroScript.VeroScriptJitCacheLimits GetJitCacheLimits()
+  method VeroScript.VeroScriptJitCacheStats GetJitCacheStats()
+  method VeroScript.VeroScriptJitStats GetLastJitStats()
+  method VeroScript.VeroScriptRunResult LoadSource(System.String source, System.String fileLabel = "<memory>")
+  method VeroScript.VeroScriptRunResult LoadFile(System.String path)
+  method VeroScript.VeroScriptRunResult Run(VeroScript.VeroScriptRunMode mode = Script)
+  method VeroScript.VeroScriptRunResult Reload()
+  method VeroScript.VeroScriptReloadStatus GetReloadStatus()
+  method VeroScript.VeroScriptRunResult LoadPackage(VeroScript.VeroScriptPackage package, System.String logicalPath = "<package>")
+  method VeroScript.VeroScriptRunResult ReloadPackage(VeroScript.VeroScriptPackage package, System.String logicalPath = "<package>")
+  method System.ValueTuple<System.Byte[], VeroScript.VeroScriptRunResult> BuildPackageFile(System.String sourcePath, VeroScript.VeroScriptPackageBuildOptions options)
+  method System.Void Clear()
+  method System.Void SetInput(System.String input)
+  method System.Boolean HasFunction(System.String name, System.UInt32 argumentCount)
+  method System.Boolean HasMethod(VeroScript.VeroScriptValue instance, System.String name, System.UInt32 argumentCount)
+  method System.ValueTuple<VeroScript.VeroScriptValue, VeroScript.VeroScriptRunResult> CallFunction(System.String name, params VeroScript.VeroScriptValue[] arguments)
+  method VeroScript.VeroScriptRunResult CallFunction(System.String name, System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptValue> arguments, VeroScript.VeroScriptValue? returnValue)
+  method System.ValueTuple<VeroScript.VeroScriptValue, VeroScript.VeroScriptRunResult> CallMethod(VeroScript.VeroScriptValue instance, System.String name, params VeroScript.VeroScriptValue[] arguments)
+  method System.ValueTuple<VeroScript.VeroScriptValue, VeroScript.VeroScriptRunResult> CallMethodBypassingInterceptor(VeroScript.VeroScriptValue instance, System.String name, params VeroScript.VeroScriptValue[] arguments)
+  method System.ValueTuple<VeroScript.VeroScriptValue, VeroScript.VeroScriptRunResult> Construct(System.String typeName, params VeroScript.VeroScriptValue[] arguments)
+  method System.ValueTuple<VeroScript.VeroScriptValue, VeroScript.VeroScriptRunResult> GetField(VeroScript.VeroScriptValue instance, System.String name)
+  method VeroScript.VeroScriptRunResult SetField(VeroScript.VeroScriptValue instance, System.String name, VeroScript.VeroScriptValue value)
+  method System.ValueTuple<VeroScript.VeroScriptValue, VeroScript.VeroScriptRunResult> GetGlobal(System.String name)
+  method VeroScript.VeroScriptRunResult SetGlobal(System.String name, VeroScript.VeroScriptValue value)
+  method VeroScript.VeroScriptRunResult ApplyClassDefaults(VeroScript.VeroScriptValue instance)
+  method System.Void RegisterFunction(System.String name, VeroScript.VeroScriptNativeType returnType, System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptNativeParameter> parameters, VeroScript.VeroScriptNativeFunction callback)
+  method System.Void RegisterHostFunction(VeroScript.VeroScriptHostFunctionDefinition definition)
+  method System.Void RegisterAnnotation(VeroScript.VeroScriptAnnotationDefinition definition)
+  method System.UInt32 RegisterHostType(VeroScript.VeroScriptHostTypeDefinition definition)
+  method System.Void RegisterHostMember(System.UInt32 typeId, VeroScript.VeroScriptHostMemberDefinition definition)
+  method System.Void RegisterHostProtocol(System.UInt32 typeId, VeroScript.VeroScriptHostTypeProtocolDefinition definition)
+  method System.Void RegisterTypeAlias(System.String name, System.Collections.Generic.IReadOnlyList<System.String> typeParameters, System.String targetTypeName, System.String documentation = "")
+  method System.UInt32 RegisterGenericHostTypeTemplate(System.String name, System.UInt32 arity, System.String documentation, VeroScript.VeroScriptGenericHostTypeFactory factory)
+  method System.UInt32 InstantiateGenericHostType(System.UInt32 templateId, System.Collections.Generic.IReadOnlyList<System.String> typeArguments)
+  method System.Void SetInstanceCallInterceptor(VeroScript.VeroScriptInstanceInterceptor? interceptor)
+  method System.Void SetMutationHandler(VeroScript.VeroScriptMutationHandler? handler)
+  method System.Void RegisterExternalSerializer(System.String typeName, System.UInt32 version, VeroScript.VeroScriptExternalSerializeHandler serialize, VeroScript.VeroScriptExternalDeserializeHandler deserialize)
+  method System.ValueTuple<System.Byte[], System.UInt32> SerializeObject(VeroScript.VeroScriptValue instance)
+  method System.Void DeserializeObject(VeroScript.VeroScriptValue instance, System.ReadOnlySpan<System.Byte> bytes, System.UInt32 encodedVersion)
+  method System.Void EnumerateObjectReferences(VeroScript.VeroScriptValue instance, VeroScript.VeroScriptExternalReferenceVisitor visitor)
+  method VeroScript.VeroScriptCallable RetainCallable(VeroScript.VeroScriptValue functionValue, System.Boolean ownerThreadOnly = true, System.Boolean weakThis = false)
+  method System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptDiagnostic> GetDiagnostics()
+  method System.Collections.Generic.IReadOnlyList<System.String> GetDiagnosticArguments(System.UInt64 diagnosticIndex)
+  method System.String FormatDiagnostic(System.UInt64 diagnosticIndex)
+  method System.String ExportBindingsJson()
+  method System.String ExportReflectionJson()
+  method System.String GetLastError()
+  method System.Void Dispose()
+  method System.Void SetStandardLibraryLimits(VeroScript.VeroScriptStandardLibraryLimits limits)
+  method VeroScript.VeroScriptValue CreateVariant(System.String typeName, VeroScript.VeroScriptValue payload)
+
+type sealed class VeroScript.VeroScriptSessionOptions
+  ctor VeroScript.VeroScriptSessionOptions()
+  property System.Action<System.String>? Print { get; init; }
+  property System.Action<System.String>? Diagnostic { get; init; }
+  property System.Func<VeroScript.VeroScriptConsoleInfo>? ConsoleQuery { get; init; }
+  property System.Func<VeroScript.VeroScriptConsoleOperation, System.Int32, System.Int32, System.Boolean>? ConsoleControl { get; init; }
+  property System.Func<System.String, System.Boolean>? ConsoleWrite { get; init; }
+
+type sealed class VeroScript.VeroScriptSourceOverlay : System.IEquatable<VeroScript.VeroScriptSourceOverlay>
+  ctor VeroScript.VeroScriptSourceOverlay(System.String Path, System.String Source)
+  property System.String Path { get; init; }
+  property System.String Source { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptSourceOverlay? left, VeroScript.VeroScriptSourceOverlay? right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptSourceOverlay? left, VeroScript.VeroScriptSourceOverlay? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.VeroScriptSourceOverlay? other)
+  method VeroScript.VeroScriptSourceOverlay <Clone>$()
+  method System.Void Deconstruct(out System.String Path, out System.String Source)
+
+type readonly struct VeroScript.VeroScriptStandardLibraryLimits : System.IEquatable<VeroScript.VeroScriptStandardLibraryLimits>
+  ctor VeroScript.VeroScriptStandardLibraryLimits(System.UInt64 MaxTextBytes = 0, System.UInt64 MaxReadBytes = 0, System.UInt64 MaxSplitParts = 0)
+  property System.UInt64 MaxTextBytes { get; init; }
+  property System.UInt64 MaxReadBytes { get; init; }
+  property System.UInt64 MaxSplitParts { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptStandardLibraryLimits left, VeroScript.VeroScriptStandardLibraryLimits right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptStandardLibraryLimits left, VeroScript.VeroScriptStandardLibraryLimits right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object obj)
+  method System.Boolean Equals(VeroScript.VeroScriptStandardLibraryLimits other)
+  method System.Void Deconstruct(out System.UInt64 MaxTextBytes, out System.UInt64 MaxReadBytes, out System.UInt64 MaxSplitParts)
+
+type enum VeroScript.VeroScriptStatus : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptStatus Ok = 0
+  field static const VeroScript.VeroScriptStatus InvalidArgument = 1
+  field static const VeroScript.VeroScriptStatus OutOfMemory = 2
+  field static const VeroScript.VeroScriptStatus WrongThread = 3
+  field static const VeroScript.VeroScriptStatus EngineError = 4
+  field static const VeroScript.VeroScriptStatus TypeMismatch = 5
+  field static const VeroScript.VeroScriptStatus BufferTooSmall = 6
+  field static const VeroScript.VeroScriptStatus CallbackError = 7
+  field static const VeroScript.VeroScriptStatus Unsupported = 8
+  field static const VeroScript.VeroScriptStatus InternalError = 9
+  field static const VeroScript.VeroScriptStatus PermissionDenied = 10
+  field static const VeroScript.VeroScriptStatus Expired = 11
+  field static const VeroScript.VeroScriptStatus ReadOnly = 12
+  field static const VeroScript.VeroScriptStatus Busy = 13
+  field static const VeroScript.VeroScriptStatus LimitExceeded = 14
+
+type class VeroScript.VeroScriptValue : System.IDisposable
+  ctor VeroScript.VeroScriptValue()
+  property VeroScript.VeroScriptValueKind Kind { get; }
+  property System.String TypeName { get; }
+  property System.Boolean IsNull { get; }
+  property System.UInt64 SequenceCount { get; }
+  property System.UInt64 MapCount { get; }
+  property System.UInt64 SetCount { get; }
+  property System.UInt64 ChannelCount { get; }
+  property System.UInt64 ChannelCapacity { get; }
+  property System.Boolean IsChannelClosed { get; }
+  property System.Boolean VariantHasValue { get; }
+  property System.String VariantTypeName { get; }
+  method System.Void Reset()
+  method VeroScript.VeroScriptValue Clone()
+  method System.Void Set(VeroScript.VeroScriptValue source)
+  method System.Void Set(System.SByte value)
+  method System.Void Set(System.Byte value)
+  method System.Void Set(System.Int16 value)
+  method System.Void Set(System.UInt16 value)
+  method System.Void Set(System.Int32 value)
+  method System.Void Set(System.UInt32 value)
+  method System.Void Set(System.Int64 value)
+  method System.Void Set(System.UInt64 value)
+  method System.Void Set(System.Single value)
+  method System.Void Set(System.Double value)
+  method System.Void Set(System.Boolean value)
+  method System.Void SetString(System.String value)
+  method System.Void SetWideString(System.String value)
+  method System.Void SetEnum(System.String typeName, System.Int64 value)
+  method System.SByte GetInt8()
+  method System.Byte GetUInt8()
+  method System.Int16 GetInt16()
+  method System.UInt16 GetUInt16()
+  method System.Int32 GetInt32()
+  method System.UInt32 GetUInt32()
+  method System.Int64 GetInt64()
+  method System.UInt64 GetUInt64()
+  method System.Single GetFloat()
+  method System.Double GetDouble()
+  method System.Boolean GetBool()
+  method System.String GetString()
+  method System.String GetWideString()
+  method VeroScript.VeroScriptEnumValue GetEnum()
+  method System.Void SetHostObject(System.UInt32 typeId, System.String typeName, System.Object value)
+  method System.Void SetHostObject(System.UInt32 typeId, System.String typeName, System.Object value, System.Func<System.String, System.Boolean>? isType)
+  method VeroScript.VeroScriptHostObjectInfo GetHostObject()
+  method T GetHostObject<T>() where T : class
+  method System.Void SetArray(System.String elementType, System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptValue> elements)
+  method System.Void SetNull()
+  method System.Void SetSequence(VeroScript.VeroScriptValueKind kind, System.String elementType, System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptValue> elements)
+  method VeroScript.VeroScriptValue GetSequenceElement(System.UInt64 index)
+  method System.Void SetMap(System.String keyType, System.String valueType, System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptValue> keys, System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptValue> values, System.Boolean ordered = false)
+  method System.Void SetMap(VeroScript.VeroScriptValueKind kind, System.String keyType, System.String valueType, System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptValue> keys, System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptValue> values)
+  method System.Boolean TryGetMapValue(VeroScript.VeroScriptValue key, VeroScript.VeroScriptValue destination)
+  method System.Void EnumerateMap(System.Action<VeroScript.VeroScriptBorrowedValue, VeroScript.VeroScriptBorrowedValue> visitor)
+  method System.Void SetSet(System.String elementType, System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptValue> elements)
+  method System.Void SetSet(VeroScript.VeroScriptValueKind kind, System.String elementType, System.Collections.Generic.IReadOnlyList<VeroScript.VeroScriptValue> elements)
+  method System.Boolean SetContains(VeroScript.VeroScriptValue element)
+  method System.Void EnumerateSet(System.Action<VeroScript.VeroScriptBorrowedValue> visitor)
+  method System.Void SetChannel(System.String elementType)
+  method System.Void SetChannel(System.String elementType, System.UInt64 capacity)
+  method System.Void ChannelSend(VeroScript.VeroScriptValue value)
+  method System.Boolean ChannelTrySend(VeroScript.VeroScriptValue value)
+  method System.Boolean ChannelSendFor(VeroScript.VeroScriptValue value, System.UInt64 timeoutMilliseconds)
+  method VeroScript.VeroScriptValue ChannelReceive()
+  method VeroScript.VeroScriptValue? ChannelTryReceive()
+  method VeroScript.VeroScriptValue? ChannelReceiveFor(System.UInt64 timeoutMilliseconds)
+  method System.Void ChannelClose()
+  method System.Void Dispose()
+  method System.Void SetVariantEmpty()
+  method System.Void SetVariant(VeroScript.VeroScriptSession session, System.String typeName, VeroScript.VeroScriptValue payload)
+  method VeroScript.VeroScriptValue GetVariantValue()
+
+type enum VeroScript.VeroScriptValueKind : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.UInt32 value__
+  field static const VeroScript.VeroScriptValueKind Invalid = 0
+  field static const VeroScript.VeroScriptValueKind Int32 = 1
+  field static const VeroScript.VeroScriptValueKind Int64 = 2
+  field static const VeroScript.VeroScriptValueKind Double = 3
+  field static const VeroScript.VeroScriptValueKind String = 4
+  field static const VeroScript.VeroScriptValueKind Bool = 5
+  field static const VeroScript.VeroScriptValueKind Object = 6
+  field static const VeroScript.VeroScriptValueKind Array = 7
+  field static const VeroScript.VeroScriptValueKind UInt32 = 8
+  field static const VeroScript.VeroScriptValueKind UInt64 = 9
+  field static const VeroScript.VeroScriptValueKind WString = 10
+  field static const VeroScript.VeroScriptValueKind Map = 11
+  field static const VeroScript.VeroScriptValueKind Set = 12
+  field static const VeroScript.VeroScriptValueKind Queue = 13
+  field static const VeroScript.VeroScriptValueKind Stack = 14
+  field static const VeroScript.VeroScriptValueKind OrderedMap = 15
+  field static const VeroScript.VeroScriptValueKind Deque = 16
+  field static const VeroScript.VeroScriptValueKind Channel = 17
+  field static const VeroScript.VeroScriptValueKind Function = 18
+  field static const VeroScript.VeroScriptValueKind Enum = 19
+  field static const VeroScript.VeroScriptValueKind HostObject = 20
+  field static const VeroScript.VeroScriptValueKind NativeArray = 21
+  field static const VeroScript.VeroScriptValueKind Float = 22
+  field static const VeroScript.VeroScriptValueKind Int8 = 23
+  field static const VeroScript.VeroScriptValueKind UInt8 = 24
+  field static const VeroScript.VeroScriptValueKind Int16 = 25
+  field static const VeroScript.VeroScriptValueKind UInt16 = 26
+  field static const VeroScript.VeroScriptValueKind Null = 27
+  field static const VeroScript.VeroScriptValueKind MultiMap = 28
+  field static const VeroScript.VeroScriptValueKind OrderedMultiMap = 29
+  field static const VeroScript.VeroScriptValueKind PriorityQueue = 30
+  field static const VeroScript.VeroScriptValueKind MultiSet = 31
+  field static const VeroScript.VeroScriptValueKind OrderedMultiSet = 32
+  field static const VeroScript.VeroScriptValueKind Variant = 33
+
+type sealed class VeroScript.VeroScriptVmBackendInfo : System.IEquatable<VeroScript.VeroScriptVmBackendInfo>
+  ctor VeroScript.VeroScriptVmBackendInfo(System.String Id, System.String Version, System.String Target, System.String LibraryPath, System.UInt64 Capabilities, System.Boolean Selected, System.Boolean Frozen)
+  property System.String Id { get; init; }
+  property System.String Version { get; init; }
+  property System.String Target { get; init; }
+  property System.String LibraryPath { get; init; }
+  property System.UInt64 Capabilities { get; init; }
+  property System.Boolean Selected { get; init; }
+  property System.Boolean Frozen { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.VeroScriptVmBackendInfo? left, VeroScript.VeroScriptVmBackendInfo? right)
+  method static System.Boolean op_Equality(VeroScript.VeroScriptVmBackendInfo? left, VeroScript.VeroScriptVmBackendInfo? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.VeroScriptVmBackendInfo? other)
+  method VeroScript.VeroScriptVmBackendInfo <Clone>$()
+  method System.Void Deconstruct(out System.String Id, out System.String Version, out System.String Target, out System.String LibraryPath, out System.UInt64 Capabilities, out System.Boolean Selected, out System.Boolean Frozen)

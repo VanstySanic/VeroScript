@@ -1,0 +1,9 @@
+{
+  "diag.document_is_not_open_in_workspace": "문서가 작업공간에 열려 있지 않습니다",
+  "diag.format_failed_lexer_error": "format 실패: 렉서 오류",
+  "tooling.builtin_type.detail": "기본 제공 형식",
+  "tooling.builtin_type.documentation": "VeroScript 기본 제공 형식입니다.",
+  "tooling.hover.builtin": "내장 심볼.",
+  "tooling.source_documentation.parameter": "매개변수 `{0}`:",
+  "tooling.source_documentation.returns": "반환값:"
+}

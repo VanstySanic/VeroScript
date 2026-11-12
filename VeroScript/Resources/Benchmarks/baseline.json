@@ -1,0 +1,51 @@
+{
+  "schema": 2,
+  "metadata": {
+    "platform": "windows",
+    "architecture": "x64",
+    "compiler": "msvc",
+    "compiler_version": "1944",
+    "cplusplus": 201703,
+    "build": "release",
+    "hardware_threads": 24,
+    "machine": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "commit": "964bbb5a3cfe84531c2a0d0882f1afab1283ea9e"
+  },
+  "results": {
+    "cold_start": {
+      "backend": "vm",
+      "sample_count": 1,
+      "min_ms": 1.508,
+      "median_ms": 1.508,
+      "max_ms": 1.508
+    },
+    "int_loop": {
+      "backend": "vm",
+      "sample_count": 3,
+      "min_ms": 128.08,
+      "median_ms": 128.99,
+      "max_ms": 130.747
+    },
+    "int_call": {
+      "backend": "vm",
+      "sample_count": 3,
+      "min_ms": 51.9738,
+      "median_ms": 52.0375,
+      "max_ms": 52.1344
+    },
+    "method_call": {
+      "backend": "vm",
+      "sample_count": 3,
+      "min_ms": 155.986,
+      "median_ms": 160.318,
+      "max_ms": 162.918
+    },
+    "field_array": {
+      "backend": "vm",
+      "sample_count": 3,
+      "min_ms": 301.303,
+      "median_ms": 307.916,
+      "max_ms": 311.714
+    }
+  }
+}

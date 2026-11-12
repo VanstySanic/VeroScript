@@ -1,0 +1,67 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Stack Width="100%" Height="100%">
+	<style src="page.vswcss" />
+	<script><![CDATA[
+		public:
+			string Choice = "first";
+			bool PopupOpen = false;
+
+			@GuiMethod
+			string ReadChoice() const
+			{
+				return Choice;
+			}
+
+			@GuiMethod
+			bool ReadPopupOpen() const
+			{
+				return PopupOpen;
+			}
+
+			@GuiMethod
+			void Choose(VS::Gui::RadioGroup sender, string key)
+			{
+				Choice = key;
+			}
+
+			@GuiMethod
+			void ShowPopup(VS::Gui::Button sender)
+			{
+				PopupOpen = true;
+			}
+
+			@GuiMethod
+			void PopupChanged(VS::Gui::Popup sender, bool open)
+			{
+				PopupOpen = open;
+			}
+	]]></script>
+	<Text Text="Layout, input and floating controls" FontSize="22" />
+	<Grid id="grid" class="tiles">
+		<Border Text="Equal column A" /><Border Text="Equal column B" />
+		<Border Text="Row two" /><Border Text="Resizes with its container" />
+	</Grid>
+	<Wrap id="wrap" Gap="6">
+		<Border Text="Wrap A" Width="180px" />
+		<Border Text="Wrap B" Width="180px" />
+		<Border Text="Wrap C" Width="180px" />
+	</Wrap>
+	<Splitter id="splitter" Value="0.35" Minimum="0.15" Maximum="0.85">
+		<Border Text="Drag the divider" /><Border Text="Or focus it and use the arrow keys" />
+	</Splitter>
+	<RadioGroup id="choices" bind:SelectedKey="ReadChoice" on:selection-changed="Choose" Layout="Horizontal" Gap="16">
+		<RadioButton Key="first" Text="First choice" />
+		<RadioButton Key="second" Text="Second choice" />
+	</RadioGroup>
+	<NumberBox id="number" Value="12.5" Minimum="-100" Maximum="100" Step="0.5" />
+	<PasswordBox id="password" Placeholder="Password" />
+	<Button id="anchor" Text="Open popup; hover for a tooltip" on:clicked="ShowPopup">
+		<Popup id="popup" bind:Open="ReadPopupOpen" on:open-changed="PopupChanged">
+			<Text Text="Floating outside the anchor's content flow" />
+			<Text Text="Click outside or press Escape to close" />
+		</Popup>
+		<ToolTip id="tip" Text="A delayed, noninteractive hint" />
+	</Button>
+</Stack>

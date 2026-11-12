@@ -1,0 +1,44 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>12.0</LangVersion>
+		<AssemblyName>VeroScriptCSharpTranspiler.Cli</AssemblyName>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>9.0-recommended</AnalysisLevel>
+		<RollForward>Major</RollForward>
+		<PackAsTool>true</PackAsTool>
+		<ToolCommandName>veroscript-csharp-transpiler</ToolCommandName>
+		<PackageId>VeroScript.CSharpTranspiler.Tool</PackageId>
+		<VersionPrefix>0.1.1</VersionPrefix>
+		<Title>VeroScript C# Transpiler Tool</Title>
+		<Description>Command-line strict C#-to-VeroScript source transpiler.</Description>
+		<Authors>VanstySanic</Authors>
+		<Company>VanstySanic</Company>
+		<Copyright>Copyright © 2026 VanstySanic</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/VanstySanic/VeroScript/tree/main/Extensions/Language/CSharp/VeroScriptCSharpTranspiler</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/VanstySanic/VeroScript</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryCommit Condition="'$(GITHUB_SHA)' != ''">$(GITHUB_SHA)</RepositoryCommit>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<PackageTags>veroscript;csharp;transpiler;dotnet-tool;roslyn</PackageTags>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<Deterministic>true</Deterministic>
+		<ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+		<EnablePackageValidation>true</EnablePackageValidation>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="..\..\Resources\Tools\OutputPathIdentity.cs" Link="OutputPathIdentity.cs" />
+		<ProjectReference Include="..\VeroScriptCSharpTranspiler.csproj" />
+		<None Include="..\..\..\..\..\LICENSE" Pack="true" PackagePath="\" Link="LICENSE" />
+	</ItemGroup>
+</Project>

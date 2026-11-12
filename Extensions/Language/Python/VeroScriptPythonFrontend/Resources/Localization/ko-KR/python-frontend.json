@@ -1,0 +1,6 @@
+{
+  "python_tools.python_version_required": "VeroScript Python 도구에는 Python 3.11-3.15가 필요합니다",
+  "python_tools.source_read_failed": "Python 소스를 읽지 못했습니다: {0}",
+  "python_tools.syntax_error": "잘못된 Python 구문입니다: {0}",
+  "python_tools.unsupported_top_level": "지원되지 않는 최상위 Python 구문입니다: {0}"
+}

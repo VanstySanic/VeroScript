@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+@PACKAGE_INIT@
+include(CMakeFindDependencyMacro)
+find_dependency(VeroScript 0.1.1 EXACT CONFIG)
+find_dependency(VeroScriptPackageRuntime 0.1.1 EXACT CONFIG)
+if(@VEROSCRIPT_PACKAGE_MANAGER_HAS_VM@)
+	find_dependency(VeroScriptBytecodeVm 0.1.1 EXACT CONFIG)
+endif()
+include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptPackageManagerCoreBuild.cmake")
+if(NOT VeroScript_BUILD_ID STREQUAL VeroScriptPackageManager_CORE_BUILD_ID)
+	set(VeroScriptPackageManager_FOUND FALSE)
+	set(VeroScriptPackageManager_NOT_FOUND_MESSAGE "PackageManager requires the matching Core SDK library build")
+	return()
+endif()
+find_dependency(CURL 7.85)
+include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptPackageManagerTargets.cmake")
+check_required_components(VeroScriptPackageManager)

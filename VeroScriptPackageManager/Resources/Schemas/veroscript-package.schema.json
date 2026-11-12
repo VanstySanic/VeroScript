@@ -1,0 +1,822 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VeroScript distribution 0.1.1",
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "veroscript-package"
+    },
+    "formatVersion": {
+      "const": "0.1.1"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "version": {
+      "type": "string",
+      "description": "SemVer major.minor.patch, optional prerelease, no build metadata."
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "homepage": {
+      "type": "string"
+    },
+    "repository": {
+      "type": "string"
+    },
+    "license": {
+      "type": "string"
+    },
+    "licenseFile": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+    },
+    "readme": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+    },
+    "icon": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "exclude": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "requires": {
+      "type": "object",
+      "properties": {
+        "core": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exact SemVer or whitespace-separated comparisons (< <= > >= =), intersected."
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Exact SemVer or whitespace-separated comparisons (< <= > >= =), intersected."
+              }
+            },
+            "required": [
+              "id",
+              "version"
+            ],
+            "additionalProperties": false
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "os": {
+          "type": "string"
+        },
+        "arch": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "string"
+        },
+        "abis": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "coreBuild": {
+          "type": "string"
+        },
+        "minimumVersions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "description": "SemVer major.minor.patch, optional prerelease, no build metadata."
+          }
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Exact SemVer or whitespace-separated comparisons (< <= > >= =), intersected."
+          },
+          "source": {
+            "type": "string"
+          },
+          "usage": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "runtime",
+                "compile",
+                "development"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "optional": {
+            "type": "boolean"
+          },
+          "when": {
+            "type": "object",
+            "properties": {
+              "os": {
+                "type": "string"
+              },
+              "arch": {
+                "type": "string"
+              },
+              "environment": {
+                "type": "string"
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          },
+          "archive": {
+            "type": "string"
+          },
+          "directory": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "version"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "conflicts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Exact SemVer or whitespace-separated comparisons (< <= > >= =), intersected."
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+      }
+    },
+    "localization": {
+      "type": "object",
+      "properties": {
+        "root": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+        },
+        "baseCulture": {
+          "const": "en-US"
+        }
+      },
+      "required": [
+        "root",
+        "baseCulture"
+      ],
+      "additionalProperties": false
+    },
+    "entries": {
+      "type": "object",
+      "properties": {
+        "modules": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+          }
+        },
+        "native": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 64,
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+              },
+              "linkage": {
+                "enum": [
+                  "dynamic",
+                  "static"
+                ]
+              },
+              "roles": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "bindings",
+                    "compiler",
+                    "provider",
+                    "cli"
+                  ]
+                },
+                "uniqueItems": true
+              },
+              "catalog": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+              },
+              "componentVersion": {
+                "type": "string",
+                "description": "SemVer major.minor.patch, optional prerelease, no build metadata."
+              },
+              "libraries": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "id",
+              "path",
+              "linkage",
+              "roles"
+            ],
+            "additionalProperties": false
+          },
+          "uniqueItems": true
+        },
+        "libraries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+              },
+              "linkage": {
+                "enum": [
+                  "dynamic",
+                  "static"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "path",
+              "linkage"
+            ],
+            "additionalProperties": false
+          },
+          "uniqueItems": true
+        },
+        "compiler": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+              },
+              "registrationEntry": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path"
+            ],
+            "additionalProperties": false
+          },
+          "uniqueItems": true
+        },
+        "backends": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "service": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 64,
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              "id": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 64,
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                "not": {
+                  "enum": [
+                    "auto",
+                    "none"
+                  ]
+                }
+              },
+              "module": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 64,
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+              },
+              "contract": {
+                "enum": [
+                  "jit",
+                  "vm"
+                ]
+              },
+              "libraries": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "service",
+              "id"
+            ],
+            "additionalProperties": false,
+            "oneOf": [
+              {
+                "required": [
+                  "module"
+                ],
+                "not": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "path"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "contract"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "required": [
+                  "path",
+                  "contract"
+                ],
+                "not": {
+                  "required": [
+                    "module"
+                  ]
+                },
+                "oneOf": [
+                  {
+                    "properties": {
+                      "service": {
+                        "const": "jit"
+                      },
+                      "contract": {
+                        "const": "jit"
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "service": {
+                        "const": "vm"
+                      },
+                      "contract": {
+                        "const": "vm"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "install": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "object",
+          "properties": {
+            "before": {
+              "type": "string"
+            },
+            "after": {
+              "type": "string"
+            },
+            "readme": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+            },
+            "license": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "inputs": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "enum": [
+                  "string",
+                  "boolean",
+                  "integer",
+                  "enum"
+                ]
+              },
+              "required": {
+                "type": "boolean"
+              },
+              "default": {
+                "type": [
+                  "string",
+                  "boolean",
+                  "integer"
+                ]
+              },
+              "description": {
+                "type": "string"
+              },
+              "sensitive": {
+                "type": "boolean"
+              },
+              "choices": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "enum": [
+                  "copy",
+                  "template"
+                ]
+              },
+              "source": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+              },
+              "destination": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+              }
+            },
+            "required": [
+              "type",
+              "source",
+              "destination"
+            ],
+            "additionalProperties": false
+          },
+          "uniqueItems": true
+        },
+        "hooks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "phase": {
+                "enum": [
+                  "pre-install",
+                  "post-install",
+                  "pre-uninstall",
+                  "post-uninstall"
+                ]
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+              },
+              "entry": {
+                "type": "string"
+              },
+              "permissions": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "resources.read",
+                    "generated.write",
+                    "messages"
+                  ]
+                },
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "phase",
+              "path",
+              "entry"
+            ],
+            "additionalProperties": false
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  },
+  "required": [
+    "format",
+    "formatVersion",
+    "name",
+    "version"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "dependency": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exact SemVer or whitespace-separated comparisons (< <= > >= =), intersected."
+        },
+        "source": {
+          "type": "string"
+        },
+        "usage": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "runtime",
+              "compile",
+              "development"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "optional": {
+          "type": "boolean"
+        },
+        "when": {
+          "type": "object",
+          "properties": {
+            "os": {
+              "type": "string"
+            },
+            "arch": {
+              "type": "string"
+            },
+            "environment": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "archive": {
+          "type": "string"
+        },
+        "directory": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "version"
+      ],
+      "additionalProperties": false
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "os": {
+          "type": "string"
+        },
+        "arch": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "string"
+        },
+        "abis": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "coreBuild": {
+          "type": "string"
+        },
+        "minimumVersions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "description": "SemVer major.minor.patch, optional prerelease, no build metadata."
+          }
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "requires": {
+      "type": "object",
+      "properties": {
+        "core": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exact SemVer or whitespace-separated comparisons (< <= > >= =), intersected."
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Exact SemVer or whitespace-separated comparisons (< <= > >= =), intersected."
+              }
+            },
+            "required": [
+              "id",
+              "version"
+            ],
+            "additionalProperties": false
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Canonical forward-slash relative path; no dot segments, backslashes, drive names, control characters, reserved device names, or links. Runtime validation also checks filesystem aliases."
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "version": {
+      "type": "string",
+      "description": "SemVer major.minor.patch, optional prerelease, no build metadata."
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "Associations.Title": "Associations de fichiers",
+  "Associations.Subtitle": "Options pour l’utilisateur Windows actuel.",
+  "Associations.Source": "Exécuter les fichiers .vs avec ce Runtime (avec icône)",
+  "Associations.Application": "Exécuter les fichiers .vsapp avec ce Runtime (avec icône)",
+  "Associations.PackageIcon": "Ajouter l’icône .vspkg si aucune icône n’est enregistrée",
+  "Associations.ChooseDefaults": "Choisir les applications par défaut après l’installation",
+  "Associations.Description": "Ouvrir un fichier .vs ou .vsapp l’exécute. L’option .vspkg ajoute uniquement une icône. Vous gardez le choix des applications par défaut ; Windows peut utiliser leur icône.",
+  "Associations.OpenDefaults": "Ouvrir les applications par défaut",
+  "Associations.Review": "Exécution : {0}. Icône des paquets : {1}. Les options désactivées retirent uniquement les réglages de cette installation.",
+  "Associations.DefaultReview": "Après l’installation, choisissez les applications par défaut de .vs et .vsapp dans les paramètres Windows.",
+  "Associations.Remove": "Retirer uniquement les gestionnaires et icônes de cette installation ; préserver les autres applications et les modifications ultérieures.",
+  "Associations.None": "désactivé",
+  "Associations.Enabled": "activé",
+  "Associations.Preserved": "Certaines valeurs appartiennent à une autre installation ou ont été modifiées. Elles ont été conservées.",
+  "Associations.DefaultRequested": "L’ouverture des paramètres a été demandée. Choisissez ce Runtime pour .vs et/ou .vsapp dans Windows pour confirmer.",
+  "Associations.DefaultFailed": "Installation réussie, mais impossible d’ouvrir les paramètres Windows. Utilisez Paramètres > Applications > Applications par défaut, ou le bouton ci-dessous.",
+  "Associations.DefaultUnavailable": "Installation réussie. Les modifications existantes empêchent un enregistrement complet ; les paramètres par défaut n’ont pas été ouverts."
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "VeroScriptInstaller",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/installation-and-distribution.md"
+    }
+  ],
+  "developer": true
+}

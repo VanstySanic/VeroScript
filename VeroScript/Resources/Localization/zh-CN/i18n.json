@@ -1,0 +1,20 @@
+{
+  "diag.i18n_invalid_argument": "国际化参数无效: {0}",
+  "diag.i18n_invalid_configuration": "国际化配置无效: {0}",
+  "diag.i18n_invalid_state": "国际化状态无效: {0}",
+  "diag.i18n_missing_resolver": "未配置资源解析器: {0}",
+  "diag.i18n_missing_message": "未找到消息: {0}",
+  "diag.i18n_unsupported_format": "不支持的格式: {0}",
+  "diag.i18n_missing_argument": "缺少命名参数: {0}",
+  "diag.i18n_argument_type": "参数类型错误: {0}",
+  "diag.i18n_numeric_conversion": "数值转换不精确或越界: {0}",
+  "diag.i18n_invalid_pattern": "格式模板无效: {0}",
+  "diag.i18n_unsupported_option": "不支持的格式选项: {0}",
+  "diag.i18n_provider_failure": "提供者结果无效: {0}",
+  "diag.i18n_resource_limit": "输出超出限额: {0}",
+  "diag.i18n_out_of_memory": "内存分配失败: {0}",
+  "diag.i18n_interrupted": "操作已中断: {0}",
+  "diag.i18n_reentrant_operation": "国际化操作递归重入: {0}",
+  "diag.stdlib_native_limit": "包含核心标准库绑定的宿主原生函数表超出容量",
+  "diag.stdlib_reserved_binding": "不能替换核心标准库绑定"
+}

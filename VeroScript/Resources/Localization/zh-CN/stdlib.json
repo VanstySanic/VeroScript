@@ -1,0 +1,11 @@
+{
+  "diag.stdlib_arguments": "标准库操作实参无效",
+  "diag.stdlib_eof": "输入意外结束",
+  "diag.stdlib_interrupted": "标准库操作已中断",
+  "diag.stdlib_io": "标准库输入／输出操作失败",
+  "diag.stdlib_limit": "标准库操作超出资源限额",
+  "diag.stdlib_range": "数值文本超出目标范围，字节位置：{0}",
+  "diag.stdlib_sync": "同步操作失败：{0}",
+  "diag.stdlib_task": "任务操作失败：{0}",
+  "diag.stdlib_text": "文本无效，字节位置：{0}"
+}

@@ -1,0 +1,19 @@
+VeroScriptFontBackend includes SheenBidi 3.0.0 and its generated Unicode tables.
+
+SheenBidi
+Copyright (C) 2014-2026 Muhammad Tayyab Akram
+https://github.com/Tehreer/SheenBidi
+Commit: cfe430e7375a7845b679adae9d51dac6deaa8858
+License: Apache License, Version 2.0 (LICENSE.Apache-2.0.txt)
+The vendored upstream source snapshot is unmodified.
+
+Unicode Character Database 17.0.0
+Copyright (C) 2025 Unicode, Inc.
+https://www.unicode.org/versions/Unicode17.0.0/
+License: Unicode License V3 (LICENSE.Unicode-3.0.txt)
+SheenBidi's generated tables and Tools/Unicode data derive from this data.
+
+Preserve these notices and both license texts when redistributing the
+VeroScriptFontBackend library, including as part of a GUI or application package.
+This third-party code and data retain their own licenses; the VeroScript
+project's MIT license does not replace them.

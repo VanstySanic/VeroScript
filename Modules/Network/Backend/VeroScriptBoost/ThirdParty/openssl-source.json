@@ -1,0 +1,10 @@
+{
+  "name": "OpenSSL",
+  "provider": "System or caller-supplied SDK; no source download during CMake configure",
+  "minimumVersion": "3.0",
+  "url": "https://github.com/openssl/openssl",
+  "license": "Apache-2.0",
+  "licenseFile": "../Resources/Licenses/OpenSSL-LICENSE.txt",
+  "windowsBuildRecipe": "../Resources/Tools/Dependencies/vcpkg.json",
+  "configuration": "One OpenSSL implementation in VeroScriptBoostRuntime; native HTTPS server and WSS share it. The installed dependency manifest records the configured version."
+}

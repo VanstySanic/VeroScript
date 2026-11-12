@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "module": "Documentation",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/index.md"
+    },
+    {
+      "source": "User/{locale}/toolchain/index.md",
+      "output": "{locale}/toolchain/index.md"
+    }
+  ],
+  "developer": true
+}

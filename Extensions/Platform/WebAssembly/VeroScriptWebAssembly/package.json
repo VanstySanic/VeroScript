@@ -1,0 +1,20 @@
+{
+  "name": "veroscript-webassembly-build-tests",
+  "version": "0.1.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:declarations": "node Tests/VeroScriptWebAssemblyDeclarationParity.mjs --write",
+    "typecheck": "npm run typecheck:bindings && npm run typecheck:declarations && npm run typecheck:parity",
+    "typecheck:bindings": "tsc -p Tests/tsconfig.bindings.json",
+    "typecheck:declarations": "tsc -p Tests/tsconfig.declarations.json",
+    "typecheck:parity": "node Tests/VeroScriptWebAssemblyDeclarationParity.mjs",
+    "test:browser": "node Tests/VeroScriptWebAssemblyBrowserSmoke.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "playwright": "1.62.1",
+    "typescript": "7.0.2"
+  },
+  "license": "MIT"
+}

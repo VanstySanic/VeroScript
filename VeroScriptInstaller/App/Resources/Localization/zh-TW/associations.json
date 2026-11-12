@@ -1,0 +1,19 @@
+{
+  "Associations.Title": "檔案關聯",
+  "Associations.Subtitle": "為目前的 Windows 使用者設定可選的檔案關聯。",
+  "Associations.Source": "註冊 .vs 由此 Runtime 執行（含檔案圖示）",
+  "Associations.Application": "註冊 .vsapp 由此 Runtime 執行（含檔案圖示）",
+  "Associations.PackageIcon": "註冊 .vspkg 圖示（僅限尚未註冊圖示時）",
+  "Associations.ChooseDefaults": "安裝完成後，在 Windows 設定中選擇預設開啟程式",
+  "Associations.Description": "開啟 .vs 或 .vsapp 會執行檔案；.vspkg 選項僅新增圖示。現有預設程式仍由你決定；Windows 可能使用所選程式的圖示。",
+  "Associations.OpenDefaults": "開啟預設應用程式設定",
+  "Associations.Review": "執行關聯：{0}；套件圖示：{1}。取消的選項僅清除此安裝擁有的設定。",
+  "Associations.DefaultReview": "安裝後在 Windows 設定中選擇 .vs 和 .vsapp 的預設應用程式。",
+  "Associations.Remove": "僅移除此安裝擁有的執行處理常式與圖示參照，保留其他程式及使用者後續修改的設定。",
+  "Associations.None": "不啟用",
+  "Associations.Enabled": "啟用",
+  "Associations.Preserved": "部分登錄值屬於其他安裝或已被修改，已保留這些設定。",
+  "Associations.DefaultRequested": "已要求開啟預設應用程式設定。請在 Windows 中為 .vs 和／或 .vsapp 選擇此 Runtime，確認預設程式。",
+  "Associations.DefaultFailed": "安裝成功，但無法開啟 Windows 設定。請前往「設定 > 應用程式 > 預設應用程式」，或點選下方按鈕重試。",
+  "Associations.DefaultUnavailable": "安裝成功；為保留現有修改，未能註冊完整的執行處理常式，因此未開啟預設應用程式設定。"
+}

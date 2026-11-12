@@ -1,0 +1,27 @@
+{
+  "name": "VeroScript GUI Style", "scopeName": "source.vswcss",
+  "patterns": [
+    { "include": "#comments" },
+    {
+      "name": "meta.property-list.vswcss", "begin": "\\{", "end": "\\}",
+      "patterns": [
+        { "include": "#comments" },
+        { "name": "support.type.property-name.css", "match": "(?:--)?[A-Za-z_][\\w-]*(?=\\s*:)" },
+        { "name": "string.quoted.double.css", "begin": "\"", "end": "\"", "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.css" }] },
+        { "name": "string.quoted.single.css", "begin": "'", "end": "'", "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.css" }] },
+        { "name": "constant.other.color.rgb-value.css", "match": "#[0-9a-fA-F]{3,8}\\b" },
+        { "name": "constant.numeric.css", "match": "[+-]?(?:[0-9]+(?:\\.[0-9]+)?|\\.[0-9]+)(?:px|dp|%)?" },
+        { "name": "support.function.css", "match": "[A-Za-z_][\\w-]*(?=\\()" },
+        { "name": "variable.other.custom-property.css", "match": "--[A-Za-z_][\\w-]*" },
+        { "name": "constant.language.css", "match": "\\b[A-Za-z_][\\w-]*\\b" },
+        { "name": "punctuation.separator.css", "match": "[:;,]" }
+      ]
+    },
+    { "name": "entity.other.attribute-name.id.css", "match": "#[A-Za-z_][\\w-]*" },
+    { "name": "entity.other.attribute-name.class.css", "match": "\\.[A-Za-z_][\\w-]*" },
+    { "name": "entity.other.attribute-name.pseudo-class.css", "match": ":[A-Za-z_][\\w-]*" },
+    { "name": "entity.name.tag.css", "match": "[A-Za-z_][\\w-]*|\\*" },
+    { "name": "punctuation.separator.css", "match": "[>,]" }
+  ],
+  "repository": { "comments": { "name": "comment.block.css", "begin": "/\\*", "end": "\\*/" } }
+}

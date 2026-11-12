@@ -1,0 +1,354 @@
+type enum VeroScript.CSharpFrontend.CSharpAccessibility : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.Int32 value__
+  field static const VeroScript.CSharpFrontend.CSharpAccessibility NotApplicable = 0
+  field static const VeroScript.CSharpFrontend.CSharpAccessibility Private = 1
+  field static const VeroScript.CSharpFrontend.CSharpAccessibility ProtectedAndInternal = 2
+  field static const VeroScript.CSharpFrontend.CSharpAccessibility Protected = 3
+  field static const VeroScript.CSharpFrontend.CSharpAccessibility Internal = 4
+  field static const VeroScript.CSharpFrontend.CSharpAccessibility ProtectedOrInternal = 5
+  field static const VeroScript.CSharpFrontend.CSharpAccessibility Public = 6
+
+type sealed class VeroScript.CSharpFrontend.CSharpAttribute : System.IEquatable<VeroScript.CSharpFrontend.CSharpAttribute>
+  ctor VeroScript.CSharpFrontend.CSharpAttribute(System.String TypeName, System.Collections.Generic.IReadOnlyList<System.String> ConstructorArguments, System.Collections.Generic.IReadOnlyDictionary<System.String, System.String> NamedArguments, VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+  property System.String TypeName { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> ConstructorArguments { get; init; }
+  property System.Collections.Generic.IReadOnlyDictionary<System.String, System.String> NamedArguments { get; init; }
+  property VeroScript.CSharpFrontend.CSharpSourceLocation Location { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpAttribute? left, VeroScript.CSharpFrontend.CSharpAttribute? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpAttribute? left, VeroScript.CSharpFrontend.CSharpAttribute? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpAttribute? other)
+  method VeroScript.CSharpFrontend.CSharpAttribute <Clone>$()
+  method System.Void Deconstruct(out System.String TypeName, out System.Collections.Generic.IReadOnlyList<System.String> ConstructorArguments, out System.Collections.Generic.IReadOnlyDictionary<System.String, System.String> NamedArguments, out VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+
+type sealed class VeroScript.CSharpFrontend.CSharpCallableDeclaration : System.IEquatable<VeroScript.CSharpFrontend.CSharpCallableDeclaration>
+  ctor VeroScript.CSharpFrontend.CSharpCallableDeclaration(System.String Name, System.String QualifiedName, VeroScript.CSharpFrontend.CSharpCallableKind Kind, VeroScript.CSharpFrontend.CSharpTypeReference ReturnType, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpParameterDeclaration> Parameters, System.Collections.Generic.IReadOnlyList<System.String> TypeParameters, VeroScript.CSharpFrontend.CSharpAccessibility Accessibility, System.Boolean IsStatic, System.Boolean IsAbstract, System.Boolean IsVirtual, System.Boolean IsOverride, System.Boolean IsSealed, System.Boolean IsExtern, System.Boolean IsAsync, System.String BodyText, System.String DocumentationXml, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes, VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+  property System.String Name { get; init; }
+  property System.String QualifiedName { get; init; }
+  property VeroScript.CSharpFrontend.CSharpCallableKind Kind { get; init; }
+  property VeroScript.CSharpFrontend.CSharpTypeReference ReturnType { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpParameterDeclaration> Parameters { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> TypeParameters { get; init; }
+  property VeroScript.CSharpFrontend.CSharpAccessibility Accessibility { get; init; }
+  property System.Boolean IsStatic { get; init; }
+  property System.Boolean IsAbstract { get; init; }
+  property System.Boolean IsVirtual { get; init; }
+  property System.Boolean IsOverride { get; init; }
+  property System.Boolean IsSealed { get; init; }
+  property System.Boolean IsExtern { get; init; }
+  property System.Boolean IsAsync { get; init; }
+  property System.String BodyText { get; init; }
+  property System.String DocumentationXml { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes { get; init; }
+  property VeroScript.CSharpFrontend.CSharpSourceLocation Location { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpCallableDeclaration? left, VeroScript.CSharpFrontend.CSharpCallableDeclaration? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpCallableDeclaration? left, VeroScript.CSharpFrontend.CSharpCallableDeclaration? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpCallableDeclaration? other)
+  method VeroScript.CSharpFrontend.CSharpCallableDeclaration <Clone>$()
+  method System.Void Deconstruct(out System.String Name, out System.String QualifiedName, out VeroScript.CSharpFrontend.CSharpCallableKind Kind, out VeroScript.CSharpFrontend.CSharpTypeReference ReturnType, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpParameterDeclaration> Parameters, out System.Collections.Generic.IReadOnlyList<System.String> TypeParameters, out VeroScript.CSharpFrontend.CSharpAccessibility Accessibility, out System.Boolean IsStatic, out System.Boolean IsAbstract, out System.Boolean IsVirtual, out System.Boolean IsOverride, out System.Boolean IsSealed, out System.Boolean IsExtern, out System.Boolean IsAsync, out System.String BodyText, out System.String DocumentationXml, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes, out VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+
+type enum VeroScript.CSharpFrontend.CSharpCallableKind : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.Int32 value__
+  field static const VeroScript.CSharpFrontend.CSharpCallableKind Method = 0
+  field static const VeroScript.CSharpFrontend.CSharpCallableKind Constructor = 1
+  field static const VeroScript.CSharpFrontend.CSharpCallableKind Operator = 2
+  field static const VeroScript.CSharpFrontend.CSharpCallableKind Conversion = 3
+
+type sealed class VeroScript.CSharpFrontend.CSharpDiagnostic : System.IEquatable<VeroScript.CSharpFrontend.CSharpDiagnostic>
+  ctor VeroScript.CSharpFrontend.CSharpDiagnostic(VeroScript.CSharpFrontend.CSharpDiagnosticSeverity Severity, System.String Code, System.String Message, VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+  property VeroScript.CSharpFrontend.CSharpDiagnosticSeverity Severity { get; init; }
+  property System.String Code { get; init; }
+  property System.String Message { get; init; }
+  property VeroScript.CSharpFrontend.CSharpSourceLocation Location { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpDiagnostic? left, VeroScript.CSharpFrontend.CSharpDiagnostic? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpDiagnostic? left, VeroScript.CSharpFrontend.CSharpDiagnostic? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpDiagnostic? other)
+  method VeroScript.CSharpFrontend.CSharpDiagnostic <Clone>$()
+  method System.Void Deconstruct(out VeroScript.CSharpFrontend.CSharpDiagnosticSeverity Severity, out System.String Code, out System.String Message, out VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+
+type enum VeroScript.CSharpFrontend.CSharpDiagnosticSeverity : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.Int32 value__
+  field static const VeroScript.CSharpFrontend.CSharpDiagnosticSeverity Info = 0
+  field static const VeroScript.CSharpFrontend.CSharpDiagnosticSeverity Warning = 1
+  field static const VeroScript.CSharpFrontend.CSharpDiagnosticSeverity Error = 2
+
+type sealed class VeroScript.CSharpFrontend.CSharpEnumValueDeclaration : System.IEquatable<VeroScript.CSharpFrontend.CSharpEnumValueDeclaration>
+  ctor VeroScript.CSharpFrontend.CSharpEnumValueDeclaration(System.String Name, System.String QualifiedName, System.String ConstantValue, System.String DocumentationXml, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes, VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+  property System.String Name { get; init; }
+  property System.String QualifiedName { get; init; }
+  property System.String ConstantValue { get; init; }
+  property System.String DocumentationXml { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes { get; init; }
+  property VeroScript.CSharpFrontend.CSharpSourceLocation Location { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpEnumValueDeclaration? left, VeroScript.CSharpFrontend.CSharpEnumValueDeclaration? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpEnumValueDeclaration? left, VeroScript.CSharpFrontend.CSharpEnumValueDeclaration? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpEnumValueDeclaration? other)
+  method VeroScript.CSharpFrontend.CSharpEnumValueDeclaration <Clone>$()
+  method System.Void Deconstruct(out System.String Name, out System.String QualifiedName, out System.String ConstantValue, out System.String DocumentationXml, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes, out VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+
+type sealed class VeroScript.CSharpFrontend.CSharpEventDeclaration : System.IEquatable<VeroScript.CSharpFrontend.CSharpEventDeclaration>
+  ctor VeroScript.CSharpFrontend.CSharpEventDeclaration(System.String Name, System.String QualifiedName, VeroScript.CSharpFrontend.CSharpTypeReference Type, VeroScript.CSharpFrontend.CSharpAccessibility Accessibility, System.Boolean IsStatic, System.String DocumentationXml, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes, VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+  property System.String Name { get; init; }
+  property System.String QualifiedName { get; init; }
+  property VeroScript.CSharpFrontend.CSharpTypeReference Type { get; init; }
+  property VeroScript.CSharpFrontend.CSharpAccessibility Accessibility { get; init; }
+  property System.Boolean IsStatic { get; init; }
+  property System.String DocumentationXml { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes { get; init; }
+  property VeroScript.CSharpFrontend.CSharpSourceLocation Location { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpEventDeclaration? left, VeroScript.CSharpFrontend.CSharpEventDeclaration? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpEventDeclaration? left, VeroScript.CSharpFrontend.CSharpEventDeclaration? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpEventDeclaration? other)
+  method VeroScript.CSharpFrontend.CSharpEventDeclaration <Clone>$()
+  method System.Void Deconstruct(out System.String Name, out System.String QualifiedName, out VeroScript.CSharpFrontend.CSharpTypeReference Type, out VeroScript.CSharpFrontend.CSharpAccessibility Accessibility, out System.Boolean IsStatic, out System.String DocumentationXml, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes, out VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+
+type sealed class VeroScript.CSharpFrontend.CSharpFieldDeclaration : System.IEquatable<VeroScript.CSharpFrontend.CSharpFieldDeclaration>
+  ctor VeroScript.CSharpFrontend.CSharpFieldDeclaration(System.String Name, System.String QualifiedName, VeroScript.CSharpFrontend.CSharpTypeReference Type, VeroScript.CSharpFrontend.CSharpAccessibility Accessibility, System.Boolean IsStatic, System.Boolean IsReadOnly, System.Boolean IsConst, System.String ConstantValue, System.String InitializerText, System.String DocumentationXml, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes, VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+  property System.String Name { get; init; }
+  property System.String QualifiedName { get; init; }
+  property VeroScript.CSharpFrontend.CSharpTypeReference Type { get; init; }
+  property VeroScript.CSharpFrontend.CSharpAccessibility Accessibility { get; init; }
+  property System.Boolean IsStatic { get; init; }
+  property System.Boolean IsReadOnly { get; init; }
+  property System.Boolean IsConst { get; init; }
+  property System.String ConstantValue { get; init; }
+  property System.String InitializerText { get; init; }
+  property System.String DocumentationXml { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes { get; init; }
+  property VeroScript.CSharpFrontend.CSharpSourceLocation Location { get; init; }
+  property System.Boolean IsRequired { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpFieldDeclaration? left, VeroScript.CSharpFrontend.CSharpFieldDeclaration? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpFieldDeclaration? left, VeroScript.CSharpFrontend.CSharpFieldDeclaration? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpFieldDeclaration? other)
+  method VeroScript.CSharpFrontend.CSharpFieldDeclaration <Clone>$()
+  method System.Void Deconstruct(out System.String Name, out System.String QualifiedName, out VeroScript.CSharpFrontend.CSharpTypeReference Type, out VeroScript.CSharpFrontend.CSharpAccessibility Accessibility, out System.Boolean IsStatic, out System.Boolean IsReadOnly, out System.Boolean IsConst, out System.String ConstantValue, out System.String InitializerText, out System.String DocumentationXml, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes, out VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+
+type static class VeroScript.CSharpFrontend.CSharpFrontend
+  method static VeroScript.CSharpFrontend.CSharpParseResult ParseSource(System.String source, System.String sourcePath = "<csharp-source>", VeroScript.CSharpFrontend.CSharpParseOptions? options = null)
+  method static VeroScript.CSharpFrontend.CSharpParseResult ParseFile(System.String filePath, VeroScript.CSharpFrontend.CSharpParseOptions? options = null)
+  method static VeroScript.CSharpFrontend.CSharpParseResult ParseFiles(System.Collections.Generic.IReadOnlyList<System.String> filePaths, VeroScript.CSharpFrontend.CSharpParseOptions? options = null)
+  method static VeroScript.CSharpFrontend.CSharpParseResult ParseSources(System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpSourceFile> sources, VeroScript.CSharpFrontend.CSharpParseOptions? options = null)
+
+type sealed class VeroScript.CSharpFrontend.CSharpParameterDeclaration : System.IEquatable<VeroScript.CSharpFrontend.CSharpParameterDeclaration>
+  ctor VeroScript.CSharpFrontend.CSharpParameterDeclaration(System.String Name, VeroScript.CSharpFrontend.CSharpTypeReference Type, System.Boolean HasDefaultValue, System.String DefaultValue, System.Boolean IsParams, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes, VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+  property System.String Name { get; init; }
+  property VeroScript.CSharpFrontend.CSharpTypeReference Type { get; init; }
+  property System.Boolean HasDefaultValue { get; init; }
+  property System.String DefaultValue { get; init; }
+  property System.Boolean IsParams { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes { get; init; }
+  property VeroScript.CSharpFrontend.CSharpSourceLocation Location { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpParameterDeclaration? left, VeroScript.CSharpFrontend.CSharpParameterDeclaration? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpParameterDeclaration? left, VeroScript.CSharpFrontend.CSharpParameterDeclaration? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpParameterDeclaration? other)
+  method VeroScript.CSharpFrontend.CSharpParameterDeclaration <Clone>$()
+  method System.Void Deconstruct(out System.String Name, out VeroScript.CSharpFrontend.CSharpTypeReference Type, out System.Boolean HasDefaultValue, out System.String DefaultValue, out System.Boolean IsParams, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes, out VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+
+type sealed class VeroScript.CSharpFrontend.CSharpParseOptions
+  ctor VeroScript.CSharpFrontend.CSharpParseOptions()
+  property System.String LanguageVersion { get; init; }
+  property System.Boolean AllowUnsafe { get; init; }
+  property System.Boolean TreatWarningsAsErrors { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> PreprocessorSymbols { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> ReferencePaths { get; init; }
+
+type sealed class VeroScript.CSharpFrontend.CSharpParseResult : System.IEquatable<VeroScript.CSharpFrontend.CSharpParseResult>
+  ctor VeroScript.CSharpFrontend.CSharpParseResult(VeroScript.CSharpFrontend.CSharpTranslationUnit Unit, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics)
+  property VeroScript.CSharpFrontend.CSharpTranslationUnit Unit { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics { get; init; }
+  property System.Boolean Succeeded { get; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpParseResult? left, VeroScript.CSharpFrontend.CSharpParseResult? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpParseResult? left, VeroScript.CSharpFrontend.CSharpParseResult? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpParseResult? other)
+  method VeroScript.CSharpFrontend.CSharpParseResult <Clone>$()
+  method System.Void Deconstruct(out VeroScript.CSharpFrontend.CSharpTranslationUnit Unit, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics)
+
+type sealed class VeroScript.CSharpFrontend.CSharpPropertyDeclaration : System.IEquatable<VeroScript.CSharpFrontend.CSharpPropertyDeclaration>
+  ctor VeroScript.CSharpFrontend.CSharpPropertyDeclaration(System.String Name, System.String QualifiedName, VeroScript.CSharpFrontend.CSharpTypeReference Type, VeroScript.CSharpFrontend.CSharpAccessibility Accessibility, System.Boolean IsStatic, VeroScript.CSharpFrontend.CSharpAccessibility GetterAccessibility, VeroScript.CSharpFrontend.CSharpAccessibility SetterAccessibility, System.Boolean HasGetter, System.Boolean HasSetter, System.Boolean IsInitOnly, System.Boolean IsIndexer, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpParameterDeclaration> Parameters, System.String DocumentationXml, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes, VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+  property System.String Name { get; init; }
+  property System.String QualifiedName { get; init; }
+  property VeroScript.CSharpFrontend.CSharpTypeReference Type { get; init; }
+  property VeroScript.CSharpFrontend.CSharpAccessibility Accessibility { get; init; }
+  property System.Boolean IsStatic { get; init; }
+  property VeroScript.CSharpFrontend.CSharpAccessibility GetterAccessibility { get; init; }
+  property VeroScript.CSharpFrontend.CSharpAccessibility SetterAccessibility { get; init; }
+  property System.Boolean HasGetter { get; init; }
+  property System.Boolean HasSetter { get; init; }
+  property System.Boolean IsInitOnly { get; init; }
+  property System.Boolean IsIndexer { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpParameterDeclaration> Parameters { get; init; }
+  property System.String DocumentationXml { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes { get; init; }
+  property VeroScript.CSharpFrontend.CSharpSourceLocation Location { get; init; }
+  property System.Boolean IsRequired { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpPropertyDeclaration? left, VeroScript.CSharpFrontend.CSharpPropertyDeclaration? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpPropertyDeclaration? left, VeroScript.CSharpFrontend.CSharpPropertyDeclaration? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpPropertyDeclaration? other)
+  method VeroScript.CSharpFrontend.CSharpPropertyDeclaration <Clone>$()
+  method System.Void Deconstruct(out System.String Name, out System.String QualifiedName, out VeroScript.CSharpFrontend.CSharpTypeReference Type, out VeroScript.CSharpFrontend.CSharpAccessibility Accessibility, out System.Boolean IsStatic, out VeroScript.CSharpFrontend.CSharpAccessibility GetterAccessibility, out VeroScript.CSharpFrontend.CSharpAccessibility SetterAccessibility, out System.Boolean HasGetter, out System.Boolean HasSetter, out System.Boolean IsInitOnly, out System.Boolean IsIndexer, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpParameterDeclaration> Parameters, out System.String DocumentationXml, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes, out VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+
+type enum VeroScript.CSharpFrontend.CSharpRefKind : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.Int32 value__
+  field static const VeroScript.CSharpFrontend.CSharpRefKind None = 0
+  field static const VeroScript.CSharpFrontend.CSharpRefKind Ref = 1
+  field static const VeroScript.CSharpFrontend.CSharpRefKind Out = 2
+  field static const VeroScript.CSharpFrontend.CSharpRefKind In = 3
+  field static const VeroScript.CSharpFrontend.CSharpRefKind RefReadOnly = 4
+
+type sealed class VeroScript.CSharpFrontend.CSharpSourceFile : System.IEquatable<VeroScript.CSharpFrontend.CSharpSourceFile>
+  ctor VeroScript.CSharpFrontend.CSharpSourceFile(System.String Path, System.String Text)
+  property System.String Path { get; init; }
+  property System.String Text { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpSourceFile? left, VeroScript.CSharpFrontend.CSharpSourceFile? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpSourceFile? left, VeroScript.CSharpFrontend.CSharpSourceFile? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpSourceFile? other)
+  method VeroScript.CSharpFrontend.CSharpSourceFile <Clone>$()
+  method System.Void Deconstruct(out System.String Path, out System.String Text)
+
+type sealed class VeroScript.CSharpFrontend.CSharpSourceLocation : System.IEquatable<VeroScript.CSharpFrontend.CSharpSourceLocation>
+  ctor VeroScript.CSharpFrontend.CSharpSourceLocation(System.String File, System.Int32 Line, System.Int32 Column, System.Int32 Offset, System.Int32 Length)
+  property System.String File { get; init; }
+  property System.Int32 Line { get; init; }
+  property System.Int32 Column { get; init; }
+  property System.Int32 Offset { get; init; }
+  property System.Int32 Length { get; init; }
+  property static VeroScript.CSharpFrontend.CSharpSourceLocation None { get; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpSourceLocation? left, VeroScript.CSharpFrontend.CSharpSourceLocation? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpSourceLocation? left, VeroScript.CSharpFrontend.CSharpSourceLocation? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpSourceLocation? other)
+  method VeroScript.CSharpFrontend.CSharpSourceLocation <Clone>$()
+  method System.Void Deconstruct(out System.String File, out System.Int32 Line, out System.Int32 Column, out System.Int32 Offset, out System.Int32 Length)
+
+type sealed class VeroScript.CSharpFrontend.CSharpTranslationUnit : System.IEquatable<VeroScript.CSharpFrontend.CSharpTranslationUnit>
+  ctor VeroScript.CSharpFrontend.CSharpTranslationUnit(System.Collections.Generic.IReadOnlyList<System.String> SourcePaths, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpTypeDeclaration> Types)
+  property System.Collections.Generic.IReadOnlyList<System.String> SourcePaths { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpTypeDeclaration> Types { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpTranslationUnit? left, VeroScript.CSharpFrontend.CSharpTranslationUnit? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpTranslationUnit? left, VeroScript.CSharpFrontend.CSharpTranslationUnit? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpTranslationUnit? other)
+  method VeroScript.CSharpFrontend.CSharpTranslationUnit <Clone>$()
+  method System.Void Deconstruct(out System.Collections.Generic.IReadOnlyList<System.String> SourcePaths, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpTypeDeclaration> Types)
+
+type sealed class VeroScript.CSharpFrontend.CSharpTypeDeclaration : System.IEquatable<VeroScript.CSharpFrontend.CSharpTypeDeclaration>
+  ctor VeroScript.CSharpFrontend.CSharpTypeDeclaration(System.String Name, System.String QualifiedName, VeroScript.CSharpFrontend.CSharpTypeKind Kind, VeroScript.CSharpFrontend.CSharpAccessibility Accessibility, System.Boolean IsEffectivelyPublic, System.Boolean IsStatic, System.Boolean IsAbstract, System.Boolean IsSealed, System.Boolean IsPartial, VeroScript.CSharpFrontend.CSharpTypeReference? BaseType, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpTypeReference> Interfaces, System.Collections.Generic.IReadOnlyList<System.String> TypeParameters, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpFieldDeclaration> Fields, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpPropertyDeclaration> Properties, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpEventDeclaration> Events, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpCallableDeclaration> Callables, VeroScript.CSharpFrontend.CSharpTypeReference? EnumUnderlyingType, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpEnumValueDeclaration> EnumValues, System.String DocumentationXml, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpSourceLocation> Declarations)
+  property System.String Name { get; init; }
+  property System.String QualifiedName { get; init; }
+  property VeroScript.CSharpFrontend.CSharpTypeKind Kind { get; init; }
+  property VeroScript.CSharpFrontend.CSharpAccessibility Accessibility { get; init; }
+  property System.Boolean IsEffectivelyPublic { get; init; }
+  property System.Boolean IsStatic { get; init; }
+  property System.Boolean IsAbstract { get; init; }
+  property System.Boolean IsSealed { get; init; }
+  property System.Boolean IsPartial { get; init; }
+  property VeroScript.CSharpFrontend.CSharpTypeReference? BaseType { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpTypeReference> Interfaces { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> TypeParameters { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpFieldDeclaration> Fields { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpPropertyDeclaration> Properties { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpEventDeclaration> Events { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpCallableDeclaration> Callables { get; init; }
+  property VeroScript.CSharpFrontend.CSharpTypeReference? EnumUnderlyingType { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpEnumValueDeclaration> EnumValues { get; init; }
+  property System.String DocumentationXml { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpSourceLocation> Declarations { get; init; }
+  property System.Boolean IsRefLike { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpTypeDeclaration? left, VeroScript.CSharpFrontend.CSharpTypeDeclaration? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpTypeDeclaration? left, VeroScript.CSharpFrontend.CSharpTypeDeclaration? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpTypeDeclaration? other)
+  method VeroScript.CSharpFrontend.CSharpTypeDeclaration <Clone>$()
+  method System.Void Deconstruct(out System.String Name, out System.String QualifiedName, out VeroScript.CSharpFrontend.CSharpTypeKind Kind, out VeroScript.CSharpFrontend.CSharpAccessibility Accessibility, out System.Boolean IsEffectivelyPublic, out System.Boolean IsStatic, out System.Boolean IsAbstract, out System.Boolean IsSealed, out System.Boolean IsPartial, out VeroScript.CSharpFrontend.CSharpTypeReference BaseType, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpTypeReference> Interfaces, out System.Collections.Generic.IReadOnlyList<System.String> TypeParameters, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpFieldDeclaration> Fields, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpPropertyDeclaration> Properties, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpEventDeclaration> Events, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpCallableDeclaration> Callables, out VeroScript.CSharpFrontend.CSharpTypeReference EnumUnderlyingType, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpEnumValueDeclaration> EnumValues, out System.String DocumentationXml, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpAttribute> Attributes, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpSourceLocation> Declarations)
+
+type enum VeroScript.CSharpFrontend.CSharpTypeKind : System.IComparable, System.IConvertible, System.IFormattable, System.ISpanFormattable
+  field System.Int32 value__
+  field static const VeroScript.CSharpFrontend.CSharpTypeKind Unknown = 0
+  field static const VeroScript.CSharpFrontend.CSharpTypeKind Class = 1
+  field static const VeroScript.CSharpFrontend.CSharpTypeKind Struct = 2
+  field static const VeroScript.CSharpFrontend.CSharpTypeKind Interface = 3
+  field static const VeroScript.CSharpFrontend.CSharpTypeKind Enum = 4
+  field static const VeroScript.CSharpFrontend.CSharpTypeKind Delegate = 5
+  field static const VeroScript.CSharpFrontend.CSharpTypeKind TypeParameter = 6
+  field static const VeroScript.CSharpFrontend.CSharpTypeKind Array = 7
+  field static const VeroScript.CSharpFrontend.CSharpTypeKind Pointer = 8
+  field static const VeroScript.CSharpFrontend.CSharpTypeKind Dynamic = 9
+  field static const VeroScript.CSharpFrontend.CSharpTypeKind Error = 10
+
+type sealed class VeroScript.CSharpFrontend.CSharpTypeMapOptions
+  ctor VeroScript.CSharpFrontend.CSharpTypeMapOptions()
+  property System.Collections.Generic.IReadOnlyList<System.String> KnownHostTypes { get; init; }
+  property System.Collections.Generic.IReadOnlyList<System.String> KnownEnumTypes { get; init; }
+
+type sealed class VeroScript.CSharpFrontend.CSharpTypeMapResult : System.IEquatable<VeroScript.CSharpFrontend.CSharpTypeMapResult>
+  ctor VeroScript.CSharpFrontend.CSharpTypeMapResult(System.Boolean Success, System.String VeroType, System.String ErrorCode, System.String ErrorMessage)
+  property System.Boolean Success { get; init; }
+  property System.String VeroType { get; init; }
+  property System.String ErrorCode { get; init; }
+  property System.String ErrorMessage { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpTypeMapResult? left, VeroScript.CSharpFrontend.CSharpTypeMapResult? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpTypeMapResult? left, VeroScript.CSharpFrontend.CSharpTypeMapResult? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpTypeMapResult? other)
+  method VeroScript.CSharpFrontend.CSharpTypeMapResult <Clone>$()
+  method System.Void Deconstruct(out System.Boolean Success, out System.String VeroType, out System.String ErrorCode, out System.String ErrorMessage)
+
+type static class VeroScript.CSharpFrontend.CSharpTypeMapper
+  method static VeroScript.CSharpFrontend.CSharpTypeMapResult MapTypeToVeroScript(VeroScript.CSharpFrontend.CSharpTypeReference type, VeroScript.CSharpFrontend.CSharpTypeMapOptions? options = null)
+
+type sealed class VeroScript.CSharpFrontend.CSharpTypeReference : System.IEquatable<VeroScript.CSharpFrontend.CSharpTypeReference>
+  ctor VeroScript.CSharpFrontend.CSharpTypeReference(System.String DisplayName, System.String QualifiedName, VeroScript.CSharpFrontend.CSharpTypeKind Kind, System.Boolean IsNullable, System.Int32 ArrayRank, VeroScript.CSharpFrontend.CSharpRefKind RefKind, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpTypeReference> TypeArguments, VeroScript.CSharpFrontend.CSharpSourceLocation Location)
+  property System.String DisplayName { get; init; }
+  property System.String QualifiedName { get; init; }
+  property VeroScript.CSharpFrontend.CSharpTypeKind Kind { get; init; }
+  property System.Boolean IsNullable { get; init; }
+  property System.Int32 ArrayRank { get; init; }
+  property VeroScript.CSharpFrontend.CSharpRefKind RefKind { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpTypeReference> TypeArguments { get; init; }
+  property VeroScript.CSharpFrontend.CSharpSourceLocation Location { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpFrontend.CSharpTypeReference? left, VeroScript.CSharpFrontend.CSharpTypeReference? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpFrontend.CSharpTypeReference? left, VeroScript.CSharpFrontend.CSharpTypeReference? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpFrontend.CSharpTypeReference? other)
+  method VeroScript.CSharpFrontend.CSharpTypeReference <Clone>$()
+  method System.Void Deconstruct(out System.String DisplayName, out System.String QualifiedName, out VeroScript.CSharpFrontend.CSharpTypeKind Kind, out System.Boolean IsNullable, out System.Int32 ArrayRank, out VeroScript.CSharpFrontend.CSharpRefKind RefKind, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpTypeReference> TypeArguments, out VeroScript.CSharpFrontend.CSharpSourceLocation Location)

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="VeroScript application icon">
+	<title>VeroScript application icon</title>
+
+	<path d="M24 32H78C91 65 111 115 128 157C145 115 165 65 178 32H232C205 83 168 154 128 226C88 154 51 83 24 32Z" fill="#60A5FA"/>
+</svg>

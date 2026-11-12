@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Registry package response 0.1.1",
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "veroscript-registry-package"
+    },
+    "formatVersion": {
+      "const": "0.1.1"
+    },
+    "sourceId": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "versions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string",
+            "description": "SemVer major.minor.patch, optional prerelease, no build metadata."
+          },
+          "blocked": {
+            "type": "boolean"
+          },
+          "withdrawn": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "version"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "format",
+    "formatVersion",
+    "sourceId",
+    "name",
+    "versions"
+  ],
+  "additionalProperties": false
+}

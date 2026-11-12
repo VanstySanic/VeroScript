@@ -1,0 +1,6 @@
+{
+  "python_tools.python_version_required": "VeroScript Python ツールには Python 3.11～3.15 が必要です",
+  "python_tools.source_read_failed": "Python ソースの読み取りに失敗しました: {0}",
+  "python_tools.syntax_error": "Python 構文が無効です: {0}",
+  "python_tools.unsupported_top_level": "サポートされていないトップレベルの Python 構文です: {0}"
+}

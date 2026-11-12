@@ -1,0 +1,7 @@
+{
+  "python_tools.source_write_failed": "failed to write generated output: {0}",
+  "python_tools.duplicate_declaration": "duplicate declaration: {0}",
+  "python_tools.unsupported_construct": "unsupported Python construct: {0}",
+  "python_tools.validator_not_found": "VeroScript tooling requires --veroscript, VEROSCRIPT_EXECUTABLE, VEROSCRIPT_SDK, or veroscript on PATH",
+  "python_tools.timeout_invalid": "timeout must be a finite positive number"
+}

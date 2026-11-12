@@ -1,0 +1,19 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>VeroScriptInstaller.Core</RootNamespace>
+		<AssemblyName>VeroScriptInstaller.Core</AssemblyName>
+		<Version>0.1.1</Version>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="VeroScriptInstaller.Tests" />
+		<EmbeddedResource Include="..\..\LICENSE" LogicalName="VeroScriptInstaller.LICENSE" />
+		<EmbeddedResource Include="..\Resources\Licenses\THIRD-PARTY-NOTICES.txt" LogicalName="VeroScriptInstaller.THIRD-PARTY-NOTICES" />
+	</ItemGroup>
+</Project>

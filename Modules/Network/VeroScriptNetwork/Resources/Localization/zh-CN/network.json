@@ -1,0 +1,20 @@
+{
+  "network.invalid_argument": "无效参数: {0}",
+  "network.unsupported": "不支持的操作: {0}",
+  "network.queue_full": "队列已满: {0}",
+  "network.cancelled": "已取消: {0}",
+  "network.timed_out": "已超时: {0}",
+  "network.closed": "已关闭: {0}",
+  "network.resolve": "名称解析失败: {0}",
+  "network.connect": "连接失败: {0}",
+  "network.read": "读取失败: {0}",
+  "network.write": "写入失败: {0}",
+  "network.protocol": "协议错误: {0}",
+  "network.limit": "超出限额: {0}",
+  "network.state": "无效状态: {0}",
+  "network.callback": "回调失败: {0}",
+  "network.allocation": "分配失败: {0}",
+  "network.internal": "内部错误: {0}",
+  "network.unknown": "未知错误: {0}",
+  "network.binding": "绑定: {0}"
+}

@@ -1,0 +1,13 @@
+{
+  "diag.numeric_type_mismatch": "지원되는 숫자 값 또는 원본 형식이 필요합니다",
+  "diag.numeric_invalid_argument": "잘못된 숫자 인수: {0}",
+  "diag.numeric_invalid_text": "잘못된 숫자 텍스트: {0} (바이트 {1})",
+  "diag.numeric_division_by_zero": "숫자를 0으로 나눌 수 없습니다",
+  "diag.numeric_out_of_range": "숫자가 대상 범위를 벗어났습니다",
+  "diag.numeric_inexact_conversion": "숫자 변환으로 정밀도가 손실됩니다",
+  "diag.numeric_limit": "숫자 연산의 리소스 제한을 초과했습니다: {0}",
+  "diag.numeric_out_of_memory": "숫자 메모리 할당에 실패했습니다",
+  "diag.numeric_interrupted": "숫자 연산이 중단되었습니다",
+  "diag.numeric_internal": "숫자 연산이 실패했습니다",
+  "diag.numeric_busy": "실행 중에는 숫자 제한을 변경할 수 없습니다"
+}

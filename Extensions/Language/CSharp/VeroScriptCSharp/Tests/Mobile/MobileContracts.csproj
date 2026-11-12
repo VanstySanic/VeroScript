@@ -1,0 +1,23 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::VersionGreaterThanOrEquals('$(NETCoreSdkVersion)', '10.0'))">net8.0;net9.0;net10.0</TargetFrameworks>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<LangVersion>12.0</LangVersion>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<DefineConstants Condition="'$(VeroScriptMobileStaticProbe)' == 'true'">$(DefineConstants);IOS</DefineConstants>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="../../**/*.cs" Exclude="../../Tests/**/*.cs;../../Resources/Examples/**/*.cs;../../obj/**/*.cs;../../bin/**/*.cs" />
+		<Compile Include="../../Resources/Examples/Maui/MobileSmoke.cs" />
+		<Compile Include="Program.cs" />
+		<None Include="../../../../../../VeroScriptInterop/Private/VeroScriptInterop.def" Link="VeroScriptInterop.def" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,70 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Stack Width="100%" Height="100%">
+	<style src="page.vswcss" />
+	<script><![CDATA[
+		public:
+			string Caption = "Hello, VeroScript!";
+			string Message = "Edit this text";
+			double Amount = 0.35;
+
+			@GuiMethod
+			string ReadCaption() const
+			{
+				return Caption;
+			}
+
+			@GuiMethod
+			string ReadMessage() const
+			{
+				return Message;
+			}
+
+			@GuiMethod
+			double ReadAmount() const
+			{
+				return Amount;
+			}
+
+			@GuiMethod
+			void Press(VS::Gui::Button sender)
+			{
+				Caption = "Button clicked";
+			}
+
+			@GuiMethod
+			void ChangeAmount(VS::Gui::Slider sender, double value)
+			{
+				Amount = value;
+			}
+
+			@GuiMethod
+			void ChangeMessage(VS::Gui::TextBox sender, string value)
+			{
+				Message = value;
+			}
+	]]></script>
+	<Text id="heading" bind:Text="ReadCaption" FontSize="24" />
+	<Stack Layout="Horizontal" Gap="12">
+		<Button id="button" Width="180px" on:clicked="Press">
+			<Text Text="Click or press Space" />
+		</Button>
+		<CheckBox id="check" Text="Accept" Checked="true" Width="140px" />
+		<ToggleSwitch id="toggle" Text="Enabled" Checked="true" Width="160px" />
+	</Stack>
+	<Slider id="slider" bind:Value="ReadAmount" on:value-changed="ChangeAmount" />
+	<ProgressBar bind:Value="ReadAmount" />
+	<Separator />
+	<TextBox id="editor" bind:Value="ReadMessage" on:text-changed="ChangeMessage" Placeholder="Type here" />
+	<Text bind:Text="ReadMessage" />
+	<TextArea id="area" Value="Multiple lines&#10;Selection, copy/paste, undo and IME" Height="90px" />
+	<ScrollView id="scroll" Height="90px">
+		<Border Height="180px" Padding="10">
+			<Text Text="Scroll this content with the wheel or touch." />
+			<Image Image="../Content/sample.tga" Width="48px" Height="48px" />
+			<Spacer Height="32px" />
+			<Text Text="End of the scroll content." />
+		</Border>
+	</ScrollView>
+</Stack>

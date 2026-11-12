@@ -1,0 +1,11 @@
+{
+  "diag.stdlib_arguments": "Invalid standard-library arguments",
+  "diag.stdlib_eof": "Unexpected end of input",
+  "diag.stdlib_interrupted": "Standard-library operation interrupted",
+  "diag.stdlib_io": "Standard-library input/output operation failed",
+  "diag.stdlib_limit": "Standard-library operation exceeds its resource limit",
+  "diag.stdlib_range": "Numeric text is outside the target range at byte {0}",
+  "diag.stdlib_sync": "Synchronization operation failed: {0}",
+  "diag.stdlib_task": "Task operation failed: {0}",
+  "diag.stdlib_text": "Invalid text at byte {0}"
+}

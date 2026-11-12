@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Registry upload allocation 0.1.1",
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "veroscript-upload"
+    },
+    "formatVersion": {
+      "const": "0.1.1"
+    },
+    "sourceId": {
+      "type": "string"
+    },
+    "uploadId": {
+      "type": "string"
+    },
+    "method": {
+      "const": "PUT"
+    },
+    "url": {
+      "type": "string"
+    },
+    "headers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "expiresAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "format",
+    "formatVersion",
+    "sourceId",
+    "uploadId",
+    "method",
+    "url"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,9 @@
+{
+  "python_tools.missing_annotation": "{0} 需要型別註解",
+  "python_tools.unsupported_type": "不支援的 Python 型別註解：{0}",
+  "python_tools.unsupported_parameter": "不支援的 Python 參數形式：{0}",
+  "python_tools.unsupported_decorator": "不支援的 Python 裝飾器：{0}",
+  "python_tools.unsupported_inheritance": "不支援的 Python 繼承：{0}",
+  "python_tools.enum_value_required": "列舉成員 {0} 必須具有可靜態求值的整數值",
+  "python_tools.catalog_validation_failed": "產生的繫結目錄驗證失敗：{0}"
+}

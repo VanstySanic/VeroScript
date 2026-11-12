@@ -1,0 +1,7 @@
+{
+  "package.displayName": "Example mathematics",
+  "install.before": {
+    "pattern": "Installing {package.name} {package.version}",
+    "formatId": "vero.named"
+  }
+}

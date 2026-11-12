@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+@PACKAGE_INIT@
+include(CMakeFindDependencyMacro)
+set(VeroScriptHttp_MODULE_DIR "${PACKAGE_PREFIX_DIR}/lib/veroscript/modules")
+find_dependency(VeroScriptNetwork 0.1.1 EXACT CONFIG)
+include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptHttpTargets.cmake")
+set(VeroScriptHttp_Json_FOUND FALSE)
+if("Json" IN_LIST VeroScriptHttp_FIND_COMPONENTS)
+	find_dependency(VeroScriptJson 0.1.1 EXACT CONFIG)
+	if(NOT TARGET VeroScript::HttpJson)
+		add_library(VeroScript::HttpJson INTERFACE IMPORTED)
+		set_target_properties(VeroScript::HttpJson PROPERTIES
+			INTERFACE_LINK_LIBRARIES "VeroScript::Http;VeroScript::Json")
+	endif()
+	set(VeroScriptHttp_Json_FOUND TRUE)
+endif()
+set(VeroScriptHttp_Bindings_FOUND FALSE)
+if("Bindings" IN_LIST VeroScriptHttp_FIND_COMPONENTS AND
+		EXISTS "${CMAKE_CURRENT_LIST_DIR}/VeroScriptHttpBindingsTargets.cmake")
+	find_dependency(VeroScript 0.1.1 EXACT CONFIG)
+	include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptHttpBindingsTargets.cmake")
+	set(VeroScriptHttp_Bindings_FOUND TRUE)
+endif()
+check_required_components(VeroScriptHttp)

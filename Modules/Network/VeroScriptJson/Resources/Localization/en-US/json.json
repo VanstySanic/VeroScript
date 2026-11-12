@@ -1,0 +1,23 @@
+{
+  "json.syntax": "JSON — Syntax: {0} (path: {1})",
+  "json.utf8": "JSON — Invalid UTF-8: {0} (path: {1})",
+  "json.duplicate_key": "JSON — Duplicate key: {0} (path: {1})",
+  "json.type": "JSON — Type mismatch: {0} (path: {1})",
+  "json.range": "JSON — Out of range: {0} (path: {1})",
+  "json.missing": "JSON — Missing value: {0} (path: {1})",
+  "json.pointer": "JSON — Pointer: {0} (path: {1})",
+  "json.patch": "JSON — Patch: {0} (path: {1})",
+  "json.limit": "JSON — Limit exceeded: {0} (path: {1})",
+  "json.cancelled": "JSON — Cancelled: {0} (path: {1})",
+  "json.allocation": "JSON — Allocation failed: {0} (path: {1})",
+  "json.state": "JSON — Invalid state: {0} (path: {1})",
+  "json.sink": "JSON — Output failed: {0} (path: {1})",
+  "json.unsupported": "JSON — Unsupported operation: {0} (path: {1})",
+  "json.callback": "JSON — Callback failed: {0} (path: {1})",
+  "json.schema": "JSON — Schema: {0} (path: {1})",
+  "json.resource": "JSON — Resource: {0} (path: {1})",
+  "json.cycle": "JSON — Object cycle: {0} (path: {1})",
+  "json.unknown": "JSON — Unknown error: {0} (path: {1})",
+  "json.binding": "JSON — Binding: {0} (path: {1})",
+  "json.mapping.declaration": "JSON — Binding: {0}"
+}

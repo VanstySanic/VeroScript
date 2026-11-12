@@ -1,0 +1,2 @@
+int work(int n){array<int>a=array<int>();array<int>b=array<int>();array<int>c=array<int>();for(int i=0;i<n*n;i++){a.push((i*17+17)%97);b.push((i*31+7)%89);c.push(0);}for(int i=0;i<n;i++){for(int k=0;k<n;k++){for(int j=0;j<n;j++){c[i*n+j]=(c[i*n+j]+a[i*n+k]*b[k*n+j])%1000000007;}}}int sum=0;for(int i=0;i<n*n;i++)sum=(sum+c[i])%1000000007;return sum;}
+void main(){int checksum=0;for(int rep=0;rep<5;rep++){checksum=(checksum+work(48))%1000000007;}print(checksum);}

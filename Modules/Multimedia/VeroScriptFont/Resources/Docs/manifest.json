@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "Modules/Multimedia/VeroScriptFont",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/visual/font.md"
+    }
+  ],
+  "developer": true
+}

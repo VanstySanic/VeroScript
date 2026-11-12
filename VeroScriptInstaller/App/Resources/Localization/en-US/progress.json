@@ -1,0 +1,7 @@
+{
+  "Ready": "Ready to install.",
+  "UpdateReady": "An existing installation was found. Ready to update while preserving user files.",
+  "Loading": "Validating installer package…",
+  "Copying": "Installing {0} ({1}/{2})…",
+  "Committing": "Finishing installation…"
+}

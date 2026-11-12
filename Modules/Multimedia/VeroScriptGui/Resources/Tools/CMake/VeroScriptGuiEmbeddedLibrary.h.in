@@ -1,0 +1,20 @@
+// SPDX-FileCopyrightText: VanstySanic
+// SPDX-License-Identifier: MIT
+
+// Generated from the installed VS library; edit Resources/Scripts/VeroScriptGui.vs.
+#pragma once
+
+inline constexpr const char* EmbeddedGuiScriptLibrary = R"VSGuiScript(@VEROSCRIPT_GUI_LIBRARY_SOURCE@)VSGuiScript";
+inline constexpr const char* EmbeddedGuiWidgetLibrary = R"VSGuiScript(@VEROSCRIPT_GUI_WIDGET_SOURCE@)VSGuiScript";
+inline constexpr const char* EmbeddedGuiRuntimeLibrary = R"VSGuiScript(@VEROSCRIPT_GUI_RUNTIME_SOURCE@)VSGuiScript";
+inline constexpr const char* EmbeddedGuiBindingLibrary = R"VSGuiScript(@VEROSCRIPT_GUI_BINDING_SOURCE@)VSGuiScript";
+inline constexpr const char* EmbeddedGuiResourcesLibrary = R"VSGuiScript(@VEROSCRIPT_GUI_RESOURCES_SOURCE@)VSGuiScript";
+inline constexpr const char* EmbeddedGuiControlsLibrary = R"VSGuiScript(@VEROSCRIPT_GUI_CONTROLS_SOURCE@)VSGuiScript";
+inline constexpr const char* EmbeddedGuiCompositeLibrary = R"VSGuiScript(@VEROSCRIPT_GUI_COMPOSITE_SOURCE@)VSGuiScript";
+inline constexpr const char* EmbeddedGuiCollectionsLibrary = R"VSGuiScript(@VEROSCRIPT_GUI_COLLECTIONS_SOURCE@)VSGuiScript";
+inline constexpr const char* EmbeddedGuiVirtualizationLibrary = R"VSGuiScript(@VEROSCRIPT_GUI_VIRTUALIZATION_SOURCE@)VSGuiScript";
+inline constexpr const char* EmbeddedGuiTableLibrary = R"VSGuiScript(@VEROSCRIPT_GUI_TABLE_SOURCE@)VSGuiScript";
+inline constexpr const char* EmbeddedGuiNavigationLibrary = R"VSGuiScript(@VEROSCRIPT_GUI_NAVIGATION_SOURCE@)VSGuiScript";
+inline constexpr const char* EmbeddedGuiMenusLibrary = R"VSGuiScript(@VEROSCRIPT_GUI_MENUS_SOURCE@)VSGuiScript";
+inline constexpr const char* EmbeddedGuiDialogsLibrary = R"VSGuiScript(@VEROSCRIPT_GUI_DIALOGS_SOURCE@)VSGuiScript";
+inline constexpr const char* EmbeddedGuiCompilationFingerprint = "@VEROSCRIPT_GUI_COMPILATION_FINGERPRINT@";

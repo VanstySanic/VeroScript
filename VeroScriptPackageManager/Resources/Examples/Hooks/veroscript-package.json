@@ -1,0 +1,35 @@
+{
+  "format": "veroscript-package",
+  "formatVersion": "0.1.1",
+  "name": "example-hook",
+  "version": "0.1.1",
+  "resources": {
+    "data": "data"
+  },
+  "install": {
+    "hooks": [
+      {
+        "phase": "post-install",
+        "path": "install.vs",
+        "entry": "install",
+        "permissions": [
+          "resources.read",
+          "generated.write"
+        ]
+      }
+    ],
+    "inputs": {
+      "title": {
+        "type": "string",
+        "default": "VeroScript"
+      }
+    },
+    "actions": [
+      {
+        "type": "template",
+        "source": "title.template",
+        "destination": "title.txt"
+      }
+    ]
+  }
+}

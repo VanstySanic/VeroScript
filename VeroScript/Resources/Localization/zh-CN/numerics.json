@@ -1,0 +1,13 @@
+{
+  "diag.numeric_type_mismatch": "需要受支持的数值或源类型",
+  "diag.numeric_invalid_argument": "无效的数值参数：{0}",
+  "diag.numeric_invalid_text": "无效的数值文本：{0}（字节 {1}）",
+  "diag.numeric_division_by_zero": "数值除数不能为零",
+  "diag.numeric_out_of_range": "数值超出目标范围",
+  "diag.numeric_inexact_conversion": "数值转换会损失精度",
+  "diag.numeric_limit": "数值运算超出资源限制：{0}",
+  "diag.numeric_out_of_memory": "数值内存分配失败",
+  "diag.numeric_interrupted": "数值运算已中断",
+  "diag.numeric_internal": "数值运算失败",
+  "diag.numeric_busy": "执行期间不能修改数值限制"
+}

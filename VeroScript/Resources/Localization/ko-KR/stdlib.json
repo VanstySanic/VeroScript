@@ -1,0 +1,11 @@
+{
+  "diag.stdlib_arguments": "표준 라이브러리 인수가 잘못되었습니다",
+  "diag.stdlib_eof": "입력이 예기치 않게 끝났습니다",
+  "diag.stdlib_interrupted": "표준 라이브러리 작업이 중단되었습니다",
+  "diag.stdlib_io": "표준 라이브러리 입출력 작업이 실패했습니다",
+  "diag.stdlib_limit": "표준 라이브러리 작업이 리소스 제한을 초과했습니다",
+  "diag.stdlib_range": "숫자 텍스트가 대상 범위를 벗어났습니다. 바이트 위치: {0}",
+  "diag.stdlib_sync": "동기화 작업이 실패했습니다: {0}",
+  "diag.stdlib_task": "태스크 작업이 실패했습니다: {0}",
+  "diag.stdlib_text": "텍스트가 잘못되었습니다. 바이트 위치: {0}"
+}

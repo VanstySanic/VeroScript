@@ -1,0 +1,24 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<component type="Demo::PreviewCard" mark="preview-card">
+	<template>
+		<Widget id="accent" class="accent" />
+		<Widget id="content" class="content" />
+	</template>
+	<style>
+        :root {
+            padding: 12px;
+            gap: 10px;
+            background-color: #203653;
+        }
+        .accent {
+            height: 22px;
+            background-color: #36c6a3;
+        }
+        .content {
+            height: 70px;
+            background-color: #12233a;
+        }
+	</style>
+</component>

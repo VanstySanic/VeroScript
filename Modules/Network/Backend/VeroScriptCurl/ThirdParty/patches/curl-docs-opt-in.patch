@@ -1,0 +1,10 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1936,6 +1936,6 @@
+ endif()
+ 
+-if(Perl_FOUND)
++if(Perl_FOUND AND (ENABLE_CURL_MANUAL OR BUILD_LIBCURL_DOCS OR BUILD_MISC_DOCS))
+   set(CURL_MANPAGE "${PROJECT_BINARY_DIR}/docs/cmdline-opts/curl.1")
+   set(CURL_ASCIIPAGE "${PROJECT_BINARY_DIR}/docs/cmdline-opts/curl.txt")
+   add_subdirectory(docs)

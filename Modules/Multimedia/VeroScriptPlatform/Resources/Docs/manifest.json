@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "Modules/Multimedia/VeroScriptPlatform",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/visual/platform.md"
+    }
+  ],
+  "developer": true
+}

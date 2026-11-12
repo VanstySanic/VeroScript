@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+# Linux wheels contain this loader dependency beside the CPython extension.
+# It has no PyInit entry point and is not an importable Python API module.
+^veroscript\.libVeroScriptInterop$

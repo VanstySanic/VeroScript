@@ -1,0 +1,2 @@
+int work(int limit) { array<double> table = {0.125, -0.75, 1.5, 0.0625, -1.25, 0.875, 0.375}; int state = 17; double value = 0.25; for (int i = 0; i < limit; i++) { state = (state * 25173 + 13849) % 65521; value = value * 0.99991 + table[state % 7] * 0.00009; } return to_int((value + 4.0) * 1000000.0) + state; } void main(){int checksum=0;for(int rep=0;rep<20;rep++){checksum=(checksum+work(200000))%1000000007;}print(checksum);}
+

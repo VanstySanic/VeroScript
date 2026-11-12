@@ -1,0 +1,19 @@
+{
+  "FailureWithDetails": "操作失敗：{0}\n{1}",
+  "DiagnosticLog": "診斷記錄：{0}",
+  "FailureNoLog": "無法儲存診斷記錄。技術詳情：{0}",
+  "FailureWrongProduct": "所選安裝屬於其他產品。請選擇此產品的安裝目錄。",
+  "FailureWrongPlatform": "安裝套件的平台或架構與目前系統或已安裝的產品不符。請使用相符的安裝套件。",
+  "FailureDowngrade": "已安裝較新的版本。請使用相同或更新版本的安裝套件。",
+  "FailureRepairMismatch": "修復需要使用最初安裝時完全相同的安裝套件。請找到該套件後重試。",
+  "FailureDestinationConflict": "目標目錄與其他位置重疊或存在檔案衝突。請選擇空目錄，或先移走衝突的使用者檔案再重試。",
+  "FailureBusy": "其他安裝程式正在使用此安裝。請等待其完成後重試。",
+  "FailurePermission": "存取遭拒。請選擇可寫入的目錄，並檢查資料夾權限。",
+  "FailureMissing": "缺少必要的檔案或目錄。請檢查安裝路徑和安裝套件後重試。",
+  "FailurePackage": "安裝套件或安裝記錄無效。請取得完整的安裝套件，或檢查既有安裝的記錄。",
+  "FailureFileInUse": "檔案正在使用中。請關閉 VeroScript 及使用其檔案的應用程式後重試。",
+  "FailureDiskFull": "磁碟空間不足。請釋放安裝目錄及暫存檔所在磁碟的空間後重試。",
+  "FailureIO": "檔案操作失敗。請檢查權限、可用磁碟空間和檔案使用情況後重試。",
+  "FailureInput": "輸入值或路徑無效。請檢查所選資料夾和安裝選項。",
+  "FailureUnknown": "無法完成操作。請查看診斷詳情後重試。"
+}

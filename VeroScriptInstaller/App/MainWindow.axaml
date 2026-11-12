@@ -1,0 +1,118 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="VeroScriptInstaller.MainWindow"
+        Width="760" Height="620" MinWidth="720" MinHeight="580"
+        WindowStartupLocation="CenterScreen"
+        SystemDecorations="Full" ExtendClientAreaToDecorationsHint="False"
+        Icon="avares://VeroScriptInstaller/Assets/VeroScriptIcon.png">
+	<Grid RowDefinitions="Auto,Auto,*,Auto" Margin="28">
+		<Grid ColumnDefinitions="48,*,Auto" ColumnSpacing="14" Margin="0,0,0,22">
+			<Image Source="avares://VeroScriptInstaller/Assets/VeroScriptIcon.png" Width="44" Height="44" VerticalAlignment="Top" />
+			<StackPanel Grid.Column="1" Margin="0,0,12,0" Spacing="5">
+				<TextBlock x:Name="HeadingText" FontSize="23" FontWeight="SemiBold"
+                           MaxLines="1" TextTrimming="CharacterEllipsis" />
+				<TextBlock x:Name="SubtitleText" Opacity="0.68" TextWrapping="Wrap"
+                           MaxLines="2" TextTrimming="CharacterEllipsis" />
+			</StackPanel>
+			<StackPanel Grid.Column="2" Spacing="5" VerticalAlignment="Top">
+				<TextBlock x:Name="LanguageLabel" Opacity="0.68" />
+				<ComboBox x:Name="LanguageBox" Width="148" SelectionChanged="OnLanguageChanged" />
+			</StackPanel>
+		</Grid>
+
+		<StackPanel Grid.Row="1" Spacing="6" Margin="0,0,0,16">
+			<TextBlock x:Name="StepHeadingText" FontSize="20" FontWeight="SemiBold" />
+			<TextBlock x:Name="StepDescriptionText" Opacity="0.72" TextWrapping="Wrap" MaxLines="2" />
+		</StackPanel>
+
+		<Grid Grid.Row="2">
+			<Grid x:Name="ComponentPanel" IsVisible="False" RowDefinitions="*,Auto">
+				<StackPanel x:Name="ComponentsHost" Spacing="10" />
+				<TextBlock x:Name="ComponentValidationText" Grid.Row="1" Margin="0,8,0,0"
+                           Foreground="#D14343" TextWrapping="Wrap" MaxLines="2" IsVisible="False" />
+			</Grid>
+
+			<StackPanel x:Name="LocationPage" IsVisible="False" Spacing="16">
+				<Border Classes="card">
+					<StackPanel Spacing="8">
+						<TextBlock x:Name="InstallLocationLabel" FontWeight="SemiBold" />
+						<Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+							<TextBox x:Name="InstallRootBox" Classes="path" TextChanged="OnInstallPathChanged" />
+							<Button x:Name="BrowseButton" Grid.Column="1" Classes="browse" Click="OnBrowse" />
+						</Grid>
+						<TextBlock x:Name="InstallLocationDescriptionText" Opacity="0.62"
+                                   TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" />
+						<TextBlock x:Name="LocationValidationText" Foreground="#D14343" TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" IsVisible="False" />
+					</StackPanel>
+				</Border>
+				<Border x:Name="PathPanel" Classes="card" IsVisible="False">
+					<StackPanel Spacing="6">
+						<CheckBox x:Name="AddToPathCheckBox" IsChecked="False"
+                                  Checked="OnComponentChanged" Unchecked="OnComponentChanged">
+							<TextBlock x:Name="AddToPathText" TextWrapping="Wrap" MaxLines="2" />
+						</CheckBox>
+						<TextBlock x:Name="AddToPathDescriptionText" Margin="25,0,0,0" Opacity="0.72"
+                                   TextWrapping="Wrap" MaxLines="4" TextTrimming="CharacterEllipsis" />
+					</StackPanel>
+				</Border>
+			</StackPanel>
+
+			<Border x:Name="AssociationsPage" Classes="card" IsVisible="False" VerticalAlignment="Top">
+				<StackPanel Spacing="7">
+					<CheckBox x:Name="AssociateSourceCheckBox" Checked="OnAssociationChanged" Unchecked="OnAssociationChanged">
+						<TextBlock x:Name="AssociateSourceText" TextWrapping="Wrap" MaxLines="2" />
+					</CheckBox>
+					<CheckBox x:Name="AssociateApplicationCheckBox" Checked="OnAssociationChanged" Unchecked="OnAssociationChanged">
+						<TextBlock x:Name="AssociateApplicationText" TextWrapping="Wrap" MaxLines="2" />
+					</CheckBox>
+					<CheckBox x:Name="PackageIconCheckBox" Checked="OnAssociationChanged" Unchecked="OnAssociationChanged">
+						<TextBlock x:Name="PackageIconText" TextWrapping="Wrap" MaxLines="2" />
+					</CheckBox>
+					<CheckBox x:Name="ChooseDefaultsCheckBox" Checked="OnAssociationChanged" Unchecked="OnAssociationChanged">
+						<TextBlock x:Name="ChooseDefaultsText" TextWrapping="Wrap" MaxLines="2" />
+					</CheckBox>
+					<TextBlock x:Name="AssociationsDescriptionText" Opacity="0.72" TextWrapping="Wrap"
+					           MaxLines="4" TextTrimming="CharacterEllipsis" />
+				</StackPanel>
+			</Border>
+
+			<Grid x:Name="ReviewPage" IsVisible="False" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="12">
+				<Border Classes="card">
+					<StackPanel Spacing="7">
+						<TextBlock x:Name="ReviewComponentsLabel" FontWeight="SemiBold" />
+						<TextBlock x:Name="ReviewComponentsText" TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" />
+					</StackPanel>
+				</Border>
+				<Border Grid.Row="1" Classes="card">
+					<StackPanel Spacing="7">
+						<TextBlock x:Name="ReviewLocationLabel" FontWeight="SemiBold" />
+						<TextBlock x:Name="ReviewLocationText" TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" />
+						<TextBlock x:Name="ReviewPathText" Opacity="0.72" MaxLines="1" TextTrimming="CharacterEllipsis" />
+						<TextBlock x:Name="ReviewAssociationsText" Opacity="0.72" TextWrapping="Wrap" MaxLines="3" TextTrimming="CharacterEllipsis" IsVisible="False" />
+					</StackPanel>
+				</Border>
+				<TextBlock x:Name="ReviewErrorText" Grid.Row="2" Foreground="#D14343" TextWrapping="Wrap"
+                           MaxLines="2" TextTrimming="CharacterEllipsis" IsVisible="False" />
+			</Grid>
+
+			<Border x:Name="OperationPage" Classes="card" IsVisible="True" VerticalAlignment="Top">
+				<StackPanel Spacing="18">
+					<TextBlock x:Name="StatusText" TextWrapping="Wrap" MaxLines="9" TextTrimming="CharacterEllipsis" />
+					<ProgressBar x:Name="ProgressBar" Height="6" IsIndeterminate="True" />
+					<TextBlock x:Name="AssociationNoticeText" IsVisible="False" TextWrapping="Wrap" MaxLines="4" TextTrimming="CharacterEllipsis" />
+					<Button x:Name="OpenDefaultsButton" IsVisible="False" Click="OnOpenDefaults" />
+				</StackPanel>
+			</Border>
+		</Grid>
+
+		<Grid Grid.Row="3" ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="10" Margin="0,22,0,0">
+			<TextBlock x:Name="StepNumberText" VerticalAlignment="Center" Opacity="0.62" />
+			<Button x:Name="BackButton" Grid.Column="1" Classes="action" Click="OnBack" IsVisible="False" />
+			<Button x:Name="CancelButton" Grid.Column="2" Classes="action" Click="OnCancel" />
+			<Button x:Name="InstallButton" Grid.Column="3" Classes="action primary" Click="OnInstall" IsDefault="True" IsEnabled="False" />
+		</Grid>
+	</Grid>
+</Window>

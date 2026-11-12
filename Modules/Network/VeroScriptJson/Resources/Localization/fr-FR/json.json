@@ -1,0 +1,23 @@
+{
+  "json.syntax": "JSON — Syntaxe: {0} (chemin: {1})",
+  "json.utf8": "JSON — UTF-8 invalide: {0} (chemin: {1})",
+  "json.duplicate_key": "JSON — Clé dupliquée: {0} (chemin: {1})",
+  "json.type": "JSON — Type incompatible: {0} (chemin: {1})",
+  "json.range": "JSON — Hors limites: {0} (chemin: {1})",
+  "json.missing": "JSON — Valeur manquante: {0} (chemin: {1})",
+  "json.pointer": "JSON — Pointeur: {0} (chemin: {1})",
+  "json.patch": "JSON — Patch: {0} (chemin: {1})",
+  "json.limit": "JSON — Limite dépassée: {0} (chemin: {1})",
+  "json.cancelled": "JSON — Annulé: {0} (chemin: {1})",
+  "json.allocation": "JSON — Allocation impossible: {0} (chemin: {1})",
+  "json.state": "JSON — État invalide: {0} (chemin: {1})",
+  "json.sink": "JSON — Échec de sortie: {0} (chemin: {1})",
+  "json.unsupported": "JSON — Opération non prise en charge: {0} (chemin: {1})",
+  "json.callback": "JSON — Échec du rappel: {0} (chemin: {1})",
+  "json.schema": "JSON — Schéma: {0} (chemin: {1})",
+  "json.resource": "JSON — Ressource: {0} (chemin: {1})",
+  "json.cycle": "JSON — Cycle d’objets: {0} (chemin: {1})",
+  "json.unknown": "JSON — Erreur inconnue: {0} (chemin: {1})",
+  "json.binding": "JSON — Liaison: {0} (chemin: {1})",
+  "json.mapping.declaration": "JSON — Liaison: {0}"
+}

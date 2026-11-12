@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "module": "Modules/Multimedia/VeroScriptGui",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/visual/gui.md"
+    },
+    {
+      "source": "User/{locale}/Reference",
+      "output": "{locale}/visual/gui/reference"
+    }
+  ],
+  "developer": true
+}

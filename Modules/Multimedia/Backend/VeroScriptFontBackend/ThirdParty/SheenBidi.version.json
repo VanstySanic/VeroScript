@@ -1,0 +1,12 @@
+{
+  "name": "SheenBidi",
+  "version": "3.0.0",
+  "repository": "https://github.com/Tehreer/SheenBidi",
+  "tag": "v3.0.0",
+  "commit": "cfe430e7375a7845b679adae9d51dac6deaa8858",
+  "archive": "https://codeload.github.com/Tehreer/SheenBidi/zip/cfe430e7375a7845b679adae9d51dac6deaa8858",
+  "sha256": "d94a035377b4e010550e032edb75a480564828114715652159f9bbdc0ba533c3",
+  "unicodeVersion": "17.0.0",
+  "license": "Apache-2.0 AND Unicode-3.0",
+  "modifications": []
+}

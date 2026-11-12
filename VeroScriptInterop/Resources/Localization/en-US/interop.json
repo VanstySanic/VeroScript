@@ -1,0 +1,12 @@
+{
+  "diag.external_deserializer_callback_failed": "external deserializer callback failed",
+  "diag.failed_to_build_package": "failed to build package: {0}",
+  "diag.foreign_callback_raised_an_unknown_exception": "foreign callback raised an unknown exception",
+  "diag.foreign_external_deserializer_raised_an_exception": "foreign external deserializer raised an exception",
+  "diag.foreign_external_serializer_raised_an_exception": "foreign external serializer raised an exception",
+  "diag.foreign_generic_host_type_factory_raised_an_exception": "foreign generic host type factory raised an exception",
+  "diag.generic_host_type_factory_is_unavailable": "generic host type factory is unavailable",
+  "diag.invalid_host_function_metadata": "invalid host function metadata",
+  "diag.invalid_host_member_parameter_metadata": "invalid host member parameter metadata",
+  "diag.veroscriptinterop_native_callback_is_unavailable": "VeroScriptInterop native callback is unavailable"
+}

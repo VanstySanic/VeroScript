@@ -1,0 +1,9 @@
+{
+  "python_tools.missing_annotation": "{0} 需要类型注解",
+  "python_tools.unsupported_type": "不支持的 Python 类型注解：{0}",
+  "python_tools.unsupported_parameter": "不支持的 Python 参数形式：{0}",
+  "python_tools.unsupported_decorator": "不支持的 Python 装饰器：{0}",
+  "python_tools.unsupported_inheritance": "不支持的 Python 继承：{0}",
+  "python_tools.enum_value_required": "枚举成员 {0} 必须具有可静态求值的整数值",
+  "python_tools.catalog_validation_failed": "生成的绑定目录验证失败：{0}"
+}

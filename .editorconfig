@@ -1,0 +1,148 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_style = tab
+indent_size = 4
+tab_width = 4
+
+[*.{cpp,h,hpp,c,cc,cxx,inl}]
+indent_style = tab
+indent_size = 4
+charset = utf-8
+
+[*.cs]
+indent_style = tab
+indent_size = 4
+charset = utf-8
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+
+[*.vs]
+indent_style = tab
+indent_size = 4
+
+[*.py]
+indent_style = tab
+indent_size = 4
+
+[*.{ts,js,mjs,mts}]
+indent_style = tab
+indent_size = 4
+
+[*.ps1]
+charset = utf-8-bom
+
+[*.{bat,cmd}]
+end_of_line = crlf
+
+[*.sh]
+end_of_line = lf
+
+[.{editorconfig,gitattributes,gitignore}]
+end_of_line = lf
+
+[**/Resources/Docs/**]
+end_of_line = lf
+
+[CMakeLists.txt]
+charset = utf-8
+
+[*.cmake]
+charset = utf-8
+
+# YAML syntax requires spaces for nesting.
+[*.{yaml,yml}]
+indent_style = space
+indent_size = 2
+
+# Keep upstream source formatting outside the owned-source policy.
+[**/ThirdParty/**]
+indent_style = unset
+indent_size = unset
+tab_width = unset
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+
+# Raw fixtures and imported resources retain their existing bytes.
+[**/Fixtures/**]
+end_of_line = unset
+charset = unset
+insert_final_newline = unset
+
+[**/Resources/Licenses/**]
+indent_style = unset
+indent_size = unset
+tab_width = unset
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+
+[**/gradle/wrapper/**]
+end_of_line = unset
+charset = unset
+insert_final_newline = unset
+
+[Modules/Multimedia/VeroScriptFont/Resources/Assets/Fonts/LICENSE.txt]
+end_of_line = unset
+charset = unset
+insert_final_newline = unset
+
+# Authored guides follow the project documentation format.
+[**/Resources/Licenses/{README,NOTICES}.md]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+
+[**/Fixtures/README.md]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+
+# Preserve physical multiline literal values; Git retains legacy CRLF checkouts.
+[Extensions/Language/CSharp/VeroScriptCSharp/Resources/Examples/Maui/MobileSmoke.cs]
+end_of_line = crlf
+
+[Extensions/Language/CSharp/VeroScriptCSharpBindGen/Tests/GeneratedRegistration/Program.cs]
+end_of_line = crlf
+
+[Extensions/Language/CSharp/VeroScriptCSharpBindGen/Tests/Program.cs]
+end_of_line = crlf
+
+[Extensions/Language/CSharp/VeroScriptCSharpFrontend/Tests/Program.cs]
+end_of_line = crlf
+
+[Extensions/Language/CSharp/VeroScriptCSharpTranspiler/Tests/Program.cs]
+end_of_line = crlf
+
+[VeroScriptInstaller/Tool/Program.cs]
+end_of_line = crlf
+
+[Extensions/Editor/JetBrains/VeroScriptJetBrains/src/main/kotlin/com/vanstysanic/veroscript/jetbrains/language/VeroScriptColorSettingsPage.kt]
+end_of_line = crlf
+
+[Extensions/Editor/JetBrains/VeroScriptJetBrains/src/test/kotlin/com/vanstysanic/veroscript/jetbrains/LexerTest.kt]
+end_of_line = crlf
+
+[Resources/Tools/Packaging/package-veroscript-interop-sdk.ps1]
+end_of_line = crlf
+
+[Resources/Tools/Packaging/tests/Test-VeroScriptWindowsArchitecture.ps1]
+end_of_line = crlf
+
+[VeroScript/Resources/Benchmarks/windows-cpu-topology.ps1]
+end_of_line = crlf
+
+# Imported upstream notices retain their original file format.
+[Extensions/Language/CSharp/Resources/Licenses/Roslyn-*]
+indent_style = unset
+indent_size = unset
+tab_width = unset
+charset = unset
+end_of_line = unset
+insert_final_newline = unset

@@ -1,0 +1,10 @@
+[gradlew]
+end_of_line = lf
+
+[Resources/Licenses/*]
+indent_style = unset
+indent_size = unset
+tab_width = unset
+charset = unset
+end_of_line = unset
+insert_final_newline = unset

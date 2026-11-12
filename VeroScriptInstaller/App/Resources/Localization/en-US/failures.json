@@ -1,0 +1,19 @@
+{
+  "FailureWithDetails": "Operation failed: {0}\n{1}",
+  "DiagnosticLog": "Diagnostic log: {0}",
+  "FailureNoLog": "Could not save a diagnostic log. Technical details: {0}",
+  "FailureWrongProduct": "The selected installation belongs to another product. Select this product's installation directory.",
+  "FailureWrongPlatform": "The package platform or architecture does not match this system or the installed product. Use a matching package.",
+  "FailureDowngrade": "A newer version is already installed. Use the same or a newer installer.",
+  "FailureRepairMismatch": "Repair requires the exact installer package originally used. Locate that package and retry.",
+  "FailureDestinationConflict": "The destination overlaps another location or contains conflicting files. Choose an empty directory, or move conflicting user files before retrying.",
+  "FailureBusy": "Another installer is using this installation. Wait for it to finish and retry.",
+  "FailurePermission": "Access was denied. Choose a writable directory and check your folder permissions.",
+  "FailureMissing": "A required file or directory is missing. Check the installation path and package, then retry.",
+  "FailurePackage": "The package or installation record is invalid. Obtain an intact package, or check the existing installation record.",
+  "FailureFileInUse": "A file is in use. Close VeroScript and applications using its files, then retry.",
+  "FailureDiskFull": "There is not enough disk space. Free space on the installation and temporary drives, then retry.",
+  "FailureIO": "A file operation failed. Check permissions, available disk space and whether files are in use, then retry.",
+  "FailureInput": "An input value or path is invalid. Check the selected folder and installation options.",
+  "FailureUnknown": "The operation could not be completed. Check the diagnostic details before retrying."
+}

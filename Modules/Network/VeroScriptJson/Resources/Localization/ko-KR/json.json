@@ -1,0 +1,23 @@
+{
+  "json.syntax": "JSON — 구문: {0} (경로: {1})",
+  "json.utf8": "JSON — 잘못된 UTF-8: {0} (경로: {1})",
+  "json.duplicate_key": "JSON — 중복 키: {0} (경로: {1})",
+  "json.type": "JSON — 형식 불일치: {0} (경로: {1})",
+  "json.range": "JSON — 범위 초과: {0} (경로: {1})",
+  "json.missing": "JSON — 값 누락: {0} (경로: {1})",
+  "json.pointer": "JSON — 포인터: {0} (경로: {1})",
+  "json.patch": "JSON — 패치: {0} (경로: {1})",
+  "json.limit": "JSON — 한도 초과: {0} (경로: {1})",
+  "json.cancelled": "JSON — 취소됨: {0} (경로: {1})",
+  "json.allocation": "JSON — 메모리 할당 실패: {0} (경로: {1})",
+  "json.state": "JSON — 잘못된 상태: {0} (경로: {1})",
+  "json.sink": "JSON — 출력 실패: {0} (경로: {1})",
+  "json.unsupported": "JSON — 지원되지 않는 작업: {0} (경로: {1})",
+  "json.callback": "JSON — 콜백 실패: {0} (경로: {1})",
+  "json.schema": "JSON — 스키마: {0} (경로: {1})",
+  "json.resource": "JSON — 리소스: {0} (경로: {1})",
+  "json.cycle": "JSON — 객체 순환: {0} (경로: {1})",
+  "json.unknown": "JSON — 알 수 없는 오류: {0} (경로: {1})",
+  "json.binding": "JSON — 바인딩: {0} (경로: {1})",
+  "json.mapping.declaration": "JSON — 바인딩: {0}"
+}

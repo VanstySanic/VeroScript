@@ -1,0 +1,5 @@
+{
+  "python_tools.aot_failed": "Python AOT 생성에 실패했습니다: {0}",
+  "python_tools.aot_output_missing": "Python AOT가 성공을 보고했지만 유효한 출력을 생성하지 않았습니다: {0}",
+  "python_tools.aot_manifest_invalid": "생성된 Python AOT 매니페스트가 유효하지 않습니다: {0}"
+}

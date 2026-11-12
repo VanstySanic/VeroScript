@@ -1,0 +1,8 @@
+{
+  "Success": "VeroScript {0} は正常にインストールされました。",
+  "UpdateSuccess": "VeroScript は {0} に更新されました。ユーザー所有のファイルは保存されました。",
+  "UninstallReady": "この VeroScript インストールを削除する準備ができました。",
+  "UninstallSuccess": "VeroScript は正常にアンインストールされました。",
+  "RepairReady": "この VeroScript インストールを検証して修復する準備ができました。",
+  "RepairSuccess": "VeroScript {0} は正常に修復されました。"
+}

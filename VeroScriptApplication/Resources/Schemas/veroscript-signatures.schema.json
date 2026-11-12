@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "minItems": 1,
+  "maxItems": 16,
+  "items": {
+    "type": "object",
+    "properties": {
+      "format": {
+        "const": "veroscript-artifact-signature"
+      },
+      "formatVersion": {
+        "const": "0.1.1"
+      },
+      "algorithm": {
+        "type": "string",
+        "minLength": 1
+      },
+      "kind": {
+        "enum": [
+          "application",
+          "library",
+          "distribution",
+          "applicationInventory",
+          "resource",
+          "generic"
+        ]
+      },
+      "bytes": {
+        "type": "string",
+        "pattern": "^(0|[1-9][0-9]*)$",
+        "maxLength": 20
+      },
+      "sha256": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "keyId": {
+        "type": "string",
+        "minLength": 1
+      },
+      "keyVersion": {
+        "type": "string",
+        "minLength": 1
+      },
+      "signature": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "required": [
+      "format",
+      "formatVersion",
+      "algorithm",
+      "kind",
+      "bytes",
+      "sha256",
+      "keyId",
+      "keyVersion",
+      "signature"
+    ],
+    "additionalProperties": false
+  }
+}

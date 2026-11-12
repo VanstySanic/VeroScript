@@ -1,0 +1,11 @@
+{
+  "diag.stdlib_arguments": "標準庫操作引數無效",
+  "diag.stdlib_eof": "輸入意外結束",
+  "diag.stdlib_interrupted": "標準庫操作已中斷",
+  "diag.stdlib_io": "標準庫輸入／輸出操作失敗",
+  "diag.stdlib_limit": "標準庫操作超出資源限額",
+  "diag.stdlib_range": "數值文字超出目標範圍，位元組位置：{0}",
+  "diag.stdlib_sync": "同步操作失敗：{0}",
+  "diag.stdlib_task": "工作操作失敗：{0}",
+  "diag.stdlib_text": "文字無效，位元組位置：{0}"
+}

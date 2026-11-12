@@ -1,0 +1,19 @@
+{
+  "FailureWithDetails": "操作失败：{0}\n{1}",
+  "DiagnosticLog": "诊断日志：{0}",
+  "FailureNoLog": "无法保存诊断日志。技术详情：{0}",
+  "FailureWrongProduct": "所选安装属于其他产品。请选择此产品的安装目录。",
+  "FailureWrongPlatform": "安装包的平台或架构与当前系统或已安装的产品不匹配。请使用匹配的安装包。",
+  "FailureDowngrade": "已安装更新的版本。请使用相同或更新版本的安装包。",
+  "FailureRepairMismatch": "修复需要使用最初安装时完全相同的安装包。请找到该安装包后重试。",
+  "FailureDestinationConflict": "目标目录与其他位置重叠或存在文件冲突。请选择空目录，或先移走冲突的用户文件再重试。",
+  "FailureBusy": "其他安装程序正在使用此安装。请等待其完成后重试。",
+  "FailurePermission": "访问被拒绝。请选择可写入的目录，并检查文件夹权限。",
+  "FailureMissing": "缺少必需的文件或目录。请检查安装路径和安装包后重试。",
+  "FailurePackage": "安装包或安装记录无效。请获取完整的安装包，或检查已有安装的记录。",
+  "FailureFileInUse": "文件正被占用。请关闭 VeroScript 及使用其文件的应用后重试。",
+  "FailureDiskFull": "磁盘空间不足。请释放安装目录及临时文件所在磁盘的空间后重试。",
+  "FailureIO": "文件操作失败。请检查权限、可用磁盘空间和文件占用情况后重试。",
+  "FailureInput": "输入值或路径无效。请检查所选文件夹和安装选项。",
+  "FailureUnknown": "无法完成操作。请查看诊断详情后重试。"
+}

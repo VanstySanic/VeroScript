@@ -1,0 +1,8 @@
+{
+  "Success": "VeroScript {0} was installed successfully.",
+  "UpdateSuccess": "VeroScript was updated to {0}; user-owned files were preserved.",
+  "UninstallReady": "Ready to remove this VeroScript installation.",
+  "UninstallSuccess": "VeroScript was uninstalled successfully.",
+  "RepairReady": "Ready to verify and repair this VeroScript installation.",
+  "RepairSuccess": "VeroScript {0} was repaired successfully."
+}

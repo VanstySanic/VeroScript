@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "module": "Extensions/Language/Cpp",
+  "user": [
+    {
+      "source": "User/{locale}/aot.md",
+      "output": "{locale}/cpp/aot.md"
+    },
+    {
+      "source": "User/{locale}/bindgen.md",
+      "output": "{locale}/cpp/bindgen.md"
+    },
+    {
+      "source": "User/{locale}/bindings.md",
+      "output": "{locale}/cpp/bindings.md"
+    },
+    {
+      "source": "User/{locale}/embedding.md",
+      "output": "{locale}/cpp/embedding.md"
+    },
+    {
+      "source": "User/{locale}/frontend.md",
+      "output": "{locale}/cpp/frontend.md"
+    },
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/cpp/index.md"
+    },
+    {
+      "source": "User/{locale}/transpiler.md",
+      "output": "{locale}/cpp/transpiler.md"
+    },
+    {
+      "source": "User/{locale}/session-debugging.md",
+      "output": "{locale}/cpp/session-debugging.md"
+    }
+  ],
+  "developer": true
+}

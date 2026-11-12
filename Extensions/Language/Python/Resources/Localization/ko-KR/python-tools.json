@@ -1,0 +1,7 @@
+{
+  "python_tools.source_write_failed": "생성된 출력을 쓰지 못했습니다: {0}",
+  "python_tools.duplicate_declaration": "선언이 중복되었습니다: {0}",
+  "python_tools.unsupported_construct": "지원되지 않는 Python 구문입니다: {0}",
+  "python_tools.validator_not_found": "VeroScript 도구에는 --veroscript, VEROSCRIPT_EXECUTABLE, VEROSCRIPT_SDK 또는 PATH의 veroscript가 필요합니다",
+  "python_tools.timeout_invalid": "시간 제한은 유한한 양수여야 합니다"
+}

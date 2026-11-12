@@ -1,0 +1,7 @@
+{
+	"format": "veroscript-project",
+	"formatVersion": "0.1.1",
+	"name": "my-project",
+	"version": "0.1.1",
+	"dependencies": {}
+}

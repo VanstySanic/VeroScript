@@ -1,0 +1,918 @@
+{
+  "name": "veroscript",
+  "displayName": "VeroScript",
+  "description": "%extension.description%",
+  "version": "0.1.1",
+  "publisher": "VanstySanic",
+  "license": "MIT",
+  "icon": "./Resources/Assets/Icons/product.png",
+  "engines": {
+    "vscode": "^1.106.0",
+    "node": ">=22.18.0"
+  },
+  "type": "commonjs",
+  "main": "./dist/extension.cjs",
+  "extensionKind": [
+    "workspace"
+  ],
+  "categories": [
+    "Programming Languages",
+    "Debuggers",
+    "Formatters"
+  ],
+  "keywords": [
+    "VeroScript",
+    "vero",
+    "lsp"
+  ],
+  "l10n": "./Resources/Localization/Bundles",
+  "activationEvents": [
+    "onDebugResolve:veroscript",
+    "onDebugInitialConfigurations",
+    "onDebugDynamicConfigurations"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "node Resources/Tools/build.mjs",
+    "watch": "node Resources/Tools/build.mjs --watch",
+    "vscode:prepublish": "node Resources/Tools/build.mjs --release",
+    "test:unit": "node Resources/Tools/build.mjs --tests && node --test out/Unit/*.test.cjs",
+    "test:integration": "node Resources/Tools/test.mjs",
+    "package": "node Resources/Tools/package.mjs",
+    "package:contents": "node Resources/Tools/package.mjs --list",
+    "dev:setup": "node Resources/Tools/develop.mjs"
+  },
+  "dependencies": {
+    "vscode-languageclient": "10.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.18.10",
+    "@types/vscode": "1.106.0",
+    "@vscode/test-cli": "0.0.15",
+    "@vscode/test-electron": "3.1.0",
+    "@vscode/vsce": "4.0.0",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2",
+    "vscode-oniguruma": "2.0.1",
+    "vscode-textmate": "9.3.0",
+    "@types/mocha": "10.0.10"
+  },
+  "contributes": {
+    "keybindings": [
+      {
+        "command": "veroscript.insertNewline",
+        "key": "enter",
+        "when": "editorTextFocus && editorLangId == veroscript && !editorReadonly && !editorHasSelection && !suggestWidgetVisible && !inSnippetMode && !inlineSuggestionVisible && !renameInputVisible && !inComposition && config.veroscript.bracesOnNewLine"
+      }
+    ],
+    "languages": [
+      {
+        "id": "veroscript",
+        "aliases": [
+          "VeroScript",
+          "veroscript"
+        ],
+        "extensions": [
+          ".vs"
+        ],
+        "icon": {
+          "light": "./Resources/Assets/Icons/veroscript-light.svg",
+          "dark": "./Resources/Assets/Icons/veroscript-dark.svg"
+        },
+        "configuration": "./Resources/Language/language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "veroscript",
+        "scopeName": "source.veroscript",
+        "path": "./Resources/Syntaxes/veroscript.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "veroscript.runFile",
+        "title": "%command.runFile%",
+        "category": "VeroScript",
+        "icon": "$(play)"
+      },
+      {
+        "command": "veroscript.checkFile",
+        "title": "%command.checkFile%",
+        "category": "VeroScript"
+      },
+      {
+        "command": "veroscript.debugFile",
+        "title": "%command.debugFile%",
+        "category": "VeroScript",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "veroscript.attachToHost",
+        "title": "%command.attachToHost%",
+        "category": "VeroScript"
+      },
+      {
+        "command": "veroscript.attachToDomain",
+        "title": "%command.attachToDomain%",
+        "category": "VeroScript"
+      },
+      {
+        "command": "veroscript.selectRuntime",
+        "title": "%command.selectRuntime%",
+        "category": "VeroScript"
+      },
+      {
+        "command": "veroscript.restartLanguageServer",
+        "title": "%command.restartLanguageServer%",
+        "category": "VeroScript"
+      },
+      {
+        "command": "veroscript.showOutput",
+        "title": "%command.showOutput%",
+        "category": "VeroScript"
+      },
+      {
+        "command": "veroscript.showEnvironment",
+        "title": "%command.showEnvironment%",
+        "category": "VeroScript"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "veroscript.runFile",
+          "when": "editorLangId == veroscript && (resourceScheme == file || resourceScheme == vscode-remote)",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "veroscript.runFile",
+          "when": "resourceExtname == .vs && (resourceScheme == file || resourceScheme == vscode-remote)"
+        },
+        {
+          "command": "veroscript.debugFile",
+          "when": "resourceExtname == .vs && (resourceScheme == file || resourceScheme == vscode-remote)"
+        },
+        {
+          "command": "veroscript.attachToHost",
+          "when": "resourceExtname == .vs && (resourceScheme == file || resourceScheme == vscode-remote)"
+        }
+      ]
+    },
+    "configurationDefaults": {
+      "[veroscript]": {
+        "editor.wordBasedSuggestions": "off"
+      }
+    },
+    "configuration": {
+      "title": "VeroScript",
+      "properties": {
+        "veroscript.bracesOnNewLine": {
+          "type": "boolean",
+          "default": true,
+          "scope": "window",
+          "description": "%setting.bracesOnNewLine%"
+        },
+        "veroscript.stdlibSearchPaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "%setting.stdlibSearchPaths%",
+          "scope": "resource"
+        },
+        "veroscript.importPaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "%setting.importPaths%",
+          "scope": "resource"
+        },
+        "veroscript.implicitImportPaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "%setting.implicitImportPaths%",
+          "scope": "resource"
+        },
+        "veroscript.bindingCatalogPaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "%setting.bindingCatalogPaths%",
+          "scope": "resource"
+        },
+        "veroscript.defines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "%setting.defines%",
+          "scope": "resource"
+        },
+        "veroscript.predefinedMacros": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "body"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+              },
+              "parameters": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "variadic": {
+                "type": "boolean",
+                "default": false
+              },
+              "body": {
+                "type": "string"
+              }
+            }
+          },
+          "description": "%setting.predefinedMacros%",
+          "scope": "resource"
+        },
+        "veroscript.allowCircularImports": {
+          "type": "boolean",
+          "default": true,
+          "description": "%setting.allowCircularImports%",
+          "scope": "resource"
+        },
+        "veroscript.allowProjectWideAccess": {
+          "type": "boolean",
+          "default": false,
+          "description": "%setting.allowProjectWideAccess%",
+          "scope": "resource"
+        },
+        "veroscript.runtimePath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine-overridable",
+          "description": "%setting.runtimePath%"
+        },
+        "veroscript.lsp.enabled": {
+          "type": "boolean",
+          "default": true,
+          "scope": "resource",
+          "description": "%setting.lsp.enabled%"
+        },
+        "veroscript.lsp.executablePath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine-overridable",
+          "description": "%setting.lsp.executablePath%"
+        },
+        "veroscript.lsp.arguments": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "scope": "machine-overridable",
+          "description": "%setting.lsp.arguments%"
+        },
+        "veroscript.lspRequestTimeoutMs": {
+          "type": "integer",
+          "default": 2000,
+          "minimum": 50,
+          "maximum": 30000,
+          "scope": "resource",
+          "description": "%setting.lspRequestTimeoutMs%"
+        },
+        "veroscript.lspAnalysisTimeoutMs": {
+          "type": "integer",
+          "default": 5000,
+          "minimum": 50,
+          "maximum": 30000,
+          "scope": "resource",
+          "description": "%setting.lspAnalysisTimeoutMs%"
+        },
+        "veroscript.maxCompletionItems": {
+          "type": "integer",
+          "default": 512,
+          "minimum": 32,
+          "maximum": 5000,
+          "scope": "resource",
+          "description": "%setting.maxCompletionItems%"
+        },
+        "veroscript.maxWorkspaceSymbolResults": {
+          "type": "integer",
+          "default": 2000,
+          "minimum": 64,
+          "maximum": 20000,
+          "scope": "resource",
+          "description": "%setting.maxWorkspaceSymbolResults%"
+        },
+        "veroscript.maxReferenceResults": {
+          "type": "integer",
+          "default": 5000,
+          "minimum": 64,
+          "maximum": 50000,
+          "scope": "resource",
+          "description": "%setting.maxReferenceResults%"
+        },
+        "veroscript.maxWorkspaceFiles": {
+          "type": "integer",
+          "default": 10000,
+          "minimum": 1,
+          "maximum": 100000,
+          "scope": "resource",
+          "description": "%setting.maxWorkspaceFiles%"
+        },
+        "veroscript.maxWorkspaceFileBytes": {
+          "type": "integer",
+          "default": 2097152,
+          "minimum": 1024,
+          "maximum": 67108864,
+          "scope": "resource",
+          "description": "%setting.maxWorkspaceFileBytes%"
+        },
+        "veroscript.lspTraceAnalysis": {
+          "type": "boolean",
+          "default": false,
+          "scope": "resource",
+          "description": "%setting.lspTraceAnalysis%"
+        },
+        "veroscript.run.backend": {
+          "type": "string",
+          "enum": [
+            "vm",
+            "mixed",
+            "jit"
+          ],
+          "default": "mixed",
+          "description": "%setting.backend%",
+          "scope": "resource"
+        },
+        "veroscript.run.jitBackendPath": {
+          "type": "string",
+          "default": "",
+          "description": "%setting.jitBackendPath%",
+          "scope": "resource"
+        },
+        "veroscript.run.args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "%setting.args%",
+          "scope": "resource"
+        },
+        "veroscript.run.cwd": {
+          "type": "string",
+          "default": "",
+          "description": "%setting.cwd%",
+          "scope": "resource"
+        },
+        "veroscript.run.env": {
+          "type": "object",
+          "default": {},
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "%setting.env%",
+          "scope": "resource"
+        }
+      }
+    },
+    "taskDefinitions": [
+      {
+        "type": "veroscript",
+        "required": [
+          "action",
+          "program"
+        ],
+        "properties": {
+          "stdlibSearchPaths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "%setting.stdlibSearchPaths%"
+          },
+          "importPaths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "%setting.importPaths%"
+          },
+          "implicitImportPaths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "%setting.implicitImportPaths%"
+          },
+          "bindingCatalogPaths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "%setting.bindingCatalogPaths%"
+          },
+          "defines": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "%setting.defines%"
+          },
+          "predefinedMacros": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "body"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+                },
+                "parameters": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "default": []
+                },
+                "variadic": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "body": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "%setting.predefinedMacros%"
+          },
+          "allowCircularImports": {
+            "type": "boolean",
+            "description": "%setting.allowCircularImports%"
+          },
+          "allowProjectWideAccess": {
+            "type": "boolean",
+            "description": "%setting.allowProjectWideAccess%"
+          },
+          "backend": {
+            "type": "string",
+            "enum": [
+              "vm",
+              "mixed",
+              "jit"
+            ],
+            "default": "mixed",
+            "description": "%setting.backend%"
+          },
+          "jitBackendPath": {
+            "type": "string",
+            "description": "%setting.jitBackendPath%"
+          },
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "%setting.args%"
+          },
+          "cwd": {
+            "type": "string",
+            "description": "%setting.cwd%"
+          },
+          "env": {
+            "type": "object",
+            "default": {},
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "%setting.env%"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "run",
+              "check"
+            ],
+            "description": "%task.action%"
+          },
+          "program": {
+            "type": "string",
+            "description": "%debug.program%"
+          }
+        }
+      }
+    ],
+    "debuggers": [
+      {
+        "type": "veroscript",
+        "label": "VeroScript",
+        "languages": [
+          "veroscript"
+        ],
+        "configurationAttributes": {
+          "launch": {
+            "required": [
+              "program"
+            ],
+            "properties": {
+              "stdlibSearchPaths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "%setting.stdlibSearchPaths%"
+              },
+              "importPaths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "%setting.importPaths%"
+              },
+              "implicitImportPaths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "%setting.implicitImportPaths%"
+              },
+              "bindingCatalogPaths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "%setting.bindingCatalogPaths%"
+              },
+              "defines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "%setting.defines%"
+              },
+              "predefinedMacros": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "name",
+                    "body"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+                    },
+                    "parameters": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "default": []
+                    },
+                    "variadic": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "body": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "description": "%setting.predefinedMacros%"
+              },
+              "allowCircularImports": {
+                "type": "boolean",
+                "description": "%setting.allowCircularImports%"
+              },
+              "allowProjectWideAccess": {
+                "type": "boolean",
+                "description": "%setting.allowProjectWideAccess%"
+              },
+              "program": {
+                "type": "string",
+                "description": "%debug.program%"
+              },
+              "args": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "%setting.args%"
+              },
+              "input": {
+                "type": "string",
+                "description": "%debug.input%"
+              },
+              "stopOnEntry": {
+                "type": "boolean",
+                "description": "%debug.stopOnEntry%"
+              },
+              "maxCallDepth": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "description": "%debug.maxCallDepth%"
+              },
+              "cwd": {
+                "type": "string",
+                "description": "%setting.cwd%"
+              },
+              "env": {
+                "type": "object",
+                "default": {},
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "%setting.env%"
+              }
+            }
+          },
+          "attach": {
+            "required": [
+              "port"
+            ],
+            "properties": {
+              "stdlibSearchPaths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "%setting.stdlibSearchPaths%"
+              },
+              "importPaths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "%setting.importPaths%"
+              },
+              "implicitImportPaths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "%setting.implicitImportPaths%"
+              },
+              "bindingCatalogPaths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "%setting.bindingCatalogPaths%"
+              },
+              "defines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "%setting.defines%"
+              },
+              "predefinedMacros": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "name",
+                    "body"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+                    },
+                    "parameters": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "default": []
+                    },
+                    "variadic": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "body": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "description": "%setting.predefinedMacros%"
+              },
+              "allowCircularImports": {
+                "type": "boolean",
+                "description": "%setting.allowCircularImports%"
+              },
+              "allowProjectWideAccess": {
+                "type": "boolean",
+                "description": "%setting.allowProjectWideAccess%"
+              },
+              "program": {
+                "type": "string",
+                "description": "%debug.attach.program%"
+              },
+              "args": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "%setting.args%"
+              },
+              "input": {
+                "type": "string",
+                "description": "%debug.input%"
+              },
+              "stopOnEntry": {
+                "type": "boolean",
+                "description": "%debug.stopOnEntry%"
+              },
+              "maxCallDepth": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "description": "%debug.maxCallDepth%"
+              },
+              "port": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 65535,
+                "description": "%debug.port%"
+              },
+              "host": {
+                "type": "string",
+                "description": "%debug.host%"
+              },
+              "attachMode": {
+                "type": "string",
+                "enum": [
+                  "program",
+                  "domain"
+                ],
+                "description": "%debug.attachMode%"
+              },
+              "domainId": {
+                "type": "string",
+                "description": "%debug.domainId%"
+              }
+            },
+            "oneOf": [
+              {
+                "properties": {
+                  "attachMode": {
+                    "enum": [
+                      "program"
+                    ]
+                  }
+                },
+                "required": [
+                  "program"
+                ]
+              },
+              {
+                "properties": {
+                  "attachMode": {
+                    "enum": [
+                      "domain"
+                    ]
+                  }
+                },
+                "required": [
+                  "attachMode"
+                ]
+              }
+            ]
+          }
+        },
+        "initialConfigurations": [
+          {
+            "name": "VeroScript",
+            "type": "veroscript",
+            "request": "launch",
+            "program": "${file}",
+            "stopOnEntry": false
+          },
+          {
+            "name": "%debug.attach.label%",
+            "type": "veroscript",
+            "request": "attach",
+            "program": "${file}",
+            "host": "127.0.0.1",
+            "port": 4711,
+            "stopOnEntry": true
+          },
+          {
+            "name": "%debug.domain.label%",
+            "type": "veroscript",
+            "request": "attach",
+            "attachMode": "domain",
+            "host": "127.0.0.1",
+            "port": 4711
+          }
+        ],
+        "configurationSnippets": [
+          {
+            "label": "VeroScript: launch",
+            "body": {
+              "name": "VeroScript",
+              "type": "veroscript",
+              "request": "launch",
+              "program": "${file}",
+              "stopOnEntry": false
+            }
+          },
+          {
+            "label": "%debug.attach.label%",
+            "body": {
+              "name": "%debug.attach.label%",
+              "type": "veroscript",
+              "request": "attach",
+              "program": "${file}",
+              "host": "127.0.0.1",
+              "port": 4711,
+              "stopOnEntry": true
+            }
+          },
+          {
+            "label": "%debug.domain.label%",
+            "body": {
+              "name": "%debug.domain.label%",
+              "type": "veroscript",
+              "request": "attach",
+              "attachMode": "domain",
+              "host": "127.0.0.1",
+              "port": 4711
+            }
+          }
+        ]
+      }
+    ],
+    "breakpoints": [
+      {
+        "language": "veroscript"
+      }
+    ],
+    "semanticTokenTypes": [
+      {
+        "id": "decoratorArgument",
+        "superType": "parameter",
+        "description": "%semantic.decoratorArgument%"
+      },
+      {
+        "id": "constant",
+        "superType": "variable",
+        "description": "%semantic.constant%"
+      },
+      {
+        "id": "preprocessor",
+        "superType": "macro",
+        "description": "%semantic.preprocessor%"
+      }
+    ],
+    "semanticTokenScopes": [
+      {
+        "language": "veroscript",
+        "scopes": {
+          "decoratorArgument": [
+            "variable.parameter"
+          ],
+          "constant": [
+            "constant.other"
+          ],
+          "preprocessor": [
+            "meta.preprocessor"
+          ],
+          "label": [
+            "entity.name.label"
+          ]
+        }
+      }
+    ]
+  }
+}

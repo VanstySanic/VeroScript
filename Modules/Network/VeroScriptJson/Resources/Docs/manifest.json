@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "module": "Modules/Network/VeroScriptJson",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/json/index.md"
+    },
+    {
+      "source": "User/{locale}/Reference",
+      "output": "{locale}/json/reference"
+    }
+  ],
+  "developer": true
+}

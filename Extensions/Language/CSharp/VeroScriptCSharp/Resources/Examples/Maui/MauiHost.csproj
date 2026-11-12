@@ -1,0 +1,27 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net10.0-android;net10.0-ios</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<RootNamespace>VeroScriptMauiHost</RootNamespace>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<ApplicationTitle>VeroScript Mobile</ApplicationTitle>
+		<ApplicationId>com.vanstysanic.veroscript.mauihost</ApplicationId>
+		<ApplicationDisplayVersion>0.1.1</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">26.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<MauiIcon Include="Resources/AppIcon/appicon.svg" Color="#18324D" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<ProjectReference Include="../../../VeroScriptCSharp.csproj" AdditionalProperties="VeroScriptIncludeMobile=true" />
+	</ItemGroup>
+	<!-- NuGet consumers receive this import through buildTransitive instead. -->
+	<Import Project="../../../buildTransitive/VeroScript.CSharp.targets" />
+</Project>

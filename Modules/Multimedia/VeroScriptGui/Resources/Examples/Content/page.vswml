@@ -1,0 +1,11 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Widget id="root">
+	<import src="Drawing.vs" />
+	<style src="page.vswcss" />
+	<Widget class="title" Text="Hello, VeroScript!" />
+	<Widget Text="UTF-8 text, shaped fonts, decoded images and custom drawing." />
+	<Widget Image="sample.tga" />
+	<Drawing class="surface" Width="280px" Height="80px" />
+</Widget>

@@ -1,0 +1,20 @@
+<Stack>
+    <style src="composite.vswcss" />
+    <ComboBox id="markup-combo" selected-key="b">
+        <ListItem key="a" text="Alpha" />
+        <ListItem key="b" text="Beta" />
+    </ComboBox>
+    <TreeView>
+        <TreeItem key="root" text="Root"><TreeItem key="child" text="Child" /></TreeItem>
+    </TreeView>
+    <TableView id="markup-table">
+        <TableColumn key="c" text="Column" column-width="180" />
+        <TableRow key="r"><Text text="Cell" /></TableRow>
+    </TableView>
+    <TabView id="markup-tabs">
+        <TabItem key="first" title="First"><Text text="First page" /></TabItem>
+        <TabItem key="second" title="Second"><Text text="Second page" /></TabItem>
+    </TabView>
+    <Menu><MenuItem text="File"><MenuItem text="Open" command="open" /></MenuItem></Menu>
+    <Dialog id="markup-dialog" open="false"><Button text="OK" /></Dialog>
+</Stack>

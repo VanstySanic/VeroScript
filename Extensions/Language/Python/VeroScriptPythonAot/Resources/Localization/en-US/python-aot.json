@@ -1,0 +1,5 @@
+{
+  "python_tools.aot_failed": "Python AOT generation failed: {0}",
+  "python_tools.aot_output_missing": "Python AOT reported success but produced no valid output: {0}",
+  "python_tools.aot_manifest_invalid": "generated Python AOT manifest is invalid: {0}"
+}

@@ -1,0 +1,1642 @@
+{
+  "schemaVersion": 1,
+  "productVersion": "0.1.1",
+  "generatedFrom": [
+    "Modules/Multimedia/VeroScriptGui/Private/VeroScriptGuiTypes.cpp",
+    "Modules/Multimedia/VeroScriptGui/Private/VeroScriptGuiEvent.cpp",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Widget.vs",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/VeroScriptGui.vs",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Binding.vs",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Runtime.vs",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Resources.vs",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Controls.vs",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Collections.vs",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/CompositeSupport.vs",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Virtualization.vs",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Table.vs",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Navigation.vs",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Menus.vs",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Dialogs.vs"
+  ],
+  "types": [
+    {
+      "name": "VS::Gui::Widget",
+      "bases": [],
+      "properties": [
+        {
+          "name": "Width",
+          "mark": "width",
+          "type": "Length",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "auto",
+            "0",
+            "100%",
+            "8px",
+            "8dp"
+          ]
+        },
+        {
+          "name": "Height",
+          "mark": "height",
+          "type": "Length",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "auto",
+            "0",
+            "100%",
+            "8px",
+            "8dp"
+          ]
+        },
+        {
+          "name": "Padding",
+          "mark": "padding",
+          "type": "Insets",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "0",
+            "4px",
+            "4px 8px"
+          ]
+        },
+        {
+          "name": "Gap",
+          "mark": "gap",
+          "type": "double",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "Layout",
+          "mark": "layout",
+          "type": "Layout",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "Vertical",
+            "Horizontal",
+            "Overlay",
+            "vertical",
+            "horizontal",
+            "overlay"
+          ]
+        },
+        {
+          "name": "Visibility",
+          "mark": "visibility",
+          "type": "Visibility",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "Visible",
+            "Hidden",
+            "Collapsed",
+            "visible",
+            "hidden",
+            "collapsed"
+          ]
+        },
+        {
+          "name": "HitTest",
+          "mark": "hit-test",
+          "type": "HitTestMode",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "SelfAndChildren",
+            "SelfOnly",
+            "ChildrenOnly",
+            "None",
+            "selfandchildren",
+            "selfonly",
+            "childrenonly",
+            "none"
+          ]
+        },
+        {
+          "name": "Enabled",
+          "mark": "enabled",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "Focusable",
+          "mark": "focusable",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "Opacity",
+          "mark": "opacity",
+          "type": "double",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "Background",
+          "mark": "background-color",
+          "type": "Color",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "Text",
+          "mark": "text",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Image",
+          "mark": "image",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "FontFamily",
+          "mark": "font-family",
+          "type": "string",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "FontSize",
+          "mark": "font-size",
+          "type": "double",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "FontWeight",
+          "mark": "font-weight",
+          "type": "double",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "FontStyle",
+          "mark": "font-style",
+          "type": "string",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "normal",
+            "italic"
+          ]
+        },
+        {
+          "name": "TextColor",
+          "mark": "color",
+          "type": "Color",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "TextAlign",
+          "mark": "text-align",
+          "type": "string",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "left",
+            "right",
+            "center",
+            "justify"
+          ]
+        },
+        {
+          "name": "WhiteSpace",
+          "mark": "white-space",
+          "type": "string",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "normal",
+            "pre",
+            "pre-wrap",
+            "pre-line",
+            "nowrap"
+          ]
+        },
+        {
+          "name": "TextOverflow",
+          "mark": "text-overflow",
+          "type": "string",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "clip",
+            "ellipsis"
+          ]
+        },
+        {
+          "name": "LineHeight",
+          "mark": "line-height",
+          "type": "double",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "LetterSpacing",
+          "mark": "letter-spacing",
+          "type": "double",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "Direction",
+          "mark": "direction",
+          "type": "string",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "auto",
+            "ltr",
+            "rtl"
+          ]
+        },
+        {
+          "name": "Language",
+          "mark": "language",
+          "type": "string",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "CornerRadius",
+          "mark": "border-radius",
+          "type": "double",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "ClipContent",
+          "mark": "clip-content",
+          "type": "bool",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "Filter",
+          "mark": "filter",
+          "type": "string",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "BackdropFilter",
+          "mark": "backdrop-filter",
+          "type": "string",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "BackgroundImage",
+          "mark": "background-image",
+          "type": "string",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "BoxShadow",
+          "mark": "box-shadow",
+          "type": "string",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "Transform",
+          "mark": "transform",
+          "type": "string",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "MaskImage",
+          "mark": "mask-image",
+          "type": "string",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "BorderWidth",
+          "mark": "border-width",
+          "type": "double",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "BorderColor",
+          "mark": "border-color",
+          "type": "Color",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "Cursor",
+          "mark": "cursor",
+          "type": "Cursor",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "auto",
+            "default",
+            "text",
+            "wait",
+            "crosshair",
+            "progress",
+            "nwse-resize",
+            "nesw-resize",
+            "ew-resize",
+            "ns-resize",
+            "move",
+            "not-allowed",
+            "pointer",
+            "none"
+          ]
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::Text",
+      "mark": "text",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::Image",
+      "mark": "image",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::Border",
+      "mark": "border",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::Stack",
+      "mark": "stack",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::Overlay",
+      "mark": "overlay",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::Spacer",
+      "mark": "spacer",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::Separator",
+      "mark": "separator",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::Button",
+      "mark": "button",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [],
+      "events": [
+        {
+          "name": "Clicked",
+          "mark": "clicked",
+          "type": "std::multicast_delegate<VS::Gui::Button>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::CheckBox",
+      "mark": "check-box",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [
+        {
+          "name": "Checked",
+          "mark": "checked",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "name": "CheckedChanged",
+          "mark": "checked-changed",
+          "type": "std::multicast_delegate<VS::Gui::CheckBox, bool>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::ToggleSwitch",
+      "mark": "toggle-switch",
+      "bases": [
+        "VS::Gui::CheckBox"
+      ],
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::ProgressBar",
+      "mark": "progress-bar",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [
+        {
+          "name": "Value",
+          "mark": "value",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Minimum",
+          "mark": "minimum",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Maximum",
+          "mark": "maximum",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Step",
+          "mark": "step",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "PageSize",
+          "mark": "page-size",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Vertical",
+          "mark": "vertical",
+          "type": "bool",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "true",
+            "false"
+          ]
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::Slider",
+      "mark": "slider",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [
+        {
+          "name": "Value",
+          "mark": "value",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Minimum",
+          "mark": "minimum",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Maximum",
+          "mark": "maximum",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Step",
+          "mark": "step",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "PageSize",
+          "mark": "page-size",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Vertical",
+          "mark": "vertical",
+          "type": "bool",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "true",
+            "false"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "name": "ValueChanged",
+          "mark": "value-changed",
+          "type": "std::multicast_delegate<VS::Gui::Slider, double>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::ScrollBar",
+      "mark": "scroll-bar",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [
+        {
+          "name": "Value",
+          "mark": "value",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Minimum",
+          "mark": "minimum",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Maximum",
+          "mark": "maximum",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Step",
+          "mark": "step",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "PageSize",
+          "mark": "page-size",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Vertical",
+          "mark": "vertical",
+          "type": "bool",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "true",
+            "false"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "name": "ValueChanged",
+          "mark": "value-changed",
+          "type": "std::multicast_delegate<VS::Gui::ScrollBar, double>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::ScrollView",
+      "mark": "scroll-view",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [
+        {
+          "name": "ScrollX",
+          "mark": "scroll-x",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "ScrollY",
+          "mark": "scroll-y",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        }
+      ],
+      "events": [
+        {
+          "name": "Scrolled",
+          "mark": "scrolled",
+          "type": "std::multicast_delegate<VS::Gui::ScrollView, double, double>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::TextBox",
+      "mark": "text-box",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [
+        {
+          "name": "Value",
+          "mark": "value",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "ReadOnly",
+          "mark": "read-only",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "Placeholder",
+          "mark": "placeholder",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        }
+      ],
+      "events": [
+        {
+          "name": "TextChanged",
+          "mark": "text-changed",
+          "type": "std::multicast_delegate<VS::Gui::TextBox, string>"
+        },
+        {
+          "name": "Submitted",
+          "mark": "submitted",
+          "type": "std::multicast_delegate<VS::Gui::TextBox, string>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::TextArea",
+      "mark": "text-area",
+      "bases": [
+        "VS::Gui::TextBox"
+      ],
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::Grid",
+      "mark": "grid",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [
+        {
+          "name": "Columns",
+          "mark": "columns",
+          "type": "int64",
+          "bindable": true,
+          "style": true
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::Wrap",
+      "mark": "wrap",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::Splitter",
+      "mark": "splitter",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [
+        {
+          "name": "Value",
+          "mark": "value",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Minimum",
+          "mark": "minimum",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Maximum",
+          "mark": "maximum",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Step",
+          "mark": "step",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "ReadOnly",
+          "mark": "read-only",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "Vertical",
+          "mark": "vertical",
+          "type": "bool",
+          "bindable": true,
+          "style": true,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "DividerSize",
+          "mark": "divider-size",
+          "type": "double",
+          "bindable": true,
+          "style": true
+        }
+      ],
+      "events": [
+        {
+          "name": "ValueChanged",
+          "mark": "value-changed",
+          "type": "std::multicast_delegate<VS::Gui::Splitter, double>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::RadioGroup",
+      "mark": "radio-group",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [
+        {
+          "name": "SelectedKey",
+          "mark": "selected-key",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        }
+      ],
+      "events": [
+        {
+          "name": "SelectionChanged",
+          "mark": "selection-changed",
+          "type": "std::multicast_delegate<VS::Gui::RadioGroup, string>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::RadioButton",
+      "mark": "radio-button",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [
+        {
+          "name": "Key",
+          "mark": "key",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        }
+      ],
+      "events": [
+        {
+          "name": "Selected",
+          "mark": "selected",
+          "type": "std::multicast_delegate<VS::Gui::RadioButton>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::NumberBox",
+      "mark": "number-box",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [
+        {
+          "name": "Value",
+          "mark": "value",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Minimum",
+          "mark": "minimum",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Maximum",
+          "mark": "maximum",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Step",
+          "mark": "step",
+          "type": "double",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "ReadOnly",
+          "mark": "read-only",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "Placeholder",
+          "mark": "placeholder",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        }
+      ],
+      "events": [
+        {
+          "name": "ValueChanged",
+          "mark": "value-changed",
+          "type": "std::multicast_delegate<VS::Gui::NumberBox, double>"
+        },
+        {
+          "name": "Submitted",
+          "mark": "submitted",
+          "type": "std::multicast_delegate<VS::Gui::NumberBox, double>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::PasswordBox",
+      "mark": "password-box",
+      "bases": [
+        "VS::Gui::TextBox"
+      ],
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::Popup",
+      "mark": "popup",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [
+        {
+          "name": "Open",
+          "mark": "open",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "DismissOnOutside",
+          "mark": "dismiss-on-outside",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "DismissOnEscape",
+          "mark": "dismiss-on-escape",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "Modal",
+          "mark": "modal",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "MatchAnchorWidth",
+          "mark": "match-anchor-width",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "Placement",
+          "mark": "placement",
+          "type": "string",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "below",
+            "right",
+            "center",
+            "Below",
+            "Right",
+            "Center"
+          ]
+        },
+        {
+          "name": "OffsetX",
+          "mark": "offset-x",
+          "type": "double",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "OffsetY",
+          "mark": "offset-y",
+          "type": "double",
+          "bindable": true,
+          "style": true
+        }
+      ],
+      "events": [
+        {
+          "name": "OpenChanged",
+          "mark": "open-changed",
+          "type": "std::multicast_delegate<VS::Gui::Popup, bool>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::ToolTip",
+      "mark": "tool-tip",
+      "bases": [
+        "VS::Gui::Popup"
+      ],
+      "properties": [
+        {
+          "name": "AutoOpen",
+          "mark": "auto-open",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "Delay",
+          "mark": "delay",
+          "type": "double",
+          "bindable": true,
+          "style": true
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::CollectionItem",
+      "bases": [
+        "VS::Gui::Button"
+      ],
+      "properties": [
+        {
+          "name": "Key",
+          "mark": "key",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "SelectionColor",
+          "mark": "selection-color",
+          "type": "Color",
+          "bindable": true,
+          "style": true
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::Internal::SelectionView",
+      "bases": [
+        "VS::Gui::ScrollView"
+      ],
+      "properties": [
+        {
+          "name": "SelectedKey",
+          "mark": "selected-key",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::ListItem",
+      "mark": "list-item",
+      "bases": [
+        "VS::Gui::CollectionItem"
+      ],
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::ListView",
+      "mark": "list-view",
+      "bases": [
+        "VS::Gui::Internal::SelectionView"
+      ],
+      "properties": [],
+      "events": [
+        {
+          "name": "SelectionChanged",
+          "mark": "selection-changed",
+          "type": "std::multicast_delegate<VS::Gui::ListView, string>"
+        },
+        {
+          "name": "ItemActivated",
+          "mark": "item-activated",
+          "type": "std::multicast_delegate<VS::Gui::ListView, string>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::TreeItem",
+      "mark": "tree-item",
+      "bases": [
+        "VS::Gui::CollectionItem"
+      ],
+      "properties": [
+        {
+          "name": "Expanded",
+          "mark": "expanded",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "name": "ExpandedChanged",
+          "mark": "expanded-changed",
+          "type": "std::multicast_delegate<VS::Gui::TreeItem, bool>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::TreeView",
+      "mark": "tree-view",
+      "bases": [
+        "VS::Gui::Internal::SelectionView"
+      ],
+      "properties": [],
+      "events": [
+        {
+          "name": "SelectionChanged",
+          "mark": "selection-changed",
+          "type": "std::multicast_delegate<VS::Gui::TreeView, string>"
+        },
+        {
+          "name": "ItemActivated",
+          "mark": "item-activated",
+          "type": "std::multicast_delegate<VS::Gui::TreeView, string>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::Internal::ContentHost",
+      "bases": [
+        "VS::Gui::Stack"
+      ],
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::TableColumn",
+      "mark": "table-column",
+      "bases": [
+        "VS::Gui::Button"
+      ],
+      "properties": [
+        {
+          "name": "Key",
+          "mark": "key",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "ColumnWidth",
+          "mark": "column-width",
+          "type": "double",
+          "bindable": true,
+          "style": true
+        },
+        {
+          "name": "Sortable",
+          "mark": "sortable",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::TableRow",
+      "mark": "table-row",
+      "bases": [
+        "VS::Gui::CollectionItem"
+      ],
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::TableView",
+      "mark": "table",
+      "bases": [
+        "VS::Gui::Internal::SelectionView"
+      ],
+      "properties": [
+        {
+          "name": "AutoSort",
+          "mark": "auto-sort",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "name": "SelectionChanged",
+          "mark": "selection-changed",
+          "type": "std::multicast_delegate<VS::Gui::TableView, string>"
+        },
+        {
+          "name": "ItemActivated",
+          "mark": "item-activated",
+          "type": "std::multicast_delegate<VS::Gui::TableView, string>"
+        },
+        {
+          "name": "ColumnClicked",
+          "mark": "column-clicked",
+          "type": "std::multicast_delegate<VS::Gui::TableView, string>"
+        },
+        {
+          "name": "Sorted",
+          "mark": "sorted",
+          "type": "std::multicast_delegate<VS::Gui::TableView, string, bool>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::ComboBox",
+      "mark": "combo-box",
+      "bases": [
+        "VS::Gui::Button"
+      ],
+      "properties": [
+        {
+          "name": "SelectedKey",
+          "mark": "selected-key",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Open",
+          "mark": "open",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "Placeholder",
+          "mark": "placeholder",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "DropDownHeight",
+          "mark": "drop-down-height",
+          "type": "double",
+          "bindable": true,
+          "style": true
+        }
+      ],
+      "events": [
+        {
+          "name": "SelectionChanged",
+          "mark": "selection-changed",
+          "type": "std::multicast_delegate<VS::Gui::ComboBox, string>"
+        },
+        {
+          "name": "OpenChanged",
+          "mark": "open-changed",
+          "type": "std::multicast_delegate<VS::Gui::ComboBox, bool>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::TabItem",
+      "mark": "tab",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [
+        {
+          "name": "Key",
+          "mark": "key",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Title",
+          "mark": "title",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "VS::Gui::TabView",
+      "mark": "tabs",
+      "bases": [
+        "VS::Gui::Widget"
+      ],
+      "properties": [
+        {
+          "name": "SelectedKey",
+          "mark": "selected-key",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        }
+      ],
+      "events": [
+        {
+          "name": "SelectionChanged",
+          "mark": "selection-changed",
+          "type": "std::multicast_delegate<VS::Gui::TabView, string>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::Menu",
+      "mark": "menu",
+      "bases": [
+        "VS::Gui::Stack"
+      ],
+      "properties": [],
+      "events": [
+        {
+          "name": "Invoked",
+          "mark": "invoked",
+          "type": "std::multicast_delegate<VS::Gui::Menu, string>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::MenuItem",
+      "mark": "menu-item",
+      "bases": [
+        "VS::Gui::Button"
+      ],
+      "properties": [
+        {
+          "name": "Command",
+          "mark": "command",
+          "type": "string",
+          "bindable": true,
+          "style": false
+        },
+        {
+          "name": "Checkable",
+          "mark": "checkable",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "Checked",
+          "mark": "checked",
+          "type": "bool",
+          "bindable": true,
+          "style": false,
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "SelectionColor",
+          "mark": "selection-color",
+          "type": "Color",
+          "bindable": true,
+          "style": true
+        }
+      ],
+      "events": [
+        {
+          "name": "Invoked",
+          "mark": "invoked",
+          "type": "std::multicast_delegate<VS::Gui::MenuItem, string>"
+        },
+        {
+          "name": "CheckedChanged",
+          "mark": "checked-changed",
+          "type": "std::multicast_delegate<VS::Gui::MenuItem, bool>"
+        }
+      ]
+    },
+    {
+      "name": "VS::Gui::Dialog",
+      "mark": "dialog",
+      "bases": [
+        "VS::Gui::Popup"
+      ],
+      "properties": [],
+      "events": [
+        {
+          "name": "Closed",
+          "mark": "closed",
+          "type": "std::multicast_delegate<VS::Gui::Dialog, string>"
+        }
+      ]
+    }
+  ],
+  "routedEvents": [
+    {
+      "name": "Quit",
+      "mark": "quit",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "CloseRequested",
+      "mark": "close-requested",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "Resized",
+      "mark": "resized",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "PixelSizeChanged",
+      "mark": "pixel-size-changed",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "ScaleChanged",
+      "mark": "scale-changed",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "Shown",
+      "mark": "shown",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "Hidden",
+      "mark": "hidden",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "Minimized",
+      "mark": "minimized",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "Restored",
+      "mark": "restored",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "FocusGained",
+      "mark": "focus-gained",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "FocusLost",
+      "mark": "focus-lost",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "KeyDown",
+      "mark": "key-down",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "KeyUp",
+      "mark": "key-up",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "PointerMove",
+      "mark": "pointer-move",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "PointerDown",
+      "mark": "pointer-down",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "PointerUp",
+      "mark": "pointer-up",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "Wheel",
+      "mark": "wheel",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "TextInput",
+      "mark": "text-input",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "TextEditing",
+      "mark": "text-editing",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "PointerCancelled",
+      "mark": "pointer-cancelled",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "Background",
+      "mark": "background",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "Foreground",
+      "mark": "foreground",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "InputDeviceAdded",
+      "mark": "input-device-added",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "InputDeviceRemoved",
+      "mark": "input-device-removed",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "InputStateReset",
+      "mark": "input-state-reset",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "MouseEntered",
+      "mark": "mouse-entered",
+      "type": "VS::Gui::Event"
+    },
+    {
+      "name": "MouseLeft",
+      "mark": "mouse-left",
+      "type": "VS::Gui::Event"
+    }
+  ]
+}

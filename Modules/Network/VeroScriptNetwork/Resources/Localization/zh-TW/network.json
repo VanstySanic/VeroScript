@@ -1,0 +1,20 @@
+{
+  "network.invalid_argument": "無效參數: {0}",
+  "network.unsupported": "不支援的操作: {0}",
+  "network.queue_full": "佇列已滿: {0}",
+  "network.cancelled": "已取消: {0}",
+  "network.timed_out": "已逾時: {0}",
+  "network.closed": "已關閉: {0}",
+  "network.resolve": "名稱解析失敗: {0}",
+  "network.connect": "連線失敗: {0}",
+  "network.read": "讀取失敗: {0}",
+  "network.write": "寫入失敗: {0}",
+  "network.protocol": "協定錯誤: {0}",
+  "network.limit": "超出限制: {0}",
+  "network.state": "無效狀態: {0}",
+  "network.callback": "回呼失敗: {0}",
+  "network.allocation": "配置失敗: {0}",
+  "network.internal": "內部錯誤: {0}",
+  "network.unknown": "未知錯誤: {0}",
+  "network.binding": "繫結: {0}"
+}

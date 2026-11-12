@@ -1,0 +1,5 @@
+{
+  "python_tools.aot_failed": "Python AOT の生成に失敗しました: {0}",
+  "python_tools.aot_output_missing": "Python AOT は成功を報告しましたが、有効な出力を生成しませんでした: {0}",
+  "python_tools.aot_manifest_invalid": "生成された Python AOT マニフェストが無効です: {0}"
+}

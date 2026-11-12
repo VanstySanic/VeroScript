@@ -1,0 +1,40 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<!-- Merge these keys into a future VeroScript editor .app bundle Info.plist. -->
+<key>UTExportedTypeDeclarations</key>
+<array>
+	<dict>
+		<key>UTTypeIdentifier</key>
+		<string>dev.veroscript.source</string>
+		<key>UTTypeDescription</key>
+		<string>VeroScript Source</string>
+		<key>UTTypeConformsTo</key>
+		<array>
+			<string>public.source-code</string>
+			<string>public.plain-text</string>
+		</array>
+		<key>UTTypeTagSpecification</key>
+		<dict>
+			<key>public.filename-extension</key>
+			<array><string>vs</string></array>
+			<key>public.mime-type</key>
+			<string>text/x-veroscript</string>
+		</dict>
+	</dict>
+</array>
+<key>CFBundleDocumentTypes</key>
+<array>
+	<dict>
+		<key>CFBundleTypeName</key>
+		<string>VeroScript Source</string>
+		<key>CFBundleTypeRole</key>
+		<string>Editor</string>
+		<key>LSHandlerRank</key>
+		<string>Alternate</string>
+		<key>LSItemContentTypes</key>
+		<array><string>dev.veroscript.source</string></array>
+		<key>CFBundleTypeIconFile</key>
+		<string>veroscript-source.icns</string>
+	</dict>
+</array>

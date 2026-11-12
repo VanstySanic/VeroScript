@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VeroScript application host options",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "cacheRoot": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stdlibSearchPaths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "cryptoLibrary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "keyring": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requireSignature": {
+      "type": "boolean"
+    },
+    "minimumSignatures": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 16
+    },
+    "requiredKeys": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[^@]+@[^@]+$"
+      }
+    },
+    "policyIdentity": {
+      "type": "string"
+    }
+  },
+  "dependentRequired": {
+    "cryptoLibrary": [
+      "keyring"
+    ],
+    "keyring": [
+      "cryptoLibrary"
+    ],
+    "requireSignature": [
+      "cryptoLibrary",
+      "keyring"
+    ],
+    "minimumSignatures": [
+      "cryptoLibrary",
+      "keyring"
+    ],
+    "requiredKeys": [
+      "cryptoLibrary",
+      "keyring"
+    ],
+    "policyIdentity": [
+      "cryptoLibrary",
+      "keyring"
+    ]
+  }
+}

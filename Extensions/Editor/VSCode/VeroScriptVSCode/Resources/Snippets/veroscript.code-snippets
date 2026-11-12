@@ -1,0 +1,59 @@
+{
+  "Main": {
+    "prefix": "main",
+    "body": [
+      "void main()",
+      "{",
+      "    ${0}",
+      "}"
+    ],
+    "description": "VeroScript entry point"
+  },
+  "Hello World": {
+    "prefix": "hello",
+    "body": [
+      "void main()",
+      "{",
+      "    print(\"Hello, world!\");",
+      "}"
+    ],
+    "description": "Hello world"
+  },
+  "For Loop": {
+    "prefix": "for",
+    "body": [
+      "for (int64 ${1:i} = 0; ${1:i} < ${2:count}; ++${1:i})",
+      "{",
+      "    ${0}",
+      "}"
+    ],
+    "description": "Counted loop"
+  },
+  "Function": {
+    "prefix": "fn",
+    "body": [
+      "${1:void} ${2:name}(${3})",
+      "{",
+      "    ${0}",
+      "}"
+    ],
+    "description": "Function"
+  },
+  "Class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:Name}",
+      "{",
+      "    ${0}",
+      "}"
+    ],
+    "description": "Class"
+  },
+  "Import": {
+    "prefix": "import",
+    "body": [
+      "import \"${1:module}\";"
+    ],
+    "description": "Import module"
+  }
+}

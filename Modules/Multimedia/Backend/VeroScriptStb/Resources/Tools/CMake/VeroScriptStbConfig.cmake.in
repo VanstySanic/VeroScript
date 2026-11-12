@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+@PACKAGE_INIT@
+include(CMakeFindDependencyMacro)
+find_dependency(VeroScriptImage 0.1.1 EXACT CONFIG)
+find_dependency(Threads)
+
+include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptStbTargets.cmake")
+set(VeroScriptStb_Bindings_FOUND FALSE)
+if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/VeroScriptStbModuleTargets.cmake")
+	if("Bindings" IN_LIST VeroScriptStb_FIND_COMPONENTS)
+		find_dependency(VeroScript 0.1.1 EXACT CONFIG)
+	endif()
+	set(VeroScriptStb_Bindings_FOUND TRUE)
+	include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptStbModuleTargets.cmake")
+endif()
+include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptStbRelease.cmake" OPTIONAL)
+check_required_components(VeroScriptStb)

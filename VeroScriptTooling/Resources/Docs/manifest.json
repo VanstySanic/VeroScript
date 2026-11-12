@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "module": "VeroScriptTooling",
+  "user": [
+    {
+      "source": "User/{locale}/debugging.md",
+      "output": "{locale}/toolchain/debugging.md"
+    },
+    {
+      "source": "User/{locale}/lsp.md",
+      "output": "{locale}/toolchain/lsp.md"
+    },
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/toolchain/tooling.md"
+    }
+  ],
+  "developer": true
+}

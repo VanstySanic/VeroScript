@@ -1,0 +1,19 @@
+{
+  "FailureWithDetails": "Échec de l’opération : {0}\n{1}",
+  "DiagnosticLog": "Journal de diagnostic : {0}",
+  "FailureNoLog": "Impossible d’enregistrer le journal. Détails techniques : {0}",
+  "FailureWrongProduct": "L’installation sélectionnée appartient à un autre produit. Sélectionnez le dossier d’installation de ce produit.",
+  "FailureWrongPlatform": "La plateforme ou l’architecture du paquet ne correspond pas à ce système ou au produit installé. Utilisez un paquet compatible.",
+  "FailureDowngrade": "Une version plus récente est déjà installée. Utilisez un programme d’installation de même version ou plus récent.",
+  "FailureRepairMismatch": "La réparation nécessite le paquet exact utilisé lors de l’installation initiale. Retrouvez ce paquet et réessayez.",
+  "FailureDestinationConflict": "La destination chevauche un autre emplacement ou contient des fichiers en conflit. Choisissez un dossier vide ou déplacez les fichiers utilisateur concernés.",
+  "FailureBusy": "Un autre programme d’installation utilise cette installation. Attendez qu’il se termine, puis réessayez.",
+  "FailurePermission": "Accès refusé. Choisissez un dossier accessible en écriture et vérifiez ses autorisations.",
+  "FailureMissing": "Un fichier ou dossier requis est introuvable. Vérifiez le chemin d’installation et le paquet, puis réessayez.",
+  "FailurePackage": "Le paquet ou le registre d’installation est invalide. Obtenez un paquet intact ou vérifiez le registre de l’installation existante.",
+  "FailureFileInUse": "Un fichier est en cours d’utilisation. Fermez VeroScript et les applications utilisant ses fichiers, puis réessayez.",
+  "FailureDiskFull": "L’espace disque est insuffisant. Libérez de l’espace sur les disques d’installation et des fichiers temporaires, puis réessayez.",
+  "FailureIO": "Une opération sur les fichiers a échoué. Vérifiez les autorisations, l’espace disque et les fichiers en cours d’utilisation.",
+  "FailureInput": "Une valeur ou un chemin est invalide. Vérifiez le dossier sélectionné et les options d’installation.",
+  "FailureUnknown": "L’opération n’a pas pu être terminée. Consultez les détails du diagnostic avant de réessayer."
+}

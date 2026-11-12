@@ -1,0 +1,9 @@
+{
+  "python_tools.missing_annotation": "a type annotation is required for {0}",
+  "python_tools.unsupported_type": "unsupported Python type annotation: {0}",
+  "python_tools.unsupported_parameter": "unsupported Python parameter form: {0}",
+  "python_tools.unsupported_decorator": "unsupported Python decorator: {0}",
+  "python_tools.unsupported_inheritance": "unsupported Python inheritance: {0}",
+  "python_tools.enum_value_required": "enum member {0} must have a statically evaluable integer value",
+  "python_tools.catalog_validation_failed": "generated binding catalog validation failed: {0}"
+}

@@ -1,0 +1,44 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>12.0</LangVersion>
+		<AssemblyName>VeroScriptCSharpBindGen.Cli</AssemblyName>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>9.0-recommended</AnalysisLevel>
+		<RollForward>Major</RollForward>
+		<PackAsTool>true</PackAsTool>
+		<ToolCommandName>veroscript-csharp-bindgen</ToolCommandName>
+		<PackageId>VeroScript.CSharpBindGen.Tool</PackageId>
+		<VersionPrefix>0.1.1</VersionPrefix>
+		<Title>VeroScript C# Binding Generator Tool</Title>
+		<Description>Command-line Binding Catalog, registration, and C# AOT bridge generator.</Description>
+		<Authors>VanstySanic</Authors>
+		<Company>VanstySanic</Company>
+		<Copyright>Copyright © 2026 VanstySanic</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/VanstySanic/VeroScript/tree/main/Extensions/Language/CSharp/VeroScriptCSharpBindGen</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/VanstySanic/VeroScript</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryCommit Condition="'$(GITHUB_SHA)' != ''">$(GITHUB_SHA)</RepositoryCommit>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<PackageTags>veroscript;csharp;bindgen;dotnet-tool;nativeaot</PackageTags>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<Deterministic>true</Deterministic>
+		<ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+		<EnablePackageValidation>true</EnablePackageValidation>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="..\..\Resources\Tools\OutputPathIdentity.cs" Link="OutputPathIdentity.cs" />
+		<ProjectReference Include="..\VeroScriptCSharpBindGen.csproj" />
+		<None Include="..\..\..\..\..\LICENSE" Pack="true" PackagePath="\" Link="LICENSE" />
+	</ItemGroup>
+</Project>

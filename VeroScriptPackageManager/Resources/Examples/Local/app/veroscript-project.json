@@ -1,0 +1,12 @@
+{
+  "format": "veroscript-project",
+  "formatVersion": "0.1.1",
+  "name": "example-app",
+  "version": "0.1.1",
+  "dependencies": {
+    "example-math": {
+      "version": "0.1.1",
+      "directory": "../library"
+    }
+  }
+}

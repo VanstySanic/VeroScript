@@ -1,0 +1,15 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Widget id="page" class="page">
+	<import src="card.vswml" />
+	<style src="layout.vswcss" />
+
+	<Widget id="header" class="header" />
+	<Widget class="cards" Layout="Horizontal">
+		<preview-card id="first" class="card" />
+		<PreviewCard id="second" class="card" />
+		<preview-card id="third" class="card" />
+	</Widget>
+	<Widget id="footer" class="footer" />
+</Widget>

@@ -1,0 +1,43 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+vs_collect_module_sources(_VeroScriptCppTranspiler_sources)
+list(FILTER _VeroScriptCppTranspiler_sources EXCLUDE REGEX "/Tests/")
+list(FILTER _VeroScriptCppTranspiler_sources EXCLUDE REGEX "VeroScriptCppTranspilerMain\\.cpp$")
+
+add_library(VeroScriptCppTranspilerLib STATIC ${_VeroScriptCppTranspiler_sources})
+vs_use_shared_private_headers(VeroScriptCppTranspilerLib)
+vs_add_module_headers(VeroScriptCppTranspilerLib)
+vs_add_module_include_roots(VeroScriptCppTranspilerLib)
+vs_apply_cxx_defaults(VeroScriptCppTranspilerLib)
+target_include_directories(VeroScriptCppTranspilerLib PRIVATE
+	"${VEROSCRIPT_MODULE_ROOT}/Extensions/Language/Cpp/VeroScriptCppFrontend/Private")
+vs_set_solution_folder(VeroScriptCppTranspilerLib "Libraries/CppTools")
+target_compile_features(VeroScriptCppTranspilerLib PUBLIC cxx_std_17)
+target_link_libraries(VeroScriptCppTranspilerLib PUBLIC VeroScriptCppFrontend VeroScript)
+
+add_executable(VeroScriptCppTranspiler
+	Private/VeroScriptCppTranspilerMain.cpp)
+target_link_libraries(VeroScriptCppTranspiler PRIVATE VeroScriptCppTranspilerLib)
+target_compile_features(VeroScriptCppTranspiler PRIVATE cxx_std_17)
+vs_apply_cxx_defaults(VeroScriptCppTranspiler)
+vs_set_solution_folder(VeroScriptCppTranspiler "CLI/CppTools")
+
+if(BUILD_TESTING)
+	add_executable(VeroScriptCppTranspilerTests
+		Private/Tests/VeroScriptCppTranspilerTests.cpp)
+	target_link_libraries(VeroScriptCppTranspilerTests PRIVATE VeroScriptCppTranspilerLib)
+	target_compile_features(VeroScriptCppTranspilerTests PRIVATE cxx_std_17)
+	vs_apply_cxx_defaults(VeroScriptCppTranspilerTests)
+	vs_set_solution_folder(VeroScriptCppTranspilerTests "Tests/CppTools")
+	add_test(NAME VeroScriptCppTranspilerTests COMMAND VeroScriptCppTranspilerTests)
+	add_test(NAME VeroScriptCppTranspilerCliVersion COMMAND VeroScriptCppTranspiler --version)
+	set_tests_properties(VeroScriptCppTranspilerCliVersion PROPERTIES
+		PASS_REGULAR_EXPRESSION "VeroScriptCppTranspiler 0\\.1\\.1")
+endif()
+
+install(TARGETS VeroScriptCppTranspilerLib VeroScriptCppTranspiler
+	ARCHIVE DESTINATION lib COMPONENT VeroScriptCppTools
+	RUNTIME DESTINATION bin COMPONENT VeroScriptCppTools)
+install(DIRECTORY Public/
+	DESTINATION include/CppTranspiler COMPONENT VeroScriptCppTools)

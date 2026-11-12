@@ -1,0 +1,111 @@
+{
+  "name": "veroscript-gui",
+  "displayName": "VeroScript GUI",
+  "description": "%extension.description%",
+  "version": "0.1.1",
+  "publisher": "VanstySanic",
+  "license": "MIT",
+  "icon": "./Resources/Assets/Icons/product.png",
+  "engines": { "vscode": "^1.106.0", "node": ">=22.18.0" },
+  "type": "commonjs",
+  "main": "./dist/extension.cjs",
+  "extensionKind": ["workspace"],
+  "extensionDependencies": ["VanstySanic.veroscript"],
+  "categories": ["Programming Languages"],
+  "keywords": ["VeroScript", "VeroScriptGui", "vswml", "vswcss"],
+  "l10n": "./Resources/Localization/Bundles",
+  "activationEvents": ["onLanguage:veroscript-gui-markup", "onLanguage:veroscript-gui-style", "onTaskType:veroscript-gui"],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "node Resources/Tools/build.mjs",
+    "watch": "node Resources/Tools/build.mjs --watch",
+    "vscode:prepublish": "node Resources/Tools/build.mjs --release",
+    "test:unit": "node Resources/Tools/build.mjs --tests && node --test out/Unit/*.test.cjs",
+    "test:integration": "node Resources/Tools/test.mjs",
+    "package": "node Resources/Tools/package.mjs",
+    "package:contents": "node Resources/Tools/package.mjs --list",
+    "schema:update": "node Resources/Tools/schema.mjs"
+  },
+  "devDependencies": {
+    "@types/mocha": "10.0.10",
+    "@types/node": "22.18.10",
+    "@types/vscode": "1.106.0",
+    "@vscode/test-cli": "0.0.15",
+    "@vscode/test-electron": "3.1.0",
+    "@vscode/vsce": "4.0.0",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2",
+    "vscode-oniguruma": "2.0.1",
+    "vscode-textmate": "9.3.0"
+  },
+  "contributes": {
+    "jsonValidation": [{ "fileMatch": "*.veroscript-gui.json", "url": "./Resources/Schemas/editor.schema.json" }],
+    "languages": [
+      {
+        "id": "veroscript-gui-markup", "aliases": ["VeroScript GUI Markup", "VSWML"], "extensions": [".vswml"],
+        "configuration": "./Resources/Language/markup.json",
+        "icon": { "light": "./Resources/Assets/Icons/markup-light.svg", "dark": "./Resources/Assets/Icons/markup-dark.svg" }
+      },
+      {
+        "id": "veroscript-gui-style", "aliases": ["VeroScript GUI Style", "VSWCSS"], "extensions": [".vswcss"],
+        "configuration": "./Resources/Language/style.json",
+        "icon": { "light": "./Resources/Assets/Icons/style-light.svg", "dark": "./Resources/Assets/Icons/style-dark.svg" }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "veroscript-gui-markup", "scopeName": "text.xml.vswml", "path": "./Resources/Syntaxes/markup.tmLanguage.json",
+        "embeddedLanguages": { "meta.embedded.block.veroscript": "veroscript", "meta.embedded.block.vswcss": "veroscript-gui-style" }
+      },
+      { "language": "veroscript-gui-style", "scopeName": "source.vswcss", "path": "./Resources/Syntaxes/style.tmLanguage.json" }
+    ],
+    "commands": [
+      { "command": "veroscriptGui.check", "title": "%command.check%", "category": "VeroScript GUI" },
+      { "command": "veroscriptGui.build", "title": "%command.build%", "category": "VeroScript GUI" },
+      { "command": "veroscriptGui.preview", "title": "%command.preview%", "category": "VeroScript GUI", "icon": "$(play)" },
+      { "command": "veroscriptGui.selectEntry", "title": "%command.selectEntry%", "category": "VeroScript GUI" },
+      { "command": "veroscriptGui.showOutput", "title": "%command.showOutput%", "category": "VeroScript GUI" }
+    ],
+    "menus": {
+      "editor/title": [{ "command": "veroscriptGui.preview", "when": "editorLangId == veroscript-gui-markup && resourceScheme == file", "group": "navigation" }],
+      "explorer/context": [
+        { "command": "veroscriptGui.check", "when": "resourceExtname == .vswml || resourceExtname == .vswcss", "group": "veroscriptGui" },
+        { "command": "veroscriptGui.build", "when": "resourceExtname == .vswml", "group": "veroscriptGui" },
+        { "command": "veroscriptGui.preview", "when": "resourceExtname == .vswml", "group": "veroscriptGui" }
+      ]
+    },
+    "configuration": {
+      "title": "VeroScript GUI",
+      "properties": {
+        "veroscriptGui.entry": { "type": "string", "default": "", "scope": "resource", "description": "%setting.entry%" },
+        "veroscriptGui.environmentPath": { "type": "string", "default": "", "scope": "resource", "description": "%setting.environmentPath%" },
+        "veroscriptGui.schemaFiles": { "type": "array", "items": { "type": "string" }, "default": [], "scope": "resource", "description": "%setting.schemaFiles%" },
+        "veroscriptGui.assets": { "type": "array", "items": { "type": "string" }, "default": [], "scope": "resource", "description": "%setting.assets%" },
+        "veroscriptGui.packageName": { "type": "string", "default": "gui-app", "scope": "resource", "description": "%setting.packageName%" },
+        "veroscriptGui.previewFrames": { "type": "integer", "minimum": 0, "maximum": 9007199254740991, "default": 0, "scope": "resource", "description": "%setting.previewFrames%" },
+        "veroscriptGui.backends": {
+          "type": "object", "default": {}, "scope": "resource", "additionalProperties": false, "description": "%setting.backends%",
+          "properties": { "platform": { "type": "string" }, "graphics": { "type": "string" }, "gui": { "type": "string" }, "image": { "type": "string" }, "font": { "type": "string" }, "text-layout": { "type": "string" } }
+        }
+      }
+    },
+    "taskDefinitions": [{
+      "type": "veroscript-gui", "required": ["action", "input"],
+      "properties": {
+        "action": { "type": "string", "enum": ["check", "compile", "preview"], "description": "%task.action%" },
+        "input": { "type": "string", "description": "%task.input%" },
+        "output": { "type": "string", "description": "%task.output%" },
+        "assets": { "type": "array", "items": { "type": "string" }, "description": "%setting.assets%" },
+        "name": { "type": "string", "description": "%setting.packageName%" },
+        "frames": { "type": "integer", "minimum": 0, "maximum": 9007199254740991, "description": "%setting.previewFrames%" },
+        "args": { "type": "array", "items": { "type": "string" }, "description": "%task.args%" },
+        "environmentPath": { "type": "string", "description": "%setting.environmentPath%" },
+        "backends": { "type": "object", "additionalProperties": false, "properties": { "platform": { "type": "string" }, "graphics": { "type": "string" }, "gui": { "type": "string" }, "image": { "type": "string" }, "font": { "type": "string" }, "text-layout": { "type": "string" } }, "description": "%setting.backends%" }
+      }
+    }],
+    "problemMatchers": [{
+      "name": "veroscript-gui", "owner": "veroscript-gui-native", "fileLocation": "absolute",
+      "pattern": { "regexp": "^(.*):(\\d+):(\\d+):\\s*(.*)$", "file": 1, "line": 2, "message": 4 }
+    }]
+  }
+}

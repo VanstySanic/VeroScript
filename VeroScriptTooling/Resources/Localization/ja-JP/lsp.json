@@ -1,0 +1,21 @@
+{
+  "lsp.code_action.format_document": "ドキュメントを整形",
+  "lsp.code_action.implement_interface_member": "インターフェースのメンバーを実装: {0}",
+  "lsp.code_action.override_inherited_member": "継承メンバーをオーバーライド: {0}",
+  "lsp.code_action.remove_duplicate_imports": "重複した import を削除",
+  "lsp.completion.implement_interface_member": "インターフェースのメンバーを実装",
+  "lsp.completion.override_inherited_member": "継承メンバーをオーバーライド",
+  "lsp.document_link.open_import": "インポートした VeroScript モジュールを開く",
+  "lsp.protocol.method_not_found": "メソッドが見つかりません: {0}",
+  "lsp.rename.missing_document_position": "textDocument/position がありません",
+  "lsp.rename.no_identifier_under_caret": "カーソル位置に名前変更可能な識別子がありません",
+  "lsp.rename.symbol_cannot_be_renamed": "このシンボルは名前変更できません",
+  "lsp.request_cancelled": "要求はキャンセルされました",
+  "lsp.request_timed_out": "要求はタイムアウトしました",
+  "lsp.semantic_queue_full": "セマンティック解析キューが満杯です",
+  "lsp.content_modified": "解析中にドキュメントまたは依存ファイルが変更されました",
+  "lsp.semantic_analysis_stopped": "セマンティック解析を停止しました",
+  "lsp.host_bindings_current": "VeroScript のホストバインディングカタログは最新です",
+  "lsp.host_bindings_last_snapshot": "VeroScript のホストバインディングカタログを利用できません。最後に有効だったスナップショットを使用します。{0}",
+  "lsp.host_bindings_unavailable": "VeroScript のホストバインディングカタログを利用できません。ホストバインディングは読み込まれていません。{0}"
+}

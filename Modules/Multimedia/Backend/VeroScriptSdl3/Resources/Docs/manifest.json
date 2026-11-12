@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "Modules/Multimedia/Backend/VeroScriptSdl3",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/visual/sdl3.md"
+    }
+  ],
+  "developer": true
+}

@@ -1,0 +1,78 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<idea-plugin>
+	<id>com.vanstysanic.veroscript</id>
+	<name>VeroScript</name>
+	<vendor>VanstySanic</vendor>
+	<description><![CDATA[
+		<p>VeroScript language, running and debugging support for JetBrains Rider.</p>
+		<h3>Features</h3>
+		<ul>
+			<li>Edit <code>.vs</code> files with syntax highlighting, brace matching and comment actions.</li>
+			<li>Use completion, hover documentation, diagnostics, navigation, semantic highlighting and formatting through the VeroScript language server.</li>
+			<li>Run scripts or check them without executing their entry point. Configure arguments, working directory, environment and compiler options.</li>
+			<li>Debug with the VM: line and conditional breakpoints, stepping, call stacks, variables, watches and expression evaluation.</li>
+			<li>Attach to a VeroScript DAP program host or a host-prepared debug domain.</li>
+		</ul>
+		<h3>Get started</h3>
+		<ol>
+			<li>Install a matching VeroScript Runtime for your operating system and architecture. Keep the complete extracted directory, including its tools and native libraries.</li>
+			<li>Open <b>Settings &gt; Languages &amp; Frameworks &gt; VeroScript</b> and select the Runtime root. Project-specific and application-default Runtime paths are supported.</li>
+			<li>Open a <code>.vs</code> file in a local Rider project. Use its context menu to run or check it, or create a VeroScript run/debug configuration.</li>
+		</ol>
+		<h3>Requirements and scope</h3>
+		<p>Requires Rider 2026.2.2 (build 262.10315.191) or later within the 262 branch.
+		Language services, Run, Check and local debugging require the separately installed Runtime.
+		Basic syntax highlighting works without Runtime; attaching to a host-prepared debug domain does not require a local Runtime.</p>
+		<p>Ordinary Run supports VM, mixed and JIT execution when the Runtime provides the corresponding backend.
+		Local debugging uses the VM. Host attachment features depend on the endpoint's capabilities.</p>
+		<h3>Documentation</h3>
+		<p>The source checkout includes this plugin's user and developer guides in its <code>Resources/Docs</code> directory,
+		in English, French, Japanese, Korean, Simplified Chinese and Traditional Chinese.</p>
+		<p><a href="https://github.com/VanstySanic/VeroScript">VeroScript project repository</a></p>
+	]]></description>
+	<change-notes><![CDATA[
+		<h3>0.1.1</h3>
+		<ul>
+			<li>VeroScript editing, language services, Run and Check, VM debugging and host attachment.</li>
+			<li>Shared VeroScript product icons with light- and dark-theme variants.</li>
+			<li>Expanded plugin details with setup instructions, requirements and documentation guidance.</li>
+		</ul>
+	]]></change-notes>
+	<idea-version strict-until-build="262.*"/>
+	<depends>com.intellij.modules.platform</depends>
+	<depends>com.intellij.modules.rider</depends>
+	<depends>com.intellij.modules.lsp</depends>
+	<depends>com.intellij.modules.xdebugger</depends>
+	<resource-bundle>Localization.messages.VeroScriptBundle</resource-bundle>
+	<extensions defaultExtensionNs="com.intellij">
+		<fileType name="VeroScript" language="VeroScript" implementationClass="com.vanstysanic.veroscript.jetbrains.language.VeroScriptFileType" fieldName="INSTANCE" extensions="vs"/>
+		<lang.parserDefinition language="VeroScript" implementationClass="com.vanstysanic.veroscript.jetbrains.language.VeroScriptParserDefinition"/>
+		<lang.syntaxHighlighterFactory language="VeroScript" implementationClass="com.vanstysanic.veroscript.jetbrains.language.VeroScriptSyntaxHighlighterFactory"/>
+		<lang.commenter language="VeroScript" implementationClass="com.vanstysanic.veroscript.jetbrains.language.VeroScriptCommenter"/>
+		<lang.braceMatcher language="VeroScript" implementationClass="com.vanstysanic.veroscript.jetbrains.language.VeroScriptBraceMatcher"/>
+		<lang.quoteHandler fileType="VeroScript" className="com.vanstysanic.veroscript.jetbrains.language.VeroScriptQuoteHandler"/>
+		<enterHandlerDelegate implementation="com.vanstysanic.veroscript.jetbrains.language.VeroScriptEnterHandler" order="first"/>
+		<platform.backend.documentation.targetProvider implementation="com.vanstysanic.veroscript.jetbrains.lsp.VeroScriptDocumentationProvider"/>
+		<rider.completion.preselectionStrategy implementation="com.vanstysanic.veroscript.jetbrains.language.VeroScriptCompletionPreselection"/>
+		<colorSettingsPage implementation="com.vanstysanic.veroscript.jetbrains.language.VeroScriptColorSettingsPage"/>
+		<projectConfigurable parentId="language" id="veroscript.settings" displayName="VeroScript" instance="com.vanstysanic.veroscript.jetbrains.settings.VeroScriptConfigurable"/>
+		<notificationGroup id="VeroScript" displayType="BALLOON" isLogByDefault="true"/>
+		<configurationType implementation="com.vanstysanic.veroscript.jetbrains.run.VeroScriptConfigurationType"/>
+		<runConfigurationProducer implementation="com.vanstysanic.veroscript.jetbrains.run.VeroScriptRunConfigurationProducer"/>
+		<programRunner implementation="com.vanstysanic.veroscript.jetbrains.debug.VeroScriptDebugRunner"/>
+		<xdebugger.breakpointType implementation="com.vanstysanic.veroscript.jetbrains.debug.VeroScriptLineBreakpointType"/>
+	</extensions>
+	<extensions defaultExtensionNs="com.intellij.platform.lsp">
+		<integrationProvider implementation="com.vanstysanic.veroscript.jetbrains.lsp.VeroScriptLspProvider"/>
+	</extensions>
+	<actions>
+		<action id="VeroScript.RestartLsp" class="com.vanstysanic.veroscript.jetbrains.lsp.RestartVeroScriptLspAction" text="Restart VeroScript Language Server">
+			<add-to-group group-id="ToolsMenu" anchor="last"/>
+		</action>
+		<action id="VeroScript.Check" class="com.vanstysanic.veroscript.jetbrains.run.CheckVeroScriptAction" text="Check VeroScript File">
+			<add-to-group group-id="EditorPopupMenu" anchor="last"/>
+		</action>
+	</actions>
+</idea-plugin>

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "VeroScriptInterop",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/toolchain/interop-sdk.md"
+    }
+  ],
+  "developer": true
+}

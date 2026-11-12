@@ -1,0 +1,6 @@
+// SPDX-FileCopyrightText: VanstySanic
+// SPDX-License-Identifier: MIT
+
+// Icon SHA-256: @_vs_product_icon_sha256@
+#pragma code_page(65001)
+1 ICON "@_vs_product_icon@"

@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+@PACKAGE_INIT@
+include(CMakeFindDependencyMacro)
+set(VeroScriptWebSocket_MODULE_DIR "${PACKAGE_PREFIX_DIR}/lib/veroscript/modules")
+find_dependency(VeroScriptNetwork 0.1.1 EXACT CONFIG)
+include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptWebSocketTargets.cmake")
+set(VeroScriptWebSocket_Json_FOUND FALSE)
+if("Json" IN_LIST VeroScriptWebSocket_FIND_COMPONENTS)
+	find_dependency(VeroScriptJson 0.1.1 EXACT CONFIG)
+	if(NOT TARGET VeroScript::WebSocketJson)
+		add_library(VeroScript::WebSocketJson INTERFACE IMPORTED)
+		set_target_properties(VeroScript::WebSocketJson PROPERTIES
+			INTERFACE_LINK_LIBRARIES "VeroScript::WebSocket;VeroScript::Json")
+	endif()
+	set(VeroScriptWebSocket_Json_FOUND TRUE)
+endif()
+set(VeroScriptWebSocket_Bindings_FOUND FALSE)
+if("Bindings" IN_LIST VeroScriptWebSocket_FIND_COMPONENTS AND
+		EXISTS "${CMAKE_CURRENT_LIST_DIR}/VeroScriptWebSocketBindingsTargets.cmake")
+	find_dependency(VeroScript 0.1.1 EXACT CONFIG)
+	include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptWebSocketBindingsTargets.cmake")
+	set(VeroScriptWebSocket_Bindings_FOUND TRUE)
+endif()
+check_required_components(VeroScriptWebSocket)

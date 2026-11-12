@@ -1,0 +1,130 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+# VeroScript C++ @VERSION@ SDK package. Requires the Core SDK from the same build.
+include(CMakeFindDependencyMacro)
+find_dependency(VeroScript @CORE_VERSION@ EXACT CONFIG)
+if(@APPLICATION_ENABLED@)
+	find_dependency(VeroScriptApplication @CORE_VERSION@ EXACT CONFIG)
+endif()
+if(NOT DEFINED VeroScript_BUILD_ID OR NOT VeroScript_BUILD_ID STREQUAL "@BUILD_ID@")
+	set(VeroScriptCpp_FOUND FALSE)
+	set(VeroScriptCpp_NOT_FOUND_MESSAGE
+	  "VeroScript C++ @VERSION@ requires the matching Core SDK build @BUILD_ID@")
+	return()
+endif()
+
+get_filename_component(_VEROSCRIPT_CPP_RUNTIME_PREFIX "${CMAKE_CURRENT_LIST_DIR}/../../.." ABSOLUTE)
+get_filename_component(_VEROSCRIPT_CPP_PRODUCT_ROOT "${_VEROSCRIPT_CPP_RUNTIME_PREFIX}/.." ABSOLUTE)
+set(_VEROSCRIPT_CPP_TOOLS_PREFIX "${_VEROSCRIPT_CPP_PRODUCT_ROOT}/Tools")
+set(_VEROSCRIPT_CPP_AOT_PREFIX "${_VEROSCRIPT_CPP_PRODUCT_ROOT}/Aot")
+# Portable archives use Aot; existing installer records use AOT. These are
+# distinct directories on Unix, so support both layouts without moving installs.
+if(NOT IS_DIRECTORY "${_VEROSCRIPT_CPP_AOT_PREFIX}" AND IS_DIRECTORY "${_VEROSCRIPT_CPP_PRODUCT_ROOT}/AOT")
+	set(_VEROSCRIPT_CPP_AOT_PREFIX "${_VEROSCRIPT_CPP_PRODUCT_ROOT}/AOT")
+endif()
+
+set(VeroScriptCpp_Runtime_FOUND FALSE)
+if(EXISTS "${_VEROSCRIPT_CPP_RUNTIME_PREFIX}/include/Cpp/VeroScriptCpp.h"
+	AND EXISTS "${_VEROSCRIPT_CPP_RUNTIME_PREFIX}/lib/@STATIC_PREFIX@VeroScriptCpp@STATIC_SUFFIX@")
+	if(NOT TARGET VeroScript::VeroScriptCpp)
+		add_library(VeroScript::VeroScriptCpp STATIC IMPORTED)
+		set_target_properties(VeroScript::VeroScriptCpp PROPERTIES
+		  IMPORTED_LOCATION "${_VEROSCRIPT_CPP_RUNTIME_PREFIX}/lib/@STATIC_PREFIX@VeroScriptCpp@STATIC_SUFFIX@"
+		  INTERFACE_INCLUDE_DIRECTORIES "${_VEROSCRIPT_CPP_RUNTIME_PREFIX}/include/Cpp"
+		  INTERFACE_COMPILE_FEATURES cxx_std_17
+		  INTERFACE_LINK_LIBRARIES VeroScript::VeroScript)
+		if(@APPLICATION_ENABLED@)
+			set_property(TARGET VeroScript::VeroScriptCpp APPEND PROPERTY
+			  INTERFACE_LINK_LIBRARIES VeroScript::VeroScriptApplication)
+			set_property(TARGET VeroScript::VeroScriptCpp APPEND PROPERTY
+			  INTERFACE_COMPILE_DEFINITIONS VEROSCRIPT_WITH_APPLICATION=1)
+		endif()
+	endif()
+	set(VeroScriptCpp_Runtime_FOUND TRUE)
+endif()
+
+set(VeroScriptCpp_Tools_FOUND FALSE)
+if(EXISTS "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/include/CppFrontend/VeroScriptCppFrontend.h"
+	AND EXISTS "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/include/CppBindGen/VeroScriptCppBindGen.h"
+	AND EXISTS "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/include/CppTranspiler/VeroScriptCppTranspiler.h"
+	AND EXISTS "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/lib/@STATIC_PREFIX@VeroScriptCppFrontend@STATIC_SUFFIX@"
+	AND EXISTS "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/lib/@STATIC_PREFIX@VeroScriptCppBindGenLib@STATIC_SUFFIX@"
+	AND EXISTS "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/lib/@STATIC_PREFIX@VeroScriptCppTranspilerLib@STATIC_SUFFIX@"
+	AND EXISTS "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/bin/VeroScriptCppBindGen@EXE_SUFFIX@"
+	AND EXISTS "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/bin/VeroScriptCppTranspiler@EXE_SUFFIX@")
+	if(NOT TARGET VeroScript::VeroScriptCppFrontend)
+		add_library(VeroScript::VeroScriptCppFrontend STATIC IMPORTED)
+		set_target_properties(VeroScript::VeroScriptCppFrontend PROPERTIES
+		  IMPORTED_LOCATION "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/lib/@STATIC_PREFIX@VeroScriptCppFrontend@STATIC_SUFFIX@"
+		  INTERFACE_INCLUDE_DIRECTORIES "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/include/CppFrontend"
+		  INTERFACE_COMPILE_FEATURES cxx_std_17)
+	endif()
+	if(NOT TARGET VeroScript::VeroScriptCppBindGen)
+		add_library(VeroScript::VeroScriptCppBindGen STATIC IMPORTED)
+		set_target_properties(VeroScript::VeroScriptCppBindGen PROPERTIES
+		  IMPORTED_LOCATION "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/lib/@STATIC_PREFIX@VeroScriptCppBindGenLib@STATIC_SUFFIX@"
+		  INTERFACE_INCLUDE_DIRECTORIES "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/include/CppBindGen"
+		  INTERFACE_COMPILE_FEATURES cxx_std_17
+		  INTERFACE_LINK_LIBRARIES "VeroScript::VeroScriptCppFrontend;VeroScript::VeroScript")
+	endif()
+	if(NOT TARGET VeroScript::VeroScriptCppTranspiler)
+		add_library(VeroScript::VeroScriptCppTranspiler STATIC IMPORTED)
+		set_target_properties(VeroScript::VeroScriptCppTranspiler PROPERTIES
+		  IMPORTED_LOCATION "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/lib/@STATIC_PREFIX@VeroScriptCppTranspilerLib@STATIC_SUFFIX@"
+		  INTERFACE_INCLUDE_DIRECTORIES "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/include/CppTranspiler"
+		  INTERFACE_COMPILE_FEATURES cxx_std_17
+		  INTERFACE_LINK_LIBRARIES "VeroScript::VeroScriptCppFrontend;VeroScript::VeroScript")
+	endif()
+	if(EXISTS "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/bin/VeroScriptCppBindGen@EXE_SUFFIX@"
+		AND NOT TARGET VeroScript::VeroScriptCppBindGenCli)
+		add_executable(VeroScript::VeroScriptCppBindGenCli IMPORTED)
+		set_target_properties(VeroScript::VeroScriptCppBindGenCli PROPERTIES
+		  IMPORTED_LOCATION "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/bin/VeroScriptCppBindGen@EXE_SUFFIX@")
+	endif()
+	if(EXISTS "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/bin/VeroScriptCppTranspiler@EXE_SUFFIX@"
+		AND NOT TARGET VeroScript::VeroScriptCppTranspilerCli)
+		add_executable(VeroScript::VeroScriptCppTranspilerCli IMPORTED)
+		set_target_properties(VeroScript::VeroScriptCppTranspilerCli PROPERTIES
+		  IMPORTED_LOCATION "${_VEROSCRIPT_CPP_TOOLS_PREFIX}/bin/VeroScriptCppTranspiler@EXE_SUFFIX@")
+	endif()
+	set(VeroScriptCpp_Tools_FOUND TRUE)
+endif()
+
+set(VeroScriptCpp_Aot_FOUND FALSE)
+if(EXISTS "${_VEROSCRIPT_CPP_AOT_PREFIX}/include/CppAot/VeroScriptCppAot.h"
+	AND EXISTS "${_VEROSCRIPT_CPP_AOT_PREFIX}/lib/@STATIC_PREFIX@VeroScriptCppAot@STATIC_SUFFIX@")
+	if(NOT TARGET VeroScript::VeroScriptCppAot)
+		add_library(VeroScript::VeroScriptCppAot STATIC IMPORTED)
+		set_target_properties(VeroScript::VeroScriptCppAot PROPERTIES
+		  IMPORTED_LOCATION "${_VEROSCRIPT_CPP_AOT_PREFIX}/lib/@STATIC_PREFIX@VeroScriptCppAot@STATIC_SUFFIX@"
+		  INTERFACE_INCLUDE_DIRECTORIES "${_VEROSCRIPT_CPP_AOT_PREFIX}/include/CppAot"
+		  INTERFACE_COMPILE_FEATURES cxx_std_17
+		  INTERFACE_LINK_LIBRARIES VeroScript::VeroScript)
+	endif()
+	set(VeroScriptCpp_Aot_FOUND TRUE)
+endif()
+
+if(NOT VeroScriptCpp_Runtime_FOUND)
+	set(VeroScriptCpp_FOUND FALSE)
+	set(VeroScriptCpp_NOT_FOUND_MESSAGE "The required VeroScript C++ Runtime module is incomplete")
+	return()
+endif()
+foreach(_component IN LISTS VeroScriptCpp_FIND_COMPONENTS)
+	if(NOT DEFINED VeroScriptCpp_${_component}_FOUND)
+		set(VeroScriptCpp_${_component}_FOUND FALSE)
+	endif()
+	if(VeroScriptCpp_FIND_REQUIRED_${_component} AND NOT VeroScriptCpp_${_component}_FOUND)
+		set(VeroScriptCpp_FOUND FALSE)
+		set(VeroScriptCpp_NOT_FOUND_MESSAGE "Required VeroScript C++ component '${_component}' is not installed")
+		return()
+	endif()
+endforeach()
+
+set(VeroScriptCpp_VERSION "@VERSION@")
+set(VeroScriptCpp_BUILD_ID "@BUILD_ID@")
+unset(_VEROSCRIPT_CPP_RUNTIME_PREFIX)
+unset(_VEROSCRIPT_CPP_PRODUCT_ROOT)
+unset(_VEROSCRIPT_CPP_TOOLS_PREFIX)
+unset(_VEROSCRIPT_CPP_AOT_PREFIX)
+unset(_component)

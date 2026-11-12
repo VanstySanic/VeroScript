@@ -1,0 +1,19 @@
+{
+  "format": "veroscript-package",
+  "formatVersion": "0.1.1",
+  "name": "example-math",
+  "version": "0.1.1",
+  "description": "A portable package with one public module and owned resources.",
+  "entries": {
+    "modules": {
+      "example/math.vs": "scripts/math.vs"
+    }
+  },
+  "resources": {
+    "docs": "docs"
+  },
+  "localization": {
+    "root": "localization",
+    "baseCulture": "en-US"
+  }
+}

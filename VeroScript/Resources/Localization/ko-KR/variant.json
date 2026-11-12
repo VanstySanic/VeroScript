@@ -1,0 +1,11 @@
+{
+  "diag.variant_requires_concrete_null_type": "nullptr를 구체적인 형식의 null 참조로 변환한 뒤 저장하세요",
+  "diag.variant_expected": "variant 값이 필요합니다",
+  "diag.variant_not_allowed_as_key": "variant는 연관 컨테이너의 키로 사용할 수 없습니다",
+  "diag.variant_not_allowed_in_channel": "variant는 channel로 전송할 수 없습니다",
+  "diag.variant_worker_transfer_unsupported": "variant는 작업 스레드로 전송할 수 없습니다",
+  "diag.variant_empty_cast": "빈 variant에서 값을 추출할 수 없습니다",
+  "diag.try_cast_variant_target_is_meaningless": "try_cast<variant>는 지원하지 않습니다. variant(value)를 사용하세요",
+  "diag.aot_variant_unsupported": "variant에는 VeroScript 런타임이 필요하며 독립 AOT 출력은 지원하지 않습니다",
+  "diag.variant_reserved_name": "variant 형식과 내장 함수 이름은 예약되어 있습니다"
+}

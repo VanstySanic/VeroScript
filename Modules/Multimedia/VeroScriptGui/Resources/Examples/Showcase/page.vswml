@@ -1,0 +1,142 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Stack id="root" Cursor="auto" Width="100%" Height="100%">
+	<import src="ActivityChart.vs" />
+	<script src="ShowcaseState.vs" type="Showcase::PageState" />
+	<style src="page.vswcss" />
+
+	<ScrollView id="page-scroll" Width="100%" Height="100%">
+		<Stack class="page">
+			<Wrap id="header" class="header">
+				<Stack id="header-copy" Width="76%" Gap="4">
+					<Text class="eyebrow" Text="VEROSCRIPT / INTERACTIVE EXAMPLE" />
+					<Text Text="GUI Showcase" FontSize="28" />
+					<Text class="muted" Text="Change the settings. See the same state flow through the whole interface." />
+				</Stack>
+				<Button id="help" class="secondary" Text="Help / About" Width="136px" on:clicked="openHelp">
+					<Popup id="help-popup" bind:Open="readHelpOpen" on:open-changed="changeHelp">
+						<Text Text="Explore the framework" FontSize="18" />
+						<Text Text="Drag the central divider. Scroll either pane. Tab moves focus; Space activates buttons and choices." />
+						<Text Text="Numeric edits commit on Enter or focus loss. Escape or an outside press closes this popup." />
+						<Text class="muted" Text="VS code, ML, CSS and custom drawing share one widget tree." />
+					</Popup>
+				</Button>
+			</Wrap>
+
+			<Splitter id="workspace" Value="0.34" Minimum="0.30" Maximum="0.50" Step="0.01">
+				<ScrollView id="settings" class="pane" Height="100%">
+					<Stack class="form">
+						<Stack class="section-heading">
+							<Text class="eyebrow" Text="01 / SETTINGS" />
+							<Text Text="Workspace controls" FontSize="19" />
+							<Text class="muted" Text="Inputs, attributes and events in one place." />
+						</Stack>
+						<Stack class="field">
+							<Text class="label" Text="PROJECT NAME" />
+							<TextBox id="name" bind:Value="readName" on:text-changed="changeName"
+                                     on:submitted="submitName" Placeholder="Name your workspace" />
+						</Stack>
+						<Stack class="field">
+							<Text class="label" Text="PASSWORD INPUT" />
+							<PasswordBox id="password" bind:Value="readPassword" on:text-changed="changePassword"
+                                         Placeholder="Masked text, normal editing" />
+						</Stack>
+
+						<Separator />
+						<Stack class="field">
+							<Text class="label" Text="GAIN / SHARED ATTRIBUTE" />
+							<Stack id="gain-fields" Layout="Horizontal" Gap="10">
+								<Stack Width="68%" Padding="12px 0">
+									<Slider id="gain-slider" Width="100%" Minimum="0" Maximum="100" Step="1" bind:Value="readGain"
+                                            bind:Enabled="readControlsEnabled" on:value-changed="changeGain" />
+								</Stack>
+								<NumberBox id="gain-number" Width="28%" Minimum="0" Maximum="100" Step="1" bind:Value="readGain"
+                                           bind:Enabled="readControlsEnabled" on:value-changed="enterGain" />
+							</Stack>
+							<Text class="muted" Text="Slider, number, progress and chart share one value." />
+						</Stack>
+						<Stack class="options">
+							<ToggleSwitch id="live" Text="Enable gain controls" bind:Checked="readControlsEnabled" on:checked-changed="changeControlsEnabled" />
+							<CheckBox id="details" Text="Show preview note" bind:Checked="readDetails" on:checked-changed="changeDetails" />
+							<CheckBox id="monochrome" Text="Grayscale preview" bind:Checked="readMonochrome" on:checked-changed="changeMonochrome" />
+						</Stack>
+						<Stack class="field">
+							<Text class="label" Text="COLOR PRESET" />
+							<RadioGroup id="mode" bind:SelectedKey="readMode" on:selection-changed="changeMode">
+								<Wrap Gap="8">
+									<RadioButton id="balanced" Key="balanced" Text="Balanced" Width="128px" />
+									<RadioButton id="vivid" Key="vivid" Text="Vivid" Width="96px" />
+								</Wrap>
+							</RadioGroup>
+						</Stack>
+						<Wrap id="actions" Gap="8">
+							<Button id="apply" Text="Apply preset" Width="144px" bind:Enabled="readControlsEnabled" on:clicked="applyPreset">
+								<ToolTip Text="Set the gain to the current color preset." Width="248px" />
+							</Button>
+							<Button id="reset" class="secondary" Text="Reset settings" Width="136px" on:clicked="reset" />
+						</Wrap>
+						<Separator />
+						<Stack class="field">
+							<Text class="label" Text="NOTES / MULTILINE EDITOR" />
+							<TextArea id="notes" Height="88px" bind:Value="readNotes" on:text-changed="changeNotes" />
+						</Stack>
+					</Stack>
+				</ScrollView>
+
+				<ScrollView id="preview" class="pane" Height="100%">
+					<Stack class="preview-content">
+						<Stack class="section-heading">
+							<Text class="eyebrow" Text="02 / LIVE PREVIEW" />
+							<Text Text="Your workspace, rendered live" FontSize="19" />
+						</Stack>
+						<Grid class="metrics" Columns="3">
+							<Border class="metric">
+								<Text class="label" Text="INTERACTIONS" />
+								<Text id="count" class="metric-value" bind:Text="readCount" />
+							</Border>
+							<Border class="metric">
+								<Text class="label" Text="GAIN" />
+								<Text id="gain-label" class="metric-value" bind:Text="readGainLabel" />
+							</Border>
+							<Border class="metric">
+								<Text class="label" Text="PRESET" />
+								<Text id="mode-label" class="metric-value" bind:Text="readModeLabel" />
+							</Border>
+						</Grid>
+
+						<Wrap id="preview-card" class="preview-card"
+                              bind:BackgroundImage="readPreviewBackground" bind:Opacity="readPreviewOpacity" bind:Filter="readPreviewFilter">
+							<Image class="swatch" Image="Assets/swatch.tga" />
+							<Stack id="preview-copy" class="preview-copy" Width="72%">
+								<Text id="preview-title" FontSize="22" WhiteSpace="nowrap" TextOverflow="ellipsis" bind:Text="readTitle" />
+								<Text Text="Decoded image + gradient + shared state" FontSize="12" />
+								<ProgressBar id="progress" Minimum="0" Maximum="100" bind:Value="readGain" />
+								<Text id="preview-note" class="muted" Text="This note leaves the layout when collapsed."
+                                      bind:Visibility="readDetailsVisibility" />
+							</Stack>
+						</Wrap>
+
+						<Border class="chart-section">
+							<Text class="label" Text="CUSTOM VS DRAWING" />
+							<activity-chart id="chart" bind:level="readGain" />
+						</Border>
+						<Stack class="activity-section">
+							<Wrap class="activity-heading" Gap="12">
+								<Text Text="Recent activity" FontSize="15" Width="200px" />
+								<Button id="clear-log" class="small secondary" Text="Clear log" Width="112px" on:clicked="clearLog" />
+							</Wrap>
+							<TextArea id="activity-log" class="log" ReadOnly="true" bind:Value="readLog" />
+						</Stack>
+					</Stack>
+				</ScrollView>
+			</Splitter>
+
+			<Border id="code-host" class="builder-panel" />
+			<Stack id="footer" Gap="4">
+				<Text id="status" class="status" bind:Text="readStatus" />
+				<Text class="hint" Text="Drag the divider to resize panes. Each pane scrolls independently; smaller windows can scroll the page." />
+			</Stack>
+		</Stack>
+	</ScrollView>
+</Stack>

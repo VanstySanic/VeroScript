@@ -1,0 +1,21 @@
+{
+  "lsp.code_action.format_document": "문서 서식 지정",
+  "lsp.code_action.implement_interface_member": "인터페이스 멤버 구현: {0}",
+  "lsp.code_action.override_inherited_member": "상속된 멤버 재정의: {0}",
+  "lsp.code_action.remove_duplicate_imports": "중복 import 제거",
+  "lsp.completion.implement_interface_member": "인터페이스 멤버 구현",
+  "lsp.completion.override_inherited_member": "상속된 멤버 재정의",
+  "lsp.document_link.open_import": "가져온 VeroScript 모듈 열기",
+  "lsp.protocol.method_not_found": "메서드를 찾을 수 없습니다: {0}",
+  "lsp.rename.missing_document_position": "textDocument/position이 없습니다",
+  "lsp.rename.no_identifier_under_caret": "커서 아래에 이름을 바꿀 수 있는 식별자가 없습니다",
+  "lsp.rename.symbol_cannot_be_renamed": "이 심볼은 이름을 바꿀 수 없습니다",
+  "lsp.request_cancelled": "요청이 취소되었습니다",
+  "lsp.request_timed_out": "요청 시간이 초과되었습니다",
+  "lsp.semantic_queue_full": "의미 분석 큐가 가득 찼습니다",
+  "lsp.content_modified": "분석 중 문서 또는 종속 파일이 변경되었습니다",
+  "lsp.semantic_analysis_stopped": "의미 분석이 중지되었습니다",
+  "lsp.host_bindings_current": "VeroScript 호스트 바인딩 카탈로그가 최신 상태입니다",
+  "lsp.host_bindings_last_snapshot": "VeroScript 호스트 바인딩 카탈로그를 사용할 수 없어 마지막 유효 스냅샷을 사용합니다. {0}",
+  "lsp.host_bindings_unavailable": "VeroScript 호스트 바인딩 카탈로그를 사용할 수 없으며 호스트 바인딩이 로드되지 않았습니다. {0}"
+}

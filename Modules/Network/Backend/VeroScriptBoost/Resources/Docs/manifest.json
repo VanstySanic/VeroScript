@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "Modules/Network/Backend/VeroScriptBoost",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/backends/boost.md"
+    }
+  ],
+  "developer": true
+}

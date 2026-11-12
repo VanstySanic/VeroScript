@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Append-only registry publication request 0.1.1",
+  "type": "object",
+  "properties": {
+    "mode": {
+      "const": "append"
+    },
+    "sourceId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "$ref": "veroscript-registry-version.schema.json#/properties/name"
+    },
+    "version": {
+      "$ref": "veroscript-registry-version.schema.json#/properties/version"
+    },
+    "dependencies": {
+      "$ref": "veroscript-registry-version.schema.json#/properties/dependencies"
+    },
+    "conflicts": {
+      "$ref": "veroscript-registry-version.schema.json#/properties/conflicts"
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "sha256": {
+            "$ref": "veroscript-registry-version.schema.json#/properties/artifacts/items/properties/sha256"
+          },
+          "size": {
+            "$ref": "veroscript-registry-version.schema.json#/properties/artifacts/items/properties/size"
+          },
+          "manifestSha256": {
+            "$ref": "veroscript-registry-version.schema.json#/properties/artifacts/items/properties/manifestSha256"
+          },
+          "target": {
+            "$ref": "veroscript-registry-version.schema.json#/properties/artifacts/items/properties/target"
+          },
+          "requires": {
+            "$ref": "veroscript-registry-version.schema.json#/properties/artifacts/items/properties/requires"
+          },
+          "uploadId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "signatures": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 16,
+            "items": {
+              "type": "object",
+              "properties": {
+                "format": {
+                  "const": "veroscript-artifact-signature"
+                },
+                "formatVersion": {
+                  "const": "0.1.1"
+                },
+                "algorithm": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "kind": {
+                  "const": "distribution"
+                },
+                "bytes": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "maxLength": 20
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "keyId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "keyVersion": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "signature": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "format",
+                "formatVersion",
+                "algorithm",
+                "kind",
+                "bytes",
+                "sha256",
+                "keyId",
+                "keyVersion",
+                "signature"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "sha256",
+          "size",
+          "manifestSha256",
+          "target",
+          "requires",
+          "uploadId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "idempotencyKey": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "mode",
+    "sourceId",
+    "name",
+    "version",
+    "dependencies",
+    "conflicts",
+    "artifacts",
+    "idempotencyKey"
+  ],
+  "additionalProperties": false
+}

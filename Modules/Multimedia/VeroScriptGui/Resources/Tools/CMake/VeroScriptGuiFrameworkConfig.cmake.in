@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+@PACKAGE_INIT@
+include(CMakeFindDependencyMacro)
+if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/../VeroScriptGui/VeroScriptGuiBindingsTargets.cmake")
+	find_dependency(VeroScriptGui @VEROSCRIPT_GUI_VERSION@ EXACT CONFIG COMPONENTS Bindings)
+else()
+	find_dependency(VeroScriptGui @VEROSCRIPT_GUI_VERSION@ EXACT CONFIG)
+endif()
+if(@VEROSCRIPT_GUI_BUILD_RMLUI@)
+	find_dependency(VeroScriptRmlUi 0.1.1 EXACT CONFIG)
+	if(TARGET VeroScript::GuiScript AND
+			EXISTS "${VeroScriptRmlUi_DIR}/VeroScriptRmlUiModuleTargets.cmake")
+		find_dependency(VeroScriptRmlUi 0.1.1 EXACT CONFIG COMPONENTS Bindings)
+	endif()
+endif()
+check_required_components(VeroScriptGuiFramework)

@@ -1,0 +1,76 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<TargetFrameworks Condition="'$(VeroScriptIncludeMobile)' == 'true'">net8.0;net9.0;net10.0-android;net10.0-ios</TargetFrameworks>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">26.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>12.0</LangVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<RootNamespace>VeroScript</RootNamespace>
+		<AssemblyName>VeroScriptCSharp</AssemblyName>
+		<VersionPrefix>0.1.1</VersionPrefix>
+		<Title>VeroScript C# Bindings</Title>
+		<Description>NativeAOT-friendly .NET bindings for the VeroScript process ABI.</Description>
+		<PackageId>VeroScript.CSharp</PackageId>
+		<Authors>VanstySanic</Authors>
+		<Company>VanstySanic</Company>
+		<Copyright>Copyright © 2026 VanstySanic</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/VanstySanic/VeroScript/tree/main/Extensions/Language/CSharp/VeroScriptCSharp</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/VanstySanic/VeroScript</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryCommit Condition="'$(GITHUB_SHA)' != ''">$(GITHUB_SHA)</RepositoryCommit>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<PackageTags>veroscript;csharp;embedding;interop;nativeaot</PackageTags>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageReleaseNotes>Managed .NET 8 and .NET 9 bindings for VeroScript Interop ABI 0.1.1, including explicit JIT backend selection, backend capability snapshots, and catalog-based diagnostic translation. With matching native runtime and standard-library assets, scripts can use callable tasks and executable reflection through the VM. Native runtime and JIT backend binaries remain host deployment inputs.</PackageReleaseNotes>
+		<PackageReleaseNotes Condition="'$(VeroScriptIncludeMobile)' == 'true'">Managed .NET 8/9 and .NET 10 Android/iOS bindings for VeroScript Interop ABI 0.1.1. Includes audited mobile native libraries, standard-library and localization assets, redistribution notices, MAUI build integration, and the iOS __Internal static-call profile. Mobile SDKs use the VM and do not include a native JIT backend. Desktop native runtime and JIT backend binaries remain host deployment inputs.</PackageReleaseNotes>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<Deterministic>true</Deterministic>
+		<ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>9.0-recommended</AnalysisLevel>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<EnablePackageValidation>true</EnablePackageValidation>
+		<!-- ABI-facing enum names intentionally use exact primitive/native vocabulary. -->
+		<NoWarn>$(NoWarn);1591;CA1711;CA1720</NoWarn>
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Remove="Tests\**\*.cs" />
+		<Compile Remove="Resources/Examples/**/*.cs" />
+		<!-- Keep prior default outputs out of isolated platform/AOT builds. -->
+		<Compile Remove="obj/**/*.cs;bin/**/*.cs" />
+		<None Include="Tests\**\*" />
+		<None Remove="README.md" />
+		<None Remove="Resources/Docs/API.md" />
+		<None Include="..\..\..\..\LICENSE" Pack="true" PackagePath="\" Link="LICENSE" />
+		<None Remove="Resources/Docs/MOBILE.md;buildTransitive/VeroScript.CSharp.targets" />
+		<None Include="buildTransitive/VeroScript.CSharp.targets" Pack="true" PackagePath="buildTransitive/" />
+		<None Include="$(VeroScriptMobileNativeRoot)/**/*" Exclude="$(VeroScriptMobileNativeRoot)/Resources/Docs/**/*" Condition="'$(VeroScriptIncludeMobile)' == 'true' and '$(VeroScriptMobileNativeRoot)' != ''" Pack="true" PackagePath="native/" />
+	</ItemGroup>
+	<Target Name="ValidateVeroScriptMobilePackage" BeforeTargets="GenerateNuspec">
+		<ItemGroup>
+			<_VeroScriptMobilePackFramework Include="$(TargetFrameworks)" />
+			<_VeroScriptMobilePackFramework Include="$(TargetFramework)" Condition="'$(TargetFrameworks)' == '' and '$(TargetFramework)' != ''" />
+			<_VeroScriptMissingDesktopFramework Include="net8.0;net9.0" Condition="'$(VeroScriptIncludeMobile)' == 'true'" />
+			<_VeroScriptMissingDesktopFramework Remove="$(TargetFrameworks)" />
+		</ItemGroup>
+		<Error Condition="'$(VeroScriptIncludeMobile)' != 'true' and ($([MSBuild]::GetTargetPlatformIdentifier('%(_VeroScriptMobilePackFramework.Identity)')) == 'android' or $([MSBuild]::GetTargetPlatformIdentifier('%(_VeroScriptMobilePackFramework.Identity)')) == 'ios')" Text="Set VeroScriptIncludeMobile=true to pack the complete Android/iOS binding and native assets." />
+		<Error Condition="'$(VeroScriptIncludeMobile)' == 'true' and '%(_VeroScriptMobilePackFramework.Identity)' != 'net8.0' and '%(_VeroScriptMobilePackFramework.Identity)' != 'net9.0' and $([MSBuild]::GetTargetPlatformIdentifier('%(_VeroScriptMobilePackFramework.Identity)')) != 'android' and $([MSBuild]::GetTargetPlatformIdentifier('%(_VeroScriptMobilePackFramework.Identity)')) != 'ios'" Text="Mobile-enabled NuGet packages require the desktop net8.0/net9.0 and Android/iOS target frameworks." />
+		<Error Condition="'$(VeroScriptIncludeMobile)' == 'true' and ('@(_VeroScriptMissingDesktopFramework)' != '' or !$([System.String]::Copy('$(TargetFrameworks)').Contains('-ios')) or !$([System.String]::Copy('$(TargetFrameworks)').Contains('-android')))" Text="Pack desktop net8.0/net9.0 and both Android and iOS target frameworks in the complete VeroScript.CSharp NuGet." />
+		<Error Condition="'$(VeroScriptIncludeMobile)' == 'true' and '$(VeroScriptMobileNativeRoot)' == ''" Text="Set VeroScriptMobileNativeRoot to a verified SDK produced by Resources/Tools/Mobile/prepare-native.py." />
+		<Exec Condition="'$(VeroScriptIncludeMobile)' == 'true'" Command="&quot;$(VeroScriptMobilePython)&quot; &quot;$(MSBuildThisFileDirectory)../Resources/Tools/Mobile/prepare-native.py&quot; verify &quot;$(VeroScriptMobileNativeRoot)&quot;" />
+	</Target>
+	<PropertyGroup>
+		<VeroScriptMobilePython Condition="'$(VeroScriptMobilePython)' == ''">python3</VeroScriptMobilePython>
+	</PropertyGroup>
+</Project>

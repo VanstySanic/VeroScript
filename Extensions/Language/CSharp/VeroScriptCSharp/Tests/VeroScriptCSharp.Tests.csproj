@@ -1,0 +1,19 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Remove="Mobile/**/*.cs" />
+		<ProjectReference Include="..\VeroScriptCSharp.csproj" />
+		<None Include="PublicApi.txt" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="..\..\..\..\..\VeroScriptInterop\Private\VeroScriptInterop.def"
+          Link="VeroScriptInterop.def" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+</Project>

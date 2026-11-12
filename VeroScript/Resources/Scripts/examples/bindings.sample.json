@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "functions": [
+    {
+      "name": "host_add",
+      "annotations": [
+        {
+          "name": "HOST_FUNCTION",
+          "arguments": [
+            { "name": "Category", "value": "Examples|Math" }
+          ]
+        }
+      ],
+      "paramAnnotations": [
+        [
+          {
+            "name": "HOST_PARAM",
+            "arguments": [
+              { "name": "DisplayName", "value": "Left" }
+            ]
+          }
+        ],
+        []
+      ],
+      "returnType": "int",
+      "paramTypes": ["int", "int"],
+      "paramFlags": [0, 0],
+      "returnHostTypeName": "",
+      "paramHostTypeNames": []
+    }
+  ],
+  "genericTypeTemplates": [
+    {
+      "name": "HostBox",
+      "arity": 1,
+      "documentation": "A generic host container template."
+    }
+  ],
+  "types": [
+    {
+      "name": "Widget",
+      "kind": "class",
+      "annotations": [
+        {
+          "name": "HOST_TYPE",
+          "arguments": [{ "name": "Reflected" }]
+        }
+      ],
+      "members": [
+        {
+          "kind": "constructor",
+          "name": "",
+          "returnType": "object",
+          "paramTypes": ["int"],
+          "enumValue": 0,
+          "returnHostTypeName": "",
+          "paramHostTypeNames": []
+        },
+        {
+          "kind": "method",
+          "name": "label",
+          "annotations": [
+            {
+              "name": "HOST_FUNCTION",
+              "arguments": [{ "name": "ReadOnly" }]
+            }
+          ],
+          "returnType": "string",
+          "paramTypes": [],
+          "enumValue": 0,
+          "returnHostTypeName": "",
+          "paramHostTypeNames": []
+        }
+      ]
+    },
+    {
+      "name": "Actor",
+      "kind": "class",
+      "members": [
+        {
+          "kind": "constructor",
+          "name": "",
+          "returnType": "object",
+          "paramTypes": [],
+          "enumValue": 0,
+          "returnHostTypeName": "",
+          "paramHostTypeNames": []
+        },
+        {
+          "kind": "method",
+          "name": "attach",
+          "returnType": "void",
+          "paramTypes": ["object"],
+          "enumValue": 0,
+          "returnHostTypeName": "",
+          "paramHostTypeNames": ["Widget"]
+        },
+        {
+          "kind": "method",
+          "name": "widget",
+          "returnType": "object",
+          "paramTypes": [],
+          "enumValue": 0,
+          "returnHostTypeName": "Widget",
+          "paramHostTypeNames": []
+        }
+      ]
+    },
+    {
+      "name": "Color",
+      "kind": "enum",
+      "members": [
+        {
+          "kind": "enumMember",
+          "name": "Red",
+          "returnType": "int",
+          "paramTypes": [],
+          "enumValue": 1,
+          "returnHostTypeName": "",
+          "paramHostTypeNames": []
+        },
+        {
+          "kind": "enumMember",
+          "name": "Blue",
+          "returnType": "int",
+          "paramTypes": [],
+          "enumValue": 2,
+          "returnHostTypeName": "",
+          "paramHostTypeNames": []
+        },
+        {
+          "kind": "enumMember",
+          "name": "Max",
+          "returnType": "int64",
+          "paramTypes": [],
+          "enumValueInt64": "9223372036854775807",
+          "returnHostTypeName": "",
+          "paramHostTypeNames": []
+        }
+      ]
+    }
+  ],
+  "typeAliases": [
+    {
+      "name": "WidgetId",
+      "typeParams": [],
+      "targetTypeName": "int",
+      "documentation": "The host identifier type."
+    }
+  ],
+  "annotations": [
+    {
+      "name": "HOST_TYPE",
+      "detail": "host type annotation",
+      "arguments": [
+        { "name": "Reflected", "detail": "flag" }
+      ]
+    },
+    {
+      "name": "HOST_FUNCTION",
+      "detail": "host function annotation",
+      "arguments": [
+        { "name": "Category", "detail": "string" },
+        { "name": "ReadOnly", "detail": "flag" }
+      ]
+    },
+    {
+      "name": "HOST_PARAM",
+      "detail": "host parameter annotation",
+      "arguments": [
+        { "name": "DisplayName", "detail": "string" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+int work(int limit,int seed){ array<string> left={"alpha-000","beta-111","gamma-222","delta-333","epsilon-444","zeta-555","eta-666"}; array<string> right={"alpha-000","beta-X11","gamma-222","delta-X33","epsilon-444","zeta-X55","eta-666"}; int state=seed; int total=0; for(int i=0;i<limit;i++){ state=(state*75+74)%65521; int a=state%7; int b=(state+(i&3))%7; if(left[a]==right[b]) total++; } return total+state; } void main(){int checksum=0;for(int rep=0;rep<20;rep++){checksum=(checksum+work(300000,173))%1000000007;}print(checksum);}
+

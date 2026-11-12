@@ -1,0 +1,13 @@
+{
+  "diag.numeric_type_mismatch": "Une valeur numérique ou un type source pris en charge est requis",
+  "diag.numeric_invalid_argument": "Argument numérique non valide : {0}",
+  "diag.numeric_invalid_text": "Texte numérique non valide : {0} (octet {1})",
+  "diag.numeric_division_by_zero": "Division numérique par zéro",
+  "diag.numeric_out_of_range": "La valeur numérique dépasse la plage cible",
+  "diag.numeric_inexact_conversion": "La conversion numérique perdrait de la précision",
+  "diag.numeric_limit": "Une limite de ressources numériques est dépassée : {0}",
+  "diag.numeric_out_of_memory": "Échec de l’allocation numérique",
+  "diag.numeric_interrupted": "Opération numérique interrompue",
+  "diag.numeric_internal": "Échec de l’opération numérique",
+  "diag.numeric_busy": "Impossible de modifier les limites numériques pendant l’exécution"
+}

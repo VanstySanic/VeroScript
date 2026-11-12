@@ -1,0 +1,20 @@
+{
+  "diag.i18n_invalid_argument": "잘못된 국제화 인수: {0}",
+  "diag.i18n_invalid_configuration": "잘못된 국제화 설정: {0}",
+  "diag.i18n_invalid_state": "잘못된 국제화 상태: {0}",
+  "diag.i18n_missing_resolver": "리소스 해석기 없음: {0}",
+  "diag.i18n_missing_message": "메시지를 찾을 수 없음: {0}",
+  "diag.i18n_unsupported_format": "지원하지 않는 형식: {0}",
+  "diag.i18n_missing_argument": "이름 있는 인수 누락: {0}",
+  "diag.i18n_argument_type": "잘못된 인수 형식: {0}",
+  "diag.i18n_numeric_conversion": "부정확하거나 범위를 벗어난 숫자 변환: {0}",
+  "diag.i18n_invalid_pattern": "잘못된 형식 패턴: {0}",
+  "diag.i18n_unsupported_option": "지원하지 않는 형식 옵션: {0}",
+  "diag.i18n_provider_failure": "잘못된 공급자 결과: {0}",
+  "diag.i18n_resource_limit": "출력 제한 초과: {0}",
+  "diag.i18n_out_of_memory": "메모리 할당 실패: {0}",
+  "diag.i18n_interrupted": "작업 중단: {0}",
+  "diag.i18n_reentrant_operation": "재귀 국제화 작업: {0}",
+  "diag.stdlib_native_limit": "핵심 표준 바인딩을 포함한 네이티브 함수 테이블 용량 초과",
+  "diag.stdlib_reserved_binding": "핵심 표준 라이브러리 바인딩을 교체할 수 없음"
+}

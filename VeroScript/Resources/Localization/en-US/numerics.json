@@ -1,0 +1,13 @@
+{
+  "diag.numeric_type_mismatch": "Expected a supported numeric value or source type",
+  "diag.numeric_invalid_argument": "Invalid numeric argument: {0}",
+  "diag.numeric_invalid_text": "Invalid numeric text: {0} (byte {1})",
+  "diag.numeric_division_by_zero": "Numeric division by zero",
+  "diag.numeric_out_of_range": "Numeric value is outside the target range",
+  "diag.numeric_inexact_conversion": "Numeric conversion would lose precision",
+  "diag.numeric_limit": "Numeric operation exceeds its resource limit: {0}",
+  "diag.numeric_out_of_memory": "Numeric allocation failed",
+  "diag.numeric_interrupted": "Numeric operation interrupted",
+  "diag.numeric_internal": "Numeric operation failed",
+  "diag.numeric_busy": "Cannot change numeric limits during execution"
+}

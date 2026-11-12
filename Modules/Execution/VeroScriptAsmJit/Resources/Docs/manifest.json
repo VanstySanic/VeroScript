@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "Modules/Execution/VeroScriptAsmJit",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/jit/index.md"
+    }
+  ],
+  "developer": true
+}

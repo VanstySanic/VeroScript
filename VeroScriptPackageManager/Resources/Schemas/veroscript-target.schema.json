@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Complete selected core/target context 0.1.1",
+  "type": "object",
+  "properties": {
+    "core": {
+      "type": "string",
+      "description": "SemVer major.minor.patch, optional prerelease, no build metadata."
+    },
+    "coreBuild": {
+      "type": "string"
+    },
+    "os": {
+      "type": "string"
+    },
+    "arch": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "string"
+    },
+    "abis": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "minimumVersions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "description": "SemVer major.minor.patch, optional prerelease, no build metadata."
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "core",
+    "coreBuild",
+    "os",
+    "arch",
+    "environment",
+    "abis"
+  ],
+  "additionalProperties": false
+}

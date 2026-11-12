@@ -1,0 +1,290 @@
+[
+  {
+    "name": "modloop",
+    "backend": "mixed",
+    "stdout": "cross/modloop.vs,mixed,-1,0.1509,2,919997683,7061504,2,0,0,0,0\r\ncross/modloop.vs,mixed,0,0.057,2,919997683,7110656,2,0,0,0,0\r\ncross/modloop.vs,mixed,1,0.04605,2,919997683,7110656,2,0,0,0,0\r\ncross/modloop.vs,mixed,2,0.04835,2,919997683,7127040,2,0,0,0,0\r\ncross/modloop.vs,mixed,3,0.04545,2,919997683,7127040,2,0,0,0,0\r\ncross/modloop.vs,mixed,4,0.04485,2,919997683,7127040,2,0,0,0,0\r\ncross/modloop.vs,mixed,5,0.0452,2,919997683,7127040,2,0,0,0,0\r\ncross/modloop.vs,mixed,6,0.048,2,919997683,7127040,2,0,0,0,0\r\n",
+    "stderr": "cross/modloop.vs load_ms=0.3411 compile_ms=0.3874\r\n"
+  },
+  {
+    "name": "modloop",
+    "backend": "jit",
+    "stdout": "cross/modloop.vs,jit,-1,0.1414,2,919997683,6520832,2,0,0,0,0\r\ncross/modloop.vs,jit,0,0.0537,2,919997683,6561792,2,0,0,0,0\r\ncross/modloop.vs,jit,1,0.0469,2,919997683,6565888,2,0,0,0,0\r\ncross/modloop.vs,jit,2,0.04975,2,919997683,6569984,2,0,0,0,0\r\ncross/modloop.vs,jit,3,0.04355,2,919997683,6569984,2,0,0,0,0\r\ncross/modloop.vs,jit,4,0.0427,2,919997683,6569984,2,0,0,0,0\r\ncross/modloop.vs,jit,5,0.0441,2,919997683,6574080,2,0,0,0,0\r\ncross/modloop.vs,jit,6,0.04435,2,919997683,6574080,2,0,0,0,0\r\n",
+    "stderr": "cross/modloop.vs load_ms=0.3384 compile_ms=0.3883\r\n"
+  },
+  {
+    "name": "modloop",
+    "backend": "cpp",
+    "stdout": "modloop,cpp,0,44.3698,1,959998845\r\nmodloop,cpp,1,44.3469,1,959998845\r\nmodloop,cpp,2,44.4127,1,959998845\r\nmodloop,cpp,3,44.2776,1,959998845\r\nmodloop,cpp,4,44.5696,1,959998845\r\nmodloop,cpp,5,44.417,1,959998845\r\nmodloop,cpp,6,44.4334,1,959998845\r\n",
+    "stderr": ""
+  },
+  {
+    "name": "modloop",
+    "backend": "node",
+    "stdout": "modloop,node,0,48.4083,1,959998845\nmodloop,node,1,48.01749999999993,1,959998845\nmodloop,node,2,48.109699999999975,1,959998845\nmodloop,node,3,48.30779999999993,1,959998845\nmodloop,node,4,48.40610000000004,1,959998845\nmodloop,node,5,48.049800000000005,1,959998845\nmodloop,node,6,48.26030000000003,1,959998845\n",
+    "stderr": ""
+  },
+  {
+    "name": "indexed",
+    "backend": "mixed",
+    "stdout": "cross/indexed.vs,mixed,-1,0.973875,20,83997520,6975488,1,1,0,0,0\r\ncross/indexed.vs,mixed,0,0.95476,20,83997520,7020544,1,1,0,0,0\r\ncross/indexed.vs,mixed,1,0.95799,20,83997520,7020544,1,1,0,0,0\r\ncross/indexed.vs,mixed,2,0.9738,20,83997520,7028736,1,1,0,0,0\r\ncross/indexed.vs,mixed,3,0.95278,20,83997520,7028736,1,1,0,0,0\r\ncross/indexed.vs,mixed,4,0.959585,20,83997520,7028736,1,1,0,0,0\r\ncross/indexed.vs,mixed,5,0.961915,20,83997520,7032832,1,1,0,0,0\r\ncross/indexed.vs,mixed,6,0.95823,20,83997520,7032832,1,1,0,0,0\r\n",
+    "stderr": "cross/indexed.vs load_ms=0.3641 compile_ms=0.4952\r\n"
+  },
+  {
+    "name": "indexed",
+    "backend": "jit",
+    "stdout": "cross/indexed.vs,jit,-1,0.974625,20,83997520,6942720,1,1,0,0,0\r\ncross/indexed.vs,jit,0,0.955035,20,83997520,7012352,1,1,0,0,0\r\ncross/indexed.vs,jit,1,0.950695,20,83997520,7012352,1,1,0,0,0\r\ncross/indexed.vs,jit,2,0.95525,20,83997520,7012352,1,1,0,0,0\r\ncross/indexed.vs,jit,3,0.968125,20,83997520,7016448,1,1,0,0,0\r\ncross/indexed.vs,jit,4,0.96941,20,83997520,7016448,1,1,0,0,0\r\ncross/indexed.vs,jit,5,0.954895,20,83997520,7032832,1,1,0,0,0\r\ncross/indexed.vs,jit,6,0.968535,20,83997520,7036928,1,1,0,0,0\r\n",
+    "stderr": "cross/indexed.vs load_ms=0.3665 compile_ms=0.5195\r\n"
+  },
+  {
+    "name": "indexed",
+    "backend": "cpp",
+    "stdout": "indexed,cpp,0,0.6529953125,64,4199876\r\nindexed,cpp,1,0.6507984375,64,4199876\r\nindexed,cpp,2,0.6486671875,64,4199876\r\nindexed,cpp,3,0.6499328125,64,4199876\r\nindexed,cpp,4,0.6477109375,64,4199876\r\nindexed,cpp,5,0.650684375,64,4199876\r\nindexed,cpp,6,0.64798125,64,4199876\r\n",
+    "stderr": ""
+  },
+  {
+    "name": "indexed",
+    "backend": "node",
+    "stdout": "indexed,node,0,0.5387062499999997,64,4199876\nindexed,node,1,0.5452500000000002,64,4199876\nindexed,node,2,0.5453890625,64,4199876\nindexed,node,3,0.5430609375,64,4199876\nindexed,node,4,0.5371546875000002,64,4199876\nindexed,node,5,0.5435640624999998,64,4199876\nindexed,node,6,0.5394671874999997,64,4199876\n",
+    "stderr": ""
+  },
+  {
+    "name": "indirect",
+    "backend": "mixed",
+    "stdout": "cross/indirect.vs,mixed,-1,3.31607,20,841208186,7077888,1,1,0,20,0\r\ncross/indirect.vs,mixed,0,3.36855,20,841208186,7118848,1,1,0,20,0\r\ncross/indirect.vs,mixed,1,3.46312,20,841208186,7122944,1,1,0,20,0\r\ncross/indirect.vs,mixed,2,3.385675,20,841208186,7122944,1,1,0,20,0\r\ncross/indirect.vs,mixed,3,3.436805,20,841208186,7122944,1,1,0,20,0\r\ncross/indirect.vs,mixed,4,3.44352,20,841208186,7139328,1,1,0,20,0\r\ncross/indirect.vs,mixed,5,3.440935,20,841208186,7143424,1,1,0,20,0\r\ncross/indirect.vs,mixed,6,3.43675,20,841208186,7143424,1,1,0,20,0\r\n",
+    "stderr": "cross/indirect.vs load_ms=0.4778 compile_ms=0.6935\r\n"
+  },
+  {
+    "name": "indirect",
+    "backend": "jit",
+    "stdout": "cross/indirect.vs,jit,-1,3.460705,20,841208186,7053312,1,1,0,20,0\r\ncross/indirect.vs,jit,0,3.4487,20,841208186,7172096,1,1,0,20,0\r\ncross/indirect.vs,jit,1,3.43804,20,841208186,7180288,1,1,0,20,0\r\ncross/indirect.vs,jit,2,3.402745,20,841208186,7188480,1,1,0,20,0\r\ncross/indirect.vs,jit,3,3.479415,20,841208186,7188480,1,1,0,20,0\r\ncross/indirect.vs,jit,4,3.44007,20,841208186,7192576,1,1,0,20,0\r\ncross/indirect.vs,jit,5,3.48227,20,841208186,7192576,1,1,0,20,0\r\ncross/indirect.vs,jit,6,3.459505,20,841208186,7196672,1,1,0,20,0\r\n",
+    "stderr": "cross/indirect.vs load_ms=0.4126 compile_ms=0.7366\r\n"
+  },
+  {
+    "name": "indirect",
+    "backend": "cpp",
+    "stdout": "indirect,cpp,0,0.49470625,64,142060410\r\nindirect,cpp,1,0.500678125,64,142060410\r\nindirect,cpp,2,0.4995234375,64,142060410\r\nindirect,cpp,3,0.49759375,64,142060410\r\nindirect,cpp,4,0.497921875,64,142060410\r\nindirect,cpp,5,0.4983875,64,142060410\r\nindirect,cpp,6,0.4972375,64,142060410\r\n",
+    "stderr": ""
+  },
+  {
+    "name": "indirect",
+    "backend": "node",
+    "stdout": "indirect,node,0,0.6103234375,64,142060410\nindirect,node,1,0.6122250000000005,64,142060410\nindirect,node,2,0.6096625000000007,64,142060410\nindirect,node,3,0.6086296875000006,64,142060410\nindirect,node,4,0.6286765625000008,64,142060410\nindirect,node,5,0.6114406250000002,64,142060410\nindirect,node,6,0.6099921874999996,64,142060410\n",
+    "stderr": ""
+  },
+  {
+    "name": "objects",
+    "backend": "mixed",
+    "stdout": "cross/objects.vs,mixed,-1,0.375255,20,126041100,7204864,1,1,0,20,0\r\ncross/objects.vs,mixed,0,0.365755,20,126041100,7237632,1,1,0,20,0\r\ncross/objects.vs,mixed,1,0.36773,20,126041100,7249920,1,1,0,20,0\r\ncross/objects.vs,mixed,2,0.365425,20,126041100,7249920,1,1,0,20,0\r\ncross/objects.vs,mixed,3,0.36439,20,126041100,7249920,1,1,0,20,0\r\ncross/objects.vs,mixed,4,0.37776,20,126041100,7249920,1,1,0,20,0\r\ncross/objects.vs,mixed,5,0.368985,20,126041100,7254016,1,1,0,20,0\r\ncross/objects.vs,mixed,6,0.37123,20,126041100,7254016,1,1,0,20,0\r\n",
+    "stderr": "cross/objects.vs load_ms=0.3932 compile_ms=0.5942\r\n"
+  },
+  {
+    "name": "objects",
+    "backend": "jit",
+    "stdout": "cross/objects.vs,jit,-1,0.384515,20,126041100,7180288,2,1,0,20,0\r\ncross/objects.vs,jit,0,0.36854,20,126041100,7221248,2,1,0,20,0\r\ncross/objects.vs,jit,1,0.367695,20,126041100,7221248,2,1,0,20,0\r\ncross/objects.vs,jit,2,0.36531,20,126041100,7221248,2,1,0,20,0\r\ncross/objects.vs,jit,3,0.370205,20,126041100,7221248,2,1,0,20,0\r\ncross/objects.vs,jit,4,0.36901,20,126041100,7221248,2,1,0,20,0\r\ncross/objects.vs,jit,5,0.36872,20,126041100,7221248,2,1,0,20,0\r\ncross/objects.vs,jit,6,0.36469,20,126041100,7225344,2,1,0,20,0\r\n",
+    "stderr": "cross/objects.vs load_ms=0.3972 compile_ms=0.6898\r\n"
+  },
+  {
+    "name": "objects",
+    "backend": "cpp",
+    "stdout": "objects,cpp,0,0.2040292969,256,6302055\r\nobjects,cpp,1,0.2038660156,256,6302055\r\nobjects,cpp,2,0.2047828125,256,6302055\r\nobjects,cpp,3,0.2058015625,256,6302055\r\nobjects,cpp,4,0.2048316406,256,6302055\r\nobjects,cpp,5,0.2038617188,256,6302055\r\nobjects,cpp,6,0.204703125,256,6302055\r\n",
+    "stderr": ""
+  },
+  {
+    "name": "objects",
+    "backend": "node",
+    "stdout": "objects,node,0,0.2307691406250001,256,6302055\nobjects,node,1,0.22987421875000003,256,6302055\nobjects,node,2,0.23114648437499996,256,6302055\nobjects,node,3,0.22935156250000022,256,6302055\nobjects,node,4,0.22958671875000025,256,6302055\nobjects,node,5,0.2290347656249998,256,6302055\nobjects,node,6,0.23097421874999968,256,6302055\n",
+    "stderr": ""
+  },
+  {
+    "name": "virtuals",
+    "backend": "mixed",
+    "stdout": "cross/virtuals.vs,mixed,-1,2.64083,20,17620460,7397376,3,1,0,0,0\r\ncross/virtuals.vs,mixed,0,2.669855,20,17620460,7458816,3,1,0,0,0\r\ncross/virtuals.vs,mixed,1,2.630785,20,17620460,7479296,3,1,0,0,0\r\ncross/virtuals.vs,mixed,2,2.610345,20,17620460,7479296,3,1,0,0,0\r\ncross/virtuals.vs,mixed,3,2.60801,20,17620460,7495680,3,1,0,0,0\r\ncross/virtuals.vs,mixed,4,2.59363,20,17620460,7495680,3,1,0,0,0\r\ncross/virtuals.vs,mixed,5,2.617945,20,17620460,7495680,3,1,0,0,0\r\ncross/virtuals.vs,mixed,6,2.604275,20,17620460,7495680,3,1,0,0,0\r\n",
+    "stderr": "cross/virtuals.vs load_ms=0.4471 compile_ms=0.7755\r\n"
+  },
+  {
+    "name": "virtuals",
+    "backend": "jit",
+    "stdout": "cross/virtuals.vs,jit,-1,2.657205,20,17620460,7356416,4,1,0,0,0\r\ncross/virtuals.vs,jit,0,2.623975,20,17620460,7421952,4,1,0,0,0\r\ncross/virtuals.vs,jit,1,2.6391,20,17620460,7430144,4,1,0,0,0\r\ncross/virtuals.vs,jit,2,2.659335,20,17620460,7430144,4,1,0,0,0\r\ncross/virtuals.vs,jit,3,2.673205,20,17620460,7430144,4,1,0,0,0\r\ncross/virtuals.vs,jit,4,2.679225,20,17620460,7434240,4,1,0,0,0\r\ncross/virtuals.vs,jit,5,2.629705,20,17620460,7442432,4,1,0,0,0\r\ncross/virtuals.vs,jit,6,2.627915,20,17620460,7446528,4,1,0,0,0\r\n",
+    "stderr": "cross/virtuals.vs load_ms=0.4375 compile_ms=0.7538\r\n"
+  },
+  {
+    "name": "virtuals",
+    "backend": "cpp",
+    "stdout": "virtuals,cpp,0,1.394384375,32,881023\r\nvirtuals,cpp,1,1.39400625,32,881023\r\nvirtuals,cpp,2,1.41611875,32,881023\r\nvirtuals,cpp,3,1.3909375,32,881023\r\nvirtuals,cpp,4,1.38909375,32,881023\r\nvirtuals,cpp,5,1.4093375,32,881023\r\nvirtuals,cpp,6,1.40509375,32,881023\r\n",
+    "stderr": ""
+  },
+  {
+    "name": "virtuals",
+    "backend": "node",
+    "stdout": "virtuals,node,0,0.6099500000000004,64,881023\nvirtuals,node,1,0.6071890624999998,64,881023\nvirtuals,node,2,0.6006015624999996,64,881023\nvirtuals,node,3,0.6061312499999989,64,881023\nvirtuals,node,4,0.6006203125000003,64,881023\nvirtuals,node,5,0.612425,64,881023\nvirtuals,node,6,0.6039593750000005,64,881023\n",
+    "stderr": ""
+  },
+  {
+    "name": "maps",
+    "backend": "mixed",
+    "stdout": "cross/maps.vs,mixed,-1,0.94488,20,85609780,7086080,1,1,0,0,0\r\ncross/maps.vs,mixed,0,0.926335,20,85609780,7172096,1,1,0,0,0\r\ncross/maps.vs,mixed,1,0.92973,20,85609780,7180288,1,1,0,0,0\r\ncross/maps.vs,mixed,2,0.91511,20,85609780,7184384,1,1,0,0,0\r\ncross/maps.vs,mixed,3,0.918265,20,85609780,7184384,1,1,0,0,0\r\ncross/maps.vs,mixed,4,0.92145,20,85609780,7184384,1,1,0,0,0\r\ncross/maps.vs,mixed,5,0.91725,20,85609780,7258112,1,1,0,0,0\r\ncross/maps.vs,mixed,6,0.908885,20,85609780,7274496,1,1,0,0,0\r\n",
+    "stderr": "cross/maps.vs load_ms=0.4065 compile_ms=0.624\r\n"
+  },
+  {
+    "name": "maps",
+    "backend": "jit",
+    "stdout": "cross/maps.vs,jit,-1,0.92782,20,85609780,7081984,1,1,0,0,0\r\ncross/maps.vs,jit,0,0.92035,20,85609780,7184384,1,1,0,0,0\r\ncross/maps.vs,jit,1,0.91484,20,85609780,7196672,1,1,0,0,0\r\ncross/maps.vs,jit,2,0.91352,20,85609780,7196672,1,1,0,0,0\r\ncross/maps.vs,jit,3,0.91011,20,85609780,7196672,1,1,0,0,0\r\ncross/maps.vs,jit,4,0.907785,20,85609780,7196672,1,1,0,0,0\r\ncross/maps.vs,jit,5,0.91959,20,85609780,7196672,1,1,0,0,0\r\ncross/maps.vs,jit,6,0.91565,20,85609780,7196672,1,1,0,0,0\r\n",
+    "stderr": "cross/maps.vs load_ms=0.4772 compile_ms=0.614\r\n"
+  },
+  {
+    "name": "maps",
+    "backend": "cpp",
+    "stdout": "maps,cpp,0,0.813321875,64,4280489\r\nmaps,cpp,1,0.8089359375,64,4280489\r\nmaps,cpp,2,0.80020625,64,4280489\r\nmaps,cpp,3,0.8001703125,64,4280489\r\nmaps,cpp,4,0.81354375,64,4280489\r\nmaps,cpp,5,0.8044203125,64,4280489\r\nmaps,cpp,6,0.8153953125,64,4280489\r\n",
+    "stderr": ""
+  },
+  {
+    "name": "maps",
+    "backend": "node",
+    "stdout": "maps,node,0,2.1894937500000005,16,4280489\nmaps,node,1,2.226700000000001,16,4280489\nmaps,node,2,2.222256250000001,16,4280489\nmaps,node,3,2.2117562500000005,16,4280489\nmaps,node,4,2.2060187499999984,16,4280489\nmaps,node,5,2.1828187500000027,16,4280489\nmaps,node,6,2.2425624999999982,16,4280489\n",
+    "stderr": ""
+  },
+  {
+    "name": "strings",
+    "backend": "mixed",
+    "stdout": "cross/strings.vs,mixed,-1,2.602945,20,1972920,6942720,1,1,0,0,0\r\ncross/strings.vs,mixed,0,2.584685,20,1972920,6979584,1,1,0,0,0\r\ncross/strings.vs,mixed,1,2.59653,20,1972920,6979584,1,1,0,0,0\r\ncross/strings.vs,mixed,2,2.598455,20,1972920,6995968,1,1,0,0,0\r\ncross/strings.vs,mixed,3,2.58915,20,1972920,7008256,1,1,0,0,0\r\ncross/strings.vs,mixed,4,2.58475,20,1972920,7008256,1,1,0,0,0\r\ncross/strings.vs,mixed,5,2.592475,20,1972920,7012352,1,1,0,0,0\r\ncross/strings.vs,mixed,6,2.58312,20,1972920,7020544,1,1,0,0,0\r\n",
+    "stderr": "cross/strings.vs load_ms=0.3868 compile_ms=0.5204\r\n"
+  },
+  {
+    "name": "strings",
+    "backend": "jit",
+    "stdout": "cross/strings.vs,jit,-1,2.59469,20,1972920,6926336,1,1,0,0,0\r\ncross/strings.vs,jit,0,2.59248,20,1972920,7036928,1,1,0,0,0\r\ncross/strings.vs,jit,1,2.603155,20,1972920,7036928,1,1,0,0,0\r\ncross/strings.vs,jit,2,2.598145,20,1972920,7041024,1,1,0,0,0\r\ncross/strings.vs,jit,3,2.593205,20,1972920,7041024,1,1,0,0,0\r\ncross/strings.vs,jit,4,2.601115,20,1972920,7041024,1,1,0,0,0\r\ncross/strings.vs,jit,5,2.60802,20,1972920,7041024,1,1,0,0,0\r\ncross/strings.vs,jit,6,2.623125,20,1972920,7049216,1,1,0,0,0\r\n",
+    "stderr": "cross/strings.vs load_ms=0.3835 compile_ms=0.5014\r\n"
+  },
+  {
+    "name": "strings",
+    "backend": "cpp",
+    "stdout": "strings,cpp,0,1.250475,32,98646\r\nstrings,cpp,1,1.263971875,32,98646\r\nstrings,cpp,2,1.237246875,32,98646\r\nstrings,cpp,3,1.267853125,32,98646\r\nstrings,cpp,4,1.2727875,32,98646\r\nstrings,cpp,5,1.266453125,32,98646\r\nstrings,cpp,6,1.272875,32,98646\r\n",
+    "stderr": ""
+  },
+  {
+    "name": "strings",
+    "backend": "node",
+    "stdout": "strings,node,0,1.0128312499999979,32,98646\nstrings,node,1,1.0106281250000002,32,98646\nstrings,node,2,0.9875499999999988,32,98646\nstrings,node,3,1.0151937499999981,32,98646\nstrings,node,4,0.9864312500000025,32,98646\nstrings,node,5,0.9979656249999991,32,98646\nstrings,node,6,0.9689593749999972,32,98646\n",
+    "stderr": ""
+  },
+  {
+    "name": "fib",
+    "backend": "mixed",
+    "stdout": "cross/fib.vs,mixed,-1,0.24882,5,231840,6541312,3,0,0,0,0\r\ncross/fib.vs,mixed,0,0.21626,5,231840,6586368,3,0,0,0,0\r\ncross/fib.vs,mixed,1,0.18922,5,231840,6586368,3,0,0,0,0\r\ncross/fib.vs,mixed,2,0.19236,5,231840,6586368,3,0,0,0,0\r\ncross/fib.vs,mixed,3,0.21436,5,231840,6586368,3,0,0,0,0\r\ncross/fib.vs,mixed,4,0.21132,5,231840,6586368,3,0,0,0,0\r\ncross/fib.vs,mixed,5,0.1967,5,231840,6586368,3,0,0,0,0\r\ncross/fib.vs,mixed,6,0.18064,5,231840,6586368,3,0,0,0,0\r\n",
+    "stderr": "cross/fib.vs load_ms=0.3448 compile_ms=0.4692\r\n"
+  },
+  {
+    "name": "fib",
+    "backend": "jit",
+    "stdout": "cross/fib.vs,jit,-1,0.26184,5,231840,6524928,3,0,0,0,0\r\ncross/fib.vs,jit,0,0.2199,5,231840,6631424,3,0,0,0,0\r\ncross/fib.vs,jit,1,0.22004,5,231840,6631424,3,0,0,0,0\r\ncross/fib.vs,jit,2,0.21586,5,231840,6647808,3,0,0,0,0\r\ncross/fib.vs,jit,3,0.20292,5,231840,6647808,3,0,0,0,0\r\ncross/fib.vs,jit,4,0.22616,5,231840,6660096,3,0,0,0,0\r\ncross/fib.vs,jit,5,0.19716,5,231840,6660096,3,0,0,0,0\r\ncross/fib.vs,jit,6,0.20022,5,231840,6660096,3,0,0,0,0\r\n",
+    "stderr": "cross/fib.vs load_ms=0.333 compile_ms=0.4416\r\n"
+  },
+  {
+    "name": "fib",
+    "backend": "vm",
+    "stdout": "cross/fib.vs,vm,-1,45.94294,5,231840,6123520,0,0,0,0,0\r\ncross/fib.vs,vm,0,46.267,5,231840,6139904,0,0,0,0,0\r\n",
+    "stderr": "cross/fib.vs load_ms=0.3415 compile_ms=0.455\r\n"
+  },
+  {
+    "name": "fib",
+    "backend": "cpp",
+    "stdout": "fib,cpp,0,0.1252519531,256,46368\r\nfib,cpp,1,0.1244941406,256,46368\r\nfib,cpp,2,0.1246574219,256,46368\r\nfib,cpp,3,0.1252730469,256,46368\r\nfib,cpp,4,0.1252328125,256,46368\r\nfib,cpp,5,0.1248277344,256,46368\r\nfib,cpp,6,0.1256847656,256,46368\r\n",
+    "stderr": ""
+  },
+  {
+    "name": "fib",
+    "backend": "node",
+    "stdout": "fib,node,0,0.2534484374999999,128,46368\nfib,node,1,0.2534679687499999,128,46368\nfib,node,2,0.25089531249999997,128,46368\nfib,node,3,0.2537992187499998,128,46368\nfib,node,4,0.25163125,128,46368\nfib,node,5,0.25171953125,128,46368\nfib,node,6,0.2529484375000006,128,46368\n",
+    "stderr": ""
+  },
+  {
+    "name": "sieve",
+    "backend": "mixed",
+    "stdout": "cross/sieve.vs,mixed,-1,1.64536,5,47960,7733248,1,1,0,10,0\r\ncross/sieve.vs,mixed,0,1.61432,5,47960,7778304,1,1,0,10,0\r\ncross/sieve.vs,mixed,1,1.54582,5,47960,8089600,1,1,0,10,0\r\ncross/sieve.vs,mixed,2,1.59012,5,47960,8089600,1,1,0,10,0\r\ncross/sieve.vs,mixed,3,1.48838,5,47960,8269824,1,1,0,10,0\r\ncross/sieve.vs,mixed,4,1.55094,5,47960,8282112,1,1,0,10,0\r\ncross/sieve.vs,mixed,5,1.60474,5,47960,8282112,1,1,0,10,0\r\ncross/sieve.vs,mixed,6,1.52726,5,47960,8282112,1,1,0,10,0\r\n",
+    "stderr": "cross/sieve.vs load_ms=0.3752 compile_ms=0.5241\r\n"
+  },
+  {
+    "name": "sieve",
+    "backend": "jit",
+    "stdout": "cross/sieve.vs,jit,-1,1.5491,5,47960,8171520,1,1,0,10,0\r\ncross/sieve.vs,jit,0,1.41846,5,47960,8171520,1,1,0,10,0\r\ncross/sieve.vs,jit,1,1.406,5,47960,8187904,1,1,0,10,0\r\ncross/sieve.vs,jit,2,1.43758,5,47960,8200192,1,1,0,10,0\r\ncross/sieve.vs,jit,3,1.40244,5,47960,8208384,1,1,0,10,0\r\ncross/sieve.vs,jit,4,1.5594,5,47960,8208384,1,1,0,10,0\r\ncross/sieve.vs,jit,5,1.50506,5,47960,8208384,1,1,0,10,0\r\ncross/sieve.vs,jit,6,1.49718,5,47960,8249344,1,1,0,10,0\r\n",
+    "stderr": "cross/sieve.vs load_ms=0.3813 compile_ms=0.4743\r\n"
+  },
+  {
+    "name": "sieve",
+    "backend": "vm",
+    "stdout": "cross/sieve.vs,vm,-1,96.71266,5,47960,7221248,0,0,0,0,0\r\ncross/sieve.vs,vm,0,96.41866,5,47960,7393280,0,0,0,0,0\r\n",
+    "stderr": "cross/sieve.vs load_ms=0.3763 compile_ms=0.4699\r\n"
+  },
+  {
+    "name": "sieve",
+    "backend": "cpp",
+    "stdout": "sieve,cpp,0,0.2003363281,256,9592\r\nsieve,cpp,1,0.2004109375,256,9592\r\nsieve,cpp,2,0.2003390625,256,9592\r\nsieve,cpp,3,0.1999875,256,9592\r\nsieve,cpp,4,0.2001210938,256,9592\r\nsieve,cpp,5,0.2002804687,256,9592\r\nsieve,cpp,6,0.2003238281,256,9592\r\n",
+    "stderr": ""
+  },
+  {
+    "name": "sieve",
+    "backend": "node",
+    "stdout": "sieve,node,0,0.4530632812500004,128,9592\nsieve,node,1,0.45626874999999956,128,9592\nsieve,node,2,0.45254921874999976,128,9592\nsieve,node,3,0.4514632812499997,128,9592\nsieve,node,4,0.45279765625000046,128,9592\nsieve,node,5,0.45969375000000046,128,9592\nsieve,node,6,0.46491796875,128,9592\n",
+    "stderr": ""
+  },
+  {
+    "name": "matrix",
+    "backend": "mixed",
+    "stdout": "cross/matrix.vs,mixed,-1,1.1178,5,167468158,7024640,1,1,0,15,0\r\ncross/matrix.vs,mixed,0,1.11418,5,167468158,7106560,1,1,0,15,0\r\ncross/matrix.vs,mixed,1,1.05036,5,167468158,7135232,1,1,0,15,0\r\ncross/matrix.vs,mixed,2,1.06434,5,167468158,7139328,1,1,0,15,0\r\ncross/matrix.vs,mixed,3,1.07062,5,167468158,7143424,1,1,0,15,0\r\ncross/matrix.vs,mixed,4,1.04072,5,167468158,7147520,1,1,0,15,0\r\ncross/matrix.vs,mixed,5,1.07262,5,167468158,7172096,1,1,0,15,0\r\ncross/matrix.vs,mixed,6,1.05686,5,167468158,7172096,1,1,0,15,0\r\n",
+    "stderr": "cross/matrix.vs load_ms=0.4078 compile_ms=0.6943\r\n"
+  },
+  {
+    "name": "matrix",
+    "backend": "jit",
+    "stdout": "cross/matrix.vs,jit,-1,1.17436,5,167468158,7028736,1,1,0,15,0\r\ncross/matrix.vs,jit,0,1.06698,5,167468158,7118848,1,1,0,15,0\r\ncross/matrix.vs,jit,1,1.05744,5,167468158,7118848,1,1,0,15,0\r\ncross/matrix.vs,jit,2,1.07728,5,167468158,7118848,1,1,0,15,0\r\ncross/matrix.vs,jit,3,1.05188,5,167468158,7118848,1,1,0,15,0\r\ncross/matrix.vs,jit,4,1.06242,5,167468158,7118848,1,1,0,15,0\r\ncross/matrix.vs,jit,5,1.06998,5,167468158,7135232,1,1,0,15,0\r\ncross/matrix.vs,jit,6,1.11764,5,167468158,7176192,1,1,0,15,0\r\n",
+    "stderr": "cross/matrix.vs load_ms=0.4098 compile_ms=0.6913\r\n"
+  },
+  {
+    "name": "matrix",
+    "backend": "vm",
+    "stdout": "cross/matrix.vs,vm,-1,102.50466,5,167468158,6389760,0,0,0,0,0\r\ncross/matrix.vs,vm,0,102.27026,5,167468158,6406144,0,0,0,0,0\r\n",
+    "stderr": "cross/matrix.vs load_ms=0.4242 compile_ms=0.7035\r\n"
+  },
+  {
+    "name": "matrix",
+    "backend": "cpp",
+    "stdout": "matrix,cpp,0,0.1083292969,512,233493633\r\nmatrix,cpp,1,0.1079544922,512,233493633\r\nmatrix,cpp,2,0.1073787109,512,233493633\r\nmatrix,cpp,3,0.1075441406,512,233493633\r\nmatrix,cpp,4,0.1084978516,512,233493633\r\nmatrix,cpp,5,0.1071949219,512,233493633\r\nmatrix,cpp,6,0.1071398438,512,233493633\r\n",
+    "stderr": ""
+  },
+  {
+    "name": "matrix",
+    "backend": "node",
+    "stdout": "matrix,node,0,0.21108242187500004,256,233493633\nmatrix,node,1,0.21576445312500026,256,233493633\nmatrix,node,2,0.2105195312500001,256,233493633\nmatrix,node,3,0.21064101562499982,256,233493633\nmatrix,node,4,0.2107796875000001,256,233493633\nmatrix,node,5,0.20973398437500013,256,233493633\nmatrix,node,6,0.20782343749999965,256,233493633\n",
+    "stderr": ""
+  },
+  {
+    "name": "escaping",
+    "backend": "mixed",
+    "stdout": "cross/escaping.vs,mixed,-1,62.05956,5,19083680,14958592,2,1,0,0,0\r\ncross/escaping.vs,mixed,0,61.5699,5,19083680,15491072,2,1,0,0,0\r\ncross/escaping.vs,mixed,1,61.55672,5,19083680,15523840,2,1,0,0,0\r\ncross/escaping.vs,mixed,2,61.07186,5,19083680,15523840,2,1,0,0,0\r\ncross/escaping.vs,mixed,3,62.29662,5,19083680,15523840,2,1,0,0,0\r\ncross/escaping.vs,mixed,4,62.19112,5,19083680,15523840,2,1,0,0,0\r\ncross/escaping.vs,mixed,5,61.73624,5,19083680,15523840,2,1,0,0,0\r\ncross/escaping.vs,mixed,6,61.73198,5,19083680,15523840,2,1,0,0,0\r\n",
+    "stderr": "cross/escaping.vs load_ms=0.3915 compile_ms=0.5897\r\n"
+  },
+  {
+    "name": "escaping",
+    "backend": "jit",
+    "stdout": "cross/escaping.vs,jit,-1,61.5665,5,19083680,15347712,2,1,0,0,0\r\ncross/escaping.vs,jit,0,61.74988,5,19083680,15421440,2,1,0,0,0\r\ncross/escaping.vs,jit,1,61.44642,5,19083680,15421440,2,1,0,0,0\r\ncross/escaping.vs,jit,2,61.73538,5,19083680,15421440,2,1,0,0,0\r\ncross/escaping.vs,jit,3,61.93146,5,19083680,15486976,2,1,0,0,0\r\ncross/escaping.vs,jit,4,61.27024,5,19083680,15486976,2,1,0,0,0\r\ncross/escaping.vs,jit,5,61.65198,5,19083680,15486976,2,1,0,0,0\r\ncross/escaping.vs,jit,6,61.37062,5,19083680,15486976,2,1,0,0,0\r\n",
+    "stderr": "cross/escaping.vs load_ms=0.3932 compile_ms=0.6079\r\n"
+  },
+  {
+    "name": "escaping",
+    "backend": "vm",
+    "stdout": "cross/escaping.vs,vm,-1,29.2031,5,19083680,14651392,0,0,0,0,0\r\ncross/escaping.vs,vm,0,29.14856,5,19083680,14651392,0,0,0,0,0\r\n",
+    "stderr": "cross/escaping.vs load_ms=0.3889 compile_ms=0.5867\r\n"
+  },
+  {
+    "name": "escaping",
+    "backend": "cpp",
+    "stdout": "escaping,cpp,0,1.24885,32,3816736\r\nescaping,cpp,1,1.241890625,32,3816736\r\nescaping,cpp,2,1.22360625,32,3816736\r\nescaping,cpp,3,1.219575,32,3816736\r\nescaping,cpp,4,1.214425,32,3816736\r\nescaping,cpp,5,1.20718125,32,3816736\r\nescaping,cpp,6,1.20569375,32,3816736\r\n",
+    "stderr": ""
+  },
+  {
+    "name": "escaping",
+    "backend": "node",
+    "stdout": "escaping,node,0,0.15097148437500008,256,3816736\nescaping,node,1,0.15228515625000005,256,3816736\nescaping,node,2,0.15651640625000018,256,3816736\nescaping,node,3,0.19017187499999988,256,3816736\nescaping,node,4,0.14963789062499977,256,3816736\nescaping,node,5,0.15932031249999978,256,3816736\nescaping,node,6,0.15400664062500002,256,3816736\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,9 @@
+# Gradle's Unix launcher must remain executable by a POSIX shell after checkout.
+/gradlew text eol=lf
+
+*.md text eol=lf
+/Resources/Catalog/*.json text eol=lf
+/Resources/Tools/*.py text eol=lf
+
+# Preserve imported upstream build-tool notices verbatim.
+/Resources/Licenses/* -text !eol

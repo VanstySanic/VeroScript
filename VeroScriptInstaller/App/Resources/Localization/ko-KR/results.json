@@ -1,0 +1,8 @@
+{
+  "Success": "VeroScript {0}이 성공적으로 설치되었습니다.",
+  "UpdateSuccess": "VeroScript가 {0}으로 업데이트되었습니다. 사용자 소유 파일은 보존되었습니다.",
+  "UninstallReady": "이 VeroScript 설치를 제거할 준비가 되었습니다.",
+  "UninstallSuccess": "VeroScript가 성공적으로 제거되었습니다.",
+  "RepairReady": "이 VeroScript 설치를 확인하고 복구할 준비가 되었습니다.",
+  "RepairSuccess": "VeroScript {0}이 성공적으로 복구되었습니다."
+}

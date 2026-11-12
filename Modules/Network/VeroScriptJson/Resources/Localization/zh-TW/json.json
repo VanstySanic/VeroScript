@@ -1,0 +1,23 @@
+{
+  "json.syntax": "JSON — 語法: {0} (路徑: {1})",
+  "json.utf8": "JSON — 無效 UTF-8: {0} (路徑: {1})",
+  "json.duplicate_key": "JSON — 重複鍵: {0} (路徑: {1})",
+  "json.type": "JSON — 型別不符: {0} (路徑: {1})",
+  "json.range": "JSON — 超出範圍: {0} (路徑: {1})",
+  "json.missing": "JSON — 缺少值: {0} (路徑: {1})",
+  "json.pointer": "JSON — 指標: {0} (路徑: {1})",
+  "json.patch": "JSON — 修補: {0} (路徑: {1})",
+  "json.limit": "JSON — 超出限制: {0} (路徑: {1})",
+  "json.cancelled": "JSON — 已取消: {0} (路徑: {1})",
+  "json.allocation": "JSON — 配置失敗: {0} (路徑: {1})",
+  "json.state": "JSON — 無效狀態: {0} (路徑: {1})",
+  "json.sink": "JSON — 輸出失敗: {0} (路徑: {1})",
+  "json.unsupported": "JSON — 不支援的操作: {0} (路徑: {1})",
+  "json.callback": "JSON — 回呼失敗: {0} (路徑: {1})",
+  "json.schema": "JSON — Schema: {0} (路徑: {1})",
+  "json.resource": "JSON — 資源: {0} (路徑: {1})",
+  "json.cycle": "JSON — 物件循環: {0} (路徑: {1})",
+  "json.unknown": "JSON — 未知錯誤: {0} (路徑: {1})",
+  "json.binding": "JSON — 繫結: {0} (路徑: {1})",
+  "json.mapping.declaration": "JSON — 繫結: {0}"
+}

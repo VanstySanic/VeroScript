@@ -1,0 +1,80 @@
+{
+  "format": "veroscript-build",
+  "formatVersion": "0.1.1",
+  "platform": "portable",
+  "defaultTargets": [
+    "all"
+  ],
+  "targets": {
+    "library": {
+      "kind": "library",
+      "entry": "src/library.vs",
+      "packageName": "sample.utility",
+      "output": "utility.vslib"
+    },
+    "application": {
+      "kind": "application",
+      "entry": "src/main.vs",
+      "packageName": "sample.application",
+      "modules": {
+        "utility.vslib": {
+          "target": "library",
+          "output": "main"
+        }
+      },
+      "options": {
+        "version": "0.1.1"
+      },
+      "output": "sample.vsapp"
+    },
+    "source": {
+      "kind": "application",
+      "mode": "source",
+      "entry": "src/main.vs",
+      "packageName": "sample.source",
+      "modules": {
+        "utility.vslib": {
+          "target": "library",
+          "output": "main"
+        }
+      },
+      "options": {
+        "version": "0.1.1"
+      },
+      "output": "sample-source.vsapp"
+    },
+    "directory": {
+      "kind": "bundle",
+      "application": {
+        "target": "application",
+        "output": "main"
+      },
+      "layout": "directory",
+      "output": "SampleApp"
+    },
+    "zip": {
+      "kind": "bundle",
+      "application": {
+        "target": "application",
+        "output": "main"
+      },
+      "layout": "zip",
+      "output": "SampleApp.zip"
+    },
+    "distribution": {
+      "kind": "distribution",
+      "source": "package",
+      "output": "sample.vspkg"
+    },
+    "all": {
+      "kind": "group",
+      "dependsOn": [
+        "application",
+        "source",
+        "directory",
+        "zip",
+        "distribution"
+      ]
+    }
+  }
+}

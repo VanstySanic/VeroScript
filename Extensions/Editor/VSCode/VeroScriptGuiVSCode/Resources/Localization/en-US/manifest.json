@@ -1,0 +1,19 @@
+{
+  "extension.description": "VSWML/VSWCSS editing and native VeroScript GUI check, compilation and preview.",
+  "command.check": "Check GUI",
+  "command.build": "Compile GUI Application",
+  "command.preview": "Preview GUI",
+  "command.selectEntry": "Select GUI Entry",
+  "command.showOutput": "Show GUI Output",
+  "setting.entry": "GUI entry (.vs or .vswml; .vsapp for check/preview). Empty uses the selected input; a style file uses a sibling .vswml.",
+  "setting.environmentPath": "Explicit CLI package environment passed with --path. Backend choices precede environment loading.",
+  "setting.schemaFiles": "Editor hint JSON files extending builtin widget metadata. They do not register runtime bindings or GUI compiler processors.",
+  "setting.assets": "Files embedded by GUI compilation. Paths use the owning workspace/source directory.",
+  "setting.packageName": "Package name for compiled GUI applications.",
+  "setting.previewFrames": "Frame bound for .vswml previews only. Zero leaves the generated loop unbounded; VS entries own their loop.",
+  "setting.backends": "Platform/graphics/gui/image/font/text-layout backend selection. Empty or omitted values inherit the native environment; auto selects a native candidate and none disables the service.",
+  "task.action": "Native GUI task action.",
+  "task.input": "GUI entry path, resolved on the workspace extension host. Supports workspaceFolder, file, fileDirname and env variables.",
+  "task.output": "Compilation output ending in .vsapp.",
+  "task.args": "Preview script arguments. Arrays replace inherited veroscript.run.args."
+}

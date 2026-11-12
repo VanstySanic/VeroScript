@@ -1,0 +1,19 @@
+{
+  "extension.description": "VSWML／VSWCSS 编辑，以及原生 VeroScript GUI 检查、编译和预览。",
+  "command.check": "检查 GUI",
+  "command.build": "编译 GUI 应用",
+  "command.preview": "预览 GUI",
+  "command.selectEntry": "选择 GUI 入口",
+  "command.showOutput": "显示 GUI 输出",
+  "setting.entry": "GUI 入口（.vs 或 .vswml；检查／预览也支持 .vsapp）。留空使用选中文件；样式文件使用同名 .vswml。",
+  "setting.environmentPath": "通过 --path 显式选择 CLI 包环境。后端选项会放在环境加载之前。",
+  "setting.schemaFiles": "扩展内建控件元数据的编辑器提示 JSON 文件。不会注册运行时绑定或 GUI 编译处理器。",
+  "setting.assets": "GUI 编译时嵌入的文件，路径以所属工作区／源文件目录为基准。",
+  "setting.packageName": "编译后 GUI 应用的包名。",
+  "setting.previewFrames": "仅限制 .vswml 预览帧数。0 表示不限制生成循环；VS 入口自行管理循环。",
+  "setting.backends": "选择 platform／graphics／gui／image／font／text-layout 后端。留空或省略时继承原生环境；auto 请求原生候选选择，none 禁用该服务。",
+  "task.action": "原生 GUI 任务操作。",
+  "task.input": "GUI 入口路径，在工作区扩展宿主上解析，支持 workspaceFolder、file、fileDirname 和 env 变量。",
+  "task.output": "以 .vsapp 结尾的编译输出。",
+  "task.args": "预览脚本参数，数组替换继承的 veroscript.run.args。"
+}

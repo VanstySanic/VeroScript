@@ -1,0 +1,20 @@
+{
+  "network.invalid_argument": "Argument invalide: {0}",
+  "network.unsupported": "Opération non prise en charge: {0}",
+  "network.queue_full": "File pleine: {0}",
+  "network.cancelled": "Annulé: {0}",
+  "network.timed_out": "Délai dépassé: {0}",
+  "network.closed": "Fermé: {0}",
+  "network.resolve": "Échec de résolution: {0}",
+  "network.connect": "Échec de connexion: {0}",
+  "network.read": "Échec de lecture: {0}",
+  "network.write": "Échec d’écriture: {0}",
+  "network.protocol": "Erreur de protocole: {0}",
+  "network.limit": "Limite dépassée: {0}",
+  "network.state": "État invalide: {0}",
+  "network.callback": "Échec du rappel: {0}",
+  "network.allocation": "Allocation impossible: {0}",
+  "network.internal": "Erreur interne: {0}",
+  "network.unknown": "Erreur inconnue: {0}",
+  "network.binding": "Liaison: {0}"
+}

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=@APPLICATION_NAME@
+Comment=Edit VeroScript source documents
+Exec="@EDITOR_EXECUTABLE_PATH@" %f
+Icon=@APPLICATION_ICON_NAME@
+Terminal=false
+NoDisplay=false
+MimeType=text/x-veroscript;
+Categories=Development;IDE;
+StartupNotify=true

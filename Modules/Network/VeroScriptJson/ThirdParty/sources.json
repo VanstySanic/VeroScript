@@ -1,0 +1,42 @@
+{
+  "dependencies": [
+    {
+      "name": "jsoncons",
+      "version": "1.10.0",
+      "url": "https://codeload.github.com/danielaparker/jsoncons/tar.gz/refs/tags/v1.10.0",
+      "sha256": "c829350a2eece662beb378143e2ab1c1cbb07d703687bf168626665a8a7d8bc1",
+      "license": "BSL-1.0; embedded notices retained in source headers",
+      "files": "jsoncons/include/**; jsoncons/LICENSE*",
+      "patches": [
+        "patches/jsoncons-schema-adapter.patch"
+      ]
+    },
+    {
+      "name": "QuickJS-ng libregexp/libunicode",
+      "version": "0.17.0",
+      "url": "https://codeload.github.com/quickjs-ng/quickjs/tar.gz/refs/tags/v0.17.0",
+      "sha256": "559bc4c420475e55c7ab4510adbc562f55d7524d75e8e89d79ce4bb02f5687d9",
+      "license": "MIT; embedded notices retained in source headers",
+      "files": "quickjs-regexp/**",
+      "configuration": "Only the standalone ECMAScript regex and Unicode libraries; no JavaScript interpreter/runtime"
+    },
+    {
+      "name": "python-idna generated validation and UTS #46 tables",
+      "version": "3.12 (Unicode 17.0.0)",
+      "url": "https://files.pythonhosted.org/packages/22/12/2948fbe5513d062169bd91f7d7b1cd97bc8894f32946b71fa39f6e63ca0c/idna-3.12.tar.gz",
+      "sha256": "724e9952cc9e2bd7550ea784adb098d837ab5267ef67a1ab9cf7846bdbdd8254",
+      "license": "BSD-3-Clause",
+      "files": "idna/Unicode17Data.h; idna/Unicode17Mapping.h; idna/LICENSE",
+      "configuration": "Generated C++17 tables and adapted IDNA validation rules only; no Python runtime dependency"
+    },
+    {
+      "name": "Unicode character data",
+      "version": "17.0.0",
+      "url": "https://www.unicode.org/Public/17.0.0/ucd/UnicodeData.txt",
+      "sha256": "2e1efc1dcb59c575eedf5ccae60f95229f706ee6d031835247d843c11d96470c",
+      "license": "Unicode-3.0",
+      "files": "idna/Unicode17Data.h; idna/UNICODE_LICENSE.txt",
+      "configuration": "Generated combining-mark, virama and Bidi ranges; original license retained"
+    }
+  ]
+}

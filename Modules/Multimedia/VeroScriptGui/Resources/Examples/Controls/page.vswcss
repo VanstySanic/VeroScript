@@ -1,0 +1,13 @@
+/* SPDX-FileCopyrightText: VanstySanic */
+/* SPDX-License-Identifier: MIT */
+
+:root { padding: 16px; gap: 10px; background-color: #17202b; color: #eaf0f8; }
+Button { border-radius: 4px; background-color: #28415e; }
+Button:hover { background-color: #355777; }
+Button:active { background-color: #15324e; }
+Button:focus { background-color: #3e6080; }
+CheckBox:checked, ToggleSwitch:checked { color: #76c7fa; }
+Slider, ProgressBar { color: #76c7fa; }
+TextBox:focus, TextArea:focus { background-color: #26394c; }
+Border { border-radius: 8px; border-width: 1; border-color: #52718f; }
+:disabled { opacity: 0.5; }

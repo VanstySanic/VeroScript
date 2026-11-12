@@ -1,0 +1,12 @@
+{
+  "diag.external_deserializer_callback_failed": "Échec du callback de désérialisation externe",
+  "diag.failed_to_build_package": "échec de la construction du package : {0}",
+  "diag.foreign_callback_raised_an_unknown_exception": "Le callback externe a levé une exception inconnue",
+  "diag.foreign_external_deserializer_raised_an_exception": "Le désérialiseur externe a levé une exception",
+  "diag.foreign_external_serializer_raised_an_exception": "Le sérialiseur externe a levé une exception",
+  "diag.foreign_generic_host_type_factory_raised_an_exception": "La fabrique externe de type hôte générique a levé une exception",
+  "diag.generic_host_type_factory_is_unavailable": "Fabrique de type hôte générique indisponible",
+  "diag.invalid_host_function_metadata": "Métadonnées de fonction hôte invalides",
+  "diag.invalid_host_member_parameter_metadata": "Métadonnées de paramètre membre hôte invalides",
+  "diag.veroscriptinterop_native_callback_is_unavailable": "Callback natif VeroScriptInterop indisponible"
+}

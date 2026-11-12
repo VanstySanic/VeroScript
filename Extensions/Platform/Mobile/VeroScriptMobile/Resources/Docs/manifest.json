@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "Extensions/Platform/Mobile/VeroScriptMobile",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/mobile/index.md"
+    }
+  ],
+  "developer": true
+}

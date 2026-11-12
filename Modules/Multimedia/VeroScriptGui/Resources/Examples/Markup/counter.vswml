@@ -1,0 +1,25 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Widget Padding="16px" Gap="12px" Background="#101927">
+	<script><![CDATA[
+		public:
+			int64 Count = 0;
+
+			@GuiMethod(Mark = "increment")
+			void Increment()
+			{
+				Count = Count + 1;
+			}
+	]]></script>
+
+	<Widget id="counter" Height="80px"
+            bind:width="{ VS::Gui::Length::Percent(20 + cast&lt;double&gt;(Count % 8) * 10) }"
+            bind:background-color="{ VS::Gui::Color(0.04, 0.45, 0.8, 1.0) }"
+            on:pointer-down="increment" />
+
+	<style>
+		#counter:hover { opacity: 0.8; }
+		#counter:active { opacity: 0.5; }
+	</style>
+</Widget>

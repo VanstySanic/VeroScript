@@ -1,0 +1,5 @@
+{
+  "python_tools.aot_failed": "Python AOT 生成失败：{0}",
+  "python_tools.aot_output_missing": "Python AOT 报告成功，但未生成有效输出：{0}",
+  "python_tools.aot_manifest_invalid": "生成的 Python AOT 清单无效：{0}"
+}

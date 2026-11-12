@@ -1,0 +1,6 @@
+// SPDX-FileCopyrightText: VanstySanic
+// SPDX-License-Identifier: MIT
+
+#pragma once
+
+inline constexpr unsigned char VeroScriptDefaultFont[] = {@VEROSCRIPT_DEFAULT_FONT_BYTES@};

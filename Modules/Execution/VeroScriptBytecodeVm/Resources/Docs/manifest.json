@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "Modules/Execution/VeroScriptBytecodeVm",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/toolchain/bytecode-vm.md"
+    }
+  ],
+  "developer": true
+}

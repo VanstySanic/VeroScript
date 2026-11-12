@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+@PACKAGE_INIT@
+include(CMakeFindDependencyMacro)
+find_dependency(Threads)
+find_dependency(VeroScriptPlatform 0.1.1 EXACT CONFIG)
+find_dependency(VeroScriptGraphics 0.1.1 EXACT CONFIG)
+find_dependency(VeroScriptImage 0.1.1 EXACT CONFIG)
+find_dependency(VeroScriptFont 0.1.1 EXACT CONFIG)
+include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptGuiTargets.cmake")
+set(VeroScriptGui_Bindings_FOUND FALSE)
+if("Bindings" IN_LIST VeroScriptGui_FIND_COMPONENTS AND
+		EXISTS "${CMAKE_CURRENT_LIST_DIR}/VeroScriptGuiBindingsTargets.cmake")
+	find_dependency(VeroScriptCpp 0.1.1 EXACT CONFIG COMPONENTS Runtime)
+	find_dependency(VeroScriptImage 0.1.1 EXACT CONFIG COMPONENTS Bindings)
+	find_dependency(VeroScriptFont 0.1.1 EXACT CONFIG COMPONENTS Bindings)
+	include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptGuiBindingsTargets.cmake")
+	set(VeroScriptGui_Bindings_FOUND TRUE)
+endif()
+include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptGuiRelease.cmake" OPTIONAL)
+check_required_components(VeroScriptGui)

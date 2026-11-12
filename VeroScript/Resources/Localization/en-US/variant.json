@@ -1,0 +1,11 @@
+{
+  "diag.variant_requires_concrete_null_type": "Box a typed null reference instead of nullptr",
+  "diag.variant_expected": "Expected a variant value",
+  "diag.variant_not_allowed_as_key": "variant cannot be used as an associative key",
+  "diag.variant_not_allowed_in_channel": "variant cannot be transferred through a channel",
+  "diag.variant_worker_transfer_unsupported": "variant cannot be transferred to a worker",
+  "diag.variant_empty_cast": "Cannot extract a value from an empty variant",
+  "diag.try_cast_variant_target_is_meaningless": "try_cast<variant> is not supported; use variant(value)",
+  "diag.aot_variant_unsupported": "variant requires the VeroScript runtime; standalone output is unsupported",
+  "diag.variant_reserved_name": "The variant type and intrinsic names are reserved"
+}

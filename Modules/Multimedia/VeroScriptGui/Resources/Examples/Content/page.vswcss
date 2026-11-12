@@ -1,0 +1,12 @@
+/* SPDX-FileCopyrightText: VanstySanic */
+/* SPDX-License-Identifier: MIT */
+
+Widget { font-family: "Vero Sans"; color: #ffffff; }
+#root { padding: 16px; gap: 12px; background-color: #142238; }
+.title { font-size: 28px; }
+.surface {
+	border-radius: 12px;
+	clip-content: true;
+	background-image: linear-gradient(90deg, #173b70, #438bd0);
+	box-shadow: 2px 3px 4px #00000080;
+}

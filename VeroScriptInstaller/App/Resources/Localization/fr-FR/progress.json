@@ -1,0 +1,7 @@
+{
+  "Ready": "Prêt à installer.",
+  "UpdateReady": "Une installation existante a été trouvée. Prêt à mettre à jour en préservant les fichiers utilisateur.",
+  "Loading": "Validation du package d'installation…",
+  "Copying": "Installation de {0} ({1}/{2})…",
+  "Committing": "Fin de l'installation…"
+}

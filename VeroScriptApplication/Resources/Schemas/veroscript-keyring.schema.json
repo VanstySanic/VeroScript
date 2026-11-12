@@ -1,0 +1,66 @@
+{
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "veroscript-keyring"
+    },
+    "formatVersion": {
+      "const": "0.1.1"
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "keys": {
+      "type": "array",
+      "maxItems": 4096,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "secret": {
+            "type": "string"
+          },
+          "public": {
+            "type": "string"
+          },
+          "purposes": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "encrypt",
+                "decrypt",
+                "sign",
+                "verify"
+              ]
+            }
+          },
+          "trusted": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "version",
+          "purposes"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "format",
+    "formatVersion",
+    "keys"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

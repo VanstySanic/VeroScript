@@ -1,0 +1,23 @@
+{
+  "json.syntax": "JSON — 構文: {0} (パス: {1})",
+  "json.utf8": "JSON — 無効な UTF-8: {0} (パス: {1})",
+  "json.duplicate_key": "JSON — キーの重複: {0} (パス: {1})",
+  "json.type": "JSON — 型の不一致: {0} (パス: {1})",
+  "json.range": "JSON — 範囲外: {0} (パス: {1})",
+  "json.missing": "JSON — 値の欠落: {0} (パス: {1})",
+  "json.pointer": "JSON — ポインター: {0} (パス: {1})",
+  "json.patch": "JSON — パッチ: {0} (パス: {1})",
+  "json.limit": "JSON — 上限超過: {0} (パス: {1})",
+  "json.cancelled": "JSON — キャンセル: {0} (パス: {1})",
+  "json.allocation": "JSON — メモリ確保失敗: {0} (パス: {1})",
+  "json.state": "JSON — 無効な状態: {0} (パス: {1})",
+  "json.sink": "JSON — 出力失敗: {0} (パス: {1})",
+  "json.unsupported": "JSON — 未対応の操作: {0} (パス: {1})",
+  "json.callback": "JSON — コールバック失敗: {0} (パス: {1})",
+  "json.schema": "JSON — スキーマ: {0} (パス: {1})",
+  "json.resource": "JSON — リソース: {0} (パス: {1})",
+  "json.cycle": "JSON — オブジェクトの循環: {0} (パス: {1})",
+  "json.unknown": "JSON — 不明なエラー: {0} (パス: {1})",
+  "json.binding": "JSON — バインディング: {0} (パス: {1})",
+  "json.mapping.declaration": "JSON — バインディング: {0}"
+}

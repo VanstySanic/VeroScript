@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "module": "Extensions/Editor/VSCode/VeroScriptGuiVSCode",
+  "user": [{ "source": "User/{locale}/index.md", "output": "{locale}/editors/vscode-gui/index.md" }],
+  "developer": true
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "Extensions/Editor/VSCode/VeroScriptVSCode",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/editors/vscode/index.md"
+    }
+  ],
+  "developer": true
+}

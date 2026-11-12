@@ -1,0 +1,19 @@
+{
+  "extension.description": "Édition VSWML/VSWCSS et vérification, compilation et aperçu GUI VeroScript natifs.",
+  "command.check": "Vérifier la GUI",
+  "command.build": "Compiler l’application GUI",
+  "command.preview": "Afficher l’aperçu GUI",
+  "command.selectEntry": "Sélectionner l’entrée GUI",
+  "command.showOutput": "Afficher la sortie GUI",
+  "setting.entry": "Entrée GUI (.vs ou .vswml ; .vsapp pour vérification/aperçu). Vide : fichier sélectionné ; un style utilise le .vswml de même nom.",
+  "setting.environmentPath": "Environnement de paquets CLI explicite via --path. Les choix de backends précèdent le chargement de l’environnement.",
+  "setting.schemaFiles": "Fichiers JSON d’aide à l’édition étendant les métadonnées des widgets. Ils n’enregistrent ni bindings exécutables ni processeurs GUI.",
+  "setting.assets": "Fichiers incorporés à la compilation GUI. Chemins relatifs au dossier de travail/source propriétaire.",
+  "setting.packageName": "Nom du paquet de l’application GUI compilée.",
+  "setting.previewFrames": "Limite d’images pour les aperçus .vswml uniquement. Zéro ne limite pas la boucle générée ; les entrées VS gèrent leur boucle.",
+  "setting.backends": "Sélection des backends platform/graphics/gui/image/font/text-layout. Les valeurs vides ou omises héritent de l’environnement natif ; auto sélectionne un candidat natif et none désactive le service.",
+  "task.action": "Action de la tâche GUI native.",
+  "task.input": "Chemin d’entrée GUI résolu sur l’hôte d’extension, avec les variables workspaceFolder, file, fileDirname et env.",
+  "task.output": "Sortie de compilation se terminant par .vsapp.",
+  "task.args": "Arguments du script d’aperçu. Le tableau remplace veroscript.run.args hérité."
+}

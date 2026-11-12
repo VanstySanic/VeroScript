@@ -1,0 +1,19 @@
+{
+  "extension.description": "VSWML/VSWCSS 편집과 네이티브 VeroScript GUI 검사, 컴파일 및 미리 보기.",
+  "command.check": "GUI 검사",
+  "command.build": "GUI 애플리케이션 컴파일",
+  "command.preview": "GUI 미리 보기",
+  "command.selectEntry": "GUI 진입점 선택",
+  "command.showOutput": "GUI 출력 표시",
+  "setting.entry": "GUI 진입점(.vs 또는 .vswml, 검사/미리 보기는 .vsapp도 지원). 비어 있으면 선택한 입력을 사용하며 스타일 파일은 같은 이름의 .vswml을 사용합니다.",
+  "setting.environmentPath": "--path로 전달하는 명시적 CLI 패키지 환경. 백엔드 선택을 환경 로딩 전에 배치합니다.",
+  "setting.schemaFiles": "기본 위젯 메타데이터를 확장하는 편집기 힌트 JSON 파일입니다. 런타임 바인딩이나 GUI 컴파일 처리기를 등록하지 않습니다.",
+  "setting.assets": "GUI 컴파일에서 포함할 파일입니다. 경로는 소유 작업 영역/소스 디렉터리를 기준으로 합니다.",
+  "setting.packageName": "컴파일한 GUI 애플리케이션의 패키지 이름입니다.",
+  "setting.previewFrames": ".vswml 미리 보기만의 프레임 제한입니다. 0은 생성 루프를 제한하지 않으며 VS 진입점은 자체 루프를 관리합니다.",
+  "setting.backends": "platform/graphics/gui/image/font/text-layout 백엔드 선택. 빈 값이나 생략은 네이티브 환경을 상속하며 auto는 네이티브 후보 선택, none은 서비스 비활성화를 요청합니다.",
+  "task.action": "네이티브 GUI 작업 동작입니다.",
+  "task.input": "작업 영역 확장 호스트에서 확인하는 GUI 입력 경로입니다. workspaceFolder, file, fileDirname 및 env 변수를 지원합니다.",
+  "task.output": ".vsapp로 끝나는 컴파일 출력입니다.",
+  "task.args": "미리 보기 스크립트 인수입니다. 배열은 상속한 veroscript.run.args를 대체합니다."
+}

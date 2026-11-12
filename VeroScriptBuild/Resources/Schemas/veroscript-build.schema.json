@@ -1,0 +1,1513 @@
+{
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "veroscript-build"
+    },
+    "formatVersion": {
+      "const": "0.1.1"
+    },
+    "outputDirectory": {
+      "type": "string",
+      "minLength": 1
+    },
+    "defaultTargets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "profiles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "compile": {
+            "type": "object",
+            "properties": {
+              "stripDebugInfo": {
+                "type": "boolean"
+              },
+              "defines": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "importPaths": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "stdlibSearchPaths": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "allowCircularImports": {
+                "type": "boolean"
+              },
+              "allowProjectWideAccess": {
+                "type": "boolean"
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          },
+          "targetOverrides": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "compile": {
+                  "type": "object",
+                  "properties": {
+                    "stripDebugInfo": {
+                      "type": "boolean"
+                    },
+                    "defines": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "uniqueItems": true
+                    },
+                    "importPaths": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "uniqueItems": true
+                    },
+                    "stdlibSearchPaths": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "uniqueItems": true
+                    },
+                    "allowCircularImports": {
+                      "type": "boolean"
+                    },
+                    "allowProjectWideAccess": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [],
+                  "additionalProperties": false
+                },
+                "protection": {
+                  "type": "object",
+                  "properties": {
+                    "encryption": {
+                      "type": "object",
+                      "properties": {
+                        "algorithm": {
+                          "const": "xchacha20poly1305-ietf"
+                        },
+                        "keyRef": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "keyVersion": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "algorithm",
+                        "keyRef",
+                        "keyVersion"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "signature": {
+                      "type": "object",
+                      "properties": {
+                        "algorithm": {
+                          "const": "ed25519"
+                        },
+                        "keyRef": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "keyVersion": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "scope": {
+                          "enum": [
+                            "content",
+                            "artifact"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "algorithm",
+                        "keyRef",
+                        "keyVersion"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [],
+                  "additionalProperties": false
+                },
+                "options": {
+                  "type": "object"
+                }
+              },
+              "required": [],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      }
+    },
+    "platform": {
+      "oneOf": [
+        {
+          "enum": [
+            "host",
+            "portable"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "core": {
+              "type": "string",
+              "minLength": 1
+            },
+            "coreBuild": {
+              "type": "string",
+              "minLength": 1
+            },
+            "os": {
+              "type": "string",
+              "minLength": 1
+            },
+            "arch": {
+              "type": "string",
+              "minLength": 1
+            },
+            "environment": {
+              "type": "string",
+              "minLength": 1
+            },
+            "abis": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "minimumVersions": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "capabilities": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "core",
+            "coreBuild",
+            "os",
+            "arch",
+            "environment",
+            "abis",
+            "minimumVersions",
+            "capabilities"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "targets": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 4096,
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "library"
+              },
+              "dependsOn": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "entry": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "$ref": "#/$defs/reference"
+                  }
+                ]
+              },
+              "packageName": {
+                "type": "string",
+                "minLength": 1
+              },
+              "packageVersion": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "maxLength": 20
+              },
+              "modules": {
+                "type": "object",
+                "additionalProperties": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "$ref": "#/$defs/reference"
+                    }
+                  ]
+                }
+              },
+              "compile": {
+                "type": "object",
+                "properties": {
+                  "stripDebugInfo": {
+                    "type": "boolean"
+                  },
+                  "defines": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true
+                  },
+                  "importPaths": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true
+                  },
+                  "stdlibSearchPaths": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true
+                  },
+                  "allowCircularImports": {
+                    "type": "boolean"
+                  },
+                  "allowProjectWideAccess": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [],
+                "additionalProperties": false
+              },
+              "output": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 511,
+                "pattern": "^(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+              },
+              "protection": {
+                "type": "object",
+                "properties": {
+                  "encryption": {
+                    "type": "object",
+                    "properties": {
+                      "algorithm": {
+                        "const": "xchacha20poly1305-ietf"
+                      },
+                      "keyRef": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "keyVersion": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "algorithm",
+                      "keyRef",
+                      "keyVersion"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "signature": {
+                    "type": "object",
+                    "properties": {
+                      "algorithm": {
+                        "const": "ed25519"
+                      },
+                      "keyRef": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "keyVersion": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "scope": {
+                        "enum": [
+                          "content",
+                          "artifact"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "algorithm",
+                      "keyRef",
+                      "keyVersion"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [],
+                "additionalProperties": false
+              },
+              "options": {
+                "type": "object",
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "kind",
+              "entry",
+              "packageName",
+              "output"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "application"
+              },
+              "dependsOn": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "entry": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "$ref": "#/$defs/reference"
+                  }
+                ]
+              },
+              "packageName": {
+                "type": "string",
+                "minLength": 1
+              },
+              "packageVersion": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "maxLength": 20
+              },
+              "modules": {
+                "type": "object",
+                "additionalProperties": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "$ref": "#/$defs/reference"
+                    }
+                  ]
+                }
+              },
+              "compile": {
+                "type": "object",
+                "properties": {
+                  "stripDebugInfo": {
+                    "type": "boolean"
+                  },
+                  "defines": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true
+                  },
+                  "importPaths": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true
+                  },
+                  "stdlibSearchPaths": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true
+                  },
+                  "allowCircularImports": {
+                    "type": "boolean"
+                  },
+                  "allowProjectWideAccess": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [],
+                "additionalProperties": false
+              },
+              "output": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 511,
+                "pattern": "^(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+              },
+              "protection": {
+                "type": "object",
+                "properties": {
+                  "encryption": {
+                    "type": "object",
+                    "properties": {
+                      "algorithm": {
+                        "const": "xchacha20poly1305-ietf"
+                      },
+                      "keyRef": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "keyVersion": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "algorithm",
+                      "keyRef",
+                      "keyVersion"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "signature": {
+                    "type": "object",
+                    "properties": {
+                      "algorithm": {
+                        "const": "ed25519"
+                      },
+                      "keyRef": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "keyVersion": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "scope": {
+                        "enum": [
+                          "content",
+                          "artifact"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "algorithm",
+                      "keyRef",
+                      "keyVersion"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [],
+                "additionalProperties": false
+              },
+              "options": {
+                "type": "object",
+                "properties": {
+                  "applicationId": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "version": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [],
+                "additionalProperties": false
+              },
+              "mode": {
+                "enum": [
+                  "source",
+                  "compiled"
+                ]
+              },
+              "files": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "from": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "$ref": "#/$defs/reference"
+                        }
+                      ]
+                    },
+                    "to": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 511,
+                      "pattern": "^(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                    },
+                    "protection": {
+                      "type": "object",
+                      "properties": {
+                        "encryption": {
+                          "type": "object",
+                          "properties": {
+                            "algorithm": {
+                              "const": "xchacha20poly1305-ietf"
+                            },
+                            "keyRef": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "keyVersion": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "algorithm",
+                            "keyRef",
+                            "keyVersion"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "signature": {
+                          "type": "object",
+                          "properties": {
+                            "algorithm": {
+                              "const": "ed25519"
+                            },
+                            "keyRef": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "keyVersion": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "scope": {
+                              "enum": [
+                                "artifact"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "algorithm",
+                            "keyRef",
+                            "keyVersion"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [],
+                      "additionalProperties": false
+                    },
+                    "signature": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "$ref": "#/$defs/reference"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "from",
+                    "to"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "entry",
+              "packageName",
+              "output"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "distribution"
+              },
+              "dependsOn": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "source": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "$ref": "#/$defs/reference"
+                  }
+                ]
+              },
+              "files": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "from": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "$ref": "#/$defs/reference"
+                        }
+                      ]
+                    },
+                    "to": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 511,
+                      "pattern": "^(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                    },
+                    "protection": {
+                      "type": "object",
+                      "properties": {
+                        "encryption": {
+                          "type": "object",
+                          "properties": {
+                            "algorithm": {
+                              "const": "xchacha20poly1305-ietf"
+                            },
+                            "keyRef": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "keyVersion": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "algorithm",
+                            "keyRef",
+                            "keyVersion"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "signature": {
+                          "type": "object",
+                          "properties": {
+                            "algorithm": {
+                              "const": "ed25519"
+                            },
+                            "keyRef": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "keyVersion": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "scope": {
+                              "enum": [
+                                "artifact"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "algorithm",
+                            "keyRef",
+                            "keyVersion"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [],
+                      "additionalProperties": false
+                    },
+                    "signature": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "$ref": "#/$defs/reference"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "from",
+                    "to"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "output": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 511,
+                "pattern": "^(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+              },
+              "protection": {
+                "type": "object",
+                "properties": {
+                  "encryption": {
+                    "type": "object",
+                    "properties": {
+                      "algorithm": {
+                        "const": "xchacha20poly1305-ietf"
+                      },
+                      "keyRef": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "keyVersion": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "algorithm",
+                      "keyRef",
+                      "keyVersion"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "signature": {
+                    "type": "object",
+                    "properties": {
+                      "algorithm": {
+                        "const": "ed25519"
+                      },
+                      "keyRef": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "keyVersion": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "scope": {
+                        "enum": [
+                          "content",
+                          "artifact"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "algorithm",
+                      "keyRef",
+                      "keyVersion"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [],
+                "additionalProperties": false
+              },
+              "options": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "kind",
+              "source",
+              "output"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "deployment"
+              },
+              "dependsOn": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "usage": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "runtime",
+                    "compile"
+                  ]
+                },
+                "contains": {
+                  "const": "runtime"
+                },
+                "uniqueItems": true
+              },
+              "roots": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "output": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 511,
+                "pattern": "^(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+              },
+              "options": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "kind",
+              "output"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "bundle"
+              },
+              "dependsOn": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "application": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "$ref": "#/$defs/reference"
+                  }
+                ]
+              },
+              "files": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "from": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "$ref": "#/$defs/reference"
+                        }
+                      ]
+                    },
+                    "to": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 511,
+                      "pattern": "^(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                    },
+                    "protection": {
+                      "type": "object",
+                      "properties": {
+                        "encryption": {
+                          "type": "object",
+                          "properties": {
+                            "algorithm": {
+                              "const": "xchacha20poly1305-ietf"
+                            },
+                            "keyRef": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "keyVersion": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "algorithm",
+                            "keyRef",
+                            "keyVersion"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "signature": {
+                          "type": "object",
+                          "properties": {
+                            "algorithm": {
+                              "const": "ed25519"
+                            },
+                            "keyRef": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "keyVersion": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "scope": {
+                              "enum": [
+                                "artifact"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "algorithm",
+                            "keyRef",
+                            "keyVersion"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [],
+                      "additionalProperties": false
+                    },
+                    "signature": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "$ref": "#/$defs/reference"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "from",
+                    "to"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "runtime": {
+                "type": "object",
+                "properties": {
+                  "mode": {
+                    "enum": [
+                      "bundled",
+                      "external"
+                    ]
+                  },
+                  "component": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "$ref": "#/$defs/reference"
+                      }
+                    ]
+                  },
+                  "artifact": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "$ref": "#/$defs/reference"
+                      }
+                    ]
+                  },
+                  "path": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "$ref": "#/$defs/reference"
+                      }
+                    ]
+                  },
+                  "requirements": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  "arguments": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true,
+                    "maxItems": 0
+                  },
+                  "protocol": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "output": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 511,
+                    "pattern": "^(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                  }
+                },
+                "required": [
+                  "mode"
+                ],
+                "additionalProperties": false
+              },
+              "environment": {
+                "type": "object",
+                "properties": {
+                  "mode": {
+                    "enum": [
+                      "bundled",
+                      "external"
+                    ]
+                  },
+                  "component": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "$ref": "#/$defs/reference"
+                      }
+                    ]
+                  },
+                  "artifact": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "$ref": "#/$defs/reference"
+                      }
+                    ]
+                  },
+                  "path": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "$ref": "#/$defs/reference"
+                      }
+                    ]
+                  },
+                  "requirements": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  "arguments": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true,
+                    "maxItems": 0
+                  },
+                  "protocol": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "output": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 511,
+                    "pattern": "^(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                  }
+                },
+                "required": [
+                  "mode"
+                ],
+                "additionalProperties": false
+              },
+              "launcher": {
+                "type": "object",
+                "properties": {
+                  "mode": {
+                    "enum": [
+                      "none",
+                      "generated",
+                      "existing"
+                    ]
+                  },
+                  "component": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "$ref": "#/$defs/reference"
+                      }
+                    ]
+                  },
+                  "artifact": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "$ref": "#/$defs/reference"
+                      }
+                    ]
+                  },
+                  "path": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "$ref": "#/$defs/reference"
+                      }
+                    ]
+                  },
+                  "requirements": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  "arguments": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true,
+                    "maxItems": 0
+                  },
+                  "protocol": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "output": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 511,
+                    "pattern": "^(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                  }
+                },
+                "required": [
+                  "mode"
+                ],
+                "additionalProperties": false
+              },
+              "layout": {
+                "enum": [
+                  "directory",
+                  "vsapp",
+                  "zip",
+                  "single-file"
+                ]
+              },
+              "output": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 511,
+                "pattern": "^(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+              },
+              "protection": {
+                "type": "object",
+                "properties": {
+                  "encryption": {
+                    "type": "object",
+                    "properties": {
+                      "algorithm": {
+                        "const": "xchacha20poly1305-ietf"
+                      },
+                      "keyRef": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "keyVersion": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "algorithm",
+                      "keyRef",
+                      "keyVersion"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "signature": {
+                    "type": "object",
+                    "properties": {
+                      "algorithm": {
+                        "const": "ed25519"
+                      },
+                      "keyRef": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "keyVersion": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "scope": {
+                        "enum": [
+                          "content",
+                          "artifact"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "algorithm",
+                      "keyRef",
+                      "keyVersion"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [],
+                "additionalProperties": false
+              },
+              "options": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "kind",
+              "application",
+              "output"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "custom"
+              },
+              "dependsOn": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "provider": {
+                "type": "string",
+                "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,127}$"
+              },
+              "inputs": {
+                "type": "object",
+                "additionalProperties": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "$ref": "#/$defs/reference"
+                    }
+                  ]
+                }
+              },
+              "outputs": {
+                "type": "object",
+                "minProperties": 1,
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 511,
+                      "pattern": "^(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                    },
+                    "type": {
+                      "enum": [
+                        "file",
+                        "directory"
+                      ]
+                    },
+                    "kind": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,127}$"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "type",
+                    "kind"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "options": {
+                "type": "object"
+              },
+              "cache": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "kind",
+              "provider",
+              "outputs"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "group"
+              },
+              "dependsOn": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "kind"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "format",
+    "formatVersion",
+    "targets"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "reference": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,127}$"
+        },
+        "output": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,127}$"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 511,
+          "pattern": "^(?!/)(?!.*\\\\)(?!.*:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+        }
+      },
+      "required": [
+        "target",
+        "output"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VeroScript build 0.1.1"
+}

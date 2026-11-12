@@ -1,0 +1,10 @@
+// SPDX-FileCopyrightText: VanstySanic
+// SPDX-License-Identifier: MIT
+
+module VeroScriptIOS {
+	header "VeroScriptIOS.h"
+	header "VeroScriptInterop.h"
+	export *
+	link "c++"
+	link framework "Foundation"
+}

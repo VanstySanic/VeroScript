@@ -1,0 +1,7 @@
+{
+  "package.displayName": "数学包样例",
+  "install.before": {
+    "pattern": "正在安装 {package.name} {package.version}",
+    "formatId": "vero.named"
+  }
+}

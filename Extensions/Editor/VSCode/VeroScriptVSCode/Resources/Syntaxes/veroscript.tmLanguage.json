@@ -1,0 +1,182 @@
+{
+  "name": "VeroScript",
+  "scopeName": "source.veroscript",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "name": "string.quoted.double.raw.veroscript",
+      "begin": "\\br\"",
+      "end": "\""
+    },
+    {
+      "name": "string.quoted.double.veroscript",
+      "begin": "\\b[Ll]\"|\"",
+      "end": "\"|(?=$)",
+      "patterns": [
+        {
+          "name": "constant.character.escape.veroscript",
+          "match": "\\\\."
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.single.veroscript",
+      "begin": "'",
+      "end": "'|(?=$)",
+      "patterns": [
+        {
+          "name": "constant.character.escape.veroscript",
+          "match": "\\\\."
+        }
+      ]
+    },
+    {
+      "name": "meta.preprocessor.veroscript",
+      "match": "^\\s*#\\s*[A-Za-z_]\\w*",
+      "captures": {
+        "0": {
+          "name": "keyword.control.directive.veroscript"
+        }
+      }
+    },
+    {
+      "name": "entity.name.type.annotation.veroscript",
+      "match": "@[A-Za-z_]\\w*"
+    },
+    {
+      "name": "constant.numeric.veroscript",
+      "match": "(?<![\\w.])(?:0[xX][0-9a-fA-F_]+|0[bB][01_]+|(?:[0-9][0-9_]*(?:\\.[0-9_]*)?|\\.[0-9][0-9_]*)(?:[eE][+-]?[0-9][0-9_]*)?)(?:[iIuU](?:8|16|32|64)|[uU][lL]?|[lL][uU]?|[fFdD])?(?!\\w)"
+    },
+    {
+      "include": "#qualifiedNames"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "name": "constant.language.veroscript",
+      "match": "\\b(?:true|false|nullptr)\\b"
+    },
+    {
+      "name": "keyword.control.veroscript",
+      "match": "\\b(?:if|else|while|do|for|switch|case|default|return|break|continue|fallthrough|goto|try|catch|finally|throw|struct|class|interface|enum|import|export|using|typedef|namespace|friend|new|delete|this|const|constexpr|ref|static|explicit|public|protected|private|virtual|override|final|where|operator|template|in)\\b"
+    },
+    {
+      "name": "entity.name.type.veroscript",
+      "match": "\\b[A-Za-z_]\\w*(?=(?:\\s*\\[\\s*\\])*\\s+[A-Za-z_]\\w*\\s*(?:\\[\\s*\\]|\\(|[,;=)]))"
+    },
+    {
+      "name": "entity.name.function.veroscript",
+      "match": "\\b[A-Za-z_]\\w*(?=\\s*\\()"
+    },
+    {
+      "name": "variable.other.veroscript",
+      "match": "\\b[A-Za-z_]\\w*\\b"
+    },
+    {
+      "name": "keyword.operator.veroscript",
+      "match": "[+*/%=!<>|&^~?:-]+"
+    },
+    {
+      "name": "punctuation.separator.veroscript",
+      "match": "[;,\\.]"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.veroscript",
+          "begin": "//",
+          "end": "(?<!\\\\)(?=\\n)"
+        },
+        {
+          "name": "comment.block.veroscript",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "qualifiedNames": {
+      "name": "entity.name.scope-resolution.veroscript",
+      "match": "\\b[A-Za-z_]\\w*(?=\\s*::)"
+    },
+    "typeArguments": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#qualifiedNames"
+        },
+        {
+          "include": "#types"
+        },
+        {
+          "name": "entity.name.type.veroscript",
+          "match": "\\b[A-Za-z_]\\w*\\b"
+        },
+        {
+          "name": "punctuation.separator.veroscript",
+          "match": "::|,"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "meta.type.parameters.veroscript",
+          "begin": "\\b(channel|array|map|multimap|set|multiset|queue|priority_queue|stack|ordered_map|ordered_multimap|deque|ordered_multiset)(\\s*)(<)",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.veroscript"
+            },
+            "3": {
+              "name": "punctuation.definition.typeparameters.begin.veroscript"
+            }
+          },
+          "end": ">|(?=[;{}])",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.typeparameters.end.veroscript"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#typeArguments"
+            }
+          ]
+        },
+        {
+          "name": "meta.type.parameters.veroscript",
+          "begin": "\\b(handle|shared|weak)(\\s*)(<)",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.type.veroscript"
+            },
+            "3": {
+              "name": "punctuation.definition.typeparameters.begin.veroscript"
+            }
+          },
+          "end": ">|(?=[;{}])",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.typeparameters.end.veroscript"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#typeArguments"
+            }
+          ]
+        },
+        {
+          "name": "storage.type.veroscript",
+          "match": "\\b(?:void|bool|char|short|int|long|int8|uint8|int16|uint16|int32|uint32|int64|uint64|float|double|string|wstring|variant|unsigned|auto|channel|array|map|multimap|set|multiset|queue|priority_queue|stack|ordered_map|ordered_multimap|deque|ordered_multiset|fn|function)\\b"
+        }
+      ]
+    }
+  }
+}

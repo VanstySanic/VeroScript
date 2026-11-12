@@ -1,0 +1,15 @@
+{
+	"format": "veroscript-build",
+	"formatVersion": "0.1.1",
+	"platform": "portable",
+	"defaultTargets": ["application"],
+	"targets": {
+		"application": {
+			"kind": "application",
+			"entry": "main.vs",
+			"packageName": "my-project",
+			"options": {"version": "0.1.1"},
+			"output": "app.vsapp"
+		}
+	}
+}

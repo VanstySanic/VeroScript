@@ -1,0 +1,6 @@
+{
+  "python_tools.python_version_required": "VeroScript Python tools require Python 3.11-3.15",
+  "python_tools.source_read_failed": "failed to read Python source: {0}",
+  "python_tools.syntax_error": "invalid Python syntax: {0}",
+  "python_tools.unsupported_top_level": "unsupported top-level Python construct: {0}"
+}

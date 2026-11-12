@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	<application android:label="VeroScript device smoke" android:allowBackup="false" />
+	<instrumentation android:name=".DeviceSmoke" android:targetPackage="com.vanstysanic.veroscript.devicesmoke" android:functionalTest="true" />
+</manifest>

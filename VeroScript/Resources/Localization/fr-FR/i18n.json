@@ -1,0 +1,20 @@
+{
+  "diag.i18n_invalid_argument": "Argument i18n invalide: {0}",
+  "diag.i18n_invalid_configuration": "Configuration i18n invalide: {0}",
+  "diag.i18n_invalid_state": "État i18n invalide: {0}",
+  "diag.i18n_missing_resolver": "Résolveur de ressources absent: {0}",
+  "diag.i18n_missing_message": "Message introuvable: {0}",
+  "diag.i18n_unsupported_format": "Format non pris en charge: {0}",
+  "diag.i18n_missing_argument": "Paramètre nommé absent: {0}",
+  "diag.i18n_argument_type": "Type de paramètre invalide: {0}",
+  "diag.i18n_numeric_conversion": "Conversion numérique inexacte ou hors limites: {0}",
+  "diag.i18n_invalid_pattern": "Modèle de format invalide: {0}",
+  "diag.i18n_unsupported_option": "Option de format non prise en charge: {0}",
+  "diag.i18n_provider_failure": "Résultat du fournisseur invalide: {0}",
+  "diag.i18n_resource_limit": "Limite de sortie dépassée: {0}",
+  "diag.i18n_out_of_memory": "Échec de l’allocation: {0}",
+  "diag.i18n_interrupted": "Opération interrompue: {0}",
+  "diag.i18n_reentrant_operation": "Opération i18n récursive: {0}",
+  "diag.stdlib_native_limit": "La table des fonctions natives dépasse sa capacité avec les liaisons standard du cœur",
+  "diag.stdlib_reserved_binding": "Les liaisons standard du cœur ne peuvent pas être remplacées"
+}

@@ -1,0 +1,19 @@
+{
+  "Associations.Title": "文件关联",
+  "Associations.Subtitle": "为当前 Windows 用户设置可选的文件关联。",
+  "Associations.Source": "注册 .vs 由此 Runtime 运行（含文件图标）",
+  "Associations.Application": "注册 .vsapp 由此 Runtime 运行（含文件图标）",
+  "Associations.PackageIcon": "注册 .vspkg 图标（仅在尚无图标注册时）",
+  "Associations.ChooseDefaults": "安装完成后，在 Windows 设置中选择默认打开程序",
+  "Associations.Description": "打开 .vs 或 .vsapp 会运行文件；.vspkg 选项仅添加图标。现有默认程序仍由你决定；Windows 可能使用所选程序的图标。",
+  "Associations.OpenDefaults": "打开默认应用设置",
+  "Associations.Review": "运行关联：{0}；包图标：{1}。取消的选项仅清理本安装拥有的设置。",
+  "Associations.DefaultReview": "安装后在 Windows 设置中选择 .vs 和 .vsapp 的默认应用。",
+  "Associations.Remove": "仅移除此安装拥有的运行处理器和图标引用，保留其他程序及用户后续修改的设置。",
+  "Associations.None": "不启用",
+  "Associations.Enabled": "启用",
+  "Associations.Preserved": "部分注册值属于其他安装或已被修改，已保留这些设置。",
+  "Associations.DefaultRequested": "已请求打开默认应用设置。请在 Windows 中为 .vs 和／或 .vsapp 选择此 Runtime，确认默认程序。",
+  "Associations.DefaultFailed": "安装成功，但无法打开 Windows 设置。请前往“设置 > 应用 > 默认应用”，或点击下方按钮重试。",
+  "Associations.DefaultUnavailable": "安装成功；为保留现有修改，未能注册完整的运行处理器，因此未打开默认应用设置。"
+}

@@ -1,0 +1,50 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>12.0</LangVersion>
+		<RootNamespace>VeroScript.CSharpTranspiler</RootNamespace>
+		<AssemblyName>VeroScriptCSharpTranspiler</AssemblyName>
+		<VersionPrefix>0.1.1</VersionPrefix>
+		<Title>VeroScript C# Transpiler</Title>
+		<Description>Strict semantics-preserving C# to VeroScript source transpiler.</Description>
+		<PackageId>VeroScript.CSharpTranspiler</PackageId>
+		<Authors>VanstySanic</Authors>
+		<Company>VanstySanic</Company>
+		<Copyright>Copyright © 2026 VanstySanic</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/VanstySanic/VeroScript/tree/main/Extensions/Language/CSharp/VeroScriptCSharpTranspiler</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/VanstySanic/VeroScript</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryCommit Condition="'$(GITHUB_SHA)' != ''">$(GITHUB_SHA)</RepositoryCommit>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<PackageTags>veroscript;csharp;transpiler;roslyn;source-generator;tooling</PackageTags>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageReleaseNotes>Strict C#-to-VeroScript conversion with project output, source maps, manifests, and compiler validation. Preserves unchecked integer widths, casts, shifts, compound evaluation order and supported Console output; rejects unsupported numeric and formatting semantics explicitly.</PackageReleaseNotes>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<Deterministic>true</Deterministic>
+		<ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>9.0-recommended</AnalysisLevel>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<EnablePackageValidation>true</EnablePackageValidation>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\VeroScriptCSharpFrontend\VeroScriptCSharpFrontend.csproj" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" />
+		<Compile Remove="Tests\**\*.cs" />
+		<Compile Remove="Cli\**\*.cs" />
+		<Compile Remove="Resources\Examples\**\*.cs" />
+		<None Include="Tests\**\*" />
+		<None Remove="README.md" />
+		<None Include="..\..\..\..\LICENSE" Pack="true" PackagePath="\" Link="LICENSE" />
+	</ItemGroup>
+</Project>

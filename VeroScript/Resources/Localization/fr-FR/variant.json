@@ -1,0 +1,11 @@
+{
+  "diag.variant_requires_concrete_null_type": "Convertissez nullptr en référence nulle typée avant de l’encapsuler",
+  "diag.variant_expected": "Une valeur variant est requise",
+  "diag.variant_not_allowed_as_key": "variant ne peut pas être une clé de conteneur associatif",
+  "diag.variant_not_allowed_in_channel": "variant ne peut pas être transmis par un canal",
+  "diag.variant_worker_transfer_unsupported": "variant ne peut pas être transmis à un thread de travail",
+  "diag.variant_empty_cast": "Impossible d’extraire une valeur d’un variant vide",
+  "diag.try_cast_variant_target_is_meaningless": "try_cast<variant> n’est pas pris en charge ; utilisez variant(value)",
+  "diag.aot_variant_unsupported": "variant nécessite le runtime VeroScript ; la sortie AOT autonome n’est pas prise en charge",
+  "diag.variant_reserved_name": "Le type variant et les noms de ses fonctions intrinsèques sont réservés"
+}

@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VeroScript project/environment requirements 0.1.1",
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "veroscript-project"
+    },
+    "formatVersion": {
+      "const": "0.1.1"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "version": {
+      "type": "string",
+      "description": "SemVer major.minor.patch, optional prerelease, no build metadata."
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "veroscript-package.schema.json#/$defs/dependency"
+      }
+    },
+    "packages": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "configuration": {
+            "type": "object"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      }
+    },
+    "services": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "backend": {
+            "type": "string",
+            "description": "Omitted inherits automatic selection. auto tries enabled candidates by backend ID; none or an explicitly empty value disables the service. Other strings select one backend ID."
+          },
+          "configuration": {
+            "type": "object"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      }
+    },
+    "packageManager": {
+      "type": "object",
+      "properties": {
+        "directory": {
+          "type": "string"
+        },
+        "registries": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "api": {
+                "type": "string"
+              },
+              "mirror": {
+                "type": "string"
+              },
+              "allowOriginFallback": {
+                "type": "boolean"
+              },
+              "trustedMirror": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "api"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "distribution": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "extensions": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "format",
+    "formatVersion",
+    "name",
+    "version"
+  ],
+  "additionalProperties": false
+}

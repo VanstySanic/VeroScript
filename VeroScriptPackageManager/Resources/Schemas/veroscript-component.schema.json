@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Verified Runtime/Core SDK descriptor 0.1.1",
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "veroscript-component"
+    },
+    "formatVersion": {
+      "const": "0.1.1"
+    },
+    "role": {
+      "enum": [
+        "runtime",
+        "core-sdk"
+      ]
+    },
+    "root": {
+      "type": "string"
+    },
+    "target": {
+      "$ref": "veroscript-target.schema.json"
+    }
+  },
+  "required": [
+    "format",
+    "formatVersion",
+    "role",
+    "root",
+    "target"
+  ],
+  "additionalProperties": false
+}

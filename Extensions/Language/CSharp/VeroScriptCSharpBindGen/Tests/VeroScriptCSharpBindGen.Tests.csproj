@@ -1,0 +1,24 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<RollForward>Major</RollForward>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>12.0</LangVersion>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>9.0-recommended</AnalysisLevel>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\VeroScriptCSharpBindGen.csproj" />
+		<ProjectReference Include="..\..\VeroScriptCSharp\VeroScriptCSharp.csproj" />
+		<Compile Include="..\..\VeroScriptCSharp\Tests\PublicApiContract.cs" Link="PublicApiContract.cs" />
+		<Compile Remove="GeneratedRegistration\**\*.cs" />
+		<None Include="GeneratedRegistration\**\*" />
+		<None Include="PublicApi.txt" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+</Project>

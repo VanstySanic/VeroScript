@@ -1,0 +1,12 @@
+{
+  "diag.external_deserializer_callback_failed": "外部反序列化回呼失敗",
+  "diag.failed_to_build_package": "建置套件失敗：{0}",
+  "diag.foreign_callback_raised_an_unknown_exception": "外部回呼擲出未知例外",
+  "diag.foreign_external_deserializer_raised_an_exception": "外部反序列化器擲出例外",
+  "diag.foreign_external_serializer_raised_an_exception": "外部序列化器擲出例外",
+  "diag.foreign_generic_host_type_factory_raised_an_exception": "外部泛型宿主型別工廠擲出例外",
+  "diag.generic_host_type_factory_is_unavailable": "泛型宿主型別工廠不可用",
+  "diag.invalid_host_function_metadata": "宿主函式中繼資料無效",
+  "diag.invalid_host_member_parameter_metadata": "宿主成員參數中繼資料無效",
+  "diag.veroscriptinterop_native_callback_is_unavailable": "VeroScriptInterop 原生回呼不可用"
+}

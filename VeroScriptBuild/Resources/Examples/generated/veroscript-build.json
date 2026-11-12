@@ -1,0 +1,24 @@
+{
+  "format": "veroscript-build",
+  "formatVersion": "0.1.1",
+  "platform": "portable",
+  "defaultTargets": ["application"],
+  "targets": {
+    "generate": {
+      "kind": "custom",
+      "provider": "script",
+      "inputs": {"template": "template.txt"},
+      "outputs": {"sources": {"path": "sources", "type": "directory", "kind": "source-tree"}},
+      "options": {"entry": "tools/generate.vs", "toolchainIdentity": "example.generator.0.1.1"},
+      "cache": true
+    },
+    "application": {
+      "kind": "application",
+      "mode": "source",
+      "entry": {"target": "generate", "output": "sources", "path": "main.vs"},
+      "packageName": "example.generated",
+      "options": {"version": "0.1.1"},
+      "output": "generated.vsapp"
+    }
+  }
+}

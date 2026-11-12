@@ -1,0 +1,20 @@
+{
+  "network.invalid_argument": "無効な引数: {0}",
+  "network.unsupported": "未対応の操作: {0}",
+  "network.queue_full": "キュー満杯: {0}",
+  "network.cancelled": "キャンセル: {0}",
+  "network.timed_out": "タイムアウト: {0}",
+  "network.closed": "クローズ済み: {0}",
+  "network.resolve": "名前解決失敗: {0}",
+  "network.connect": "接続失敗: {0}",
+  "network.read": "読み取り失敗: {0}",
+  "network.write": "書き込み失敗: {0}",
+  "network.protocol": "プロトコルエラー: {0}",
+  "network.limit": "上限超過: {0}",
+  "network.state": "無効な状態: {0}",
+  "network.callback": "コールバック失敗: {0}",
+  "network.allocation": "メモリ確保失敗: {0}",
+  "network.internal": "内部エラー: {0}",
+  "network.unknown": "不明なエラー: {0}",
+  "network.binding": "バインディング: {0}"
+}

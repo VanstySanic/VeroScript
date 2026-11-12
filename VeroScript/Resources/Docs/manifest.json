@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "module": "VeroScript",
+  "user": [
+    {
+      "source": "User/{locale}/introduction.md",
+      "output": "{locale}/introduction.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/arrays.md",
+      "output": "{locale}/language-basics/arrays.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/basic-syntax.md",
+      "output": "{locale}/language-basics/basic-syntax.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/classes.md",
+      "output": "{locale}/language-basics/classes.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/comments.md",
+      "output": "{locale}/language-basics/comments.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/constants.md",
+      "output": "{locale}/language-basics/constants.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/containers.md",
+      "output": "{locale}/language-basics/containers.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/control-flow.md",
+      "output": "{locale}/language-basics/control-flow.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/data-types.md",
+      "output": "{locale}/language-basics/data-types.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/declarations.md",
+      "output": "{locale}/language-basics/declarations.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/enums.md",
+      "output": "{locale}/language-basics/enums.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/functions.md",
+      "output": "{locale}/language-basics/functions.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/generics.md",
+      "output": "{locale}/language-basics/generics.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/index.md",
+      "output": "{locale}/language-basics/index.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/interfaces.md",
+      "output": "{locale}/language-basics/interfaces.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/lambdas.md",
+      "output": "{locale}/language-basics/lambdas.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/literals.md",
+      "output": "{locale}/language-basics/literals.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/modules.md",
+      "output": "{locale}/language-basics/modules.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/namespaces.md",
+      "output": "{locale}/language-basics/namespaces.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/operators.md",
+      "output": "{locale}/language-basics/operators.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/preprocessor.md",
+      "output": "{locale}/language-basics/preprocessor.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/references.md",
+      "output": "{locale}/language-basics/references.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/reflection.md",
+      "output": "{locale}/language-basics/reflection.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/scope.md",
+      "output": "{locale}/language-basics/scope.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/standard-namespace.md",
+      "output": "{locale}/language-basics/standard-namespace.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/static-members.md",
+      "output": "{locale}/language-basics/static-members.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/strings.md",
+      "output": "{locale}/language-basics/strings.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/structs.md",
+      "output": "{locale}/language-basics/structs.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/value-utility-types.md",
+      "output": "{locale}/language-basics/value-utility-types.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/variables.md",
+      "output": "{locale}/language-basics/variables.md"
+    },
+    {
+      "source": "User/{locale}/language-reference/constexpr.md",
+      "output": "{locale}/language-reference/constexpr.md"
+    },
+    {
+      "source": "User/{locale}/language-reference/diagnostics.md",
+      "output": "{locale}/language-reference/diagnostics.md"
+    },
+    {
+      "source": "User/{locale}/language-reference/index.md",
+      "output": "{locale}/language-reference/index.md"
+    },
+    {
+      "source": "User/{locale}/language-reference/overload-resolution.md",
+      "output": "{locale}/language-reference/overload-resolution.md"
+    },
+    {
+      "source": "User/{locale}/language-reference/type-conversions.md",
+      "output": "{locale}/language-reference/type-conversions.md"
+    },
+    {
+      "source": "User/{locale}/language-reference/versioning.md",
+      "output": "{locale}/language-reference/versioning.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/algorithm.md",
+      "output": "{locale}/standard-library/algorithm.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/builtins.md",
+      "output": "{locale}/standard-library/builtins.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/concurrent.md",
+      "output": "{locale}/standard-library/concurrent.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/core.md",
+      "output": "{locale}/standard-library/core.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/attribute.md",
+      "output": "{locale}/standard-library/attribute.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/events.md",
+      "output": "{locale}/standard-library/events.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/index.md",
+      "output": "{locale}/standard-library/index.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/io.md",
+      "output": "{locale}/standard-library/io.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/math.md",
+      "output": "{locale}/standard-library/math.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/numeric.md",
+      "output": "{locale}/standard-library/numeric.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/path.md",
+      "output": "{locale}/standard-library/path.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/random.md",
+      "output": "{locale}/standard-library/random.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/string.md",
+      "output": "{locale}/standard-library/string.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/foundation.md",
+      "output": "{locale}/standard-library/foundation.md"
+    },
+    {
+      "source": "User/{locale}/examples.md",
+      "output": "{locale}/toolchain/examples.md"
+    },
+    {
+      "source": "User/{locale}/localization.md",
+      "output": "{locale}/toolchain/localization.md"
+    },
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/core/index.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/memory.md",
+      "output": "{locale}/standard-library/memory.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/i18n.md",
+      "output": "{locale}/standard-library/i18n.md"
+    },
+    {
+      "source": "User/{locale}/language-basics/annotations.md",
+      "output": "{locale}/language-basics/annotations.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/compiler.md",
+      "output": "{locale}/standard-library/compiler.md"
+    },
+    {
+      "source": "User/{locale}/standard-library/variant.md",
+      "output": "{locale}/standard-library/variant.md"
+    }
+  ],
+  "developer": true
+}

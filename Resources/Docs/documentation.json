@@ -1,0 +1,335 @@
+{
+  "schemaVersion": 1,
+  "locales": [
+    "en-US",
+    "fr-FR",
+    "ja-JP",
+    "ko-KR",
+    "zh-CN",
+    "zh-TW"
+  ],
+  "modules": [
+    "$module/Resources/Docs/manifest.json",
+    "$module/VeroScript/Resources/Docs/manifest.json",
+    "$module/VeroScriptTooling/Resources/Docs/manifest.json",
+    "$module/VeroScriptCli/Resources/Docs/manifest.json",
+    "$module/VeroScriptInterop/Resources/Docs/manifest.json",
+    "$module/VeroScriptInstaller/Resources/Docs/manifest.json",
+    "$module/Extensions/Language/Cpp/Resources/Docs/manifest.json",
+    "$module/Extensions/Language/Python/Resources/Docs/manifest.json",
+    "$module/Extensions/Language/CSharp/Resources/Docs/manifest.json",
+    "$module/Extensions/Platform/WebAssembly/Resources/Docs/manifest.json",
+    "$module/Modules/Execution/VeroScriptAsmJit/Resources/Docs/manifest.json",
+    "$module/Modules/Network/VeroScriptJson/Resources/Docs/manifest.json",
+    "$module/Modules/Network/VeroScriptNetwork/Resources/Docs/manifest.json",
+    "$module/Modules/Network/VeroScriptHttp/Resources/Docs/manifest.json",
+    "$module/Modules/Network/VeroScriptWebSocket/Resources/Docs/manifest.json",
+    "$module/Modules/Network/Backend/VeroScriptBoost/Resources/Docs/manifest.json",
+    "$module/Modules/Network/Backend/VeroScriptCurl/Resources/Docs/manifest.json",
+    "$module/Extensions/Editor/VSCode/VeroScriptVSCode/Resources/Docs/manifest.json",
+    "$module/Extensions/Editor/VSCode/VeroScriptGuiVSCode/Resources/Docs/manifest.json",
+    "$module/Extensions/Editor/JetBrains/VeroScriptJetBrains/Resources/Docs/manifest.json",
+    "$module/Extensions/Editor/JetBrains/VeroScriptGuiJetBrains/Resources/Docs/manifest.json",
+    "$module/Extensions/Platform/Mobile/VeroScriptMobile/Resources/Docs/manifest.json",
+    "$module/Extensions/Platform/Mobile/VeroScriptAndroid/Resources/Docs/manifest.json",
+    "$module/Extensions/Platform/Mobile/VeroScriptIOS/Resources/Docs/manifest.json",
+    "$module/VeroScriptPackageManager/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/VeroScriptPlatform/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/VeroScriptAudio/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/VeroScriptGraphics/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/Backend/VeroScriptSdl3/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/VeroScriptGui/Resources/Docs/manifest.json",
+    "$module/VeroScriptApplication/Resources/Docs/manifest.json",
+    "$module/VeroScriptBuild/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/VeroScriptImage/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/VeroScriptFont/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/Backend/VeroScriptStb/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/Backend/VeroScriptFontBackend/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/Backend/VeroScriptRmlUi/Resources/Docs/manifest.json",
+    "$module/Modules/Execution/VeroScriptBytecodeVm/Resources/Docs/manifest.json"
+  ],
+  "resources": [
+    {
+      "source": "$module/Modules/Multimedia/VeroScriptGui/Resources/Examples",
+      "output": "_resources/gui/examples"
+    },
+    {
+      "source": "$module/Modules/Network/VeroScriptJson/Resources/Examples",
+      "output": "_resources/json/examples"
+    },
+    {
+      "source": "$module/Modules/Network/VeroScriptNetwork/Resources/Examples",
+      "output": "_resources/network/base/examples"
+    },
+    {
+      "source": "$module/Modules/Network/VeroScriptHttp/Resources/Examples",
+      "output": "_resources/network/http/examples"
+    },
+    {
+      "source": "$module/Modules/Network/VeroScriptWebSocket/Resources/Examples",
+      "output": "_resources/network/websocket/examples"
+    },
+    {
+      "source": "$module/LICENSE",
+      "output": "_resources/licenses/VeroScript-MIT.txt"
+    },
+    {
+      "source": "$module/Resources/Docs/Tutorials",
+      "output": "Tutorials"
+    },
+    {
+      "source": "$module/Resources/Assets",
+      "output": "_resources/assets"
+    },
+    {
+      "source": "$module/VeroScript/Resources/Scripts/examples",
+      "output": "_resources/examples"
+    },
+    {
+      "source": "$module/VeroScript/Resources/Scripts/stdlib",
+      "output": "_resources/stdlib"
+    },
+    {
+      "source": "$module/VeroScriptPackageManager/Resources/Schemas",
+      "output": "_resources/package-manager/schemas"
+    },
+    {
+      "source": "$module/VeroScriptPackageManager/Resources/Examples",
+      "output": "_resources/package-manager/examples"
+    },
+    {
+      "source": "$module/Resources/Licenses/README.md",
+      "output": "_resources/licenses/README.md"
+    },
+    {
+      "source": "$module/Modules/Execution/VeroScriptAsmJit/Resources/Licenses/NOTICES.md",
+      "output": "_resources/licenses/asmjit/NOTICES.md"
+    },
+    {
+      "source": "$module/Modules/Execution/VeroScriptAsmJit/ThirdParty/asmjit/LICENSE.md",
+      "output": "_resources/licenses/asmjit/LICENSE.md"
+    },
+    {
+      "source": "$module/Modules/Execution/VeroScriptAsmJit/ThirdParty/asmjit/VERSION.txt",
+      "output": "_resources/licenses/asmjit/VERSION.txt"
+    },
+    {
+      "source": "$module/VeroScriptCli/Resources/Examples",
+      "output": "_resources/cli/examples"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptSdl3/Resources/Licenses",
+      "output": "_resources/licenses/sdl3"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptSdl3/ThirdParty/SDL3/LICENSE.txt",
+      "output": "_resources/licenses/sdl3/LICENSE.txt"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptSdl3/ThirdParty/SDL3.version.json",
+      "output": "_resources/licenses/sdl3/SDL3.version.json"
+    },
+    {
+      "source": "$module/Modules/Network/VeroScriptJson/ThirdParty/sources.json",
+      "output": "_resources/licenses/json/sources.json"
+    },
+    {
+      "source": "$module/Modules/Network/Backend/VeroScriptBoost/ThirdParty/sources.json",
+      "output": "_resources/licenses/network/boost-sources.json"
+    },
+    {
+      "source": "$module/Modules/Network/Backend/VeroScriptBoost/ThirdParty/boost/LICENSE_1_0.txt",
+      "output": "_resources/licenses/network/boost-LICENSE_1_0.txt"
+    },
+    {
+      "source": "$module/Modules/Network/Backend/VeroScriptCurl/ThirdParty/curl-source.json",
+      "output": "_resources/licenses/network/curl-source.json"
+    },
+    {
+      "source": "$module/Modules/Network/Backend/VeroScriptCurl/ThirdParty/curl/COPYING",
+      "output": "_resources/licenses/network/curl-COPYING.txt"
+    },
+    {
+      "source": "$module/Modules/Network/Backend/VeroScriptBoost/ThirdParty/openssl-source.json",
+      "output": "_resources/licenses/network/openssl-source.json"
+    },
+    {
+      "source": "$module/Modules/Network/Backend/VeroScriptBoost/Resources/Licenses/OpenSSL-LICENSE.txt",
+      "output": "_resources/licenses/network/openssl-LICENSE.txt"
+    },
+    {
+      "source": "$module/VeroScriptApplication/Resources/Schemas",
+      "output": "_resources/VeroScriptApplication/Schemas"
+    },
+    {
+      "source": "$module/VeroScriptBuild/Resources/Schemas",
+      "output": "_resources/VeroScriptBuild/Schemas"
+    },
+    {
+      "source": "$module/VeroScriptBuild/Resources/Examples",
+      "output": "_resources/VeroScriptBuild/Examples"
+    },
+    {
+      "source": "$module/VeroScriptApplication/Resources/Examples",
+      "output": "_resources/VeroScriptApplication/Examples"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptRmlUi/Resources/Licenses/NOTICES.md",
+      "output": "_resources/licenses/rmlui/NOTICES.md"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptRmlUi/ThirdParty/RmlUi/LICENSE.txt",
+      "output": "_resources/licenses/rmlui/LICENSE.txt"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptRmlUi/ThirdParty/RmlUi/Include/RmlUi/Core/Containers/LICENSE.txt",
+      "output": "_resources/licenses/rmlui/LICENSE.Containers.txt"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptRmlUi/ThirdParty/RmlUi/Source/Debugger/LICENSE.txt",
+      "output": "_resources/licenses/rmlui/LICENSE.Debugger.txt"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptRmlUi/ThirdParty/RmlUi.version.json",
+      "output": "_resources/licenses/rmlui/RmlUi.version.json"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptStb/ThirdParty/stb/LICENSE",
+      "output": "_resources/licenses/stb/LICENSE.txt"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptStb/ThirdParty/stb.version.json",
+      "output": "_resources/licenses/stb/stb.version.json"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptFontBackend/ThirdParty/FreeType/docs/FTL.TXT",
+      "output": "_resources/licenses/freetype/FTL.TXT"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptFontBackend/ThirdParty/FreeType/LICENSE.TXT",
+      "output": "_resources/licenses/freetype/LICENSE.TXT"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptFontBackend/ThirdParty/FreeType/src/bdf/README",
+      "output": "_resources/licenses/freetype/LICENSE.BDF.txt"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptFontBackend/ThirdParty/FreeType/src/pcf/README",
+      "output": "_resources/licenses/freetype/LICENSE.PCF.txt"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptFontBackend/ThirdParty/FreeType/src/gzip/zlib.h",
+      "output": "_resources/licenses/freetype/LICENSE.ZLIB.header.txt"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptFontBackend/ThirdParty/FreeType.version.json",
+      "output": "_resources/licenses/freetype/FreeType.version.json"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptFontBackend/ThirdParty/HarfBuzz/COPYING",
+      "output": "_resources/licenses/harfbuzz/COPYING.txt"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptFontBackend/ThirdParty/HarfBuzz.version.json",
+      "output": "_resources/licenses/harfbuzz/HarfBuzz.version.json"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptFontBackend/ThirdParty/SheenBidi/LICENSE",
+      "output": "_resources/licenses/sheenbidi/LICENSE.Apache-2.0.txt"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptFontBackend/ThirdParty/SheenBidi.version.json",
+      "output": "_resources/licenses/sheenbidi/SheenBidi.version.json"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptFontBackend/Resources/Licenses/LICENSE.Unicode-3.0.txt",
+      "output": "_resources/licenses/sheenbidi/LICENSE.Unicode-3.0.txt"
+    },
+    {
+      "source": "$module/Modules/Multimedia/Backend/VeroScriptFontBackend/Resources/Licenses/NOTICE.SheenBidi.txt",
+      "output": "_resources/licenses/sheenbidi/NOTICE.SheenBidi.txt"
+    },
+    {
+      "source": "$module/Modules/Multimedia/VeroScriptFont/Resources/Assets/Fonts/LICENSE.txt",
+      "output": "_resources/licenses/fonts/LICENSE.Lato.txt"
+    },
+    {
+      "source": "$module/Modules/Network/VeroScriptJson/Resources/Licenses/NOTICES.md",
+      "output": "_resources/licenses/json/NOTICES.md"
+    },
+    {
+      "source": "$module/Modules/Network/VeroScriptJson/ThirdParty/jsoncons/LICENSE",
+      "output": "_resources/licenses/json/jsoncons-LICENSE.txt"
+    },
+    {
+      "source": "$module/Modules/Network/VeroScriptJson/ThirdParty/quickjs-regexp/LICENSE",
+      "output": "_resources/licenses/json/quickjs-LICENSE.txt"
+    },
+    {
+      "source": "$module/Modules/Network/VeroScriptJson/ThirdParty/idna/LICENSE",
+      "output": "_resources/licenses/json/idna-LICENSE.txt"
+    },
+    {
+      "source": "$module/Modules/Network/VeroScriptJson/ThirdParty/idna/UNICODE_LICENSE.txt",
+      "output": "_resources/licenses/json/UNICODE-LICENSE.txt"
+    }
+  ],
+  "repositoryBaseUrl": "https://github.com/VanstySanic/VeroScript",
+  "repositoryRef": "main",
+  "entrypoints": [
+    "README.md",
+    "Resources/Docs/source-layout.md",
+    "$module/Resources/Docs/Overview/**/*.md",
+    "$module/*/README.md",
+    "$module/Extensions/*/*/README.md",
+    "$module/Modules/*/*/README.md",
+    "$module/Extensions/Language/CSharp/VeroScriptCSharp/Resources/Docs/API.md",
+    "$module/VeroScript/Resources/Scripts/examples/**/*.md",
+    "$module/VeroScript/Resources/Benchmarks/README.md",
+    "$module/Resources/Assets/**/*.md",
+    "$module/Resources/Docs/Standards/**/*.md",
+    "$module/Extensions/*/README.md",
+    "$module/**/Resources/Examples/**/README.md",
+    "$module/VeroScriptInstaller/Resources/Examples/Products/README.md",
+    "$module/Resources/Licenses/*.md",
+    "$module/Modules/*/*/Resources/Licenses/*.md",
+    "$module/Resources/Docs/foundation-modules.md",
+    "$module/Extensions/Platform/Mobile/VeroScriptAndroid/Resources/Tests/Device/README.md",
+    "$module/Extensions/Language/*/*/README.md",
+    "$module/Extensions/Platform/WebAssembly/*/README.md",
+    "$module/Extensions/Editor/*/*/README.md",
+    "$module/Extensions/Platform/Mobile/*/README.md",
+    "$module/Modules/*/Backend/*/README.md"
+  ],
+  "overviewRoot": "$module/Resources/Docs/Overview",
+  "standardsRoot": "$module/Resources/Docs/Standards",
+  "standardsAudience": "Developer",
+  "tutorialsRoot": "$module/Resources/Docs/Tutorials",
+  "optionalModules": [
+    "$module/Modules/Network/VeroScriptJson/Resources/Docs/manifest.json",
+    "$module/Modules/Network/VeroScriptNetwork/Resources/Docs/manifest.json",
+    "$module/Modules/Network/VeroScriptHttp/Resources/Docs/manifest.json",
+    "$module/Modules/Network/VeroScriptWebSocket/Resources/Docs/manifest.json",
+    "$module/Modules/Network/Backend/VeroScriptBoost/Resources/Docs/manifest.json",
+    "$module/Modules/Network/Backend/VeroScriptCurl/Resources/Docs/manifest.json",
+    "$module/Modules/Execution/VeroScriptAsmJit/Resources/Docs/manifest.json",
+    "$module/Extensions/Editor/VSCode/VeroScriptVSCode/Resources/Docs/manifest.json",
+    "$module/Extensions/Editor/JetBrains/VeroScriptJetBrains/Resources/Docs/manifest.json",
+    "$module/Extensions/Platform/Mobile/VeroScriptMobile/Resources/Docs/manifest.json",
+    "$module/Extensions/Platform/Mobile/VeroScriptAndroid/Resources/Docs/manifest.json",
+    "$module/Extensions/Platform/Mobile/VeroScriptIOS/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/VeroScriptPlatform/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/VeroScriptGraphics/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/Backend/VeroScriptSdl3/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/VeroScriptAudio/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/VeroScriptGui/Resources/Docs/manifest.json",
+    "$module/Extensions/Editor/VSCode/VeroScriptGuiVSCode/Resources/Docs/manifest.json",
+    "$module/Extensions/Editor/JetBrains/VeroScriptGuiJetBrains/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/VeroScriptImage/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/VeroScriptFont/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/Backend/VeroScriptStb/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/Backend/VeroScriptFontBackend/Resources/Docs/manifest.json",
+    "$module/Modules/Multimedia/Backend/VeroScriptRmlUi/Resources/Docs/manifest.json"
+  ],
+  "dateFreeDocumentation": true
+}

@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+@PACKAGE_INIT@
+include(CMakeFindDependencyMacro)
+set(VeroScriptAudio_FOUND TRUE)
+set(VeroScriptAudio_Bindings_FOUND FALSE)
+include("${CMAKE_CURRENT_LIST_DIR}/../VeroScriptVisual/VeroScriptVisualAudioTargets.cmake")
+if("Bindings" IN_LIST VeroScriptAudio_FIND_COMPONENTS AND
+		EXISTS "${CMAKE_CURRENT_LIST_DIR}/../VeroScriptVisual/VeroScriptVisualAudioBindingsTargets.cmake")
+	find_dependency(VeroScript 0.1.1 EXACT CONFIG)
+	if(NOT TARGET VeroScript::Core AND TARGET VeroScript::VeroScript)
+		add_library(VeroScript::Core ALIAS VeroScript::VeroScript)
+	endif()
+	include("${CMAKE_CURRENT_LIST_DIR}/../VeroScriptVisual/VeroScriptVisualAudioBindingsTargets.cmake")
+	set(VeroScriptAudio_Bindings_FOUND TRUE)
+endif()
+include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptAudioRelease.cmake" OPTIONAL)
+check_required_components(VeroScriptAudio)

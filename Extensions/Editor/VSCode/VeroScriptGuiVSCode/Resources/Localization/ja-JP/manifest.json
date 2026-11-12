@@ -1,0 +1,19 @@
+{
+  "extension.description": "VSWML/VSWCSS の編集とネイティブ VeroScript GUI の検査、コンパイル、プレビュー。",
+  "command.check": "GUI を検査",
+  "command.build": "GUI アプリケーションをコンパイル",
+  "command.preview": "GUI をプレビュー",
+  "command.selectEntry": "GUI エントリを選択",
+  "command.showOutput": "GUI 出力を表示",
+  "setting.entry": "GUI エントリ（.vs または .vswml、検査／プレビューは .vsapp も対応）。空欄では選択した入力を使用し、スタイルファイルでは同名の .vswml を使用します。",
+  "setting.environmentPath": "--path に渡す明示的な CLI パッケージ環境。バックエンドの指定は環境の読み込みより前に配置します。",
+  "setting.schemaFiles": "組み込みウィジェットのメタデータを拡張する編集支援 JSON。実行時のバインディングや GUI コンパイル処理器は登録しません。",
+  "setting.assets": "GUI のコンパイルで埋め込むファイル。パスは所属するワークスペース／ソースディレクトリを基準にします。",
+  "setting.packageName": "コンパイル済み GUI アプリケーションのパッケージ名。",
+  "setting.previewFrames": ".vswml プレビューのみのフレーム制限。0 は生成ループを無制限にし、VS エントリは自身でループを管理します。",
+  "setting.backends": "platform/graphics/gui/image/font/text-layout のバックエンド指定。空または省略はネイティブ環境を継承し、auto はネイティブ候補の選択、none はサービスの無効化を要求します。",
+  "task.action": "ネイティブ GUI タスクの操作。",
+  "task.input": "ワークスペース拡張ホストで解決する GUI 入力パス。workspaceFolder、file、fileDirname、env 変数に対応します。",
+  "task.output": ".vsapp で終わるコンパイル出力。",
+  "task.args": "プレビュースクリプトの引数。配列は継承した veroscript.run.args を置き換えます。"
+}

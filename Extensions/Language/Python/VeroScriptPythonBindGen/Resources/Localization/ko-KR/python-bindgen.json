@@ -1,0 +1,9 @@
+{
+  "python_tools.missing_annotation": "{0}에 형식 주석이 필요합니다",
+  "python_tools.unsupported_type": "지원되지 않는 Python 형식 주석입니다: {0}",
+  "python_tools.unsupported_parameter": "지원되지 않는 Python 매개 변수 형식입니다: {0}",
+  "python_tools.unsupported_decorator": "지원되지 않는 Python 데코레이터입니다: {0}",
+  "python_tools.unsupported_inheritance": "지원되지 않는 Python 상속입니다: {0}",
+  "python_tools.enum_value_required": "enum 멤버 {0}에는 정적으로 평가할 수 있는 정수 값이 필요합니다",
+  "python_tools.catalog_validation_failed": "생성된 바인딩 카탈로그의 유효성 검사에 실패했습니다: {0}"
+}

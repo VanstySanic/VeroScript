@@ -1,0 +1,1362 @@
+{
+  "schemaVersion": 2,
+  "sources": {
+    "Modules/Multimedia/VeroScriptGui/Private/VeroScriptGuiEvent.cpp": "61945fd424ee90c5113b8fe3a031e90f13fcf672c9560b0f64b77a6b7a61f9cc",
+    "Modules/Multimedia/VeroScriptGui/Private/VeroScriptGuiTypes.cpp": "ef1c5d97f459da81c7f4102f44d06e37ef5a4848b68f25bb91533bc4eb945676",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Binding.vs": "aa3e97b6cec7b4a8eb4c0bd1d820428ab8dc7a80a734c03b4e2c7a28386931d1",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Collections.vs": "2139509964ac4c92aa33c0ced5e3fbd08fda95ad47e296d83191394a0c175141",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/CompositeSupport.vs": "8c000b493113e99e40ba43b75ce3b3b070c31cbc7098cf0fadb4d1309164020e",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Controls.vs": "f4ada9df534fa70778903e1c4e2c38be2b060efc91b35c3fb7257da5fd4bbc00",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Dialogs.vs": "e448b4bfdcd1bacff9ccfa0e6190c608cde251c9c600be63f1c6497b189e1670",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Menus.vs": "827d094d7d1f8834e3157b04dadaf05bc04cbb553c2cbf043a93f19444c2291e",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Navigation.vs": "e56c444a0023e54f883471c332e5e7a1ca4f804a7d84caa0a9cad9ca1bac2a07",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Resources.vs": "71d2d3d61175489d8e575152ab3998072bfb76dcfa4efa96dbdbd88e9d463385",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Runtime.vs": "b87a04bf81c98581af45fc40efbb315817066b2052a469d8715778d29f334ace",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Table.vs": "71d5fc6bf9d055b81559fd405443e2f6c2040d727973004cd3b5c15661383f09",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Virtualization.vs": "b49d651b566d41dec79456c04f1d987fada338183e710397b7070b451dee1a88",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/Gui/Widget.vs": "e1415c336c06f90fda598a5d0c7f1ce8a5bf058b4370c3e8ae21a7a381441a27",
+    "Modules/Multimedia/VeroScriptGui/Resources/Scripts/VeroScriptGui.vs": "9aa3b5caa6a4ecb42b2ce41d7d3fe710062e1671452c56fd76b191f2b510f1e9"
+  },
+  "routedEvents": [
+    {
+      "name": "Quit",
+      "mark": "quit"
+    },
+    {
+      "name": "CloseRequested",
+      "mark": "close-requested"
+    },
+    {
+      "name": "Resized",
+      "mark": "resized"
+    },
+    {
+      "name": "PixelSizeChanged",
+      "mark": "pixel-size-changed"
+    },
+    {
+      "name": "ScaleChanged",
+      "mark": "scale-changed"
+    },
+    {
+      "name": "Shown",
+      "mark": "shown"
+    },
+    {
+      "name": "Hidden",
+      "mark": "hidden"
+    },
+    {
+      "name": "Minimized",
+      "mark": "minimized"
+    },
+    {
+      "name": "Restored",
+      "mark": "restored"
+    },
+    {
+      "name": "FocusGained",
+      "mark": "focus-gained"
+    },
+    {
+      "name": "FocusLost",
+      "mark": "focus-lost"
+    },
+    {
+      "name": "KeyDown",
+      "mark": "key-down"
+    },
+    {
+      "name": "KeyUp",
+      "mark": "key-up"
+    },
+    {
+      "name": "PointerMove",
+      "mark": "pointer-move"
+    },
+    {
+      "name": "PointerDown",
+      "mark": "pointer-down"
+    },
+    {
+      "name": "PointerUp",
+      "mark": "pointer-up"
+    },
+    {
+      "name": "Wheel",
+      "mark": "wheel"
+    },
+    {
+      "name": "TextInput",
+      "mark": "text-input"
+    },
+    {
+      "name": "TextEditing",
+      "mark": "text-editing"
+    },
+    {
+      "name": "PointerCancelled",
+      "mark": "pointer-cancelled"
+    },
+    {
+      "name": "Background",
+      "mark": "background"
+    },
+    {
+      "name": "Foreground",
+      "mark": "foreground"
+    },
+    {
+      "name": "InputDeviceAdded",
+      "mark": "input-device-added"
+    },
+    {
+      "name": "InputDeviceRemoved",
+      "mark": "input-device-removed"
+    },
+    {
+      "name": "InputStateReset",
+      "mark": "input-state-reset"
+    },
+    {
+      "name": "MouseEntered",
+      "mark": "mouse-entered"
+    },
+    {
+      "name": "MouseLeft",
+      "mark": "mouse-left"
+    }
+  ],
+  "types": [
+    {
+      "name": "Widget",
+      "mark": "Widget",
+      "qualifiedName": "VS::Gui::Widget",
+      "base": "",
+      "properties": [
+        {
+          "name": "Width",
+          "mark": "width",
+          "type": "Length",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "Height",
+          "mark": "height",
+          "type": "Length",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "Padding",
+          "mark": "padding",
+          "type": "Insets",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "Gap",
+          "mark": "gap",
+          "type": "double",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "Layout",
+          "mark": "layout",
+          "type": "Layout",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "Visibility",
+          "mark": "visibility",
+          "type": "Visibility",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "HitTest",
+          "mark": "hit-test",
+          "type": "HitTestMode",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Enabled",
+          "mark": "enabled",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Focusable",
+          "mark": "focusable",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Opacity",
+          "mark": "opacity",
+          "type": "double",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "Background",
+          "mark": "background-color",
+          "type": "Color",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "Text",
+          "mark": "text",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Image",
+          "mark": "image",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "FontFamily",
+          "mark": "font-family",
+          "type": "string",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "FontSize",
+          "mark": "font-size",
+          "type": "double",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "FontWeight",
+          "mark": "font-weight",
+          "type": "double",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "FontStyle",
+          "mark": "font-style",
+          "type": "string",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "TextColor",
+          "mark": "color",
+          "type": "Color",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "TextAlign",
+          "mark": "text-align",
+          "type": "string",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "WhiteSpace",
+          "mark": "white-space",
+          "type": "string",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "TextOverflow",
+          "mark": "text-overflow",
+          "type": "string",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "LineHeight",
+          "mark": "line-height",
+          "type": "double",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "LetterSpacing",
+          "mark": "letter-spacing",
+          "type": "double",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "Direction",
+          "mark": "direction",
+          "type": "string",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "Language",
+          "mark": "language",
+          "type": "string",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "CornerRadius",
+          "mark": "border-radius",
+          "type": "double",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "ClipContent",
+          "mark": "clip-content",
+          "type": "bool",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "Filter",
+          "mark": "filter",
+          "type": "string",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "BackdropFilter",
+          "mark": "backdrop-filter",
+          "type": "string",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "BackgroundImage",
+          "mark": "background-image",
+          "type": "string",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "BoxShadow",
+          "mark": "box-shadow",
+          "type": "string",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "Transform",
+          "mark": "transform",
+          "type": "string",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "MaskImage",
+          "mark": "mask-image",
+          "type": "string",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "BorderWidth",
+          "mark": "border-width",
+          "type": "double",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "BorderColor",
+          "mark": "border-color",
+          "type": "Color",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "Cursor",
+          "mark": "cursor",
+          "type": "Cursor",
+          "style": true,
+          "bindable": true
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "CollectionItem",
+      "mark": "CollectionItem",
+      "qualifiedName": "VS::Gui::CollectionItem",
+      "base": "Button",
+      "properties": [
+        {
+          "name": "Key",
+          "mark": "key",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "SelectionColor",
+          "mark": "selection-color",
+          "type": "Color",
+          "style": true,
+          "bindable": true
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "SelectionView",
+      "mark": "SelectionView",
+      "qualifiedName": "VS::Gui::Internal::SelectionView",
+      "base": "ScrollView",
+      "properties": [
+        {
+          "name": "SelectedKey",
+          "mark": "selected-key",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "ListItem",
+      "mark": "list-item",
+      "qualifiedName": "VS::Gui::ListItem",
+      "base": "CollectionItem",
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "ListView",
+      "mark": "list-view",
+      "qualifiedName": "VS::Gui::ListView",
+      "base": "SelectionView",
+      "properties": [],
+      "events": [
+        {
+          "name": "SelectionChanged",
+          "mark": "selection-changed"
+        },
+        {
+          "name": "ItemActivated",
+          "mark": "item-activated"
+        }
+      ]
+    },
+    {
+      "name": "TreeItem",
+      "mark": "tree-item",
+      "qualifiedName": "VS::Gui::TreeItem",
+      "base": "CollectionItem",
+      "properties": [
+        {
+          "name": "Expanded",
+          "mark": "expanded",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "ExpandedChanged",
+          "mark": "expanded-changed"
+        }
+      ]
+    },
+    {
+      "name": "TreeView",
+      "mark": "tree-view",
+      "qualifiedName": "VS::Gui::TreeView",
+      "base": "SelectionView",
+      "properties": [],
+      "events": [
+        {
+          "name": "SelectionChanged",
+          "mark": "selection-changed"
+        },
+        {
+          "name": "ItemActivated",
+          "mark": "item-activated"
+        }
+      ]
+    },
+    {
+      "name": "ContentHost",
+      "mark": "ContentHost",
+      "qualifiedName": "VS::Gui::Internal::ContentHost",
+      "base": "Stack",
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "Text",
+      "mark": "text",
+      "qualifiedName": "VS::Gui::Text",
+      "base": "Widget",
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "Image",
+      "mark": "image",
+      "qualifiedName": "VS::Gui::Image",
+      "base": "Widget",
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "Border",
+      "mark": "border",
+      "qualifiedName": "VS::Gui::Border",
+      "base": "Widget",
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "Stack",
+      "mark": "stack",
+      "qualifiedName": "VS::Gui::Stack",
+      "base": "Widget",
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "Overlay",
+      "mark": "overlay",
+      "qualifiedName": "VS::Gui::Overlay",
+      "base": "Widget",
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "Spacer",
+      "mark": "spacer",
+      "qualifiedName": "VS::Gui::Spacer",
+      "base": "Widget",
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "Separator",
+      "mark": "separator",
+      "qualifiedName": "VS::Gui::Separator",
+      "base": "Widget",
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "Button",
+      "mark": "button",
+      "qualifiedName": "VS::Gui::Button",
+      "base": "Widget",
+      "properties": [],
+      "events": [
+        {
+          "name": "Clicked",
+          "mark": "clicked"
+        }
+      ]
+    },
+    {
+      "name": "CheckBox",
+      "mark": "check-box",
+      "qualifiedName": "VS::Gui::CheckBox",
+      "base": "Widget",
+      "properties": [
+        {
+          "name": "Checked",
+          "mark": "checked",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "CheckedChanged",
+          "mark": "checked-changed"
+        }
+      ]
+    },
+    {
+      "name": "ToggleSwitch",
+      "mark": "toggle-switch",
+      "qualifiedName": "VS::Gui::ToggleSwitch",
+      "base": "CheckBox",
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "ProgressBar",
+      "mark": "progress-bar",
+      "qualifiedName": "VS::Gui::ProgressBar",
+      "base": "Widget",
+      "properties": [
+        {
+          "name": "Value",
+          "mark": "value",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Minimum",
+          "mark": "minimum",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Maximum",
+          "mark": "maximum",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Step",
+          "mark": "step",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "PageSize",
+          "mark": "page-size",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Vertical",
+          "mark": "vertical",
+          "type": "bool",
+          "style": true,
+          "bindable": true
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "Slider",
+      "mark": "slider",
+      "qualifiedName": "VS::Gui::Slider",
+      "base": "Widget",
+      "properties": [
+        {
+          "name": "Value",
+          "mark": "value",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Minimum",
+          "mark": "minimum",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Maximum",
+          "mark": "maximum",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Step",
+          "mark": "step",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "PageSize",
+          "mark": "page-size",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Vertical",
+          "mark": "vertical",
+          "type": "bool",
+          "style": true,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "ValueChanged",
+          "mark": "value-changed"
+        }
+      ]
+    },
+    {
+      "name": "ScrollBar",
+      "mark": "scroll-bar",
+      "qualifiedName": "VS::Gui::ScrollBar",
+      "base": "Widget",
+      "properties": [
+        {
+          "name": "Value",
+          "mark": "value",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Minimum",
+          "mark": "minimum",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Maximum",
+          "mark": "maximum",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Step",
+          "mark": "step",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "PageSize",
+          "mark": "page-size",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Vertical",
+          "mark": "vertical",
+          "type": "bool",
+          "style": true,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "ValueChanged",
+          "mark": "value-changed"
+        }
+      ]
+    },
+    {
+      "name": "ScrollView",
+      "mark": "scroll-view",
+      "qualifiedName": "VS::Gui::ScrollView",
+      "base": "Widget",
+      "properties": [
+        {
+          "name": "ScrollX",
+          "mark": "scroll-x",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "ScrollY",
+          "mark": "scroll-y",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "Scrolled",
+          "mark": "scrolled"
+        }
+      ]
+    },
+    {
+      "name": "TextBox",
+      "mark": "text-box",
+      "qualifiedName": "VS::Gui::TextBox",
+      "base": "Widget",
+      "properties": [
+        {
+          "name": "Value",
+          "mark": "value",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "ReadOnly",
+          "mark": "read-only",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Placeholder",
+          "mark": "placeholder",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "TextChanged",
+          "mark": "text-changed"
+        },
+        {
+          "name": "Submitted",
+          "mark": "submitted"
+        }
+      ]
+    },
+    {
+      "name": "TextArea",
+      "mark": "text-area",
+      "qualifiedName": "VS::Gui::TextArea",
+      "base": "TextBox",
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "Grid",
+      "mark": "grid",
+      "qualifiedName": "VS::Gui::Grid",
+      "base": "Widget",
+      "properties": [
+        {
+          "name": "Columns",
+          "mark": "columns",
+          "type": "int64",
+          "style": true,
+          "bindable": true
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "Wrap",
+      "mark": "wrap",
+      "qualifiedName": "VS::Gui::Wrap",
+      "base": "Widget",
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "Splitter",
+      "mark": "splitter",
+      "qualifiedName": "VS::Gui::Splitter",
+      "base": "Widget",
+      "properties": [
+        {
+          "name": "Value",
+          "mark": "value",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Minimum",
+          "mark": "minimum",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Maximum",
+          "mark": "maximum",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Step",
+          "mark": "step",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "ReadOnly",
+          "mark": "read-only",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Vertical",
+          "mark": "vertical",
+          "type": "bool",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "DividerSize",
+          "mark": "divider-size",
+          "type": "double",
+          "style": true,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "ValueChanged",
+          "mark": "value-changed"
+        }
+      ]
+    },
+    {
+      "name": "RadioGroup",
+      "mark": "radio-group",
+      "qualifiedName": "VS::Gui::RadioGroup",
+      "base": "Widget",
+      "properties": [
+        {
+          "name": "SelectedKey",
+          "mark": "selected-key",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "SelectionChanged",
+          "mark": "selection-changed"
+        }
+      ]
+    },
+    {
+      "name": "RadioButton",
+      "mark": "radio-button",
+      "qualifiedName": "VS::Gui::RadioButton",
+      "base": "Widget",
+      "properties": [
+        {
+          "name": "Key",
+          "mark": "key",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "Selected",
+          "mark": "selected"
+        }
+      ]
+    },
+    {
+      "name": "NumberBox",
+      "mark": "number-box",
+      "qualifiedName": "VS::Gui::NumberBox",
+      "base": "Widget",
+      "properties": [
+        {
+          "name": "Value",
+          "mark": "value",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Minimum",
+          "mark": "minimum",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Maximum",
+          "mark": "maximum",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Step",
+          "mark": "step",
+          "type": "double",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "ReadOnly",
+          "mark": "read-only",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Placeholder",
+          "mark": "placeholder",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "ValueChanged",
+          "mark": "value-changed"
+        },
+        {
+          "name": "Submitted",
+          "mark": "submitted"
+        }
+      ]
+    },
+    {
+      "name": "PasswordBox",
+      "mark": "password-box",
+      "qualifiedName": "VS::Gui::PasswordBox",
+      "base": "TextBox",
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "Popup",
+      "mark": "popup",
+      "qualifiedName": "VS::Gui::Popup",
+      "base": "Widget",
+      "properties": [
+        {
+          "name": "Open",
+          "mark": "open",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "DismissOnOutside",
+          "mark": "dismiss-on-outside",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "DismissOnEscape",
+          "mark": "dismiss-on-escape",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Modal",
+          "mark": "modal",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "MatchAnchorWidth",
+          "mark": "match-anchor-width",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Placement",
+          "mark": "placement",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "OffsetX",
+          "mark": "offset-x",
+          "type": "double",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "OffsetY",
+          "mark": "offset-y",
+          "type": "double",
+          "style": true,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "OpenChanged",
+          "mark": "open-changed"
+        }
+      ]
+    },
+    {
+      "name": "ToolTip",
+      "mark": "tool-tip",
+      "qualifiedName": "VS::Gui::ToolTip",
+      "base": "Popup",
+      "properties": [
+        {
+          "name": "AutoOpen",
+          "mark": "auto-open",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Delay",
+          "mark": "delay",
+          "type": "double",
+          "style": true,
+          "bindable": true
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "Dialog",
+      "mark": "dialog",
+      "qualifiedName": "VS::Gui::Dialog",
+      "base": "Popup",
+      "properties": [],
+      "events": [
+        {
+          "name": "Closed",
+          "mark": "closed"
+        }
+      ]
+    },
+    {
+      "name": "Menu",
+      "mark": "menu",
+      "qualifiedName": "VS::Gui::Menu",
+      "base": "Stack",
+      "properties": [],
+      "events": [
+        {
+          "name": "Invoked",
+          "mark": "invoked"
+        }
+      ]
+    },
+    {
+      "name": "MenuItem",
+      "mark": "menu-item",
+      "qualifiedName": "VS::Gui::MenuItem",
+      "base": "Button",
+      "properties": [
+        {
+          "name": "Command",
+          "mark": "command",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Checkable",
+          "mark": "checkable",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Checked",
+          "mark": "checked",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "SelectionColor",
+          "mark": "selection-color",
+          "type": "Color",
+          "style": true,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "Invoked",
+          "mark": "invoked"
+        },
+        {
+          "name": "CheckedChanged",
+          "mark": "checked-changed"
+        }
+      ]
+    },
+    {
+      "name": "ComboBox",
+      "mark": "combo-box",
+      "qualifiedName": "VS::Gui::ComboBox",
+      "base": "Button",
+      "properties": [
+        {
+          "name": "SelectedKey",
+          "mark": "selected-key",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Open",
+          "mark": "open",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Placeholder",
+          "mark": "placeholder",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "DropDownHeight",
+          "mark": "drop-down-height",
+          "type": "double",
+          "style": true,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "SelectionChanged",
+          "mark": "selection-changed"
+        },
+        {
+          "name": "OpenChanged",
+          "mark": "open-changed"
+        }
+      ]
+    },
+    {
+      "name": "TabItem",
+      "mark": "tab",
+      "qualifiedName": "VS::Gui::TabItem",
+      "base": "Widget",
+      "properties": [
+        {
+          "name": "Key",
+          "mark": "key",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "Title",
+          "mark": "title",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "TabView",
+      "mark": "tabs",
+      "qualifiedName": "VS::Gui::TabView",
+      "base": "Widget",
+      "properties": [
+        {
+          "name": "SelectedKey",
+          "mark": "selected-key",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "SelectionChanged",
+          "mark": "selection-changed"
+        }
+      ]
+    },
+    {
+      "name": "TableColumn",
+      "mark": "table-column",
+      "qualifiedName": "VS::Gui::TableColumn",
+      "base": "Button",
+      "properties": [
+        {
+          "name": "Key",
+          "mark": "key",
+          "type": "string",
+          "style": false,
+          "bindable": true
+        },
+        {
+          "name": "ColumnWidth",
+          "mark": "column-width",
+          "type": "double",
+          "style": true,
+          "bindable": true
+        },
+        {
+          "name": "Sortable",
+          "mark": "sortable",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        }
+      ],
+      "events": []
+    },
+    {
+      "name": "TableRow",
+      "mark": "table-row",
+      "qualifiedName": "VS::Gui::TableRow",
+      "base": "CollectionItem",
+      "properties": [],
+      "events": []
+    },
+    {
+      "name": "TableView",
+      "mark": "table",
+      "qualifiedName": "VS::Gui::TableView",
+      "base": "SelectionView",
+      "properties": [
+        {
+          "name": "AutoSort",
+          "mark": "auto-sort",
+          "type": "bool",
+          "style": false,
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "SelectionChanged",
+          "mark": "selection-changed"
+        },
+        {
+          "name": "ItemActivated",
+          "mark": "item-activated"
+        },
+        {
+          "name": "ColumnClicked",
+          "mark": "column-clicked"
+        },
+        {
+          "name": "Sorted",
+          "mark": "sorted"
+        }
+      ]
+    }
+  ]
+}

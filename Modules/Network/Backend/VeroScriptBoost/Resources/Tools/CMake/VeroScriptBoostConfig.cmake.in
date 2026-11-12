@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+@PACKAGE_INIT@
+set(VeroScriptBoost_MODULE_DIR "${PACKAGE_PREFIX_DIR}/lib/veroscript/modules")
+include(CMakeFindDependencyMacro)
+set(VeroScriptBoost_HTTP_SERVER_FOUND @VEROSCRIPT_BOOST_HTTP@)
+set(VeroScriptBoost_WEBSOCKET_FOUND @VEROSCRIPT_BOOST_WEBSOCKET@)
+find_dependency(VeroScriptNetwork 0.1.1 EXACT CONFIG)
+if(@VEROSCRIPT_BOOST_HTTP@)
+	find_dependency(VeroScriptHttp 0.1.1 EXACT CONFIG)
+endif()
+if(@VEROSCRIPT_BOOST_WEBSOCKET@)
+	find_dependency(VeroScriptWebSocket 0.1.1 EXACT CONFIG)
+endif()
+find_dependency(Threads)
+if(@VEROSCRIPT_NETWORK_TLS@ AND "@CMAKE_SYSTEM_NAME@" STREQUAL "iOS")
+	find_dependency(OpenSSL 3.0 COMPONENTS SSL Crypto)
+endif()
+include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptBoostTargets.cmake")
+set(VeroScriptBoost_Bindings_FOUND FALSE)
+if("Bindings" IN_LIST VeroScriptBoost_FIND_COMPONENTS AND EXISTS "${CMAKE_CURRENT_LIST_DIR}/VeroScriptBoostBindingsTargets.cmake")
+	find_dependency(VeroScript 0.1.1 EXACT CONFIG)
+	include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptBoostBindingsTargets.cmake")
+	set(VeroScriptBoost_Bindings_FOUND TRUE)
+endif()
+check_required_components(VeroScriptBoost)

@@ -1,0 +1,9 @@
+{
+  "diag.document_is_not_open_in_workspace": "ドキュメントがワークスペースで開かれていません",
+  "diag.format_failed_lexer_error": "format に失敗しました: レクサーエラー",
+  "tooling.builtin_type.detail": "組み込み型",
+  "tooling.builtin_type.documentation": "VeroScript の組み込み型。",
+  "tooling.hover.builtin": "組み込みシンボル。",
+  "tooling.source_documentation.parameter": "パラメーター `{0}`:",
+  "tooling.source_documentation.returns": "戻り値:"
+}

@@ -1,0 +1,66 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Project>
+	<PropertyGroup>
+		<VeroScriptMobileNativeRoot Condition="'$(VeroScriptMobileNativeRoot)' == ''">$(MSBuildThisFileDirectory)../native</VeroScriptMobileNativeRoot>
+		<_VeroScriptMobilePlatform>$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)'))</_VeroScriptMobilePlatform>
+		<!-- Android applications compile to managed libraries after SDK inference. -->
+		<_VeroScriptMobileApplication>false</_VeroScriptMobileApplication>
+		<_VeroScriptMobileApplication Condition="'$(OutputType)' == 'Exe' or ('$(_VeroScriptMobilePlatform)' == 'android' and '$(AndroidApplication)' == 'true')">true</_VeroScriptMobileApplication>
+	</PropertyGroup>
+	<!-- Keep static C ABI symbols available through Release native dead stripping. -->
+	<Import Project="$(VeroScriptMobileNativeRoot)/ios/VeroScriptInterop.symbols.targets"
+          Condition="'$(_VeroScriptMobilePlatform)' == 'ios' and '$(_VeroScriptMobileApplication)' == 'true' and Exists('$(VeroScriptMobileNativeRoot)/ios/VeroScriptInterop.symbols.targets')" />
+	<ItemGroup Condition="'$(_VeroScriptMobilePlatform)' == 'android' and '$(_VeroScriptMobileApplication)' == 'true'">
+		<AndroidNativeLibrary Include="$(VeroScriptMobileNativeRoot)/android/arm64-v8a/libVeroScriptInterop.so;$(VeroScriptMobileNativeRoot)/android/arm64-v8a/libc++_shared.so" Abi="arm64-v8a" />
+		<AndroidNativeLibrary Include="$(VeroScriptMobileNativeRoot)/android/x86_64/libVeroScriptInterop.so;$(VeroScriptMobileNativeRoot)/android/x86_64/libc++_shared.so" Abi="x86_64" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(_VeroScriptMobilePlatform)' == 'ios' and '$(_VeroScriptMobileApplication)' == 'true'">
+		<NativeReference Include="$(VeroScriptMobileNativeRoot)/ios/VeroScriptIOS.xcframework">
+			<Kind>Static</Kind>
+			<ForceLoad>true</ForceLoad>
+			<SmartLink>false</SmartLink>
+			<IsCxx>true</IsCxx>
+			<Frameworks>Foundation</Frameworks>
+		</NativeReference>
+	</ItemGroup>
+	<ItemGroup Condition="('$(UseMaui)' == 'true') and ('$(_VeroScriptMobileApplication)' == 'true') and ('$(_VeroScriptMobilePlatform)' == 'android' or '$(_VeroScriptMobilePlatform)' == 'ios')">
+		<MauiAsset Include="$(VeroScriptMobileNativeRoot)/assets/**/*" LogicalName="veroscript/%(RecursiveDir)%(Filename)%(Extension)" />
+		<MauiAsset Include="$(VeroScriptMobileNativeRoot)/licenses/*" LogicalName="veroscript/licenses/%(Filename)%(Extension)" />
+	</ItemGroup>
+	<Target Name="ValidateVeroScriptMobileApplication" BeforeTargets="PrepareForBuild"
+          Condition="'$(_VeroScriptMobileApplication)' == 'true' and ('$(_VeroScriptMobilePlatform)' == 'android' or '$(_VeroScriptMobilePlatform)' == 'ios')">
+		<Error Condition="!Exists('$(VeroScriptMobileNativeRoot)/mobile-sdk.json')" Text="VeroScript mobile native SDK is missing. Supply a verified VeroScriptMobileNativeRoot or use VeroScript.CSharp packed with VeroScriptIncludeMobile=true." />
+		<Error Condition="'$(_VeroScriptMobilePlatform)' == 'android' and '$(RuntimeIdentifier)' != '' and '$(RuntimeIdentifier)' != 'android-arm64' and '$(RuntimeIdentifier)' != 'android-x64'" Text="VeroScript mobile supports android-arm64 and android-x64 only." />
+		<Error Condition="'$(_VeroScriptMobilePlatform)' == 'ios' and '$(RuntimeIdentifier)' != '' and '$(RuntimeIdentifier)' != 'ios-arm64' and '$(RuntimeIdentifier)' != 'iossimulator-arm64' and '$(RuntimeIdentifier)' != 'iossimulator-x64'" Text="VeroScript mobile supports ios-arm64, iossimulator-arm64 and iossimulator-x64 only." />
+		<Error Condition="'$(SupportedOSPlatformVersion)' == ''" Text="Set SupportedOSPlatformVersion to Android API 26 or iOS 15.0 or newer." />
+		<Error Condition="'$(_VeroScriptMobilePlatform)' == 'android' and '$(SupportedOSPlatformVersion)' != '' and $([MSBuild]::VersionLessThan('$(SupportedOSPlatformVersion)', '26.0'))" Text="VeroScript requires Android API 26 or newer." />
+		<Error Condition="'$(_VeroScriptMobilePlatform)' == 'ios' and '$(SupportedOSPlatformVersion)' != '' and $([MSBuild]::VersionLessThan('$(SupportedOSPlatformVersion)', '15.0'))" Text="VeroScript requires iOS 15.0 or newer." />
+		<ItemGroup>
+			<_VeroScriptUnsupportedRuntime Include="$(RuntimeIdentifiers)" />
+			<_VeroScriptUnsupportedRuntime Remove="android-arm64;android-x64" Condition="'$(_VeroScriptMobilePlatform)' == 'android'" />
+			<_VeroScriptUnsupportedRuntime Remove="ios-arm64;iossimulator-arm64;iossimulator-x64" Condition="'$(_VeroScriptMobilePlatform)' == 'ios'" />
+		</ItemGroup>
+		<Error Condition="'@(_VeroScriptUnsupportedRuntime)' != ''" Text="Unsupported VeroScript mobile RuntimeIdentifiers: @(_VeroScriptUnsupportedRuntime)" />
+		<Error Condition="'$(_VeroScriptMobilePlatform)' == 'android' and (!Exists('$(VeroScriptMobileNativeRoot)/android/arm64-v8a/libVeroScriptInterop.so') or !Exists('$(VeroScriptMobileNativeRoot)/android/x86_64/libVeroScriptInterop.so') or !Exists('$(VeroScriptMobileNativeRoot)/android/arm64-v8a/libc++_shared.so') or !Exists('$(VeroScriptMobileNativeRoot)/android/x86_64/libc++_shared.so'))" Text="VeroScript Android native libraries or their C++ runtime dependencies are missing." />
+		<Error Condition="'$(_VeroScriptMobilePlatform)' == 'ios' and !Exists('$(VeroScriptMobileNativeRoot)/ios/VeroScriptIOS.xcframework/Info.plist')" Text="VeroScript static iOS XCFramework is missing." />
+		<Error Condition="'$(_VeroScriptMobilePlatform)' == 'ios' and !Exists('$(VeroScriptMobileNativeRoot)/ios/VeroScriptInterop.symbols.targets')" Text="VeroScript iOS static native symbol roots are missing." />
+		<Error Condition="'$(UseMaui)' == 'true' and !Exists('$(VeroScriptMobileNativeRoot)/assets/resources.json')" Text="VeroScript mobile resource manifest is missing." />
+	</Target>
+	<!-- Inspect the selected assembly, including transitive references. A supplied
+       native SDK cannot make a desktop P/Invoke assembly use iOS __Internal. -->
+	<Target Name="ValidateVeroScriptIosBinding" AfterTargets="ResolveReferences"
+          Condition="'$(_VeroScriptMobileApplication)' == 'true' and '$(_VeroScriptMobilePlatform)' == 'ios'">
+		<ItemGroup>
+			<_VeroScriptIosBindingReference Include="@(ReferencePath)"
+          Condition="'%(ReferencePath.Filename)' == 'VeroScriptCSharp' and ('%(ReferencePath.NuGetPackageId)' == 'VeroScript.CSharp' or '%(ReferencePath.ReferenceSourceTarget)' == 'ProjectReference')">
+				<BindingPlatform>%(ReferencePath.TargetPlatformIdentifier)</BindingPlatform>
+				<BindingPlatform Condition="'%(ReferencePath.NearestTargetFramework)' != ''">$([MSBuild]::GetTargetPlatformIdentifier('%(ReferencePath.NearestTargetFramework)'))</BindingPlatform>
+				<BindingPlatform Condition="'%(ReferencePath.NuGetPackageId)' == 'VeroScript.CSharp'">$([MSBuild]::GetTargetPlatformIdentifier($([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(ReferencePath.PathInPackage)'))))))</BindingPlatform>
+			</_VeroScriptIosBindingReference>
+		</ItemGroup>
+		<Error Condition="'@(_VeroScriptIosBindingReference)' != '' and '%(_VeroScriptIosBindingReference.BindingPlatform)' != 'ios'"
+           Text="iOS requires an iOS-specific VeroScriptCSharp assembly with __Internal P/Invokes. Selected: %(_VeroScriptIosBindingReference.Identity). Use VeroScript.CSharp packed with VeroScriptIncludeMobile=true, or enable that property on the source project reference." />
+	</Target>
+</Project>

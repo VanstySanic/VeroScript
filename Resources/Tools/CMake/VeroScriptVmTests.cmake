@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+function(vs_configure_vm_test_directory directory)
+	get_property(_targets DIRECTORY "${directory}" PROPERTY BUILDSYSTEM_TARGETS)
+	foreach(_target IN LISTS _targets)
+		get_target_property(_type "${_target}" TYPE)
+		if(_type STREQUAL "UTILITY" OR _type STREQUAL "INTERFACE_LIBRARY")
+			continue()
+		endif()
+		get_target_property(_sources "${_target}" SOURCES)
+		if((_sources MATCHES "[/\\]Tests[/\\]" OR directory MATCHES "[/\\]Tests([/\\]|$)")
+				AND NOT _target STREQUAL "VeroScriptBytecodeVmBackend")
+			target_include_directories("${_target}" PRIVATE "${VEROSCRIPT_MODULE_ROOT}/VeroScript/Private/Tests")
+			if(TARGET VeroScriptBytecodeVmBackend)
+				target_compile_definitions("${_target}" PRIVATE
+					"VEROSCRIPT_TEST_VM_LIBRARY=\"$<TARGET_FILE:VeroScriptBytecodeVmBackend>\"")
+				add_dependencies("${_target}" VeroScriptBytecodeVmBackend)
+			elseif(VEROSCRIPT_TEST_VM_LIBRARY)
+				get_filename_component(_test_vm "${VEROSCRIPT_TEST_VM_LIBRARY}" ABSOLUTE BASE_DIR "${CMAKE_SOURCE_DIR}")
+				file(TO_CMAKE_PATH "${_test_vm}" _test_vm)
+				target_compile_definitions("${_target}" PRIVATE
+					"VEROSCRIPT_TEST_VM_LIBRARY=\"${_test_vm}\"")
+			endif()
+		endif()
+	endforeach()
+	get_property(_children DIRECTORY "${directory}" PROPERTY SUBDIRECTORIES)
+	foreach(_child IN LISTS _children)
+		vs_configure_vm_test_directory("${_child}")
+	endforeach()
+endfunction()
+
+if(BUILD_TESTING AND (TARGET VeroScriptBytecodeVmBackend OR VEROSCRIPT_TEST_VM_LIBRARY))
+	cmake_language(DEFER CALL vs_configure_vm_test_directory "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()

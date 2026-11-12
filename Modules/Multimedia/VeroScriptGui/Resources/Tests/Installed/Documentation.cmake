@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+set(_vs_gui_readmes "${GUI_PREFIX}/share/VeroScriptGui/README.md")
+if(GUI_WITH_RMLUI)
+	list(APPEND _vs_gui_readmes "${GUI_PREFIX}/share/VeroScriptRmlUi/README.md")
+endif()
+foreach(_vs_gui_readme IN LISTS _vs_gui_readmes)
+	file(READ "${_vs_gui_readme}" _vs_gui_text)
+	get_filename_component(_vs_gui_directory "${_vs_gui_readme}" DIRECTORY)
+	string(REGEX MATCHALL "\\]\\([^)]+\\)" _vs_gui_links "${_vs_gui_text}")
+	# An unmatched square bracket prevents CMake from separating list elements.
+	string(REPLACE "](" "" _vs_gui_links "${_vs_gui_links}")
+	foreach(_vs_gui_link IN LISTS _vs_gui_links)
+		string(REGEX REPLACE "\\)$" "" _vs_gui_reference "${_vs_gui_link}")
+		if(IS_ABSOLUTE "${_vs_gui_reference}" OR _vs_gui_reference MATCHES "^[a-zA-Z]:[/\\\\]")
+			message(FATAL_ERROR "Absolute installed documentation link: ${_vs_gui_readme}: ${_vs_gui_reference}")
+		endif()
+		if(_vs_gui_reference MATCHES "^[a-zA-Z][a-zA-Z0-9+.-]*:" OR _vs_gui_reference MATCHES "^#")
+			continue()
+		endif()
+		string(REGEX REPLACE "[#?].*$" "" _vs_gui_reference "${_vs_gui_reference}")
+		if(NOT EXISTS "${_vs_gui_directory}/${_vs_gui_reference}")
+			message(FATAL_ERROR "Broken installed documentation link: ${_vs_gui_readme}: ${_vs_gui_link}")
+		endif()
+	endforeach()
+endforeach()

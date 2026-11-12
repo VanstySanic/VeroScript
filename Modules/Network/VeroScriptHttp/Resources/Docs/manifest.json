@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "module": "Modules/Network/VeroScriptHttp",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/http/index.md"
+    },
+    {
+      "source": "User/{locale}/Reference",
+      "output": "{locale}/http/reference"
+    }
+  ],
+  "developer": true
+}

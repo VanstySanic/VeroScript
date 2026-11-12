@@ -1,0 +1,165 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<ScrollView Width="100%" Height="100%">
+	<style src="page.vswcss" />
+	<script><![CDATA[
+		public:
+			string Status = "Use arrow keys in collections; Escape closes the active popup.";
+
+			@GuiMethod
+			string ReadStatus() const
+			{
+				return Status;
+			}
+
+			@GuiMethod
+			void SelectList(VS::Gui::ListView source, string key)
+			{
+				Status = "List selection: " + key;
+			}
+
+			@GuiMethod
+			void SelectTree(VS::Gui::TreeView source, string key)
+			{
+				Status = "Tree selection: " + key;
+			}
+
+			@GuiMethod
+			void ChooseCombo(VS::Gui::ComboBox source, string key)
+			{
+				Status = "Combo selection: " + key;
+			}
+
+			@GuiMethod
+			void NavigateTabs(VS::Gui::TabView source, string key)
+			{
+				Status = "Tab: " + key;
+			}
+
+			@GuiMethod
+			void RunCommand(VS::Gui::Menu source, string command)
+			{
+				Status = "Menu command: " + command;
+				if (command == "dialog")
+				{
+					cast<VS::Gui::Dialog>(elements.Require("confirm")).Show();
+				}
+			}
+
+			@GuiMethod
+			void OpenDialog(VS::Gui::Button source)
+			{
+				cast<VS::Gui::Dialog>(elements.Require("confirm")).Show();
+			}
+
+			@GuiMethod
+			void AcceptDialog(VS::Gui::Button source)
+			{
+				cast<VS::Gui::Dialog>(elements.Require("confirm")).Close("accepted");
+			}
+
+			@GuiMethod
+			void CancelDialog(VS::Gui::Button source)
+			{
+				cast<VS::Gui::Dialog>(elements.Require("confirm")).Close("cancelled");
+			}
+
+			@GuiMethod
+			void DialogClosed(VS::Gui::Dialog source, string result)
+			{
+				Status = "Dialog closed: " + result;
+			}
+	]]></script>
+	<Stack Padding="18px" Gap="12">
+		<Text Text="Collections, navigation and modal dialogs" FontSize="24" />
+		<Menu Gap="8" on:invoked="RunCommand">
+			<MenuItem Text="File">
+				<MenuItem Text="Open dialog" Command="dialog" />
+				<MenuItem Text="Recent >">
+					<MenuItem Text="First project" Command="recent-first" />
+					<MenuItem Text="Second project" Command="recent-second" />
+				</MenuItem>
+				<MenuItem Text="Unavailable" Enabled="false" Command="disabled" />
+			</MenuItem>
+			<MenuItem Text="View">
+				<MenuItem Text="Show details" Checkable="true" Checked="true" Command="details" />
+			</MenuItem>
+		</Menu>
+		<Grid Columns="2" Gap="12">
+			<Border class="card">
+				<Text Text="10,000 data items - recycled visible rows" class="title" />
+				<ListView id="virtual-list" Height="170px" />
+			</Border>
+			<Border class="card">
+				<Text Text="10,000 table rows - click a header to sort" class="title" />
+				<TableView id="virtual-table" Height="170px">
+					<TableColumn Key="name" Text="Name" ColumnWidth="190" />
+					<TableColumn Key="state" Text="State" ColumnWidth="140" />
+				</TableView>
+			</Border>
+			<Border class="card">
+				<Text Text="ListView" class="title" />
+				<ListView class="collection" SelectedKey="beta" on:selection-changed="SelectList">
+					<ListItem Key="alpha" Text="Alpha" />
+					<ListItem Key="beta" Text="Beta (selected)" />
+					<ListItem Key="gamma" Text="Gamma" />
+					<ListItem Key="disabled" Text="Disabled item" Enabled="false" />
+					<ListItem Key="delta" Text="Delta" />
+					<ListItem Key="epsilon" Text="Epsilon" />
+				</ListView>
+			</Border>
+			<Border class="card">
+				<Text Text="TreeView" class="title" />
+				<TreeView class="collection" on:selection-changed="SelectTree">
+					<TreeItem Key="project" Text="Project">
+						<TreeItem Key="sources" Text="Sources">
+							<TreeItem Key="main" Text="main.vs" />
+							<TreeItem Key="page" Text="page.vswml" />
+						</TreeItem>
+						<TreeItem Key="resources" Text="Resources" Expanded="false">
+							<TreeItem Key="theme" Text="page.vswcss" />
+						</TreeItem>
+					</TreeItem>
+				</TreeView>
+			</Border>
+			<Border class="card">
+				<Text Text="TableView - click a header to sort" class="title" />
+				<TableView Height="170px">
+					<TableColumn Key="name" Text="Name" ColumnWidth="190" />
+					<TableColumn Key="state" Text="State" ColumnWidth="140" />
+					<TableRow Key="gui"><Text Text="Gui" /><Text Text="Ready" /></TableRow>
+					<TableRow Key="graphics"><Text Text="Graphics" /><Text Text="Ready" /></TableRow>
+					<TableRow Key="platform"><Text Text="Platform" /><Text Text="Ready" /></TableRow>
+				</TableView>
+			</Border>
+			<Border class="card" Gap="10">
+				<Text Text="ComboBox and dialog" class="title" />
+				<ComboBox Width="240px" SelectedKey="release" Placeholder="Choose profile" on:selection-changed="ChooseCombo">
+					<ListItem Key="debug" Text="Debug" />
+					<ListItem Key="release" Text="Release" />
+					<ListItem Key="profile" Text="Profile" />
+				</ComboBox>
+				<Button Text="Open modal dialog" on:clicked="OpenDialog" />
+				<Text Text="The dialog blocks background input and restores focus on close." />
+			</Border>
+		</Grid>
+		<TabView on:selection-changed="NavigateTabs">
+			<TabItem Key="overview" Title="Overview">
+				<Border class="card"><Text Text="Pages stay mounted when switching tabs." /></Border>
+			</TabItem>
+			<TabItem Key="settings" Title="Settings">
+				<Border class="card"><TextBox Placeholder="This text survives tab switches" /></Border>
+			</TabItem>
+		</TabView>
+		<Text bind:Text="ReadStatus" />
+	</Stack>
+	<Dialog id="confirm" Padding="18px" Gap="12" on:closed="DialogClosed">
+		<Text Text="Confirm action" FontSize="20" />
+		<Text Text="Try Tab, Shift+Tab, Escape, or clicking outside." />
+		<Stack Layout="Horizontal" Gap="10">
+			<Button Text="Accept" on:clicked="AcceptDialog" />
+			<Button Text="Cancel" on:clicked="CancelDialog" />
+		</Stack>
+	</Dialog>
+</ScrollView>

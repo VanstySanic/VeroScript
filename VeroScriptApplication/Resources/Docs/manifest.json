@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "VeroScriptApplication",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/application/index.md"
+    }
+  ],
+  "developer": true
+}

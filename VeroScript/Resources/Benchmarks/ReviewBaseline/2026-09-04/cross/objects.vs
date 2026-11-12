@@ -1,0 +1,2 @@
+class Pair { public: int first = 0; int second = 0; int sum() { return first + second; } }; int work(int limit) { int state = 17; int total = 0; for (int i = 0; i < limit; i++) { state = (state * 25173 + 13849) % 65521; Pair value = Pair(); value.first = state % 127; value.second = (state / 7) % 127; total = (total + value.sum()) % 1000000007; } return total + state; } void main(){int checksum=0;for(int rep=0;rep<20;rep++){checksum=(checksum+work(50000))%1000000007;}print(checksum);}
+

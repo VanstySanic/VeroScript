@@ -1,0 +1,13 @@
+Microsoft Visual C++ runtime libraries
+Copyright Microsoft Corporation. All rights reserved.
+
+Windows binary distributions include unmodified release runtime DLLs from the
+redistributable directory of the Visual Studio toolchain used to build them.
+They retain Microsoft's rights and are not covered by VeroScript's MIT license.
+The applicable Visual Studio license terms and distributable-code list govern
+their redistribution:
+https://learn.microsoft.com/en-us/cpp/windows/redistributing-visual-cpp-files
+
+The libraries are installed beside the dependent binaries for local deployment.
+They are updated when VeroScript is rebuilt and repackaged. The Windows Universal
+CRT remains an operating-system prerequisite on supported Windows versions.

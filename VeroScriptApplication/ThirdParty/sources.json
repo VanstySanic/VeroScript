@@ -1,0 +1,32 @@
+[
+  {
+    "name": "json/json.hpp",
+    "url": "https://raw.githubusercontent.com/nlohmann/json/v3.12.0/single_include/nlohmann/json.hpp",
+    "sha256": "aaf127c04cb31c406e5b04a63f1ae89369fccde6d8fa7cdda1ed4f32dfc5de63",
+    "size": 953436
+  },
+  {
+    "name": "json/LICENSE.MIT",
+    "url": "https://raw.githubusercontent.com/nlohmann/json/v3.12.0/LICENSE.MIT",
+    "sha256": "46a65cffd1ea955132d95a8dd921640714a8d6b537d2e4e482d31145ae95b603",
+    "size": 1076
+  },
+  {
+    "name": "miniz.tar.gz",
+    "url": "https://codeload.github.com/richgel999/miniz/tar.gz/refs/tags/3.1.2",
+    "sha256": "98468f8924934b723276680f85238b6c78bf1f8b49b4459cc9b7214a20e2e9fb",
+    "size": 290205
+  },
+  {
+    "name": "sha256/picosha2.h",
+    "url": "https://raw.githubusercontent.com/okdshin/PicoSHA2/27fcf6979298949e8a462e16d09a0351c18fcaf2/picosha2.h",
+    "sha256": "8f183eaae529cd9d6a3d4843c7559e2a3e3d68b6caaa223e7c24c3c899b3d988",
+    "size": 13065
+  },
+  {
+    "name": "sha256/LICENSE",
+    "url": "https://raw.githubusercontent.com/okdshin/PicoSHA2/27fcf6979298949e8a462e16d09a0351c18fcaf2/LICENSE",
+    "sha256": "6c30eb1f37554ec4199cb82a8c86d9e7a852da78a757832bebb03ac9ddc44ff1",
+    "size": 1064
+  }
+]

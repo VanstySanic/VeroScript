@@ -1,0 +1,19 @@
+{
+  "Associations.Title": "File associations",
+  "Associations.Subtitle": "Optional settings for the current Windows user.",
+  "Associations.Source": "Register .vs to run with this Runtime (with file icon)",
+  "Associations.Application": "Register .vsapp to run with this Runtime (with file icon)",
+  "Associations.PackageIcon": "Register the .vspkg icon if no icon is already registered",
+  "Associations.ChooseDefaults": "Choose default apps in Windows Settings after installation",
+  "Associations.Description": "Opening .vs or .vsapp runs the file. The .vspkg option only adds an icon. Existing defaults stay under your control; Windows may use the selected app's icon.",
+  "Associations.OpenDefaults": "Open default app settings",
+  "Associations.Review": "Run handlers: {0}. Package icon: {1}. Disabled options only remove settings owned by this installation.",
+  "Associations.DefaultReview": "Choose .vs and .vsapp default apps in Windows Settings after installation.",
+  "Associations.Remove": "Remove only this installation's owned handlers and icon references; preserve other apps and later user changes.",
+  "Associations.None": "disabled",
+  "Associations.Enabled": "enabled",
+  "Associations.Preserved": "Some registration values belong to another installation or were changed. They have been preserved.",
+  "Associations.DefaultRequested": "Default app settings have been requested. Select this Runtime for .vs and/or .vsapp in Windows to confirm your choice.",
+  "Associations.DefaultFailed": "Installation succeeded, but Windows Settings could not be opened. Use Settings > Apps > Default apps, or try the button below.",
+  "Associations.DefaultUnavailable": "Installation succeeded. A complete run handler could not be registered without replacing existing changes; default app settings were not opened."
+}

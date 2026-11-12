@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
+    "types": ["node", "vscode", "mocha"],
+    "skipLibCheck": true,
+    "rootDir": "Private",
+    "outDir": "out"
+  },
+  "include": ["Private/**/*.ts"]
+}

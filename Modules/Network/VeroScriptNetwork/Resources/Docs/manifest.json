@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "module": "Modules/Network/VeroScriptNetwork",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/network/index.md"
+    },
+    {
+      "source": "User/{locale}/Reference",
+      "output": "{locale}/network/reference"
+    }
+  ],
+  "developer": true
+}

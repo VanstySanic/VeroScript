@@ -1,0 +1,13 @@
+{
+  "diag.numeric_type_mismatch": "対応する数値または入力型が必要です",
+  "diag.numeric_invalid_argument": "無効な数値引数：{0}",
+  "diag.numeric_invalid_text": "無効な数値テキスト：{0}（バイト {1}）",
+  "diag.numeric_division_by_zero": "数値をゼロで除算できません",
+  "diag.numeric_out_of_range": "数値が対象範囲外です",
+  "diag.numeric_inexact_conversion": "数値変換で精度が失われます",
+  "diag.numeric_limit": "数値演算のリソース上限を超えました：{0}",
+  "diag.numeric_out_of_memory": "数値メモリの割り当てに失敗しました",
+  "diag.numeric_interrupted": "数値演算が中断されました",
+  "diag.numeric_internal": "数値演算に失敗しました",
+  "diag.numeric_busy": "実行中は数値制限を変更できません"
+}

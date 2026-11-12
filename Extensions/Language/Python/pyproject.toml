@@ -1,0 +1,213 @@
+[build-system]
+requires = ["scikit-build-core>=1.0,<2"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "veroscript"
+dynamic = ["version"]
+description = "CPython bindings for the VeroScript runtime"
+requires-python = ">=3.11,<3.16"
+dependencies = [
+    "typing_extensions>=4.16; python_version < '3.15'",
+]
+license = "MIT"
+license-files = [
+    "LICENSE",
+]
+authors = [{ name = "Vansty Sanic" }]
+keywords = ["veroscript", "scripting", "embedding", "virtual-machine", "jit"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: C++",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Software Development :: Interpreters",
+]
+
+[project.urls]
+Homepage = "https://github.com/VanstySanic/VeroScript"
+Repository = "https://github.com/VanstySanic/VeroScript"
+Issues = "https://github.com/VanstySanic/VeroScript/issues"
+
+[project.scripts]
+veroscript-python-frontend = "veroscript_python_frontend.__main__:main"
+veroscript-python-bindgen = "veroscript_python_bindgen.__main__:main"
+veroscript-python-transpiler = "veroscript_python_transpiler.__main__:main"
+veroscript-python-aot = "veroscript_python_aot.__main__:main"
+
+[[tool.dynamic-metadata]]
+provider = {path = "Resources/Tools/Packaging", module = "veroscript_python_metadata"}
+
+[tool.scikit-build]
+minimum-version = "build-system.requires"
+build-dir = "build/{wheel_tag}"
+cmake.source-dir = "../../.."
+cmake.build-type = "Release"
+build.targets = ["VeroScriptPython"]
+install.components = ["VeroScriptPython"]
+wheel.packages = []
+wheel.reproducible = true
+sdist.reproducible = true
+sdist.inclusion-mode = "explicit"
+sdist.include = [
+    "pyproject.toml",
+    "LICENSE",
+    "Resources/Tools/Packaging/veroscript_python_metadata.py",
+]
+sdist.exclude = [
+    # The backend emits fresh metadata when repacking an unpacked SDist.
+    "/PKG-INFO",
+    "**/.codex-*",
+    "**/.idea/**",
+    "**/.tmp/**",
+    "**/.cxx/**",
+    "**/.gradle/**",
+    "**/.externalNativeBuild/**",
+    "**/.venv/**",
+    "**/build/**",
+    "**/dist/**",
+    "**/__pycache__/**",
+    "**/*.py[cod]",
+    "**/bin/**",
+    "**/obj/**",
+    "**/.vs/**",
+    "**/.pytest_cache/**",
+    "**/.mypy_cache/**",
+    "**/.ruff_cache/**",
+    # Forced native source directories also need explicit build-output filters.
+    "**/.git",
+    "**/.git/**",
+    "**/CMakeFiles/**",
+    "**/CMakeCache.txt",
+    "**/CMakeUserPresets.json",
+    "**/cmake_install.cmake",
+    "**/CTestTestfile.cmake",
+    "**/install_manifest.txt",
+    "**/compile_commands.json",
+    "**/.ninja_deps",
+    "**/.ninja_log",
+    "**/build.ninja",
+    "**/*.obj",
+    "**/*.o",
+    "**/*.a",
+    "**/*.lib",
+    "**/*.exp",
+    "**/*.exe",
+    "**/*.dll",
+    "**/*.so",
+    "**/*.so.[0-9]*",
+    "**/*.dylib",
+    "**/*.wasm",
+    "**/*.pdb",
+    "**/*.ilk",
+    "**/*.idb",
+    "**/*.pch",
+    "**/*.ipch",
+    "**/*.gch",
+    "**/*.whl",
+    "**/*.nupkg",
+    "**/*.snupkg",
+    "**/*.vsix",
+    "**/*.apk",
+    "**/*.aab",
+    "**/*.aar",
+    "**/*.dSYM/**",
+    "**/*.xcarchive/**",
+    "**/*.xcframework/**",
+    "**/*.tmp",
+    "**/*.temp",
+    "**/*.log",
+    "**/*.bak",
+    "**/*.orig",
+    "**/*.rej",
+    "**/*.vsbc",
+    "**/*.vsc",
+    "**/*.vsapp",
+    "**/*.vslib",
+    "**/*.vspkg",
+    "**/VeroScript*.zip",
+    "**/VeroScript*.tar.gz",
+    "**/veroscript-*.tar.gz",
+    "**/vs-*.zip",
+    "**/vs-*.tar.gz",
+    "**/*.egg-info/**",
+    "**/.github/**",
+    "**/README*",
+    "**/readme*",
+    "**/CHANGELOG*",
+    "**/CHANGES*",
+    "**/CONTRIBUTING*",
+    "**/tests/**",
+    "**/Resources/Examples/**",
+    "**/Examples/**",
+    "**/Private/Tests/**",
+    "**/Resources/Tests/**",
+    "**/Benchmarks/**",
+    "**/Release/**",
+    "**/VeroScript/Resources/Benchmarks/**",
+    "**/Resources/Docs/**",
+    "**/VeroScript/Private/Tests/**",
+    "**/VeroScriptInterop/Private/Tests/**",
+    "**/VeroScript/Resources/Scripts/examples/**",
+    "**/VeroScriptCpp/Private/Tests/**",
+    "**/VeroScriptAsmJit/Private/Tests/**",
+    "**/VeroScriptAsmJit/Resources/Benchmarks/**",
+    "**/asmjit/asmjit-testing/**",
+    "**/asmjit/tools/**",
+]
+
+# Native sources stay owned by their modules in the checkout. Only the SDist
+# carries a self-contained copy; building it never reaches outside the archive.
+[tool.scikit-build.sdist.force-include]
+"../../../CMakeLists.txt" = "_native/CMakeLists.txt"
+"../../../LICENSE" = "_native/LICENSE"
+"../../../Resources/Tools/CMake" = "_native/Resources/Tools/CMake"
+"../../../Resources/Assets/icons/veroscript-icon.ico" = "_native/Resources/Assets/icons/veroscript-icon.ico"
+"../../../Shared/Private" = "_native/Shared/Private"
+"../../../Resources/Tools/Packaging/ReleaseVersions.json" = "_native/Resources/Tools/Packaging/ReleaseVersions.json"
+"../../../Resources/Tools/Packaging/veroscript_mobile.py" = "_native/Resources/Tools/Packaging/veroscript_mobile.py"
+"../../../Resources/Tools/Packaging/veroscript_products.py" = "_native/Resources/Tools/Packaging/veroscript_products.py"
+"../../../Resources/Tools/Packaging/veroscript_paths.py" = "_native/Resources/Tools/Packaging/veroscript_paths.py"
+"Resources/Tools/Mobile" = "_native/Extensions/Language/Python/Resources/Tools/Mobile"
+"Resources/Tools/Desktop" = "_native/Extensions/Language/Python/Resources/Tools/Desktop"
+"../../../VeroScript" = "_native/VeroScript"
+"../../../VeroScriptInterop" = "_native/VeroScriptInterop"
+"../../../VeroScriptApplication" = "_native/VeroScriptApplication"
+"../../../Modules/Execution/VeroScriptAsmJit" = "_native/Modules/Execution/VeroScriptAsmJit"
+"../../../Modules/Execution/VeroScriptBytecodeVm" = "_native/Modules/Execution/VeroScriptBytecodeVm"
+"../Cpp/VeroScriptCpp" = "_native/Extensions/Language/Cpp/VeroScriptCpp"
+"Resources/Localization" = "_native/Extensions/Language/Python/Resources/Localization"
+"VeroScriptPython" = "_native/Extensions/Language/Python/VeroScriptPython"
+"VeroScriptPythonFrontend" = "_native/Extensions/Language/Python/VeroScriptPythonFrontend"
+"VeroScriptPythonBindGen" = "_native/Extensions/Language/Python/VeroScriptPythonBindGen"
+"VeroScriptPythonTranspiler" = "_native/Extensions/Language/Python/VeroScriptPythonTranspiler"
+"VeroScriptPythonAot" = "_native/Extensions/Language/Python/VeroScriptPythonAot"
+
+[[tool.scikit-build.overrides]]
+if.from-sdist = true
+cmake.source-dir = "_native"
+sdist.inclusion-mode = "default"
+sdist.force-include = {}
+
+[tool.scikit-build.cmake.define]
+BUILD_TESTING = false
+VS_BUILD_VEROSCRIPT_PYTHON = true
+VS_BUILD_VEROSCRIPT_PYTHON_ONLY = true
+VS_VEROSCRIPT_PYTHON_PACKAGE_BUILD = true
+VEROSCRIPT_BUILD_APPLICATION = true
+VEROSCRIPT_PYTHON_INSTALL_DIR = "veroscript"
+
+[tool.cibuildwheel]
+build = "cp31{1,2,3,4,5}-*"
+skip = ["*-musllinux_*", "cp3??t-*"]
+archs = ["native"]
+build-verbosity = 1
+test-command = [
+    'python -X dev "{package}/Resources/Tools/Packaging/test-wheel.py" --project "{package}"',
+]

@@ -1,0 +1,11 @@
+{
+  "diag.stdlib_arguments": "標準ライブラリの引数が無効です",
+  "diag.stdlib_eof": "入力が予期せず終了しました",
+  "diag.stdlib_interrupted": "標準ライブラリの操作が中断されました",
+  "diag.stdlib_io": "標準ライブラリの入出力操作に失敗しました",
+  "diag.stdlib_limit": "標準ライブラリの操作がリソース制限を超えました",
+  "diag.stdlib_range": "数値テキストが対象の範囲外です。バイト位置: {0}",
+  "diag.stdlib_sync": "同期操作に失敗しました: {0}",
+  "diag.stdlib_task": "タスク操作に失敗しました: {0}",
+  "diag.stdlib_text": "無効なテキストです。バイト位置: {0}"
+}

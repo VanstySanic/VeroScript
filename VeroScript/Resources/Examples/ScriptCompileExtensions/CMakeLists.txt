@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+cmake_minimum_required(VERSION 3.21)
+project(ScriptCompileExtensions LANGUAGES CXX)
+find_package(VeroScript 0.1.1 EXACT CONFIG REQUIRED)
+find_package(VeroScriptBytecodeVm CONFIG REQUIRED)
+
+add_executable(ScriptCompileExtensions main.cpp)
+target_link_libraries(ScriptCompileExtensions PRIVATE VeroScript::VeroScript VeroScript::VeroScriptBytecodeVm)
+target_compile_features(ScriptCompileExtensions PRIVATE cxx_std_17)
+if(MINGW)
+	target_link_options(ScriptCompileExtensions PRIVATE -municode)
+endif()
+get_filename_component(_sdk_root "${VeroScript_DIR}/../../.." ABSOLUTE)
+set(VEROSCRIPT_EXAMPLE_STDLIB_PATH "${_sdk_root}/assets/stdlib" CACHE PATH "Installed standard-library directory")
+include(CTest)
+if(BUILD_TESTING)
+	add_test(NAME script-compile-extension-example COMMAND ScriptCompileExtensions "${CMAKE_CURRENT_SOURCE_DIR}/main.vs" "${VEROSCRIPT_EXAMPLE_STDLIB_PATH}")
+	set_tests_properties(script-compile-extension-example PROPERTIES PASS_REGULAR_EXPRESSION "Save" TIMEOUT 30)
+	if(WIN32)
+		set(_unicode_source "${CMAKE_CURRENT_BINARY_DIR}/script sources 中文")
+		file(MAKE_DIRECTORY "${_unicode_source}")
+		configure_file(main.vs "${_unicode_source}/main.vs" COPYONLY)
+		configure_file(builder.vs "${_unicode_source}/builder.vs" COPYONLY)
+		add_test(NAME script-compile-extension-unicode-example COMMAND ScriptCompileExtensions
+			"${_unicode_source}/main.vs" "${VEROSCRIPT_EXAMPLE_STDLIB_PATH}")
+		set_tests_properties(script-compile-extension-unicode-example PROPERTIES PASS_REGULAR_EXPRESSION "Save" TIMEOUT 30)
+	endif()
+endif()

@@ -1,0 +1,1600 @@
+--- a/include/jsoncons/json_array.hpp
++++ b/include/jsoncons/json_array.hpp
+@@ -246,6 +246,19 @@
+ 
+         void flatten_and_destroy() noexcept
+         {
++#if defined(VEROSCRIPT_JSON_BOUNDED_CLEAR)
++            for (auto& item : data_)
++            {
++                auto& child = item;
++                if ((child.storage_kind() == json_storage_kind::array || child.storage_kind() == json_storage_kind::object) && !child.empty())
++                {
++                    VEROSCRIPT_JSON_BOUNDED_CLEAR(child);
++                }
++            }
++            data_.clear();
++            return;
++#endif
++
+             while (!data_.empty())
+             {
+                 value_type current = std::move(data_.back());
+--- a/include/jsoncons/ordered_json_object.hpp
++++ b/include/jsoncons/ordered_json_object.hpp
+@@ -794,6 +794,19 @@
+ 
+         void flatten_and_destroy() noexcept
+         {
++#if defined(VEROSCRIPT_JSON_BOUNDED_CLEAR)
++            for (auto& item : data_)
++            {
++                auto& child = item.value();
++                if ((child.storage_kind() == json_storage_kind::array || child.storage_kind() == json_storage_kind::object) && !child.empty())
++                {
++                    VEROSCRIPT_JSON_BOUNDED_CLEAR(child);
++                }
++            }
++            data_.clear();
++            return;
++#endif
++
+             if (!data_.empty())
+             {
+                 json_array<Json> temp(get_allocator());
+--- a/include/jsoncons/sorted_json_object.hpp
++++ b/include/jsoncons/sorted_json_object.hpp
+@@ -722,6 +722,19 @@
+ 
+         void flatten_and_destroy() noexcept
+         {
++#if defined(VEROSCRIPT_JSON_BOUNDED_CLEAR)
++            for (auto& item : data_)
++            {
++                auto& child = item.value();
++                if ((child.storage_kind() == json_storage_kind::array || child.storage_kind() == json_storage_kind::object) && !child.empty())
++                {
++                    VEROSCRIPT_JSON_BOUNDED_CLEAR(child);
++                }
++            }
++            data_.clear();
++            return;
++#endif
++
+             if (!data_.empty())
+             {
+                 json_array<Json> temp(get_allocator());
+--- a/include/jsoncons/utility/uri.hpp
++++ b/include/jsoncons/utility/uri.hpp
+@@ -450,10 +450,11 @@
+           return is_absolute() && !encoded_authority().empty();
+         }
+ 
+-        uri base() const noexcept 
+-        { 
+-            return uri{uri_encoded_part, scheme(), encoded_userinfo(), host(), port(), encoded_path(), 
+-                jsoncons::string_view{}, jsoncons::string_view{}};
++        uri base() const
++        {
++            // Schema resource identity includes the query; remove only the fragment.
++            const auto end = uri_string_.find('#');
++            return uri(string_view(uri_string_.data(), end == std::string::npos ? uri_string_.size() : end));
+         }
+ 
+         string_view scheme() const noexcept { return string_view(uri_string_.data()+scheme_part_.first,(scheme_part_.second-scheme_part_.first)); }
+--- a/include/jsoncons_ext/jsonschema/common/eval_context.hpp
++++ b/include/jsoncons_ext/jsonschema/common/eval_context.hpp
+@@ -81,14 +81,31 @@
+     {
+     }
+ 
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++    // Child instance locations have independent evaluated-property/item sets.
++    // Preserve the reference path and dynamic resource scope, clearing only flags.
++    eval_context(const eval_context& parent, evaluation_flags flags)
++        : dynamic_scope_{parent.dynamic_scope_}, eval_path_{parent.eval_path_}, flags_(flags)
++    {
++    }
++#endif
++
+     eval_context(const eval_context& parent, const schema_validator<Json> *validator)
+         : dynamic_scope_ { parent.dynamic_scope_ }, eval_path_{ parent.eval_path_ },
+           flags_(parent.flags_)
+     {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        const auto* resource = validator->schema_resource();
++        if (dynamic_scope_.empty() || dynamic_scope_.back() != resource)
++        {
++            dynamic_scope_.push_back(resource);
++        }
++#else
+         if (validator->id() || dynamic_scope_.empty())
+         {
+             dynamic_scope_.push_back(validator);
+         }
++#endif
+     }
+ 
+     eval_context(const eval_context& parent, const schema_validator<Json> *validator,
+@@ -96,10 +113,18 @@
+         : dynamic_scope_ { parent.dynamic_scope_ }, eval_path_{ parent.eval_path_ },
+           flags_(flags)
+     {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        const auto* resource = validator->schema_resource();
++        if (dynamic_scope_.empty() || dynamic_scope_.back() != resource)
++        {
++            dynamic_scope_.push_back(resource);
++        }
++#else
+         if (validator->id() || dynamic_scope_.empty())
+         {
+             dynamic_scope_.push_back(validator);
+         }
++#endif
+     }
+ 
+     eval_context(const eval_context& parent, jsoncons::string_view name)
+--- a/include/jsoncons_ext/jsonschema/common/format_validators.hpp
++++ b/include/jsoncons_ext/jsonschema/common/format_validators.hpp
+@@ -1234,7 +1234,13 @@
+         error_reporter<Json>& reporter,
+         jsoncons::optional<Json>& patch) 
+     {
+-#if defined(JSONCONS_HAS_STD_REGEX)
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        if (!VEROSCRIPT_JSON_SCHEMA_POLICY::RegexValid(std::string_view(sv.data(), sv.size())))
++        {
++            return reporter.error(message_factory.make_validation_message(eval_path, instance_location,
++                "Invalid ECMAScript regular expression"), patch);
++        }
++#elif defined(JSONCONS_HAS_STD_REGEX)
+         JSONCONS_TRY 
+         {
+             std::regex re(sv.data(), sv.size(), std::regex::ECMAScript);
+--- a/include/jsoncons_ext/jsonschema/common/keyword_validator.hpp
++++ b/include/jsoncons_ext/jsonschema/common/keyword_validator.hpp
+@@ -40,6 +40,24 @@
+ namespace jsoncons {
+ namespace jsonschema {
+     
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++    template <typename Json>
++    using schema_regex = VEROSCRIPT_JSON_SCHEMA_POLICY::FRegex;
++#else
++    template <typename Json>
++    using schema_regex = std::regex;
++#endif
++
++    template <typename Json>
++    bool schema_regex_search(jsoncons::string_view text, const schema_regex<Json>& regex)
++    {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        return regex.Search(std::string_view(text.data(), text.size()));
++#else
++        return std::regex_search(text.begin(), text.end(), regex);
++#endif
++    }
++
+     template <typename Json>
+     class schema_validator;
+ 
+@@ -118,6 +136,9 @@
+     class keyword_validator : public keyword_base<Json>, public virtual validator_base<Json> 
+     {
+     public:
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        std::string annotation_keyword() const override { return this->keyword(); }
++#endif
+         using keyword_validator_ptr_type = std::unique_ptr<keyword_validator<Json>>;
+ 
+         keyword_validator(const std::string& keyword_name, const Json& schema, const uri& schema_location,
+@@ -438,7 +459,7 @@
+             error_reporter<Json>& reporter,
+             jsoncons::optional<Json>& patch) const final
+         {
+-            if (!instance.is_string())
++            if ((!instance.is_string() || instance.is_number()))
+             {
+                 return walk_state::advance;
+             }
+@@ -510,7 +531,7 @@
+             error_reporter<Json>& reporter,
+             jsoncons::optional<Json>& patch) const final
+         {
+-            if (!instance.is_string())
++            if ((!instance.is_string() || instance.is_number()))
+             {
+                 return walk_state::advance;
+             }
+@@ -565,12 +586,22 @@
+         using keyword_validator_ptr_type = std::unique_ptr<keyword_validator<Json>>;
+ 
+         validate_format<Json> validate_;
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        std::string native_format_;
++#endif
+ 
+     public:
+         format_validator(const Json& schema, const uri& schema_location, const std::string& custom_message, const validate_format<Json>& validate)
+             : keyword_validator<Json>("format", schema, schema_location, custom_message), validate_(validate)
+         {
+         }
++
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        format_validator(const Json& schema, const uri& schema_location, const std::string& custom_message, std::string format)
++            : keyword_validator<Json>("format", schema, schema_location, custom_message), native_format_(std::move(format))
++        {
++        }
++#endif
+ 
+     private:
+ 
+@@ -580,11 +611,24 @@
+             error_reporter<Json>& reporter,
+             jsoncons::optional<Json>& patch) const final
+         {
+-            if (!instance.is_string())
++            if ((!instance.is_string() || instance.is_number()))
+             {
+                 return walk_state::advance;
+             }
+ 
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (!native_format_.empty())
++            {
++                const auto value = instance.as_string_view();
++                if (!VEROSCRIPT_JSON_SCHEMA_POLICY::Format(native_format_, std::string_view(value.data(), value.size())))
++                {
++                    eval_context<Json> this_context(context, this->keyword());
++                    return reporter.error(this->make_validation_message(this_context.eval_path(), instance_location,
++                        "String does not match format: " + native_format_), patch);
++                }
++                return walk_state::advance;
++            }
++#endif
+             if (validate_ != nullptr) 
+             {
+                 eval_context<Json> this_context(context, this->keyword());
+@@ -615,11 +659,11 @@
+         using keyword_validator_ptr_type = std::unique_ptr<keyword_validator<Json>>;
+ 
+         std::string pattern_string_;
+-        std::regex regex_;
++        schema_regex<Json> regex_;
+ 
+     public:
+         pattern_validator(const Json& schema, const uri& schema_location, const std::string& custom_message,
+-            const std::string& pattern_string, const std::regex& regex)
++            const std::string& pattern_string, const schema_regex<Json>& regex)
+             : keyword_validator<Json>("pattern", schema, schema_location, custom_message), 
+               pattern_string_(pattern_string), regex_(regex)
+         {
+@@ -633,14 +677,14 @@
+             error_reporter<Json>& reporter,
+             jsoncons::optional<Json>& patch) const final
+         {
+-            if (!instance.is_string())
++            if ((!instance.is_string() || instance.is_number()))
+             {
+                 return walk_state::advance;
+             }
+ 
+             eval_context<Json> this_context(context, this->keyword());
+ 
+-            if (!std::regex_search(instance.as_cstring(), regex_))
++            if (!schema_regex_search<Json>(instance.as_string_view(), regex_))
+             {
+                 std::string message("String '");
+                 message.append(instance.as_cstring());
+@@ -720,7 +764,7 @@
+             error_reporter<Json>& reporter,
+             jsoncons::optional<Json>& patch) const final
+         {
+-            if (!instance.is_string())
++            if ((!instance.is_string() || instance.is_number()))
+             {
+                 return walk_state::advance;
+             }
+@@ -773,7 +817,7 @@
+             error_reporter<Json>& reporter,
+             jsoncons::optional<Json>& patch) const final
+         {
+-            if (!instance.is_string())
++            if ((!instance.is_string() || instance.is_number()))
+             {
+                 return walk_state::advance;
+             }
+@@ -968,7 +1012,12 @@
+                     {
+                         jsonpointer::json_pointer item_location = instance_location / index;
+                         std::size_t errors = reporter.error_count();
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                        eval_context<Json> child_context(this_context, evaluation_flags{});
++                        walk_state result = schema_val_->validate(child_context, item, item_location, results, reporter, patch);
++#else
+                         walk_state result = schema_val_->validate(this_context, item, item_location, results, reporter, patch);
++#endif
+                         if (result == walk_state::abort)
+                         {
+                             return result;
+@@ -1087,7 +1136,11 @@
+             {
+                 for (auto jt = it+1; jt != a.array_range().end(); ++jt) 
+                 {
+-                    if (*it == *jt) 
++                    #if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                    if (VEROSCRIPT_JSON_SCHEMA_POLICY::Equal(*it, *jt))
++#else
++                    if (*it == *jt)
++#endif 
+                     {
+                         return false; // contains duplicates 
+                     }
+@@ -1545,6 +1598,15 @@
+         {
+             eval_context<Json> this_context(context, this->keyword());
+ 
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (instance.is_number() && VEROSCRIPT_JSON_SCHEMA_POLICY::CompareNumber(instance, value_) > 0)
++            {
++                return reporter.error(this->make_validation_message(this_context.eval_path(), instance_location,
++                    message_ + instance.template as<std::string>()), patch);
++            }
++            return walk_state::advance;
++#else
++
+             if (instance.is_int64() && value_.is_int64())
+             {
+                 if (instance.template as<int64_t>() > value_.template as<int64_t>())
+@@ -1606,6 +1668,7 @@
+                 }
+             }
+             return walk_state::advance;
++#endif
+         }
+ 
+         walk_state do_walk(const eval_context<Json>& /*context*/, const Json& instance,
+@@ -1639,6 +1702,15 @@
+             jsoncons::optional<Json>& patch) const final 
+         {
+             eval_context<Json> this_context(context, this->keyword());
++
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (instance.is_number() && VEROSCRIPT_JSON_SCHEMA_POLICY::CompareNumber(instance, value_) >= 0)
++            {
++                return reporter.error(this->make_validation_message(this_context.eval_path(), instance_location,
++                    message_ + instance.template as<std::string>()), patch);
++            }
++            return walk_state::advance;
++#else
+ 
+             if (instance.is_int64() && value_.is_int64())
+             {
+@@ -1701,6 +1773,7 @@
+                 }
+             }
+             return walk_state::advance;
++#endif
+         }
+ 
+         walk_state do_walk(const eval_context<Json>& /*context*/, const Json& instance,
+@@ -1734,6 +1807,15 @@
+             jsoncons::optional<Json>& patch) const final
+         {
+             eval_context<Json> this_context(context, this->keyword());
++
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (instance.is_number() && VEROSCRIPT_JSON_SCHEMA_POLICY::CompareNumber(instance, value_) < 0)
++            {
++                return reporter.error(this->make_validation_message(this_context.eval_path(), instance_location,
++                    message_ + instance.template as<std::string>()), patch);
++            }
++            return walk_state::advance;
++#else
+ 
+             if (instance.is_int64() && value_.is_int64())
+             {
+@@ -1796,6 +1878,7 @@
+                 }
+             }
+             return walk_state::advance;
++#endif
+         }
+ 
+         walk_state do_walk(const eval_context<Json>& /*context*/, const Json& instance,
+@@ -1829,6 +1912,15 @@
+             jsoncons::optional<Json>& patch) const final 
+         {
+             eval_context<Json> this_context(context, this->keyword());
++
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (instance.is_number() && VEROSCRIPT_JSON_SCHEMA_POLICY::CompareNumber(instance, value_) <= 0)
++            {
++                return reporter.error(this->make_validation_message(this_context.eval_path(), instance_location,
++                    message_ + instance.template as<std::string>()), patch);
++            }
++            return walk_state::advance;
++#else
+ 
+             if (instance.is_int64() && value_.is_int64())
+             {
+@@ -1891,6 +1983,7 @@
+                 }
+             }
+             return walk_state::advance;
++#endif
+         }
+ 
+         walk_state do_walk(const eval_context<Json>& /*context*/, const Json& instance,
+@@ -1905,10 +1998,10 @@
+     {
+         using keyword_validator_ptr_type = std::unique_ptr<keyword_validator<Json>>;
+ 
+-        double value_;
+-
+-    public:
+-        multiple_of_validator(const Json& schema, const uri& schema_location, const std::string& custom_message, double value)
++        Json value_;
++
++    public:
++        multiple_of_validator(const Json& schema, const uri& schema_location, const std::string& custom_message, const Json& value)
+             : keyword_validator<Json>("multipleOf", schema, schema_location, custom_message), value_(value)
+         {
+         }
+@@ -1927,15 +2020,23 @@
+             }
+             eval_context<Json> this_context(context, this->keyword());
+ 
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (!VEROSCRIPT_JSON_SCHEMA_POLICY::Multiple(instance, value_))
++            {
++                return reporter.error(this->make_validation_message(this_context.eval_path(), instance_location,
++                    instance.template as<std::string>() + " is not a multiple of " + value_.template as<std::string>()), patch);
++            }
++            return walk_state::advance;
++#else
+             double value = instance.template as<double>();
+             if (value != 0) // Exclude zero
+             {
+-                if (!is_multiple_of(value, static_cast<double>(value_)))
++                if (!is_multiple_of(value, value_.template as<double>()))
+                 {
+                     walk_state result = reporter.error(this->make_validation_message(
+                         this_context.eval_path(),
+                         instance_location, 
+-                        instance.template as<std::string>() + " is not a multiple of " + std::to_string(value_)), patch);
++                        instance.template as<std::string>() + " is not a multiple of " + value_.template as<std::string>()), patch);
+                     if (result == walk_state::abort)
+                     {
+                         return result;
+@@ -1943,6 +2044,7 @@
+                 }
+             }
+             return walk_state::advance;
++#endif
+         }
+ 
+         static bool is_multiple_of(double x, double multiple_of) 
+@@ -2273,7 +2375,11 @@
+             bool in_range = false;
+             for (const auto& item : value_.array_range())
+             {
+-                if (item == instance) 
++                #if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                    if (VEROSCRIPT_JSON_SCHEMA_POLICY::Equal(item, instance))
++#else
++                    if (item == instance)
++#endif 
+                 {
+                     in_range = true;
+                     break;
+@@ -2324,7 +2430,11 @@
+             error_reporter<Json>& reporter,
+             jsoncons::optional<Json>& patch) const final
+         {
+-            if (value_ != instance)
++            #if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                    if (!VEROSCRIPT_JSON_SCHEMA_POLICY::Equal(value_, instance))
++#else
++                    if (value_ != instance)
++#endif
+             {
+                 eval_context<Json> this_context(context, this->keyword());
+ 
+@@ -2436,7 +2546,7 @@
+                         }
+                         break;
+                     case json_schema_type::string:  // OK
+-                        if (instance.is_string() && instance.tag() != semantic_tag::bigint)
++                        if (instance.is_string() && !instance.is_number())
+                         {
+                             is_type_found = true;
+                         }
+@@ -2448,6 +2558,12 @@
+                         }
+                         break;
+                     case json_schema_type::integer:
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                        if (VEROSCRIPT_JSON_SCHEMA_POLICY::Integer(instance))
++                        {
++                            is_type_found = true;
++                        }
++#else
+                         if (instance.is_int64() || instance.is_uint64())
+                         {
+                             is_type_found = true;
+@@ -2460,6 +2576,7 @@
+                         {
+                             is_type_found = true;
+                         }
++#endif
+                         break;
+                     case json_schema_type::number:
+                         if (instance.is_number())
+@@ -2566,7 +2683,34 @@
+         {
+         }
+ 
+-        walk_state validate(const eval_context<Json>& context, const Json& instance, 
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        walk_state validate(const eval_context<Json>& context, const Json& instance,
++            const jsonpointer::json_pointer& instance_location, evaluation_results& results,
++            error_reporter<Json>& reporter, jsoncons::optional<Json>& patch,
++            std::unordered_set<std::string>& allowed_properties) const
++        {
++            auto* collector = VEROSCRIPT_JSON_SCHEMA_POLICY::Annotations();
++            if (!collector) return validate_impl(context, instance, instance_location, results, reporter, patch, allowed_properties);
++            VEROSCRIPT_JSON_SCHEMA_POLICY::FAnnotationScope annotations(collector);
++            evaluation_results local;
++            const auto errors = reporter.error_count();
++            const auto state = validate_impl(context, instance, instance_location, local, reporter, patch, allowed_properties);
++            if (state == walk_state::advance && errors == reporter.error_count())
++            {
++                VEROSCRIPT_JSON_SCHEMA_POLICY::Evaluated(this->keyword(),
++                    VEROSCRIPT_JSON_SCHEMA_POLICY::AnnotationLocation(this->schema_location().string(), this->keyword()),
++                    context.eval_path().string(), instance_location.string(), instance, local,
++                    static_cast<const evaluation_results*>(nullptr));
++                annotations.Commit();
++            }
++            results.merge(local);
++            return state;
++        }
++        walk_state validate_impl(
++#else
++        walk_state validate(
++#endif
++const eval_context<Json>& context, const Json& instance, 
+             const jsonpointer::json_pointer& instance_location,
+             evaluation_results& results, 
+             error_reporter<Json>& reporter, 
+@@ -2716,17 +2860,51 @@
+         using keyword_validator_ptr_type = typename keyword_validator<Json>::keyword_validator_ptr_type;
+         using schema_validator_ptr_type = typename schema_validator<Json>::schema_validator_ptr_type;
+ 
+-        std::vector<std::pair<std::regex, schema_validator_ptr_type>> pattern_properties_;
++        std::vector<std::pair<schema_regex<Json>, schema_validator_ptr_type>> pattern_properties_;
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        std::vector<std::string> annotation_patterns_;
++#endif
+ 
+     public:
+         pattern_properties_validator(const Json& schema, const uri& schema_location, const std::string& custom_message,
+-            std::vector<std::pair<std::regex, schema_validator_ptr_type>>&& pattern_properties)
++            std::vector<std::pair<schema_regex<Json>, schema_validator_ptr_type>>&& pattern_properties)
+             : keyword_validator<Json>("patternProperties", schema, std::move(schema_location), custom_message),
+               pattern_properties_(std::move(pattern_properties))
+         {
+-        }
+-
+-        walk_state validate(const eval_context<Json>& context, const Json& instance, 
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            for (const auto& entry : schema.at("patternProperties").object_range())
++                annotation_patterns_.emplace_back(entry.key());
++#endif
++        }
++
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        walk_state validate(const eval_context<Json>& context, const Json& instance,
++            const jsonpointer::json_pointer& instance_location, evaluation_results& results,
++            error_reporter<Json>& reporter, jsoncons::optional<Json>& patch,
++            std::unordered_set<std::string>& allowed_properties) const
++        {
++            auto* collector = VEROSCRIPT_JSON_SCHEMA_POLICY::Annotations();
++            if (!collector) return validate_impl(context, instance, instance_location, results, reporter, patch, allowed_properties);
++            VEROSCRIPT_JSON_SCHEMA_POLICY::FAnnotationScope annotations(collector);
++            evaluation_results local;
++            const auto errors = reporter.error_count();
++            const auto state = validate_impl(context, instance, instance_location, local, reporter, patch, allowed_properties);
++            if (state == walk_state::advance && errors == reporter.error_count())
++            {
++                VEROSCRIPT_JSON_SCHEMA_POLICY::Evaluated(this->keyword(),
++                    VEROSCRIPT_JSON_SCHEMA_POLICY::AnnotationLocation(this->schema_location().string(), this->keyword()),
++                    context.eval_path().string(), instance_location.string(), instance, local,
++                    static_cast<const evaluation_results*>(nullptr));
++                annotations.Commit();
++            }
++            results.merge(local);
++            return state;
++        }
++        walk_state validate_impl(
++#else
++        walk_state validate(
++#endif
++const eval_context<Json>& context, const Json& instance, 
+             const jsonpointer::json_pointer& instance_location, 
+             evaluation_results& results, 
+             error_reporter<Json>& reporter, 
+@@ -2752,13 +2930,22 @@
+                 jsonpointer::json_pointer prop_location = instance_location / prop.key();
+ 
+                 // check all matching "patternProperties"
++                std::size_t pattern_index = 0;
+                 for (auto& schema_pp : pattern_properties_)
+                 {
+-                    if (std::regex_search(prop.key(), schema_pp.first)) 
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                    eval_context<Json> schema_context{this_context, annotation_patterns_[pattern_index], evaluation_flags{}};
++#endif
++                    ++pattern_index;
++                    if (schema_regex_search<Json>(prop.key(), schema_pp.first)) 
+                     {
+                         allowed_properties.insert(std::string(prop.name()));
+                         std::size_t errors = reporter.error_count();
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                        walk_state result = schema_pp.second->validate(schema_context, prop.value(), prop_location, results, reporter, patch);
++#else
+                         walk_state result = schema_pp.second->validate(prop_context, prop.value() , prop_location, results, reporter, patch);
++#endif
+                         if (result == walk_state::abort)
+                         {
+                             return result;
+@@ -2802,7 +2989,7 @@
+                 // check all matching "patternProperties"
+                 for (auto& schema_pp : pattern_properties_)
+                 {
+-                    if (std::regex_search(prop.key(), schema_pp.first)) 
++                    if (schema_regex_search<Json>(prop.key(), schema_pp.first)) 
+                     {
+                         allowed_properties.insert(std::string(prop.name()));
+                         result = schema_pp.second->walk(prop_context, prop.value() , prop_location, reporter, patch);
+@@ -2898,6 +3085,9 @@
+ 
+             if (additional_properties_)
+             {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                const auto additional_errors = reporter.error_count();
++#endif
+                 eval_context<Json> this_context(context, this->keyword());
+                 if (additional_properties_->always_fails())
+                 {
+@@ -2978,6 +3168,22 @@
+                         //std::cout << "\n";
+                     }
+                 }
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                if (VEROSCRIPT_JSON_SCHEMA_POLICY::Annotations() && reporter.error_count() == additional_errors)
++                {
++                    evaluation_results own;
++                    for (const auto& prop : instance.object_range())
++                    {
++                        VEROSCRIPT_JSON_SCHEMA_POLICY::Check();
++                        const std::string name(prop.name());
++                        if (!allowed_properties.count(name) && results.evaluated_properties.count(name))
++                            own.evaluated_properties.insert(name);
++                    }
++                    VEROSCRIPT_JSON_SCHEMA_POLICY::Evaluated(this->keyword(), this->schema_location().string(),
++                        context.eval_path().string(), instance_location.string(), instance, own,
++                        static_cast<const evaluation_results*>(nullptr));
++                }
++#endif
+             }
+             return walk_state::advance;
+         }
+@@ -3516,7 +3722,12 @@
+             for (const auto& item : instance.array_range()) 
+             {
+                 std::size_t errors = local_reporter.errors.size();
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                eval_context<Json> item_context(this_context, evaluation_flags{});
++                walk_state result = schema_validator_->validate(item_context, item, instance_location / index, results, local_reporter, patch);
++#else
+                 walk_state result = schema_validator_->validate(this_context, item, instance_location / index, results, local_reporter, patch);
++#endif
+                 if (result == walk_state::abort)
+                 {
+                     return result;
+@@ -3648,7 +3859,32 @@
+         {
+         }
+ 
+-        walk_state validate(const eval_context<Json>& context, const Json& instance, 
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        walk_state validate(const eval_context<Json>& context, const Json& instance,
++            const jsonpointer::json_pointer& instance_location, evaluation_results& results,
++            error_reporter<Json>& reporter, jsoncons::optional<Json>& patch, std::size_t data_index) const
++        {
++            auto* collector = VEROSCRIPT_JSON_SCHEMA_POLICY::Annotations();
++            if (!collector) return validate_impl(context, instance, instance_location, results, reporter, patch, data_index);
++            VEROSCRIPT_JSON_SCHEMA_POLICY::FAnnotationScope annotations(collector);
++            evaluation_results local;
++            const auto errors = reporter.error_count();
++            const auto state = validate_impl(context, instance, instance_location, local, reporter, patch, data_index);
++            if (state == walk_state::advance && errors == reporter.error_count())
++            {
++                VEROSCRIPT_JSON_SCHEMA_POLICY::Evaluated(this->keyword(), this->schema_location().string(),
++                    context.eval_path().string(), instance_location.string(), instance, local,
++                    static_cast<const evaluation_results*>(nullptr));
++                annotations.Commit();
++            }
++            results.merge(local);
++            return state;
++        }
++        walk_state validate_impl(
++#else
++        walk_state validate(
++#endif
++const eval_context<Json>& context, const Json& instance, 
+             const jsonpointer::json_pointer& instance_location,
+             evaluation_results& results, 
+             error_reporter<Json>& reporter,
+@@ -3686,7 +3922,12 @@
+                     {
+                         jsonpointer::json_pointer item_location = instance_location / data_index;
+                         std::size_t errors = reporter.error_count();
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                        eval_context<Json> child_context(items_context, evaluation_flags{});
++                        walk_state result = items_val_->validate(child_context, instance[data_index], item_location, results, reporter, patch);
++#else
+                         walk_state result = items_val_->validate(items_context, instance[data_index], item_location, results, reporter, patch);
++#endif
+                         if (result == walk_state::abort)
+                         {
+                             return result;
+@@ -3784,6 +4025,9 @@
+                 return walk_state::advance;
+             }
+         
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            const auto prefix_errors = reporter.error_count();
++#endif
+             std::size_t data_index = 0;
+         
+             eval_context<Json> prefix_items_context(context, this->keyword());
+@@ -3829,6 +4073,16 @@
+                 results.evaluated_items.insert(range{start, end});
+             }
+             
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (VEROSCRIPT_JSON_SCHEMA_POLICY::Annotations() && prefix_errors == reporter.error_count())
++            {
++                evaluation_results own;
++                own.evaluated_items.insert(range{0, data_index});
++                VEROSCRIPT_JSON_SCHEMA_POLICY::Evaluated(this->keyword(), this->schema_location().string(),
++                    context.eval_path().string(), instance_location.string(), instance, own,
++                    static_cast<const evaluation_results*>(nullptr));
++            }
++#endif
+             if (data_index < instance.size() && items_val_)
+             {
+                 walk_state result = items_val_->validate(context, instance, instance_location, results, reporter, patch, data_index);
+@@ -3968,7 +4222,12 @@
+                         {
+                             //std::cout << "Not in evaluated properties: " << prop.key() << "\n";
+                             const std::size_t error_count = reporter.error_count();
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                            eval_context<Json> prop_context(this_context, evaluation_flags{});
++                            walk_state result = schema_val_->validate(prop_context, prop.value(), instance_location / prop.name(), results, reporter, patch);
++#else
+                             walk_state result = schema_val_->validate(this_context, prop.value() , instance_location, results, reporter, patch);
++#endif
+                             if (result == walk_state::abort)
+                             {
+                                 return result;
+@@ -4006,7 +4265,11 @@
+         unevaluated_items_validator(const Json& schema, const uri& schema_location,
+             const std::string& custom_message,
+             schema_validator_ptr_type&& schema_val)
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            : keyword_validator<Json>("unevaluatedItems", schema, std::move(schema_location),
++#else
+             : keyword_validator<Json>("unevaluatedProperties", schema, std::move(schema_location),
++#endif
+                 custom_message), 
+               schema_val_(std::move(schema_val))
+         {
+@@ -4042,7 +4305,11 @@
+                         // check if it is in "evaluated_items"
+                         if (!results.evaluated_items.contains(index)) 
+                         {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                            eval_context<Json> item_context(this_context, evaluation_flags{});
++#else
+                             eval_context<Json> item_context{this_context, index, evaluation_flags{}};
++#endif
+                             jsonpointer::json_pointer item_location = instance_location / index;
+                             //std::cout << "Not in evaluated properties: " << item.key() << "\n";
+                             walk_state result = reporter.error(this->make_validation_message(
+@@ -4074,7 +4341,11 @@
+                         // check if it is in "evaluated_items"
+                         if (!results.evaluated_items.contains(index))
+                         {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                            eval_context<Json> item_context(this_context, evaluation_flags{});
++#else
+                             eval_context<Json> item_context{this_context, index, evaluation_flags{}};
++#endif
+                             jsonpointer::json_pointer item_location = instance_location / index;
+                             //std::cout << "Not in evaluated properties: " << item.key() << "\n";
+                             const std::size_t error_count = reporter.error_count();
+@@ -4103,6 +4374,15 @@
+                                 }
+                             }
+                         }
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                        else if (start < end)
++                        {
++                            // An already evaluated hole terminates the current
++                            // run; later successful items start a new range.
++                            results.evaluated_items.insert(range{start, end});
++                            start = end;
++                        }
++#endif
+                         ++index;
+                     }
+                     if (start < end)
+--- a/include/jsoncons_ext/jsonschema/common/keyword_validator_factory.hpp
++++ b/include/jsoncons_ext/jsonschema/common/keyword_validator_factory.hpp
+@@ -84,14 +84,14 @@
+             uri schema_location = context.get_base_uri();
+             std::string custom_message = context.get_custom_message(keyword);
+ 
+-            std::vector<std::pair<std::regex, schema_validator_ptr_type>> pattern_properties;
++            std::vector<std::pair<schema_regex<Json>, schema_validator_ptr_type>> pattern_properties;
+             
+             for (const auto& prop : sch.object_range())
+             {
+-                jsoncons::string_view sub_keys[] = {keyword};
++                jsoncons::string_view sub_keys[] = {keyword, prop.key()};
+                 pattern_properties.emplace_back(
+                     std::make_pair(
+-                        std::regex(prop.key(), std::regex::ECMAScript),
++                        schema_regex<Json>(prop.key()),
+                         factory_->make_cross_draft_schema_validator(context, prop.value(), sub_keys, anchor_dict)));
+                 
+             }
+@@ -111,7 +111,11 @@
+                 const std::string message("maxLength must be a number value");
+                 JSONCONS_THROW(schema_error(schema_location.string() + ": " + message));
+             }
++            #if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            auto value = VEROSCRIPT_JSON_SCHEMA_POLICY::Size(sch);
++#else
+             auto value = sch.template as<std::size_t>();
++#endif
+             return jsoncons::make_unique<max_length_validator<Json>>(parent, schema_location, context.get_custom_message("maxLength"), 
+                 value);
+         }
+@@ -125,7 +129,11 @@
+                 const std::string message("minLength must be an integer value");
+                 JSONCONS_THROW(schema_error(schema_location.string() + ": " + message));
+             }
++            #if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            auto value = VEROSCRIPT_JSON_SCHEMA_POLICY::Size(sch);
++#else
+             auto value = sch.template as<std::size_t>();
++#endif
+             return jsoncons::make_unique<min_length_validator<Json>>(parent, schema_location, context.get_custom_message("minLength"), value);
+         }
+ 
+@@ -223,7 +231,7 @@
+                 const std::string message("multipleOf must be a number value");
+                 JSONCONS_THROW(schema_error(schema_location.string() + ": " + message));
+             }
+-            auto value = sch.template as<double>();
++            auto value = sch;
+             return jsoncons::make_unique<multiple_of_validator<Json>>(parent, schema_location, 
+                 context.get_custom_message("multipleOf"), value);
+         }
+@@ -383,6 +391,12 @@
+             auto schema_location = context.make_schema_location("format");
+ 
+             std::string format = sch.template as<std::string>();
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (!VEROSCRIPT_JSON_SCHEMA_POLICY::FormatKnown(format))
++                JSONCONS_THROW(schema_error("Unknown format assertion: " + format));
++            return jsoncons::make_unique<format_validator<Json>>(parent, schema_location,
++                context.get_custom_message("format"), std::move(format));
++#else
+ 
+             std::string message_key;
+             validate_format<Json> validate;
+@@ -449,6 +463,7 @@
+ 
+             return jsoncons::make_unique<format_validator<Json>>(parent, schema_location, context.get_custom_message(message_key), 
+                 validate);
++#endif
+         }
+ 
+         std::unique_ptr<pattern_validator<Json>> make_pattern_validator(const compilation_context<Json>& context, 
+@@ -456,7 +471,7 @@
+         {
+             uri schema_location = context.make_schema_location("pattern");
+             auto pattern_string = sch.template as<std::string>();
+-            auto regex = std::regex(pattern_string, std::regex::ECMAScript);
++            auto regex = schema_regex<Json>(pattern_string);
+             return jsoncons::make_unique<pattern_validator<Json>>(parent, schema_location, context.get_custom_message("pattern"), 
+                 pattern_string, regex);
+         }
+@@ -472,7 +487,11 @@
+                 const std::string message("maxItems must be a number value");
+                 JSONCONS_THROW(schema_error(schema_location.string() + ": " + message));
+             }
++            #if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            auto value = VEROSCRIPT_JSON_SCHEMA_POLICY::Size(sch);
++#else
+             auto value = sch.template as<std::size_t>();
++#endif
+             return jsoncons::make_unique<max_items_validator<Json>>(parent, schema_location, context.get_custom_message(keyword), value);
+         }
+ 
+@@ -487,7 +506,11 @@
+                 const std::string message("minItems must be a number value");
+                 JSONCONS_THROW(schema_error(schema_location.string() + ": " + message));
+             }
++            #if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            auto value = VEROSCRIPT_JSON_SCHEMA_POLICY::Size(sch);
++#else
+             auto value = sch.template as<std::size_t>();
++#endif
+             return jsoncons::make_unique<min_items_validator<Json>>(parent, schema_location, context.get_custom_message(keyword), value);
+         }
+ 
+@@ -501,7 +524,11 @@
+                 const std::string message("maxProperties must be a number value");
+                 JSONCONS_THROW(schema_error(schema_location.string() + ": " + message));
+             }
++            #if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            auto value = VEROSCRIPT_JSON_SCHEMA_POLICY::Size(sch);
++#else
+             auto value = sch.template as<std::size_t>();
++#endif
+             return jsoncons::make_unique<max_properties_validator<Json>>(parent, schema_location, context.get_custom_message(keyword), value);
+         }
+ 
+@@ -515,12 +542,20 @@
+                 const std::string message("minProperties must be a number value");
+                 JSONCONS_THROW(schema_error(schema_location.string() + ": " + message));
+             }
++            #if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            auto value = VEROSCRIPT_JSON_SCHEMA_POLICY::Size(sch);
++#else
+             auto value = sch.template as<std::size_t>();
++#endif
+             return jsoncons::make_unique<min_properties_validator<Json>>(parent, schema_location, context.get_custom_message(keyword), value);
+         }
+ 
+         std::unique_ptr<contains_validator<Json>> make_contains_validator(const compilation_context<Json>& context,
+-            const Json& sch, const Json& parent, anchor_uri_map_type& anchor_dict)
++            const Json& sch, const Json& parent, anchor_uri_map_type& anchor_dict
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            , bool validation = true
++#endif
++            )
+         {
+             uri schema_location = context.make_schema_location("contains");
+ 
+@@ -528,10 +563,18 @@
+ 
+             std::unique_ptr<max_contains_keyword<Json>> max_contains;
+             auto it = parent.find("maxContains");
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (validation && it != parent.object_range().end())
++#else
+             if (it != parent.object_range().end()) 
++#endif
+             {
+                 uri path = context.make_schema_location("maxContains");
++                #if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                auto value = VEROSCRIPT_JSON_SCHEMA_POLICY::Size((*it).value());
++#else
+                 auto value = (*it).value().template as<std::size_t>();
++#endif
+                 max_contains = jsoncons::make_unique<max_contains_keyword<Json>>(parent, path, context.get_custom_message("maxContains"), value);
+             }
+             else
+@@ -542,10 +585,18 @@
+ 
+             std::unique_ptr<min_contains_keyword<Json>> min_contains;
+             it = parent.find("minContains");
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (validation && it != parent.object_range().end())
++#else
+             if (it != parent.object_range().end()) 
++#endif
+             {
+                 uri path = context.make_schema_location("minContains");
++                #if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                auto value = VEROSCRIPT_JSON_SCHEMA_POLICY::Size((*it).value());
++#else
+                 auto value = (*it).value().template as<std::size_t>();
++#endif
+                 min_contains = jsoncons::make_unique<min_contains_keyword<Json>>(parent, path, context.get_custom_message("minContains"), value);
+             }
+             else
+@@ -716,7 +767,7 @@
+                     case json_type::boolean:
+                     case json_type::object:
+                     {
+-                        jsoncons::string_view sub_keys[] = {"dependentSchemas"};
++                        jsoncons::string_view sub_keys[] = {"dependentSchemas", dep.key()};
+                         dependent_schemas.emplace(dep.key(),
+                             factory_->make_cross_draft_schema_validator(context, dep.value(), sub_keys, anchor_dict));
+                         break;
+@@ -784,7 +835,11 @@
+             const compilation_context<Json>& context, const Json& sch, const Json& parent, anchor_uri_map_type& anchor_dict)
+         {
+             std::string keyword = "unevaluatedProperties";
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            uri schema_location = context.make_schema_location("unevaluatedProperties");
++#else
+             uri schema_location = context.get_base_uri();
++#endif
+ 
+             jsoncons::string_view sub_keys[] = {keyword};
+ 
+@@ -796,7 +851,11 @@
+         std::unique_ptr<unevaluated_items_validator<Json>> make_unevaluated_items_validator(
+             const compilation_context<Json>& context, const Json& sch, const Json& parent, anchor_uri_map_type& anchor_dict)
+         {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            uri schema_location = context.make_schema_location("unevaluatedItems");
++#else
+             uri schema_location = context.get_base_uri();
++#endif
+ 
+             jsoncons::string_view sub_keys[] = {"unevaluatedItems"};
+ 
+@@ -848,7 +907,11 @@
+                 if (it != parent.object_range().end()) 
+                 {
+                     uri items_location{context.make_schema_location("items")};
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                    jsoncons::string_view sub_keys[] = { "items" };
++#else
+                     jsoncons::string_view sub_keys[] = { "additionalItems" };
++#endif
+ 
+                     items_val = jsoncons::make_unique<items_keyword<Json>>("items", parent, items_location,
+                         context.get_custom_message("items"),
+--- a/include/jsoncons_ext/jsonschema/common/schema_validator.hpp
++++ b/include/jsoncons_ext/jsonschema/common/schema_validator.hpp
+@@ -32,6 +32,16 @@
+         schema_validator()
+         {}
+ 
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        const schema_validator<Json>* schema_resource() const
++        {
++            return resource_ ? resource_ : this;
++        }
++        void set_schema_resource(const schema_validator<Json>* resource) { resource_ = resource; }
++    private:
++        const schema_validator<Json>* resource_ = nullptr;
++    public:
++#endif
+         virtual jsoncons::optional<Json> get_default_value() const = 0;
+ 
+         virtual bool recursive_anchor() const = 0;
+@@ -241,6 +251,9 @@
+         jsoncons::optional<jsoncons::uri> dynamic_anchor_;
+         anchor_schema_map_type anchor_dict_;
+         bool always_succeeds_;
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        VEROSCRIPT_JSON_SCHEMA_POLICY::FAnnotationPlan annotation_plan_;
++#endif
+         bool always_fails_;
+ 
+     public:
+@@ -344,8 +357,18 @@
+ 
+         bool always_succeeds() const final
+         {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (VEROSCRIPT_JSON_SCHEMA_POLICY::Annotations()) return false;
++#endif
+             return always_succeeds_;
+         }
++
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        void set_annotations(const Json& schema, bool validation, bool applicator, bool unevaluated, bool content)
++        {
++            annotation_plan_ = VEROSCRIPT_JSON_SCHEMA_POLICY::AnnotationPlan(schema, schema_location_.string(), validation, applicator, unevaluated, content);
++        }
++#endif
+ 
+     private:
+ 
+@@ -387,7 +410,15 @@
+           
+             evaluation_results local_results;
+ 
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            const auto errors_before = reporter.error_count();
++#endif
++
+             evaluation_flags flags = context.eval_flags();
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (VEROSCRIPT_JSON_SCHEMA_POLICY::Annotations())
++                flags |= evaluation_flags::require_evaluated_properties | evaluation_flags::require_evaluated_items;
++#endif
+             if (unevaluated_properties_val_)
+             {
+                 flags |= evaluation_flags::require_evaluated_properties;
+@@ -439,6 +470,11 @@
+                 results.merge(std::move(local_results.evaluated_items));
+             }
+             
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (reporter.error_count() == errors_before)
++                VEROSCRIPT_JSON_SCHEMA_POLICY::Collect(annotation_plan_, instance,
++                    instance_location.string(), this_context.eval_path().string());
++#endif
+             //std::cout << "object_schema_validator end[" << context.eval_path().string() << "," << this->schema_location().string() << "]";
+             //std::cout << "results:\n";
+             //for (const auto& s : results)
+--- a/include/jsoncons_ext/jsonschema/common/schema_validator_factory_base.hpp
++++ b/include/jsoncons_ext/jsonschema/common/schema_validator_factory_base.hpp
+@@ -148,8 +148,16 @@
+                         if (external_sch.is_object() || external_sch.is_bool())
+                         {
+                             anchor_uri_map_type anchor_dict2;
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                            const std::unordered_map<std::string,bool> external_vocabulary;
++                            auto factory = factory_factory_(jsoncons::make_unique<Json>(std::move(external_sch)), options_,
++                                schema_store_ptr_, resolve_funcs_, external_vocabulary);
++                            factory->build_schema(loc.base().string());
++                            this->save_schema(factory->get_schema_validator());
++#else
+                             this->save_schema(make_cross_draft_schema_validator(compilation_context<Json>(uri_wrapper(loc.base())), 
+                                 external_sch, {}, anchor_dict2));
++#endif
+                             found = true;
+                         }
+                     }
+@@ -169,6 +177,19 @@
+             }
+ 
+             resolve_references();
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            for (const auto& entry : *schema_store_ptr_)
++            {
++                VEROSCRIPT_JSON_SCHEMA_POLICY::Check();
++                auto* schema = entry.second;
++                auto resource = schema_store_ptr_->find(schema->schema_location().base());
++                if (resource != schema_store_ptr_->end())
++                {
++                    schema->set_schema_resource(resource->second);
++                }
++            }
++#endif
++
+ 
+             return jsoncons::make_unique<document_schema_validator<Json>>(std::move(root_schema_), std::move(root_), std::move(schema_validators_));
+         }
+@@ -192,7 +213,13 @@
+ 
+         void insert_schema(const uri_wrapper& identifier, schema_validator<Json>* s)
+         {
+-            this->schema_store_ptr_->emplace(identifier.uri(), s);
++            auto inserted = this->schema_store_ptr_->emplace(identifier.uri(), s);
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (!inserted.second && inserted.first->second != s)
++            {
++                JSONCONS_THROW(schema_error("Duplicate schema identifier: " + identifier.uri().string()));
++            }
++#endif
+         }
+ 
+         void insert_unknown_keyword(const uri_wrapper& uri, 
+@@ -275,6 +302,9 @@
+         schema_validator_ptr_type make_cross_draft_schema_validator(const compilation_context<Json>& context, 
+             const Json& sch, jsoncons::span<const jsoncons::string_view> keys, anchor_uri_map_type& anchor_dict)
+         {
++#if defined(VEROSCRIPT_JSON_SCHEMA_STEP)
++            VEROSCRIPT_JSON_SCHEMA_STEP step;
++#endif
+             schema_validator_ptr_type schema_val = schema_validator_ptr_type{};
+             switch (sch.type())
+             {
+@@ -283,14 +313,29 @@
+                     auto it = sch.find("$schema");
+                     if (it != sch.object_range().end())
+                     {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                        if ((*it).value().as_string_view() == schema() && vocabulary_.empty())
++#else
+                         if ((*it).value().as_string_view() == schema())
++#endif
+                         {
+                             return make_schema_validator(context, sch, keys, anchor_dict);
+                         }
+                         else
+                         {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                            const std::unordered_map<std::string,bool> explicit_vocabulary;
++                            auto schema_validator_factory_base = factory_factory_(jsoncons::make_unique<Json>(sch), options_, schema_store_ptr_, resolve_funcs_, explicit_vocabulary);
++#else
+                             auto schema_validator_factory_base = factory_factory_(jsoncons::make_unique<Json>(sch), options_, schema_store_ptr_, resolve_funcs_, vocabulary_);
++#endif
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                            auto retrieval = uri_wrapper(context.get_base_uri());
++                            for (const auto& key : keys) retrieval = retrieval.append(key);
++                            schema_validator_factory_base->build_schema(retrieval.string());
++#else
+                             schema_validator_factory_base->build_schema(context.get_base_uri().string());
++#endif
+                             schema_val = schema_validator_factory_base->get_schema_validator();
+                         }
+                     }
+--- a/include/jsoncons_ext/jsonschema/common/validator.hpp
++++ b/include/jsoncons_ext/jsonschema/common/validator.hpp
+@@ -8,6 +8,7 @@
+ #define JSONCONS_EXT_JSONSCHEMA_COMMON_VALIDATOR_HPP
+ 
+ #include <cstddef>
++#include <algorithm>
+ #include <functional>
+ #include <string>
+ #include <unordered_set>
+@@ -40,6 +41,9 @@
+ 
+         walk_state error(const validation_message& msg, jsoncons::optional<Json>& patch)
+         {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            VEROSCRIPT_JSON_SCHEMA_POLICY::Report(msg.message().size());
++#endif
+             ++error_count_;
+             return do_error(msg, patch);
+         }
+@@ -168,11 +172,54 @@
+         
+         void insert(range index_range)
+         {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            VEROSCRIPT_JSON_SCHEMA_POLICY::Check();
++            if (index_range.start() >= index_range.end()) return;
++            if (ranges_.empty() || ranges_.back().end() < index_range.start())
++            {
++                ranges_.push_back(index_range);
++                return;
++            }
++            if (ranges_.back().start() <= index_range.start())
++            {
++                ranges_.back() = range(ranges_.back().start(), (std::max)(ranges_.back().end(), index_range.end()));
++                return;
++            }
++            auto first = std::lower_bound(ranges_.begin(), ranges_.end(), index_range.start(),
++                [](const range& item, std::size_t value) { return item.end() < value; });
++            auto last = first;
++            auto begin = index_range.start();
++            auto end = index_range.end();
++            while (last != ranges_.end() && last->start() <= end)
++            {
++                VEROSCRIPT_JSON_SCHEMA_POLICY::Check();
++                begin = (std::min)(begin, last->start());
++                end = (std::max)(end, last->end());
++                ++last;
++            }
++            VEROSCRIPT_JSON_SCHEMA_POLICY::Check(static_cast<std::size_t>(ranges_.end() - first) + 1);
++            if (first == last) ranges_.insert(first, range(begin, end));
++            else
++            {
++                *first = range(begin, end);
++                ranges_.erase(first + 1, last);
++            }
++#else
+             ranges_.push_back(index_range);
++#endif
+         }
+     
+         bool contains(std::size_t index) const
+         {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            const auto item = std::lower_bound(ranges_.begin(), ranges_.end(), index,
++                [](const range& value, std::size_t position)
++                {
++                    VEROSCRIPT_JSON_SCHEMA_POLICY::Check();
++                    return value.end() <= position;
++                });
++            return item != ranges_.end() && item->contains(index);
++#else
+             bool found = false;
+             std::size_t length = ranges_.size();
+             for (std::size_t i = 0; i < length && !found; ++i)
+@@ -183,6 +230,7 @@
+                 }
+             }
+             return found;
++#endif
+         }
+     };
+     
+@@ -226,6 +274,9 @@
+         virtual ~validator_base() = default;
+ 
+         virtual const uri& schema_location() const = 0;
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        virtual std::string annotation_keyword() const { return {}; }
++#endif
+ 
+         walk_state validate(const eval_context<Json>& context,
+             const Json& instance, 
+@@ -234,12 +285,45 @@
+             error_reporter<Json>& reporter, 
+             jsoncons::optional<Json>& patch) const 
+         {
++#if defined(VEROSCRIPT_JSON_SCHEMA_STEP)
++            VEROSCRIPT_JSON_SCHEMA_STEP step;
++#endif
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            auto* collector = VEROSCRIPT_JSON_SCHEMA_POLICY::Annotations();
++            VEROSCRIPT_JSON_SCHEMA_POLICY::FAnnotationScope annotations(collector);
++            const auto errors = reporter.error_count();
++            if (collector && VEROSCRIPT_JSON_SCHEMA_POLICY::EvaluationKeyword(annotation_keyword()))
++            {
++                const auto keyword = annotation_keyword();
++                const bool unevaluated = keyword == "unevaluatedProperties" || keyword == "unevaluatedItems";
++                evaluation_results local;
++                if (unevaluated) local = results;
++                const auto state = do_validate(context, instance, instance_location, local, reporter, patch);
++                if (state == walk_state::advance && errors == reporter.error_count())
++                {
++                    VEROSCRIPT_JSON_SCHEMA_POLICY::Evaluated(keyword, schema_location().string(),
++                        context.eval_path().string(), instance_location.string(), instance, local,
++                        unevaluated ? &results : nullptr);
++                    annotations.Commit();
++                }
++                if (unevaluated) results = std::move(local);
++                else results.merge(local);
++                return state;
++            }
++            const auto state = do_validate(context, instance, instance_location, results, reporter, patch);
++            if (state == walk_state::advance && errors == reporter.error_count()) annotations.Commit();
++            return state;
++#else
+             return do_validate(context, instance, instance_location, results, reporter, patch);
++#endif
+         }
+ 
+         walk_state walk(const eval_context<Json>& context, const Json& instance, 
+             const jsonpointer::json_pointer& instance_location, walk_reporter<Json>& reporter, jsoncons::optional<Json>& patch) const
+         {
++#if defined(VEROSCRIPT_JSON_SCHEMA_STEP)
++            VEROSCRIPT_JSON_SCHEMA_STEP step;
++#endif
+             return do_walk(context, instance, instance_location, reporter, patch);
+         }
+         
+--- a/include/jsoncons_ext/jsonschema/draft202012/schema_validator_factory_202012.hpp
++++ b/include/jsoncons_ext/jsonschema/draft202012/schema_validator_factory_202012.hpp
+@@ -76,7 +76,11 @@
+         }
+         static const std::string& format_annotation_id()
+         {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            static std::string id = "https://json-schema.org/draft/2020-12/vocab/format-annotation";
++#else
+             static std::string id = "https://json-schema.org/draft/2020-12/format-annotation";
++#endif
+             return id;
+         }
+         static const std::string& content_id()
+@@ -89,6 +93,9 @@
+         bool include_unevaluated_{true};
+         bool include_validation_{true};
+         bool include_format_{true};
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++        bool assert_format_{false};
++#endif
+         keyword_validator_factory<Json> factory_;
+ 
+     public:
+@@ -105,26 +112,47 @@
+             if (!vocabulary.empty())
+             {
+                 auto it = vocabulary.find(applicator_id());
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                if (it == vocabulary.end())
++#else
+                 if (it == vocabulary.end() || !((*it).second))
++#endif
+                 {
+                     include_applicator_ = false;
+                 }
+                 it = vocabulary.find(unevaluated_id());
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                if (it == vocabulary.end())
++#else
+                 if (it == vocabulary.end() || !((*it).second))
++#endif
+                 {
+                     include_unevaluated_ = false;
+                 }
+                 it = vocabulary.find(validation_id());
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                if (it == vocabulary.end())
++#else
+                 if (it == vocabulary.end() || !((*it).second))
++#endif
+                 {
+                     include_validation_ = false;
+                 }
+                 it = vocabulary.find(format_annotation_id());
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                if (it == vocabulary.end())
++#else
+                 if (it == vocabulary.end() || !((*it).second))
++#endif
+                 {
+                     include_format_ = false;
+                 }
+             }
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            assert_format_ = vocabulary.find("https://json-schema.org/draft/2020-12/vocab/format-assertion") != vocabulary.end();
++            if (assert_format_) include_format_ = true;
++            if (this->options().require_format_validation()) include_format_ = true;
++#endif
+             init();
+         }
+ 
+@@ -158,7 +186,13 @@
+                 [&](const compilation_context<Json>& context, const Json& sch, const Json& parent, anchor_uri_map_type&){return factory_.make_min_properties_validator(context, sch, parent);});
+             validation_factory_map_.emplace("contains", 
+                 [&](const compilation_context<Json>& context, const Json& sch, const Json& parent, anchor_uri_map_type& anchor_dict)
+-                        {return factory_.make_contains_validator(context, sch, parent, anchor_dict);});
++                        {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                            return factory_.make_contains_validator(context, sch, parent, anchor_dict, include_validation_);
++#else
++                            return factory_.make_contains_validator(context, sch, parent, anchor_dict);
++#endif
++                        });
+             validation_factory_map_.emplace("uniqueItems", 
+                 [&](const compilation_context<Json>& context, const Json& sch, const Json& parent, anchor_uri_map_type&){return factory_.make_unique_items_validator(context, sch, parent);});
+             validation_factory_map_.emplace("maxLength", 
+@@ -409,10 +443,19 @@
+                 }
+             }
+ 
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            if (include_validation_ || include_applicator_)
++#else
+             if (include_validation_)
++#endif
+             {
+                 for (const auto& key_value : sch.object_range())
+                 {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                    const auto key = key_value.key();
++                    const bool applicator = key == "contains" || key == "not" || key == "allOf" || key == "anyOf" || key == "oneOf";
++                    if (applicator ? !include_applicator_ : !include_validation_) continue;
++#endif
+                     auto factory_it = validation_factory_map_.find(key_value.key().c_str());
+                     if (factory_it != validation_factory_map_.end())
+                     {
+@@ -427,7 +470,11 @@
+ 
+             if (include_format_)
+             {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                if (assert_format_ || this->options().require_format_validation())
++#else
+                 if (this->options().require_format_validation())
++#endif
+                 {
+                     it = sch.find("format");
+                     if (it != sch.object_range().end()) 
+@@ -464,10 +511,15 @@
+             {
+                 anchor_schema_map.emplace(member.first, this->get_or_create_reference(sch, member.second));
+             }
+-            return jsoncons::make_unique<object_schema_validator<Json>>(context.get_base_uri(), 
++            auto validator = jsoncons::make_unique<object_schema_validator<Json>>(context.get_base_uri(), 
+                 std::move(id),
+                 std::move(validators), std::move(unevaluated_properties_val), std::move(unevaluated_items_val), 
+                 std::move(defs), std::move(default_value), std::move(dynamic_anchor), std::move(anchor_schema_map));
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            validator->set_annotations(sch, include_validation_, include_applicator_, include_unevaluated_,
++                this->vocabulary().empty() || this->vocabulary().count("https://json-schema.org/draft/2020-12/vocab/content"));
++#endif
++            return validator;
+         }
+ 
+     private:
+--- a/include/jsoncons_ext/jsonschema/json_schema_factory.hpp
++++ b/include/jsoncons_ext/jsonschema/json_schema_factory.hpp
+@@ -117,8 +117,14 @@
+             const std::vector<resolve_uri_type<Json>>& resolve_funcs,
+             const std::unordered_map<std::string,bool>& vocabulary) const
+         {
++#if defined(VEROSCRIPT_JSON_SCHEMA_STEP)
++            VEROSCRIPT_JSON_SCHEMA_STEP step;
++#endif
+             std::unique_ptr<schema_validator_factory_base<Json>> factory;
+ 
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            VEROSCRIPT_JSON_SCHEMA_POLICY::Dialect(std::string_view(schema_id.data(), schema_id.size()));
++#endif
+             if (schema_id == schema_version::draft202012())
+             {
+                 factory = jsoncons::make_unique<jsoncons::jsonschema::draft202012::schema_validator_factory_202012<Json>>(std::move(root_schema), 
+@@ -161,6 +167,50 @@
+             const evaluation_options& options, schema_store_type* schema_store_ptr,
+             const std::vector<resolve_uri_type<Json>>& resolve_funcs) const
+         {
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++            // Follow dialect declarations iteratively. Vocabulary declarations belong
++            // to the directly named meta-schema; references do not inherit them.
++            std::string current(schema_id.data(), schema_id.size());
++            std::vector<std::string> seen;
++            std::unordered_map<std::string,bool> direct_vocabulary;
++            bool first = true;
++            for (;;)
++            {
++                VEROSCRIPT_JSON_SCHEMA_POLICY::Check(current.size() + 1);
++                VEROSCRIPT_JSON_SCHEMA_POLICY::Dialect(current);
++                const bool cycle = std::any_of(seen.begin(), seen.end(), [&](const std::string& previous)
++                {
++                    VEROSCRIPT_JSON_SCHEMA_POLICY::Check(1 + (std::min)(previous.size(), current.size()));
++                    return previous == current;
++                });
++                if (current == schema_version::draft202012() || cycle)
++                    return get_factory(std::move(root_schema), schema_version::draft202012(), options,
++                        schema_store_ptr, resolve_funcs, direct_vocabulary);
++                seen.push_back(current);
++                Json meta;
++                bool found = false;
++                for (const auto& resolve : resolve_funcs)
++                {
++                    meta = resolve(jsoncons::uri(current));
++                    if (meta.is_object() || meta.is_bool()) { found = true; break; }
++                }
++                if (!found) JSONCONS_THROW(schema_error("Unknown meta-schema: " + current));
++                std::unordered_map<std::string,bool> vocabulary;
++                if (meta.is_object())
++                {
++                    auto vocab = meta.find("$vocabulary");
++                    if (vocab != meta.object_range().end())
++                        for (const auto& entry : vocab->value().object_range())
++                            vocabulary.emplace(entry.key(), entry.value().template as<bool>());
++                }
++                VEROSCRIPT_JSON_SCHEMA_POLICY::Vocabulary(vocabulary);
++                if (first) { direct_vocabulary = std::move(vocabulary); first = false; }
++                if (!meta.is_object() || !meta.contains("$schema"))
++                    return get_factory(std::move(root_schema), schema_version::draft202012(), options,
++                        schema_store_ptr, resolve_funcs, direct_vocabulary);
++                current = jsoncons::uri(meta.at("$schema").template as<std::string>()).base().string();
++            }
++#else
+             std::unique_ptr<schema_validator_factory_base<Json>> factory;
+ 
+             bool found = false;
+@@ -183,6 +233,9 @@
+                             }
+                         }
+                     }
++#if defined(VEROSCRIPT_JSON_SCHEMA_POLICY)
++                    VEROSCRIPT_JSON_SCHEMA_POLICY::Vocabulary(vocabulary);
++#endif
+                     auto schema_it = meta_sch.find("$schema");
+                     if (schema_it != meta_sch.object_range().end())
+                     {
+@@ -193,6 +246,7 @@
+             }
+             
+             return factory;
++#endif
+         }
+     };
+ 

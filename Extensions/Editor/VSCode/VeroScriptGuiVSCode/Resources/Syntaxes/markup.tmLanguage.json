@@ -1,0 +1,43 @@
+{
+  "name": "VeroScript GUI Markup", "scopeName": "text.xml.vswml",
+  "patterns": [
+    { "name": "comment.block.xml", "begin": "<!--", "end": "-->" },
+    { "name": "meta.tag.preprocessor.xml", "begin": "<\\?", "end": "\\?>" },
+    {
+      "name": "meta.script.vswml", "begin": "(<)(script)(?=\\s|>)(?:[^>\"']|\"[^\"]*\"|'[^']*')*(?<!/)(>)", "end": "(</)(script)(\\s*>)",
+      "beginCaptures": { "1": { "name": "punctuation.definition.tag.begin.xml" }, "2": { "name": "entity.name.tag.xml" }, "3": { "name": "punctuation.definition.tag.end.xml" } },
+      "endCaptures": { "1": { "name": "punctuation.definition.tag.begin.xml" }, "2": { "name": "entity.name.tag.xml" }, "3": { "name": "punctuation.definition.tag.end.xml" } },
+      "contentName": "meta.embedded.block.veroscript",
+      "patterns": [
+        { "name": "comment.block.xml", "begin": "<!--", "end": "-->" },
+        { "begin": "<!\\[CDATA\\[", "end": "\\]\\]>", "contentName": "meta.embedded.block.veroscript", "patterns": [{ "include": "source.veroscript" }] },
+        { "include": "source.veroscript" }
+      ]
+    },
+    {
+      "name": "meta.style.vswml", "begin": "(<)(style)(?=\\s|>)(?:[^>\"']|\"[^\"]*\"|'[^']*')*(?<!/)(>)", "end": "(</)(style)(\\s*>)",
+      "beginCaptures": { "1": { "name": "punctuation.definition.tag.begin.xml" }, "2": { "name": "entity.name.tag.xml" }, "3": { "name": "punctuation.definition.tag.end.xml" } },
+      "endCaptures": { "1": { "name": "punctuation.definition.tag.begin.xml" }, "2": { "name": "entity.name.tag.xml" }, "3": { "name": "punctuation.definition.tag.end.xml" } },
+      "contentName": "meta.embedded.block.vswcss",
+      "patterns": [
+        { "name": "comment.block.xml", "begin": "<!--", "end": "-->" },
+        { "begin": "<!\\[CDATA\\[", "end": "\\]\\]>", "contentName": "meta.embedded.block.vswcss", "patterns": [{ "include": "source.vswcss" }] },
+        { "include": "source.vswcss" }
+      ]
+    },
+    { "name": "string.unquoted.cdata.xml", "begin": "<!\\[CDATA\\[", "end": "\\]\\]>" },
+    {
+      "name": "meta.tag.xml", "begin": "(</?)([A-Za-z_][\\w.:-]*)", "end": "/?>",
+      "beginCaptures": { "1": { "name": "punctuation.definition.tag.begin.xml" }, "2": { "name": "entity.name.tag.xml" } },
+      "endCaptures": { "0": { "name": "punctuation.definition.tag.end.xml" } },
+      "patterns": [
+        { "begin": "((?:bind|on):[\\w.-]+)(\\s*=\\s*)(\")", "end": "\"", "beginCaptures": { "1": { "name": "entity.other.attribute-name.xml" } }, "contentName": "meta.embedded.block.veroscript", "patterns": [{ "include": "#entities" }, { "include": "source.veroscript" }] },
+        { "begin": "((?:bind|on):[\\w.-]+)(\\s*=\\s*)(')", "end": "'", "beginCaptures": { "1": { "name": "entity.other.attribute-name.xml" } }, "contentName": "meta.embedded.block.veroscript", "patterns": [{ "include": "#entities" }, { "include": "source.veroscript" }] },
+        { "name": "entity.other.attribute-name.xml", "match": "[A-Za-z_][\\w.:-]*(?=\\s*=)" },
+        { "name": "string.quoted.double.xml", "begin": "\"", "end": "\"", "patterns": [{ "include": "#entities" }] },
+        { "name": "string.quoted.single.xml", "begin": "'", "end": "'", "patterns": [{ "include": "#entities" }] }
+      ]
+    }
+  ],
+  "repository": { "entities": { "name": "constant.character.entity.xml", "match": "&(?:#x[0-9a-fA-F]+|#[0-9]+|amp|lt|gt|quot|apos);" } }
+}

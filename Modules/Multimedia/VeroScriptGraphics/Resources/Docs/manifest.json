@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "Modules/Multimedia/VeroScriptGraphics",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/visual/graphics.md"
+    }
+  ],
+  "developer": true
+}

@@ -1,0 +1,9 @@
+{
+  "python_tools.missing_annotation": "{0} には型注釈が必要です",
+  "python_tools.unsupported_type": "サポートされていない Python 型注釈です: {0}",
+  "python_tools.unsupported_parameter": "サポートされていない Python パラメーター形式です: {0}",
+  "python_tools.unsupported_decorator": "サポートされていない Python デコレーターです: {0}",
+  "python_tools.unsupported_inheritance": "サポートされていない Python 継承です: {0}",
+  "python_tools.enum_value_required": "enum メンバー {0} には静的に評価可能な整数値が必要です",
+  "python_tools.catalog_validation_failed": "生成されたバインディング カタログの検証に失敗しました: {0}"
+}

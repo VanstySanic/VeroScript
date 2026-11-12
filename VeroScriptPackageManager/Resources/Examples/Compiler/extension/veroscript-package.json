@@ -1,0 +1,11 @@
+{
+  "format": "veroscript-package",
+  "formatVersion": "0.1.1",
+  "name": "example-compiler",
+  "version": "0.1.1",
+  "description": "A portable script compiler extension generating an answer method.",
+  "entries": {
+    "compiler": [{"path": "scripts/processor.vs"}]
+  },
+  "resources": {"templates": "templates"}
+}

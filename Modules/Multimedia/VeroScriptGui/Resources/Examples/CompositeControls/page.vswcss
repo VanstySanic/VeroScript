@@ -1,0 +1,12 @@
+/* SPDX-FileCopyrightText: VanstySanic */
+/* SPDX-License-Identifier: MIT */
+
+ScrollView { background-color: #10151e; color: #edf2f8; }
+.card { background-color: #1b2431; border-color: #34465c; border-width: 1px; padding: 12px; gap: 8px; }
+.title { font-size: 18px; }
+.collection { height: 170px; }
+ListItem, TreeItem, TableRow { selection-color: #28507d; }
+.gui-selected { background-color: #28507d; }
+Button:hover, MenuItem:hover, TableColumn:hover { background-color: #344d68; cursor: pointer; }
+Button:disabled, MenuItem:disabled, ListItem:disabled { opacity: 0.45; }
+Dialog { background-color: #202d40; border-width: 1px; border-color: #7893b4; width: 440px; }

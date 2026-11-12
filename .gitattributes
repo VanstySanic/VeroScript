@@ -1,0 +1,62 @@
+# Owned text uses LF in both the repository and working tree on every platform.
+* text=auto eol=lf
+
+# Windows batch launchers retain their native line endings.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Keep upstream files and raw fixtures on their existing Git normalization
+# policy. Do not force the owned-source LF policy onto imported content.
+# More specific upstream attributes retain precedence.
+**/ThirdParty/** text=auto !eol
+**/Resources/Licenses/** text=auto !eol
+**/gradle/wrapper/** text=auto !eol
+**/Fixtures/** text=auto !eol
+Modules/Multimedia/VeroScriptFont/Resources/Assets/Fonts/LICENSE.txt text=auto !eol
+
+# These license guides are authored project documentation.
+**/Resources/Licenses/README.md text eol=lf
+**/Resources/Licenses/NOTICES.md text eol=lf
+**/Fixtures/README.md text eol=lf
+
+# Preserve physical multiline literal values in embedded fixtures and output.
+# These exact source paths retain their previous CRLF checkout policy.
+Extensions/Language/CSharp/VeroScriptCSharp/Resources/Examples/Maui/MobileSmoke.cs text=auto eol=crlf
+Extensions/Language/CSharp/VeroScriptCSharpBindGen/Tests/GeneratedRegistration/Program.cs text=auto eol=crlf
+Extensions/Language/CSharp/VeroScriptCSharpBindGen/Tests/Program.cs text=auto eol=crlf
+Extensions/Language/CSharp/VeroScriptCSharpFrontend/Tests/Program.cs text=auto eol=crlf
+Extensions/Language/CSharp/VeroScriptCSharpTranspiler/Tests/Program.cs text=auto eol=crlf
+VeroScriptInstaller/Tool/Program.cs text=auto eol=crlf
+Extensions/Editor/JetBrains/VeroScriptJetBrains/src/main/kotlin/com/vanstysanic/veroscript/jetbrains/language/VeroScriptColorSettingsPage.kt text=auto eol=crlf
+Extensions/Editor/JetBrains/VeroScriptJetBrains/src/test/kotlin/com/vanstysanic/veroscript/jetbrains/LexerTest.kt text=auto eol=crlf
+Resources/Tools/Packaging/package-veroscript-interop-sdk.ps1 text=auto eol=crlf
+Resources/Tools/Packaging/tests/Test-VeroScriptWindowsArchitecture.ps1 text=auto eol=crlf
+VeroScript/Resources/Benchmarks/windows-cpu-topology.ps1 text=auto eol=crlf
+
+*.sh text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+.editorconfig text eol=lf
+# Generated documentation uses LF on every checkout; binary resources are exact
+# copies. UTF-8 text is normalized by veroscript_docs.py before being generated.
+**/Resources/Docs/** -text
+**/Resources/Docs/**/*.md text eol=lf
+**/Resources/Docs/**/*.json text eol=lf
+**/Resources/Docs/**/*.vs text eol=lf
+**/Resources/Docs/**/*.svg text eol=lf
+**/Resources/Docs/**/*.txt text eol=lf
+**/Resources/Docs/**/*.html text eol=lf
+**/Resources/Docs/**/*.css text eol=lf
+**/Resources/Docs/**/*.js text eol=lf
+**/Resources/Docs/**/*.ts text eol=lf
+**/Resources/Docs/**/*.xml text eol=lf
+**/Resources/Docs/**/*.yaml text eol=lf
+**/Resources/Docs/**/*.yml text eol=lf
+**/Resources/docs/** -text
+**/Resources/docs/**/*.md text eol=lf
+**/Resources/docs/**/*.json text eol=lf
+**/Resources/scripts/*.py text eol=lf
+**/Resources/scripts/tests/*.py text eol=lf
+
+# Preserve the exact upstream Roslyn notice files, including the RTF encoding.
+Extensions/Language/CSharp/Resources/Licenses/Roslyn-* -text !eol

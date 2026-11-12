@@ -1,0 +1,13 @@
+{
+  "format": "veroscript-project",
+  "formatVersion": "0.1.1",
+  "name": "compiler-example-app",
+  "version": "0.1.1",
+  "dependencies": {
+    "example-compiler": {
+      "version": "0.1.1",
+      "directory": "../extension",
+      "usage": ["compile"]
+    }
+  }
+}

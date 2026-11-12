@@ -1,0 +1,5 @@
+{
+  "PackageMissing": "The installer package is missing or invalid: {0}",
+  "Error": "Installation failed: {0}",
+  "FolderUnavailable": "The selected folder is no longer available. Choose another folder. Details: {0}"
+}

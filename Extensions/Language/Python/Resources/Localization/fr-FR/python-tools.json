@@ -1,0 +1,7 @@
+{
+  "python_tools.source_write_failed": "Échec d’écriture de la sortie générée : {0}",
+  "python_tools.duplicate_declaration": "Déclaration en double : {0}",
+  "python_tools.unsupported_construct": "Construction Python non prise en charge : {0}",
+  "python_tools.validator_not_found": "Les outils VeroScript nécessitent --veroscript, VEROSCRIPT_EXECUTABLE, VEROSCRIPT_SDK ou veroscript dans le PATH",
+  "python_tools.timeout_invalid": "Le délai d’attente doit être un nombre positif fini"
+}

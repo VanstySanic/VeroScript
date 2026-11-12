@@ -1,0 +1,12 @@
+{
+  "diag.external_deserializer_callback_failed": "外部デシリアライズコールバックに失敗しました",
+  "diag.failed_to_build_package": "パッケージのビルドに失敗しました: {0}",
+  "diag.foreign_callback_raised_an_unknown_exception": "外部コールバックで不明な例外が発生しました",
+  "diag.foreign_external_deserializer_raised_an_exception": "外部デシリアライザーで例外が発生しました",
+  "diag.foreign_external_serializer_raised_an_exception": "外部シリアライザーで例外が発生しました",
+  "diag.foreign_generic_host_type_factory_raised_an_exception": "外部ジェネリックホスト型ファクトリーで例外が発生しました",
+  "diag.generic_host_type_factory_is_unavailable": "ジェネリックホスト型ファクトリーは利用できません",
+  "diag.invalid_host_function_metadata": "ホスト関数のメタデータが無効です",
+  "diag.invalid_host_member_parameter_metadata": "ホストメンバー引数のメタデータが無効です",
+  "diag.veroscriptinterop_native_callback_is_unavailable": "VeroScriptInterop ネイティブコールバックは利用できません"
+}

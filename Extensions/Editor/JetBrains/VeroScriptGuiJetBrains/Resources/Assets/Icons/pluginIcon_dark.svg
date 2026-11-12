@@ -1,0 +1,7 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+	<path fill="none" stroke="#60A5FA" stroke-width="2.5" d="M5 5h30v30H5zM5 11h30"/>
+	<path d="M24 32H78C91 65 111 115 128 157C145 115 165 65 178 32H232C205 83 168 154 128 226C88 154 51 83 24 32Z" transform="translate(20 25) scale(0.09375) translate(-128 -129)" fill="#60A5FA"/>
+</svg>

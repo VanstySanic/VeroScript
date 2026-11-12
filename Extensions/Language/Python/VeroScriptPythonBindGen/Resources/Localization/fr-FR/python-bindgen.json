@@ -1,0 +1,9 @@
+{
+  "python_tools.missing_annotation": "Une annotation de type est requise pour {0}",
+  "python_tools.unsupported_type": "Annotation de type Python non prise en charge : {0}",
+  "python_tools.unsupported_parameter": "Forme de paramètre Python non prise en charge : {0}",
+  "python_tools.unsupported_decorator": "Décorateur Python non pris en charge : {0}",
+  "python_tools.unsupported_inheritance": "Héritage Python non pris en charge : {0}",
+  "python_tools.enum_value_required": "Le membre enum {0} doit avoir une valeur entière évaluable statiquement",
+  "python_tools.catalog_validation_failed": "Échec de validation du catalogue de liaisons généré : {0}"
+}

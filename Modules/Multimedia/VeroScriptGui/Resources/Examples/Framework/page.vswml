@@ -1,0 +1,20 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Widget id="root">
+	<script><![CDATA[
+		public:
+			double Count = 8;
+
+			@GuiMethod
+			void Increase()
+			{
+				Count++;
+			}
+	]]></script>
+	<style src="page.vswcss" />
+	<Widget id="content" bind:gap="{ context.Count }" on:pointer-down="Increase">
+		<Widget Width="80px" Height="40px" />
+		<Widget Width="80px" Height="40px" />
+	</Widget>
+</Widget>

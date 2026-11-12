@@ -1,0 +1,5 @@
+combo-box { width: 180px; drop-down-height: 100; }
+list-item, tree-item, table-row { selection-color: #204878; }
+tabs { height: 100px; }
+.gui-selected { background-color: #204878; }
+dialog { width: 300px; padding: 12px; }

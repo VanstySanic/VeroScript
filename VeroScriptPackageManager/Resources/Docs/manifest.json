@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "module": "VeroScriptPackageManager",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/package-manager/index.md"
+    },
+    {
+      "source": "User/{locale}/authoring.md",
+      "output": "{locale}/package-manager/authoring.md"
+    },
+    {
+      "source": "User/{locale}/embedding.md",
+      "output": "{locale}/package-manager/embedding.md"
+    }
+  ],
+  "developer": true
+}

@@ -1,0 +1,65 @@
+type sealed class VeroScript.CSharpTranspiler.CSharpTranspileOptions
+  ctor VeroScript.CSharpTranspiler.CSharpTranspileOptions()
+  property System.Boolean ValidateGeneratedSource { get; init; }
+  property System.String VeroScriptExecutable { get; init; }
+  property System.String GeneratedSourcePath { get; init; }
+  property System.TimeSpan ValidationTimeout { get; init; }
+  property VeroScript.CSharpFrontend.CSharpParseOptions ParseOptions { get; init; }
+
+type sealed class VeroScript.CSharpTranspiler.CSharpTranspileProjectOptions
+  ctor VeroScript.CSharpTranspiler.CSharpTranspileProjectOptions()
+  property System.Boolean ValidateGeneratedSources { get; init; }
+  property System.String VeroScriptExecutable { get; init; }
+  property System.String ProjectRoot { get; init; }
+  property System.TimeSpan ValidationTimeout { get; init; }
+  property VeroScript.CSharpFrontend.CSharpParseOptions ParseOptions { get; init; }
+
+type sealed class VeroScript.CSharpTranspiler.CSharpTranspileProjectResult : System.IEquatable<VeroScript.CSharpTranspiler.CSharpTranspileProjectResult>
+  ctor VeroScript.CSharpTranspiler.CSharpTranspileProjectResult(System.Collections.Generic.IReadOnlyList<VeroScript.CSharpTranspiler.CSharpTranspiledFile> Files, System.String ManifestJson, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics)
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpTranspiler.CSharpTranspiledFile> Files { get; init; }
+  property System.String ManifestJson { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics { get; init; }
+  property System.Boolean Succeeded { get; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpTranspiler.CSharpTranspileProjectResult? left, VeroScript.CSharpTranspiler.CSharpTranspileProjectResult? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpTranspiler.CSharpTranspileProjectResult? left, VeroScript.CSharpTranspiler.CSharpTranspileProjectResult? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpTranspiler.CSharpTranspileProjectResult? other)
+  method VeroScript.CSharpTranspiler.CSharpTranspileProjectResult <Clone>$()
+  method System.Void Deconstruct(out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpTranspiler.CSharpTranspiledFile> Files, out System.String ManifestJson, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics)
+
+type sealed class VeroScript.CSharpTranspiler.CSharpTranspileResult : System.IEquatable<VeroScript.CSharpTranspiler.CSharpTranspileResult>
+  ctor VeroScript.CSharpTranspiler.CSharpTranspileResult(System.String Source, System.String SourceMapJson, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics)
+  property System.String Source { get; init; }
+  property System.String SourceMapJson { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics { get; init; }
+  property System.Boolean Succeeded { get; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpTranspiler.CSharpTranspileResult? left, VeroScript.CSharpTranspiler.CSharpTranspileResult? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpTranspiler.CSharpTranspileResult? left, VeroScript.CSharpTranspiler.CSharpTranspileResult? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpTranspiler.CSharpTranspileResult? other)
+  method VeroScript.CSharpTranspiler.CSharpTranspileResult <Clone>$()
+  method System.Void Deconstruct(out System.String Source, out System.String SourceMapJson, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics)
+
+type sealed class VeroScript.CSharpTranspiler.CSharpTranspiledFile : System.IEquatable<VeroScript.CSharpTranspiler.CSharpTranspiledFile>
+  ctor VeroScript.CSharpTranspiler.CSharpTranspiledFile(System.String InputPath, System.String OutputName, System.String Source, System.String SourceMapJson)
+  property System.String InputPath { get; init; }
+  property System.String OutputName { get; init; }
+  property System.String Source { get; init; }
+  property System.String SourceMapJson { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpTranspiler.CSharpTranspiledFile? left, VeroScript.CSharpTranspiler.CSharpTranspiledFile? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpTranspiler.CSharpTranspiledFile? left, VeroScript.CSharpTranspiler.CSharpTranspiledFile? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpTranspiler.CSharpTranspiledFile? other)
+  method VeroScript.CSharpTranspiler.CSharpTranspiledFile <Clone>$()
+  method System.Void Deconstruct(out System.String InputPath, out System.String OutputName, out System.String Source, out System.String SourceMapJson)
+
+type static class VeroScript.CSharpTranspiler.CSharpTranspiler
+  method static VeroScript.CSharpTranspiler.CSharpTranspileResult TranspileSource(System.String source, System.String sourcePath = "<csharp-source>", VeroScript.CSharpTranspiler.CSharpTranspileOptions? options = null)
+  method static VeroScript.CSharpTranspiler.CSharpTranspileResult TranspileFile(System.String inputPath, VeroScript.CSharpTranspiler.CSharpTranspileOptions? options = null)
+  method static VeroScript.CSharpTranspiler.CSharpTranspileProjectResult TranspileProject(System.Collections.Generic.IReadOnlyList<System.String> inputPaths, VeroScript.CSharpTranspiler.CSharpTranspileProjectOptions? options = null)

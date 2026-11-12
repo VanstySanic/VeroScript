@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VeroScript GUI editor hints",
+  "type": "object",
+  "required": ["schemaVersion", "types"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "productVersion": { "type": "string", "minLength": 1 },
+    "generatedFrom": { "type": "array", "items": { "type": "string" } },
+    "types": {
+      "type": "array", "maxItems": 4096,
+      "items": {
+        "type": "object", "required": ["name"], "additionalProperties": false,
+        "properties": {
+          "name": { "$ref": "#/definitions/text" },
+          "mark": { "$ref": "#/definitions/text" },
+          "description": { "$ref": "#/definitions/text" },
+          "bases": { "type": "array", "maxItems": 4096, "items": { "$ref": "#/definitions/text" } },
+          "properties": { "$ref": "#/definitions/members" },
+          "events": { "$ref": "#/definitions/members" }
+        }
+      }
+    },
+    "routedEvents": { "$ref": "#/definitions/members" }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "text": { "type": "string", "minLength": 1, "maxLength": 16384, "pattern": "^[^\\u0000]*$" },
+    "members": {
+      "type": "array", "maxItems": 4096,
+      "items": {
+        "type": "object", "required": ["name", "type"], "additionalProperties": false,
+        "properties": {
+          "name": { "$ref": "#/definitions/text" }, "mark": { "$ref": "#/definitions/text" },
+          "type": { "$ref": "#/definitions/text" }, "description": { "$ref": "#/definitions/text" },
+          "bindable": { "type": "boolean" }, "style": { "type": "boolean" },
+          "values": { "type": "array", "maxItems": 4096, "items": { "$ref": "#/definitions/text" } }
+        }
+      }
+    }
+  }
+}

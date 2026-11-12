@@ -1,0 +1,20 @@
+{
+  "diag.i18n_invalid_argument": "国際化引数が無効: {0}",
+  "diag.i18n_invalid_configuration": "国際化設定が無効: {0}",
+  "diag.i18n_invalid_state": "国際化状態が無効: {0}",
+  "diag.i18n_missing_resolver": "リソース解決器が未設定: {0}",
+  "diag.i18n_missing_message": "メッセージが見つからない: {0}",
+  "diag.i18n_unsupported_format": "未対応の形式: {0}",
+  "diag.i18n_missing_argument": "名前付き引数が不足: {0}",
+  "diag.i18n_argument_type": "引数の型が無効: {0}",
+  "diag.i18n_numeric_conversion": "数値変換が不正確または範囲外: {0}",
+  "diag.i18n_invalid_pattern": "書式パターンが無効: {0}",
+  "diag.i18n_unsupported_option": "未対応の書式オプション: {0}",
+  "diag.i18n_provider_failure": "プロバイダーの結果が無効: {0}",
+  "diag.i18n_resource_limit": "出力上限を超過: {0}",
+  "diag.i18n_out_of_memory": "メモリ割り当てに失敗: {0}",
+  "diag.i18n_interrupted": "操作が中断された: {0}",
+  "diag.i18n_reentrant_operation": "国際化操作の再帰呼び出し: {0}",
+  "diag.stdlib_native_limit": "標準ライブラリのバインドを含むネイティブ関数テーブルが容量を超過",
+  "diag.stdlib_reserved_binding": "コア標準ライブラリのバインドは置き換えできない"
+}

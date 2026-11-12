@@ -1,0 +1,277 @@
+[
+  {
+    "name": "cpp",
+    "sample": 0,
+    "ms": 11.88500000000002
+  },
+  {
+    "name": "node",
+    "sample": 0,
+    "ms": 39.30029999999999
+  },
+  {
+    "name": "vero-vm",
+    "sample": 0,
+    "ms": 20.62190000000001
+  },
+  {
+    "name": "vero-mixed",
+    "sample": 0,
+    "ms": 22.86330000000001
+  },
+  {
+    "name": "vero-jit",
+    "sample": 0,
+    "ms": 22.338700000000017
+  },
+  {
+    "name": "node",
+    "sample": 1,
+    "ms": 37.81650000000002
+  },
+  {
+    "name": "vero-vm",
+    "sample": 1,
+    "ms": 21.136500000000012
+  },
+  {
+    "name": "vero-mixed",
+    "sample": 1,
+    "ms": 21.369399999999985
+  },
+  {
+    "name": "vero-jit",
+    "sample": 1,
+    "ms": 22.4101
+  },
+  {
+    "name": "cpp",
+    "sample": 1,
+    "ms": 11.775299999999959
+  },
+  {
+    "name": "vero-vm",
+    "sample": 2,
+    "ms": 24.293100000000038
+  },
+  {
+    "name": "vero-mixed",
+    "sample": 2,
+    "ms": 21.75709999999998
+  },
+  {
+    "name": "vero-jit",
+    "sample": 2,
+    "ms": 21.053999999999974
+  },
+  {
+    "name": "cpp",
+    "sample": 2,
+    "ms": 12.754099999999994
+  },
+  {
+    "name": "node",
+    "sample": 2,
+    "ms": 36.6259
+  },
+  {
+    "name": "vero-mixed",
+    "sample": 3,
+    "ms": 21.758800000000008
+  },
+  {
+    "name": "vero-jit",
+    "sample": 3,
+    "ms": 22.53120000000007
+  },
+  {
+    "name": "cpp",
+    "sample": 3,
+    "ms": 12.237799999999993
+  },
+  {
+    "name": "node",
+    "sample": 3,
+    "ms": 38.70429999999999
+  },
+  {
+    "name": "vero-vm",
+    "sample": 3,
+    "ms": 20.676600000000008
+  },
+  {
+    "name": "vero-jit",
+    "sample": 4,
+    "ms": 23.509599999999978
+  },
+  {
+    "name": "cpp",
+    "sample": 4,
+    "ms": 12.9769
+  },
+  {
+    "name": "node",
+    "sample": 4,
+    "ms": 37.74059999999997
+  },
+  {
+    "name": "vero-vm",
+    "sample": 4,
+    "ms": 20.891800000000103
+  },
+  {
+    "name": "vero-mixed",
+    "sample": 4,
+    "ms": 22.236999999999966
+  },
+  {
+    "name": "cpp",
+    "sample": 5,
+    "ms": 11.447900000000004
+  },
+  {
+    "name": "node",
+    "sample": 5,
+    "ms": 40.15129999999999
+  },
+  {
+    "name": "vero-vm",
+    "sample": 5,
+    "ms": 22.348700000000008
+  },
+  {
+    "name": "vero-mixed",
+    "sample": 5,
+    "ms": 21.079999999999927
+  },
+  {
+    "name": "vero-jit",
+    "sample": 5,
+    "ms": 21.111200000000053
+  },
+  {
+    "name": "node",
+    "sample": 6,
+    "ms": 37.91030000000001
+  },
+  {
+    "name": "vero-vm",
+    "sample": 6,
+    "ms": 20.857799999999997
+  },
+  {
+    "name": "vero-mixed",
+    "sample": 6,
+    "ms": 21.665899999999965
+  },
+  {
+    "name": "vero-jit",
+    "sample": 6,
+    "ms": 24.38689999999997
+  },
+  {
+    "name": "cpp",
+    "sample": 6,
+    "ms": 13.553700000000049
+  },
+  {
+    "name": "vero-vm",
+    "sample": 7,
+    "ms": 20.63130000000001
+  },
+  {
+    "name": "vero-mixed",
+    "sample": 7,
+    "ms": 21.87469999999996
+  },
+  {
+    "name": "vero-jit",
+    "sample": 7,
+    "ms": 22.476099999999974
+  },
+  {
+    "name": "cpp",
+    "sample": 7,
+    "ms": 11.604800000000068
+  },
+  {
+    "name": "node",
+    "sample": 7,
+    "ms": 37.156799999999976
+  },
+  {
+    "name": "vero-mixed",
+    "sample": 8,
+    "ms": 21.75689999999986
+  },
+  {
+    "name": "vero-jit",
+    "sample": 8,
+    "ms": 21.64020000000005
+  },
+  {
+    "name": "cpp",
+    "sample": 8,
+    "ms": 11.395600000000059
+  },
+  {
+    "name": "node",
+    "sample": 8,
+    "ms": 38.03520000000003
+  },
+  {
+    "name": "vero-vm",
+    "sample": 8,
+    "ms": 21.521099999999933
+  },
+  {
+    "name": "vero-jit",
+    "sample": 9,
+    "ms": 21.92969999999991
+  },
+  {
+    "name": "cpp",
+    "sample": 9,
+    "ms": 12.029599999999846
+  },
+  {
+    "name": "node",
+    "sample": 9,
+    "ms": 39.8090000000002
+  },
+  {
+    "name": "vero-vm",
+    "sample": 9,
+    "ms": 21.443700000000035
+  },
+  {
+    "name": "vero-mixed",
+    "sample": 9,
+    "ms": 21.854900000000043
+  },
+  {
+    "name": "cpp",
+    "sample": 10,
+    "ms": 11.952599999999848
+  },
+  {
+    "name": "node",
+    "sample": 10,
+    "ms": 35.75739999999996
+  },
+  {
+    "name": "vero-vm",
+    "sample": 10,
+    "ms": 21.713600000000042
+  },
+  {
+    "name": "vero-mixed",
+    "sample": 10,
+    "ms": 21.405199999999923
+  },
+  {
+    "name": "vero-jit",
+    "sample": 10,
+    "ms": 23.153300000000172
+  }
+]

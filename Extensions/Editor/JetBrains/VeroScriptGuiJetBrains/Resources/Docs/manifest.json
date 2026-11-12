@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "Extensions/Editor/JetBrains/VeroScriptGuiJetBrains",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/editors/rider-gui/index.md"
+    }
+  ],
+  "developer": true
+}

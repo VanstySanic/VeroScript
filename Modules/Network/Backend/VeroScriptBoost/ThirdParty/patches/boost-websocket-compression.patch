@@ -1,0 +1,18 @@
+--- a/boost/beast/websocket/impl/stream_impl.hpp
++++ b/boost/beast/websocket/impl/stream_impl.hpp
+@@ -686,6 +686,15 @@
+     }
+ 
+     ec = {};
++#if defined(VEROSCRIPT_NETWORK_VALIDATE_WEBSOCKET_EXTENSIONS)
++    permessage_deflate offered_compression;
++    this->get_option_pmd(offered_compression);
++    if(!VEROSCRIPT_NETWORK_VALIDATE_WEBSOCKET_EXTENSIONS(res, offered_compression))
++    {
++        ec = make_error_code(boost::system::errc::protocol_error);
++        return;
++    }
++#endif
+     this->on_response_pmd(res);
+     this->open(role_type::client);
+ }

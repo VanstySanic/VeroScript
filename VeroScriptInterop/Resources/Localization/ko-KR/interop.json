@@ -1,0 +1,12 @@
+{
+  "diag.external_deserializer_callback_failed": "외부 역직렬화 콜백에 실패했습니다",
+  "diag.failed_to_build_package": "패키지를 빌드하지 못했습니다: {0}",
+  "diag.foreign_callback_raised_an_unknown_exception": "외부 콜백에서 알 수 없는 예외가 발생했습니다",
+  "diag.foreign_external_deserializer_raised_an_exception": "외부 역직렬화 함수에서 예외가 발생했습니다",
+  "diag.foreign_external_serializer_raised_an_exception": "외부 직렬화 함수에서 예외가 발생했습니다",
+  "diag.foreign_generic_host_type_factory_raised_an_exception": "외부 제네릭 호스트 형식 팩터리에서 예외가 발생했습니다",
+  "diag.generic_host_type_factory_is_unavailable": "제네릭 호스트 형식 팩터리를 사용할 수 없습니다",
+  "diag.invalid_host_function_metadata": "호스트 함수 메타데이터가 잘못되었습니다",
+  "diag.invalid_host_member_parameter_metadata": "호스트 멤버 매개변수 메타데이터가 잘못되었습니다",
+  "diag.veroscriptinterop_native_callback_is_unavailable": "VeroScriptInterop 네이티브 콜백을 사용할 수 없습니다"
+}

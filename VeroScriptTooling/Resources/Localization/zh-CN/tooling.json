@@ -1,0 +1,9 @@
+{
+  "diag.document_is_not_open_in_workspace": "工作区中未打开该文档",
+  "diag.format_failed_lexer_error": "format 失败：词法错误",
+  "tooling.builtin_type.detail": "内置类型",
+  "tooling.builtin_type.documentation": "VeroScript 内置类型。",
+  "tooling.hover.builtin": "内置符号。",
+  "tooling.source_documentation.parameter": "参数 `{0}`：",
+  "tooling.source_documentation.returns": "返回："
+}

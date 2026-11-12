@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "module": "Extensions/Language/Python",
+  "user": [
+    {
+      "source": "User/{locale}/aot.md",
+      "output": "{locale}/python/aot.md"
+    },
+    {
+      "source": "User/{locale}/bindgen.md",
+      "output": "{locale}/python/bindgen.md"
+    },
+    {
+      "source": "User/{locale}/frontend.md",
+      "output": "{locale}/python/frontend.md"
+    },
+    {
+      "source": "User/{locale}/host-bindings.md",
+      "output": "{locale}/python/host-bindings.md"
+    },
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/python/index.md"
+    },
+    {
+      "source": "User/{locale}/packages.md",
+      "output": "{locale}/python/packages.md"
+    },
+    {
+      "source": "User/{locale}/session.md",
+      "output": "{locale}/python/session.md"
+    },
+    {
+      "source": "User/{locale}/transpiler.md",
+      "output": "{locale}/python/transpiler.md"
+    },
+    {
+      "source": "User/{locale}/values.md",
+      "output": "{locale}/python/values.md"
+    },
+    {
+      "source": "User/{locale}/mobile.md",
+      "output": "{locale}/python/mobile.md"
+    },
+    {
+      "source": "User/{locale}/memory.md",
+      "output": "{locale}/python/memory.md"
+    }
+  ],
+  "developer": true
+}

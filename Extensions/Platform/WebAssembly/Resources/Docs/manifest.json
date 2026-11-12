@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "Extensions/Platform/WebAssembly",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/webassembly/index.md"
+    }
+  ],
+  "developer": true
+}

@@ -1,0 +1,21 @@
+// SPDX-FileCopyrightText: VanstySanic
+// SPDX-License-Identifier: MIT
+
+	{"diag.i18n_invalid_argument", "Invalid i18n argument: ExampleType"},
+	{"diag.i18n_invalid_configuration", "Invalid i18n configuration: ExampleType"},
+	{"diag.i18n_invalid_state", "Invalid i18n state: ExampleType"},
+	{"diag.i18n_missing_resolver", "Missing resource resolver: ExampleType"},
+	{"diag.i18n_missing_message", "Message not found: ExampleType"},
+	{"diag.i18n_unsupported_format", "Unsupported format: ExampleType"},
+	{"diag.i18n_missing_argument", "Missing named parameter: ExampleType"},
+	{"diag.i18n_argument_type", "Invalid parameter type: ExampleType"},
+	{"diag.i18n_numeric_conversion", "Inexact or out-of-range numeric conversion: ExampleType"},
+	{"diag.i18n_invalid_pattern", "Invalid format pattern: ExampleType"},
+	{"diag.i18n_unsupported_option", "Unsupported format option: ExampleType"},
+	{"diag.i18n_provider_failure", "Invalid provider result: ExampleType"},
+	{"diag.i18n_resource_limit", "Output limit exceeded: ExampleType"},
+	{"diag.i18n_out_of_memory", "Allocation failed: ExampleType"},
+	{"diag.i18n_interrupted", "Operation interrupted: ExampleType"},
+	{"diag.i18n_reentrant_operation", "Recursive i18n operation: ExampleType"},
+	{"diag.stdlib_native_limit", "Host native function table exceeds capacity including core standard bindings"},
+	{"diag.stdlib_reserved_binding", "Core standard library bindings cannot be replaced"},

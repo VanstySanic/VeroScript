@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+@PACKAGE_INIT@
+set(VeroScriptCurl_MODULE_DIR "${PACKAGE_PREFIX_DIR}/lib/veroscript/modules")
+include(CMakeFindDependencyMacro)
+find_dependency(VeroScriptHttp 0.1.1 EXACT CONFIG)
+find_dependency(CURL 8.13)
+include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptCurlTargets.cmake")
+set(VeroScriptCurl_Bindings_FOUND FALSE)
+if("Bindings" IN_LIST VeroScriptCurl_FIND_COMPONENTS AND EXISTS "${CMAKE_CURRENT_LIST_DIR}/VeroScriptCurlBindingsTargets.cmake")
+	find_dependency(VeroScript 0.1.1 EXACT CONFIG)
+	include("${CMAKE_CURRENT_LIST_DIR}/VeroScriptCurlBindingsTargets.cmake")
+	set(VeroScriptCurl_Bindings_FOUND TRUE)
+endif()
+check_required_components(VeroScriptCurl)

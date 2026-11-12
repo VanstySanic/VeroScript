@@ -1,0 +1,13 @@
+/* SPDX-FileCopyrightText: VanstySanic */
+/* SPDX-License-Identifier: MIT */
+
+:root {
+	padding: 12px;
+	background-color: #202630;
+}
+#content {
+	layout: horizontal;
+}
+#content > Widget {
+	background-color: #4888c0;
+}

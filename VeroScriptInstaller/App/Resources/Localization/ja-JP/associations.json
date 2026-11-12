@@ -1,0 +1,19 @@
+{
+  "Associations.Title": "ファイルの関連付け",
+  "Associations.Subtitle": "現在の Windows ユーザー向けの任意設定です。",
+  "Associations.Source": ".vs をこの Runtime で実行する（アイコン付き）",
+  "Associations.Application": ".vsapp をこの Runtime で実行する（アイコン付き）",
+  "Associations.PackageIcon": ".vspkg のアイコンを登録する（未登録の場合のみ）",
+  "Associations.ChooseDefaults": "インストール後に Windows で既定のアプリを選ぶ",
+  "Associations.Description": ".vs または .vsapp を開くと実行されます。.vspkg はアイコンのみ追加します。既定のアプリは自分で選択できます。Windows は選択したアプリのアイコンを使う場合があります。",
+  "Associations.OpenDefaults": "既定のアプリの設定を開く",
+  "Associations.Review": "実行の関連付け：{0}。パッケージのアイコン：{1}。無効にした設定は、このインストールの所有分のみ削除します。",
+  "Associations.DefaultReview": "インストール後、Windows の設定で .vs と .vsapp の既定のアプリを選択してください。",
+  "Associations.Remove": "このインストールが所有する実行ハンドラーとアイコン参照のみ削除し、他のアプリや後から変更した設定は保持します。",
+  "Associations.None": "無効",
+  "Associations.Enabled": "有効",
+  "Associations.Preserved": "別のインストールが所有する値や変更された値は、そのまま保持しました。",
+  "Associations.DefaultRequested": "既定のアプリの設定を開くよう要求しました。Windows で .vs または .vsapp にこの Runtime を選択して確定してください。",
+  "Associations.DefaultFailed": "インストールは完了しましたが、Windows の設定を開けませんでした。「設定 > アプリ > 既定のアプリ」を開くか、下のボタンで再試行してください。",
+  "Associations.DefaultUnavailable": "インストールは完了しました。既存の変更を保持するため完全なハンドラー登録ができず、既定のアプリの設定は開いていません。"
+}

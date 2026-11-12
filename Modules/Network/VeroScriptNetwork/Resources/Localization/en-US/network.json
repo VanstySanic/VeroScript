@@ -1,0 +1,20 @@
+{
+  "network.invalid_argument": "Invalid argument: {0}",
+  "network.unsupported": "Unsupported operation: {0}",
+  "network.queue_full": "Queue full: {0}",
+  "network.cancelled": "Cancelled: {0}",
+  "network.timed_out": "Timed out: {0}",
+  "network.closed": "Closed: {0}",
+  "network.resolve": "Name resolution failed: {0}",
+  "network.connect": "Connection failed: {0}",
+  "network.read": "Read failed: {0}",
+  "network.write": "Write failed: {0}",
+  "network.protocol": "Protocol error: {0}",
+  "network.limit": "Limit exceeded: {0}",
+  "network.state": "Invalid state: {0}",
+  "network.callback": "Callback failed: {0}",
+  "network.allocation": "Allocation failed: {0}",
+  "network.internal": "Internal error: {0}",
+  "network.unknown": "Unknown error: {0}",
+  "network.binding": "Binding: {0}"
+}

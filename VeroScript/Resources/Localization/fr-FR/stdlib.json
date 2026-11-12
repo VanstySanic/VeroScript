@@ -1,0 +1,11 @@
+{
+  "diag.stdlib_arguments": "Arguments de bibliothèque standard invalides",
+  "diag.stdlib_eof": "Fin inattendue de l’entrée",
+  "diag.stdlib_interrupted": "Opération de bibliothèque standard interrompue",
+  "diag.stdlib_io": "Échec de l'opération d'entrée/sortie de bibliothèque standard",
+  "diag.stdlib_limit": "L'opération de bibliothèque standard dépasse sa limite de ressources",
+  "diag.stdlib_range": "Le texte numérique dépasse la plage cible à l'octet {0}",
+  "diag.stdlib_sync": "Échec de synchronisation : {0}",
+  "diag.stdlib_task": "Échec de tâche : {0}",
+  "diag.stdlib_text": "Texte invalide à l'octet {0}"
+}

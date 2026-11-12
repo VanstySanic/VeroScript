@@ -1,0 +1,43 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>VeroScriptInstaller</RootNamespace>
+		<AssemblyName>VeroScriptInstaller</AssemblyName>
+		<Version>0.1.1</Version>
+		<AssemblyVersion>0.1.1.0</AssemblyVersion>
+		<FileVersion>0.1.1.0</FileVersion>
+		<SelfContained>true</SelfContained>
+		<PublishSingleFile>true</PublishSingleFile>
+		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+		<PublishTrimmed>false</PublishTrimmed>
+		<PublishReadyToRun>false</PublishReadyToRun>
+		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+		<ApplicationIcon Condition="$([MSBuild]::IsOSPlatform('Windows')) Or $(RuntimeIdentifier.StartsWith('win-'))">..\..\Resources\Assets\icons\veroscript-icon.ico</ApplicationIcon>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<DebugType>None</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="11.3.18" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.3.18" />
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.18" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.18" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Core\VeroScriptInstaller.Core.csproj" />
+		<EmbeddedResource Include="Resources\Localization\**\*.json" />
+		<AvaloniaResource Include="..\..\Resources\Assets\icons\veroscript-icon-256.png" Link="Assets\VeroScriptIcon.png" />
+	</ItemGroup>
+	<PropertyGroup Condition="'$(InstallerBundleArchive)' != ''">
+		<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+	</PropertyGroup>
+	<Import Project="InstallerBundleContent.targets" />
+</Project>

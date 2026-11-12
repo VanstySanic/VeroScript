@@ -1,0 +1,6 @@
+{
+  "python_tools.python_version_required": "VeroScript Python 工具需要 Python 3.11-3.15",
+  "python_tools.source_read_failed": "读取 Python 源代码失败：{0}",
+  "python_tools.syntax_error": "Python 语法无效：{0}",
+  "python_tools.unsupported_top_level": "不支持的顶层 Python 构造：{0}"
+}

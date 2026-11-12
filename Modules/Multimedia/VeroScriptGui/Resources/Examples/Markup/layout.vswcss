@@ -1,0 +1,31 @@
+/* SPDX-FileCopyrightText: VanstySanic */
+/* SPDX-License-Identifier: MIT */
+
+:root {
+	--space: 16px;
+	padding: var(--space);
+	gap: var(--space);
+	background-color: #101927;
+}
+.header {
+	height: 64px;
+	background-color: #317fd6;
+}
+.cards {
+	height: 164px;
+	gap: 12px;
+}
+.cards > .card {
+	width: 30%;
+	height: 164px;
+}
+#second {
+	background-color: #493361;
+}
+.card:hover {
+	background-color: #31537b;
+}
+.footer {
+	height: 48px;
+	background-color: #243d59;
+}

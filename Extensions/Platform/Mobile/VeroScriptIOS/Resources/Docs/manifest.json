@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "Extensions/Platform/Mobile/VeroScriptIOS",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/ios/index.md"
+    }
+  ],
+  "developer": true
+}

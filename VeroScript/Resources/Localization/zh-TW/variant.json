@@ -1,0 +1,11 @@
+{
+  "diag.variant_requires_concrete_null_type": "請先將 nullptr 轉為有具體型別的空參考再裝箱",
+  "diag.variant_expected": "需要 variant 值",
+  "diag.variant_not_allowed_as_key": "variant 不能作為關聯容器的鍵",
+  "diag.variant_not_allowed_in_channel": "variant 不能透過 channel 傳輸",
+  "diag.variant_worker_transfer_unsupported": "variant 不能傳遞給工作執行緒",
+  "diag.variant_empty_cast": "不能從空 variant 中擷取值",
+  "diag.try_cast_variant_target_is_meaningless": "不支援 try_cast<variant>；請使用 variant(value)",
+  "diag.aot_variant_unsupported": "variant 需要 VeroScript 執行階段，不支援獨立 AOT 輸出",
+  "diag.variant_reserved_name": "variant 型別及其內建函式名稱為保留名稱"
+}

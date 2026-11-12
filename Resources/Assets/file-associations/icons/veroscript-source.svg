@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="VeroScript source file">
+	<title>VeroScript source file</title>
+
+	<path d="M56 20H164L212 68V224C212 231 207 236 200 236H56C49 236 44 231 44 224V32C44 25 49 20 56 20Z" fill="#F4F7FC" stroke="#8195B7" stroke-width="3" stroke-linejoin="round"/>
+	<path d="M164 20V60C164 65 167 68 172 68H212Z" fill="#CBD7ED"/>
+
+	<path d="M24 32H78C91 65 111 115 128 157C145 115 165 65 178 32H232C205 83 168 154 128 226C88 154 51 83 24 32Z" transform="translate(128 154) scale(0.55) translate(-128 -129)" fill="#5D75AE"/>
+</svg>

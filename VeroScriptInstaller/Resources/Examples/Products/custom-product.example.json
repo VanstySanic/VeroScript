@@ -1,0 +1,36 @@
+{
+  "profileId": "sample-product",
+  "productId": "dev.example.sample-product",
+  "productName": "Sample Product",
+  "description": "Example external product definition for the generic VeroScript installer framework.",
+  "localizedNames": {
+    "zh-CN": "示例产品"
+  },
+  "localizedDescriptions": {
+    "zh-CN": "通用安装器框架的外部产品定义示例。"
+  },
+  "rootKind": "developer",
+  "rootDirectoryName": "Sample Product SDK",
+  "includeVersion": true,
+  "components": {
+    "core": {
+      "id": "core",
+      "displayName": "Core",
+      "description": "Required product files.",
+      "localizedNames": { "zh-CN": "核心" },
+      "localizedDescriptions": { "zh-CN": "必需的产品文件。" },
+      "installDirectory": "Core",
+      "required": true,
+      "defaultSelected": true,
+      "requiredFiles": ["product.dat"]
+    },
+    "examples": {
+      "id": "examples",
+      "displayName": "Examples",
+      "description": "Optional examples.",
+      "installDirectory": "Examples",
+      "required": false,
+      "defaultSelected": false
+    }
+  }
+}

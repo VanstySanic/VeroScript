@@ -1,0 +1,21 @@
+{
+  "lsp.code_action.format_document": "格式化文档",
+  "lsp.code_action.implement_interface_member": "实现 {0}",
+  "lsp.code_action.override_inherited_member": "覆盖 {0}",
+  "lsp.code_action.remove_duplicate_imports": "删除重复导入",
+  "lsp.completion.implement_interface_member": "实现接口成员",
+  "lsp.completion.override_inherited_member": "覆盖继承成员",
+  "lsp.document_link.open_import": "打开导入的 VeroScript 模块",
+  "lsp.protocol.method_not_found": "未找到方法：{0}",
+  "lsp.rename.missing_document_position": "缺少 textDocument/position",
+  "lsp.rename.no_identifier_under_caret": "光标处没有可重命名的标识符",
+  "lsp.rename.symbol_cannot_be_renamed": "该符号不能重命名",
+  "lsp.request_cancelled": "请求已取消",
+  "lsp.request_timed_out": "请求已超时",
+  "lsp.semantic_queue_full": "语义分析队列已满",
+  "lsp.content_modified": "分析期间文档或依赖已发生变化",
+  "lsp.semantic_analysis_stopped": "语义分析已停止",
+  "lsp.host_bindings_current": "VeroScript 宿主绑定目录已更新",
+  "lsp.host_bindings_last_snapshot": "VeroScript 宿主绑定目录不可用；继续使用上次有效快照。{0}",
+  "lsp.host_bindings_unavailable": "VeroScript 宿主绑定目录不可用；尚未加载宿主绑定。{0}"
+}

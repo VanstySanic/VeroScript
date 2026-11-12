@@ -1,0 +1,13 @@
+{
+  "diag.numeric_type_mismatch": "需要支援的數值或來源型別",
+  "diag.numeric_invalid_argument": "無效的數值參數：{0}",
+  "diag.numeric_invalid_text": "無效的數值文字：{0}（位元組 {1}）",
+  "diag.numeric_division_by_zero": "數值除數不能為零",
+  "diag.numeric_out_of_range": "數值超出目標範圍",
+  "diag.numeric_inexact_conversion": "數值轉換會損失精確度",
+  "diag.numeric_limit": "數值運算超出資源限制：{0}",
+  "diag.numeric_out_of_memory": "數值記憶體配置失敗",
+  "diag.numeric_interrupted": "數值運算已中斷",
+  "diag.numeric_internal": "數值運算失敗",
+  "diag.numeric_busy": "執行期間不能修改數值限制"
+}

@@ -1,0 +1,7 @@
+{
+  "python_tools.source_write_failed": "写入生成的输出失败：{0}",
+  "python_tools.duplicate_declaration": "声明重复：{0}",
+  "python_tools.unsupported_construct": "不支持的 Python 构造：{0}",
+  "python_tools.validator_not_found": "VeroScript 工具需要 --veroscript、VEROSCRIPT_EXECUTABLE、VEROSCRIPT_SDK 或 PATH 中的 veroscript",
+  "python_tools.timeout_invalid": "timeout 必须是有限的正数"
+}

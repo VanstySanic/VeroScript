@@ -1,0 +1,19 @@
+{
+  "Associations.Title": "파일 연결",
+  "Associations.Subtitle": "현재 Windows 사용자를 위한 선택 설정입니다.",
+  "Associations.Source": ".vs를 이 Runtime으로 실행하도록 등록 (아이콘 포함)",
+  "Associations.Application": ".vsapp을 이 Runtime으로 실행하도록 등록 (아이콘 포함)",
+  "Associations.PackageIcon": ".vspkg 아이콘 등록 (기존 아이콘이 없는 경우에만)",
+  "Associations.ChooseDefaults": "설치 후 Windows 설정에서 기본 앱 선택",
+  "Associations.Description": ".vs 또는 .vsapp을 열면 파일이 실행됩니다. .vspkg 옵션은 아이콘만 추가합니다. 기본 앱은 직접 선택하며, Windows가 선택한 앱의 아이콘을 사용할 수 있습니다.",
+  "Associations.OpenDefaults": "기본 앱 설정 열기",
+  "Associations.Review": "실행 연결: {0}. 패키지 아이콘: {1}. 해제한 옵션은 이 설치가 소유한 설정만 제거합니다.",
+  "Associations.DefaultReview": "설치 후 Windows 설정에서 .vs와 .vsapp의 기본 앱을 선택하세요.",
+  "Associations.Remove": "이 설치가 소유한 실행 처리기와 아이콘 참조만 제거하며, 다른 앱과 사용자의 이후 변경은 유지합니다.",
+  "Associations.None": "사용 안 함",
+  "Associations.Enabled": "사용",
+  "Associations.Preserved": "다른 설치가 소유하거나 변경된 등록 값은 그대로 유지했습니다.",
+  "Associations.DefaultRequested": "기본 앱 설정 열기를 요청했습니다. Windows에서 .vs 및/또는 .vsapp의 앱으로 이 Runtime을 선택하여 확인하세요.",
+  "Associations.DefaultFailed": "설치는 완료했지만 Windows 설정을 열 수 없습니다. 설정 > 앱 > 기본 앱으로 이동하거나 아래 버튼으로 다시 시도하세요.",
+  "Associations.DefaultUnavailable": "설치는 완료했습니다. 기존 변경을 유지하기 위해 실행 처리기를 완전히 등록할 수 없어 기본 앱 설정을 열지 않았습니다."
+}

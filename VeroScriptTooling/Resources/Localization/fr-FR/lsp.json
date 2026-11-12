@@ -1,0 +1,21 @@
+{
+  "lsp.code_action.format_document": "Mettre le document en forme",
+  "lsp.code_action.implement_interface_member": "Implémenter {0}",
+  "lsp.code_action.override_inherited_member": "Redéfinir {0}",
+  "lsp.code_action.remove_duplicate_imports": "Supprimer les imports en double",
+  "lsp.completion.implement_interface_member": "Implémenter le membre de l'interface",
+  "lsp.completion.override_inherited_member": "Redéfinir le membre hérité",
+  "lsp.document_link.open_import": "Ouvrir le module VeroScript importé",
+  "lsp.protocol.method_not_found": "méthode introuvable : {0}",
+  "lsp.rename.missing_document_position": "textDocument/position est manquant",
+  "lsp.rename.no_identifier_under_caret": "aucun identifiant renommable sous le curseur",
+  "lsp.rename.symbol_cannot_be_renamed": "le symbole ne peut pas être renommé",
+  "lsp.request_cancelled": "requête annulée",
+  "lsp.request_timed_out": "délai de la requête dépassé",
+  "lsp.semantic_queue_full": "La file d’analyse sémantique est pleine",
+  "lsp.content_modified": "Le document ou une dépendance a changé pendant l’analyse",
+  "lsp.semantic_analysis_stopped": "L’analyse sémantique a été arrêtée",
+  "lsp.host_bindings_current": "Le catalogue de liaisons de l’hôte VeroScript est à jour",
+  "lsp.host_bindings_last_snapshot": "Le catalogue de liaisons de l’hôte VeroScript est indisponible ; le dernier instantané valide est utilisé. {0}",
+  "lsp.host_bindings_unavailable": "Le catalogue de liaisons de l’hôte VeroScript est indisponible ; aucune liaison de l’hôte n’est chargée. {0}"
+}

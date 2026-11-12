@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "module": "VeroScriptCli",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/toolchain/cli.md"
+    },
+    {
+      "source": "User/{locale}/packages.md",
+      "output": "{locale}/toolchain/packages.md"
+    }
+  ],
+  "developer": true
+}

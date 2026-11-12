@@ -1,0 +1,27 @@
+Windows Registry Editor Version 5.00
+
+; Replace all @...@ placeholders before importing this template.
+; @PROGID@ must be unique to the consuming editor (for example,
+; Vendor.Editor.VeroScript); do not share one ProgID across different editors.
+; This advertises an editor under Open With and deliberately does not select it
+; as the default application or write Explorer's protected UserChoice value.
+
+[HKEY_CURRENT_USER\Software\Classes\.vs]
+"Content Type"="text/x-veroscript"
+"PerceivedType"="text"
+
+[HKEY_CURRENT_USER\Software\Classes\.vs\OpenWithProgids]
+"@PROGID@"=""
+
+[HKEY_CURRENT_USER\Software\Classes\@PROGID@]
+@="@DOCUMENT_DISPLAY_NAME@"
+"FriendlyTypeName"="@DOCUMENT_DISPLAY_NAME@"
+
+[HKEY_CURRENT_USER\Software\Classes\@PROGID@\DefaultIcon]
+@="\"@DOCUMENT_ICON_PATH@\",0"
+
+[HKEY_CURRENT_USER\Software\Classes\@PROGID@\shell\open]
+@="@OPEN_ACTION_LABEL@"
+
+[HKEY_CURRENT_USER\Software\Classes\@PROGID@\shell\open\command]
+@="\"@EDITOR_EXECUTABLE_PATH@\" \"%1\""

@@ -1,0 +1,432 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "windows-msvc-ide-base",
+      "hidden": true,
+      "inherits": "base",
+      "architecture": "x64",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [
+            "Windows"
+          ],
+          "intelliSenseMode": "windows-msvc-x64"
+        },
+        "jetbrains.com/clion": {
+          "toolchain": "Default"
+        }
+      }
+    },
+    {
+      "name": "windows-msvc-vs2026",
+      "displayName": "Windows MSVC VS 2026",
+      "inherits": "windows-msvc-ide-base",
+      "generator": "Visual Studio 18 2026"
+    },
+    {
+      "name": "windows-msvc-vs2022",
+      "displayName": "Windows MSVC VS 2022",
+      "inherits": "windows-msvc-ide-base",
+      "generator": "Visual Studio 17 2022"
+    },
+    {
+      "name": "windows-msvc-vs2019",
+      "displayName": "Windows MSVC VS 2019",
+      "inherits": "windows-msvc-ide-base",
+      "generator": "Visual Studio 16 2019"
+    },
+    {
+      "name": "windows-ninja-msvc",
+      "displayName": "Windows Ninja MSVC",
+      "inherits": "base",
+      "generator": "Ninja",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "cl",
+        "CMAKE_CXX_COMPILER": "cl",
+        "CMAKE_VS_PLATFORM_NAME": "x64"
+      },
+      "vendor": {
+        "jetbrains.com/clion": {
+          "toolchain": "Default"
+        }
+      }
+    },
+    {
+      "name": "windows-ninja-clang",
+      "displayName": "Windows Ninja Clang",
+      "inherits": "base",
+      "generator": "Ninja",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "clang-cl",
+        "CMAKE_CXX_COMPILER": "clang-cl",
+        "CMAKE_VS_PLATFORM_NAME": "x64"
+      }
+    },
+    {
+      "name": "linux-ninja",
+      "displayName": "Linux Ninja",
+      "inherits": "base",
+      "generator": "Ninja",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "macos-ninja",
+      "displayName": "macOS Ninja",
+      "inherits": "base",
+      "generator": "Ninja",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "windows-ninja-msvc-release",
+      "displayName": "Windows Ninja MSVC Release",
+      "inherits": "windows-ninja-msvc",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "windows-ninja-clang-release",
+      "displayName": "Windows Ninja Clang Release",
+      "inherits": "windows-ninja-clang",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "linux-ninja-release",
+      "displayName": "Linux Ninja Release",
+      "inherits": "linux-ninja",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "macos-ninja-release",
+      "displayName": "macOS Ninja Release",
+      "inherits": "macos-ninja",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "windows-msvc-vs2026-arm64",
+      "displayName": "Windows ARM64 MSVC VS 2026",
+      "inherits": "windows-msvc-vs2026",
+      "architecture": "ARM64",
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [
+            "Windows"
+          ],
+          "intelliSenseMode": "windows-msvc-arm64"
+        }
+      }
+    },
+    {
+      "name": "windows-msvc-vs2022-arm64",
+      "displayName": "Windows ARM64 MSVC VS 2022",
+      "inherits": "windows-msvc-vs2022",
+      "architecture": "ARM64",
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [
+            "Windows"
+          ],
+          "intelliSenseMode": "windows-msvc-arm64"
+        }
+      }
+    },
+    {
+      "name": "windows-msvc-vs2019-arm64",
+      "displayName": "Windows ARM64 MSVC VS 2019",
+      "inherits": "windows-msvc-vs2019",
+      "architecture": "ARM64",
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [
+            "Windows"
+          ],
+          "intelliSenseMode": "windows-msvc-arm64"
+        }
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug-msvc-vs2026",
+      "displayName": "Debug MSVC VS 2026",
+      "configurePreset": "windows-msvc-vs2026",
+      "configuration": "Debug"
+    },
+    {
+      "name": "release-msvc-vs2026",
+      "displayName": "Release MSVC VS 2026",
+      "configurePreset": "windows-msvc-vs2026",
+      "configuration": "Release"
+    },
+    {
+      "name": "debug-msvc-vs2022",
+      "displayName": "Debug MSVC VS 2022",
+      "configurePreset": "windows-msvc-vs2022",
+      "configuration": "Debug"
+    },
+    {
+      "name": "release-msvc-vs2022",
+      "displayName": "Release MSVC VS 2022",
+      "configurePreset": "windows-msvc-vs2022",
+      "configuration": "Release"
+    },
+    {
+      "name": "debug-msvc-vs2019",
+      "displayName": "Debug MSVC VS 2019",
+      "configurePreset": "windows-msvc-vs2019",
+      "configuration": "Debug"
+    },
+    {
+      "name": "release-msvc-vs2019",
+      "displayName": "Release MSVC VS 2019",
+      "configurePreset": "windows-msvc-vs2019",
+      "configuration": "Release"
+    },
+    {
+      "name": "debug-ninja-msvc",
+      "displayName": "Debug Ninja MSVC",
+      "configurePreset": "windows-ninja-msvc"
+    },
+    {
+      "name": "debug-ninja-clang",
+      "displayName": "Debug Ninja Clang",
+      "configurePreset": "windows-ninja-clang"
+    },
+    {
+      "name": "debug-linux",
+      "displayName": "Debug Linux",
+      "configurePreset": "linux-ninja"
+    },
+    {
+      "name": "debug-macos",
+      "displayName": "Debug macOS",
+      "configurePreset": "macos-ninja"
+    },
+    {
+      "name": "release-ninja-msvc",
+      "displayName": "Release Ninja MSVC",
+      "configurePreset": "windows-ninja-msvc-release"
+    },
+    {
+      "name": "release-ninja-clang",
+      "displayName": "Release Ninja Clang",
+      "configurePreset": "windows-ninja-clang-release"
+    },
+    {
+      "name": "release-linux",
+      "displayName": "Release Linux",
+      "configurePreset": "linux-ninja-release"
+    },
+    {
+      "name": "release-macos",
+      "displayName": "Release macOS",
+      "configurePreset": "macos-ninja-release"
+    },
+    {
+      "name": "debug-msvc-vs2026-arm64",
+      "displayName": "Debug ARM64 MSVC VS 2026",
+      "configurePreset": "windows-msvc-vs2026-arm64",
+      "configuration": "Debug"
+    },
+    {
+      "name": "release-msvc-vs2026-arm64",
+      "displayName": "Release ARM64 MSVC VS 2026",
+      "configurePreset": "windows-msvc-vs2026-arm64",
+      "configuration": "Release"
+    },
+    {
+      "name": "debug-msvc-vs2022-arm64",
+      "displayName": "Debug ARM64 MSVC VS 2022",
+      "configurePreset": "windows-msvc-vs2022-arm64",
+      "configuration": "Debug"
+    },
+    {
+      "name": "release-msvc-vs2022-arm64",
+      "displayName": "Release ARM64 MSVC VS 2022",
+      "configurePreset": "windows-msvc-vs2022-arm64",
+      "configuration": "Release"
+    },
+    {
+      "name": "debug-msvc-vs2019-arm64",
+      "displayName": "Debug ARM64 MSVC VS 2019",
+      "configurePreset": "windows-msvc-vs2019-arm64",
+      "configuration": "Debug"
+    },
+    {
+      "name": "release-msvc-vs2019-arm64",
+      "displayName": "Release ARM64 MSVC VS 2019",
+      "configurePreset": "windows-msvc-vs2019-arm64",
+      "configuration": "Release"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "windows-msvc-vs2026-debug",
+      "displayName": "Configure + Build (Windows MSVC VS 2026 Debug)",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "windows-msvc-vs2026"
+        },
+        {
+          "type": "build",
+          "name": "debug-msvc-vs2026"
+        }
+      ]
+    },
+    {
+      "name": "windows-msvc-vs2022-debug",
+      "displayName": "Configure + Build (Windows MSVC VS 2022 Debug)",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "windows-msvc-vs2022"
+        },
+        {
+          "type": "build",
+          "name": "debug-msvc-vs2022"
+        }
+      ]
+    },
+    {
+      "name": "windows-msvc-vs2019-debug",
+      "displayName": "Configure + Build (Windows MSVC VS 2019 Debug)",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "windows-msvc-vs2019"
+        },
+        {
+          "type": "build",
+          "name": "debug-msvc-vs2019"
+        }
+      ]
+    },
+    {
+      "name": "windows-ninja-msvc-debug",
+      "displayName": "Configure + Build (Windows Ninja MSVC Debug)",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "windows-ninja-msvc"
+        },
+        {
+          "type": "build",
+          "name": "debug-ninja-msvc"
+        }
+      ]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "test-msvc-vs2026",
+      "displayName": "Run tests (Windows MSVC VS 2026 Debug)",
+      "configurePreset": "windows-msvc-vs2026",
+      "configuration": "Debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "test-msvc-vs2022",
+      "displayName": "Run tests (Windows MSVC VS 2022 Debug)",
+      "configurePreset": "windows-msvc-vs2022",
+      "configuration": "Debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "test-msvc-vs2019",
+      "displayName": "Run tests (Windows MSVC VS 2019 Debug)",
+      "configurePreset": "windows-msvc-vs2019",
+      "configuration": "Debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "test-ninja-msvc",
+      "displayName": "Run tests (Windows Ninja MSVC)",
+      "configurePreset": "windows-ninja-msvc",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "test-ninja-clang",
+      "displayName": "Run tests (Windows Ninja Clang)",
+      "configurePreset": "windows-ninja-clang",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "test-linux",
+      "displayName": "Run tests (Linux Ninja)",
+      "configurePreset": "linux-ninja",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "test-macos",
+      "displayName": "Run tests (macOS Ninja)",
+      "configurePreset": "macos-ninja",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}

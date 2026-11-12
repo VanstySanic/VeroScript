@@ -1,0 +1,92 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Project>
+	<!-- Both managed resources and the native bundler's PE inspection have 2 GiB limits per input.
+	     Keep bounded content parts inside the single executable, with one hash for the complete ZIP. -->
+	<UsingTask TaskName="SplitVeroScriptInstallerBundle" TaskFactory="RoslynCodeTaskFactory"
+		AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
+		<ParameterGroup>
+			<Archive ParameterType="System.String" Required="true" />
+			<OutputDirectory ParameterType="System.String" Required="true" />
+			<Parts ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
+			<Sha256 ParameterType="System.String" Output="true" />
+			<PartCount ParameterType="System.String" Output="true" />
+		</ParameterGroup>
+		<Task>
+			<Using Namespace="System.IO" />
+			<Using Namespace="System.Collections.Generic" />
+			<Code Type="Fragment" Language="cs"><![CDATA[
+const long partSize = 1024L * 1024 * 1024;
+var output = Path.GetFullPath(OutputDirectory);
+Directory.CreateDirectory(output);
+var parts = new List<Microsoft.Build.Framework.ITaskItem>();
+using (var input = File.OpenRead(Archive))
+{
+    if (input.Length == 0 || input.Length > 32L * partSize)
+        throw new InvalidDataException("The installer bundle archive has an unsupported size.");
+    using (var sha = System.Security.Cryptography.SHA256.Create())
+        Sha256 = BitConverter.ToString(sha.ComputeHash(input)).Replace("-", "");
+    input.Position = 0;
+    var buffer = new byte[1024 * 1024];
+    while (input.Position < input.Length)
+    {
+        var name = "VeroScriptInstaller.EmbeddedBundle.zip." + parts.Count.ToString("D4", System.Globalization.CultureInfo.InvariantCulture);
+        var path = Path.Combine(output, name);
+        using (var part = File.Create(path))
+        {
+            long remaining = Math.Min(partSize, input.Length - input.Position);
+            while (remaining > 0)
+            {
+                int read = input.Read(buffer, 0, (int)Math.Min(buffer.Length, remaining));
+                if (read == 0) throw new EndOfStreamException("The installer bundle archive changed while reading.");
+                part.Write(buffer, 0, read);
+                remaining -= read;
+            }
+        }
+        var item = new Microsoft.Build.Utilities.TaskItem(path);
+        item.SetMetadata("Link", name);
+        item.SetMetadata("TargetPath", name);
+        item.SetMetadata("CopyToOutputDirectory", "PreserveNewest");
+        item.SetMetadata("CopyToPublishDirectory", "PreserveNewest");
+        parts.Add(item);
+    }
+}
+Parts = parts.ToArray();
+PartCount = parts.Count.ToString(System.Globalization.CultureInfo.InvariantCulture);
+			]]></Code>
+		</Task>
+	</UsingTask>
+	<Target Name="BindInstallerBundleContent" BeforeTargets="AssignTargetPaths;GetAssemblyAttributes"
+		Condition="'$(InstallerBundleArchive)' != ''">
+		<SplitVeroScriptInstallerBundle Archive="$(InstallerBundleArchive)" OutputDirectory="$(IntermediateOutputPath)InstallerBundleContent">
+			<Output TaskParameter="Parts" ItemName="Content" />
+			<Output TaskParameter="Sha256" PropertyName="_VeroScriptInstallerBundleHash" />
+			<Output TaskParameter="PartCount" PropertyName="_VeroScriptInstallerBundlePartCount" />
+		</SplitVeroScriptInstallerBundle>
+		<ItemGroup>
+			<AssemblyMetadata Include="VeroScriptInstaller.BundleSha256" Value="$(_VeroScriptInstallerBundleHash)" />
+			<AssemblyMetadata Include="VeroScriptInstaller.BundlePartCount" Value="$(_VeroScriptInstallerBundlePartCount)" />
+		</ItemGroup>
+	</Target>
+	<UsingTask TaskName="ValidateVeroScriptInstallerExecutable" TaskFactory="RoslynCodeTaskFactory"
+		AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
+		<ParameterGroup>
+			<Executable ParameterType="System.String" Required="true" />
+		</ParameterGroup>
+		<Task>
+			<Code Type="Fragment" Language="cs"><![CDATA[
+var file = new System.IO.FileInfo(Executable);
+if (!file.Exists || file.Length == 0)
+{
+    Log.LogError("The single-file installer is missing or empty. Build from VeroScriptInstaller with its pinned .NET 9 SDK; affected .NET 10 bundlers silently produce empty files above 2 GiB.");
+    return false;
+}
+			]]></Code>
+		</Task>
+	</UsingTask>
+	<Target Name="ValidateInstallerBundleExecutable" AfterTargets="Publish"
+		Condition="'$(InstallerBundleArchive)' != '' and '$(PublishSingleFile)' == 'true'">
+		<ValidateVeroScriptInstallerExecutable Executable="$(PublishedSingleFilePath)" />
+	</Target>
+</Project>

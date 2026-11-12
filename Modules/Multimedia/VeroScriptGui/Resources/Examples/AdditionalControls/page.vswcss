@@ -1,0 +1,13 @@
+/* SPDX-FileCopyrightText: VanstySanic */
+/* SPDX-License-Identifier: MIT */
+
+:root { padding: 16px; gap: 12px; background-color: #17202b; color: #eaf0f8; }
+.tiles { columns: 2; gap: 8px; }
+Border { padding: 8px; border-width: 1; border-color: #52718f; background-color: #26394c; }
+Splitter { height: 90px; divider-size: 8; color: #76c7fa; }
+RadioButton:checked { color: #76c7fa; }
+NumberBox:focus, PasswordBox:focus { background-color: #26394c; }
+Button { padding: 10px; background-color: #28415e; }
+Popup, ToolTip { padding: 10px; background-color: #34516e; border-width: 1; border-color: #76c7fa; clip-content: true; }
+Popup { width: 360px; height: 80px; offset-y: 4; }
+ToolTip { width: 280px; height: 40px; delay: 0.4; offset-y: 4; }

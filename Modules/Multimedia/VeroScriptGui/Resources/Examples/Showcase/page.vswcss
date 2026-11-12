@@ -1,0 +1,53 @@
+/* SPDX-FileCopyrightText: VanstySanic */
+/* SPDX-License-Identifier: MIT */
+
+:root {
+	--accent: #67d5ef;
+	--muted: #9caec4;
+	background-color: #0c1421;
+	color: #edf4fc;
+	font-size: 14px;
+	clip-content: true;
+}
+.page { padding: 20px; gap: 12px; }
+.header { gap: 16px; }
+.eyebrow { color: var(--accent); font-size: 10px; letter-spacing: 1px; }
+.muted { color: var(--muted); font-size: 12px; }
+.label { color: var(--muted); font-size: 11px; }
+.hint { color: #7389a5; font-size: 11px; }
+.status { color: #b8cee5; font-size: 12px; white-space: nowrap; text-overflow: ellipsis; }
+#workspace { height: 600px; divider-size: 12; color: #34506d; }
+.pane { color: #edf4fc; background-color: #131f30; border-radius: 10px; border-width: 1px; border-color: #293c54; }
+.form { padding: 18px; gap: 14px; }
+.section-heading { gap: 4px; }
+.field { gap: 7px; }
+.options { gap: 9px; padding: 4px 0; }
+.preview-content { padding: 18px; gap: 16px; }
+.metrics { gap: 10px; }
+.metric { height: 72px; border-width: 0px; padding: 10px 12px; gap: 4px; background-color: #1b2d44; border-radius: 7px; }
+.metric-value { font-size: 23px; color: #d7f1ff; }
+.preview-card { padding: 16px; gap: 12px; border-radius: 8px; clip-content: true; }
+.preview-copy { gap: 8px; }
+.swatch { width: 64px; height: 64px; border-radius: 8px; }
+.chart-section { border-width: 0px; padding: 12px; gap: 10px; background-color: #101b2a; border-radius: 8px; }
+activity-chart { cursor: crosshair; height: 92px; padding: 4px 8px; }
+.activity-section { gap: 10px; }
+.log { height: 96px; font-size: 12px; padding: 8px 10px; background-color: #0e1929; }
+.builder-panel { padding: 12px; border-color: #293c54; background-color: #17283b; border-radius: 8px; }
+Button { height: 36px; padding: 8px 12px; background-color: #246899; border-radius: 6px; font-size: 13px; }
+Button:hover { background-color: #327fb1; }
+Button:active { background-color: #174c73; }
+Button:focus { border-width: 1px; border-color: #9bdfff; }
+Button.secondary { background-color: #243850; }
+Button.secondary:hover { background-color: #32516f; }
+Button.small { height: 28px; padding: 5px 10px; font-size: 12px; }
+TextBox, PasswordBox, NumberBox, TextArea { padding: 8px 10px; background-color: #0e1929; border-width: 1px; border-color: #30465f; border-radius: 5px; }
+TextBox, PasswordBox, NumberBox { height: 36px; }
+TextBox:focus, PasswordBox:focus, NumberBox:focus, TextArea:focus { border-color: var(--accent); background-color: #182b41; }
+Slider { color: var(--accent); height: 12px; border-radius: 4px; }
+ProgressBar { color: var(--accent); height: 8px; border-radius: 4px; }
+CheckBox:checked, ToggleSwitch:checked, RadioButton:checked { color: var(--accent); }
+Separator { height: 1px; background-color: #2c405a; }
+Popup { width: 340px; padding: 16px; gap: 10px; offset-y: 8; background-color: #20354f; border-radius: 8px; border-width: 1px; border-color: var(--accent); clip-content: true; }
+ToolTip { padding: 12px; delay: 0.4; offset-y: 6; background-color: #274864; border-radius: 6px; border-width: 1px; border-color: var(--accent); clip-content: true; }
+:disabled { opacity: 0.45; }

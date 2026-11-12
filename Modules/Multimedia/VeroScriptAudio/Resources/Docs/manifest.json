@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "module": "Modules/Multimedia/VeroScriptAudio",
+  "user": [
+    {
+      "source": "User/{locale}/index.md",
+      "output": "{locale}/visual/audio.md"
+    }
+  ],
+  "developer": true
+}

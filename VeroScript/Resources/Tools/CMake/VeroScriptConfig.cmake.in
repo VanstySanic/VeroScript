@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+# VeroScript @VERSION@ native SDK package.
+get_filename_component(_VEROSCRIPT_PREFIX "${CMAKE_CURRENT_LIST_DIR}/../../.." ABSOLUTE)
+include(CMakeFindDependencyMacro)
+find_dependency(Threads)
+foreach(_target IN ITEMS VeroScript VeroScriptTooling)
+	if(NOT TARGET VeroScript::${_target})
+		add_library(VeroScript::${_target} STATIC IMPORTED)
+		set_target_properties(VeroScript::${_target} PROPERTIES
+		  IMPORTED_LOCATION "${_VEROSCRIPT_PREFIX}/lib/@STATIC_PREFIX@${_target}@STATIC_SUFFIX@"
+		  INTERFACE_INCLUDE_DIRECTORIES "${_VEROSCRIPT_PREFIX}/include/Script;${_VEROSCRIPT_PREFIX}/include/Tooling"
+		  INTERFACE_COMPILE_FEATURES cxx_std_17)
+	endif()
+endforeach()
+set_property(TARGET VeroScript::VeroScript APPEND PROPERTY INTERFACE_LINK_LIBRARIES "Threads::Threads;${CMAKE_DL_LIBS}")
+set_property(TARGET VeroScript::VeroScriptTooling APPEND PROPERTY INTERFACE_LINK_LIBRARIES VeroScript::VeroScript)
+if(WIN32)
+	set_property(TARGET VeroScript::VeroScriptTooling APPEND PROPERTY INTERFACE_LINK_LIBRARIES ws2_32)
+endif()
+set(VeroScript_VERSION "@VERSION@")
+set(VeroScript_BUILD_ID "@BUILD_ID@")

@@ -1,0 +1,13 @@
+Private/**
+Resources/Tools/**
+Resources/Docs/**
+CHANGELOG.md
+.vscode/**
+.vscode-test*
+.gitignore
+node_modules/**
+out/**
+tsconfig.json
+package-lock.json
+dist/*.map
+**/*.vsix

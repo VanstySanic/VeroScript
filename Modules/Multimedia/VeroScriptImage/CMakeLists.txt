@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: VanstySanic
+# SPDX-License-Identifier: MIT
+
+cmake_minimum_required(VERSION 3.24)
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+	project(VeroScriptImage VERSION 0.1.1 LANGUAGES C CXX)
+	get_filename_component(VEROSCRIPT_MODULE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../../.." ABSOLUTE)
+	include("${VEROSCRIPT_MODULE_ROOT}/Resources/Tools/CMake/VeroScriptHelpers.cmake")
+	include(CTest)
+endif()
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+add_library(VeroScriptImage STATIC Private/VeroScriptImage.cpp)
+add_library(VeroScript::Image ALIAS VeroScriptImage)
+target_include_directories(VeroScriptImage PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Public>"
+	"$<INSTALL_INTERFACE:include/VeroScriptVisual>")
+target_compile_features(VeroScriptImage PUBLIC cxx_std_17)
+set_target_properties(VeroScriptImage PROPERTIES POSITION_INDEPENDENT_CODE ON EXPORT_NAME Image)
+vs_apply_cxx_defaults(VeroScriptImage)
+install(TARGETS VeroScriptImage EXPORT VeroScriptImageTargets ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}" COMPONENT VeroScriptImage)
+install(EXPORT VeroScriptImageTargets NAMESPACE VeroScript:: DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/VeroScriptImage" COMPONENT VeroScriptImage)
+install(DIRECTORY Public/ DESTINATION include/VeroScriptVisual COMPONENT VeroScriptImage FILES_MATCHING PATTERN "*.h" PATTERN "VeroScriptImageBindings.h" EXCLUDE)
+include(Resources/Tools/CMake/Bindings.cmake)
+configure_package_config_file(Resources/Tools/CMake/VeroScriptImageConfig.cmake.in "${CMAKE_CURRENT_BINARY_DIR}/VeroScriptImageConfig.cmake" INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/VeroScriptImage")
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/VeroScriptImageConfigVersion.cmake" VERSION 0.1.1 COMPATIBILITY ExactVersion)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/VeroScriptImageConfig.cmake" "${CMAKE_CURRENT_BINARY_DIR}/VeroScriptImageConfigVersion.cmake" DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/VeroScriptImage" COMPONENT VeroScriptImage)
+install(FILES "${VEROSCRIPT_MODULE_ROOT}/LICENSE" DESTINATION licenses/VeroScript COMPONENT VeroScriptImage)
+install(FILES README.md DESTINATION share/VeroScriptImage COMPONENT VeroScriptImage)
+
+install(FILES "${VEROSCRIPT_MODULE_ROOT}/LICENSE" DESTINATION . COMPONENT VeroScriptImage)

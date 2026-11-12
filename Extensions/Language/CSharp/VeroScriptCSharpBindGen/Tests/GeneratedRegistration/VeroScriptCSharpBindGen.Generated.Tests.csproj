@@ -1,0 +1,22 @@
+<!-- SPDX-FileCopyrightText: VanstySanic -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net9.0</TargetFramework>
+		<RollForward>Major</RollForward>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>12.0</LangVersion>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>9.0-recommended</AnalysisLevel>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\VeroScriptCSharp\VeroScriptCSharp.csproj" />
+		<Compile Include="..\..\Resources\Examples\BindingInput.cs" Link="BindingInput.cs" />
+		<Compile Include="$(GeneratedRegistrationSource)" Link="Bindings.g.cs"
+      Condition="'$(GeneratedRegistrationSource)' != ''" />
+	</ItemGroup>
+</Project>

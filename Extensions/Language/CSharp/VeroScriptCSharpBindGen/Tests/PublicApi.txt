@@ -1,0 +1,73 @@
+type static class VeroScript.CSharpBindGen.CSharpBindGen
+  method static VeroScript.CSharpBindGen.CSharpBindGenResult GenerateBindings(VeroScript.CSharpFrontend.CSharpTranslationUnit unit, VeroScript.CSharpBindGen.CSharpBindGenOptions? options = null)
+  method static VeroScript.CSharpBindGen.CSharpBindGenResult GenerateBindingsFromSources(System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpSourceFile> sources, VeroScript.CSharpFrontend.CSharpParseOptions? parseOptions = null, VeroScript.CSharpBindGen.CSharpBindGenOptions? bindGenOptions = null)
+  method static VeroScript.CSharpBindGen.CSharpBindGenResult GenerateBindingsFromSource(System.String source, System.String sourcePath = "<csharp-source>", VeroScript.CSharpFrontend.CSharpParseOptions? parseOptions = null, VeroScript.CSharpBindGen.CSharpBindGenOptions? bindGenOptions = null)
+  method static VeroScript.CSharpBindGen.CSharpBindGenResult GenerateBindingsFromFiles(System.Collections.Generic.IReadOnlyList<System.String> filePaths, VeroScript.CSharpFrontend.CSharpParseOptions? parseOptions = null, VeroScript.CSharpBindGen.CSharpBindGenOptions? bindGenOptions = null)
+  method static VeroScript.CSharpBindGen.CSharpBindGenProjectResult GenerateBindingProject(System.Collections.Generic.IReadOnlyList<System.String> filePaths, VeroScript.CSharpFrontend.CSharpParseOptions? parseOptions = null, VeroScript.CSharpBindGen.CSharpBindGenOptions? bindGenOptions = null, VeroScript.CSharpBindGen.CSharpBindGenProjectLayout? layout = null)
+
+type sealed class VeroScript.CSharpBindGen.CSharpBindGenApiReference : System.IEquatable<VeroScript.CSharpBindGen.CSharpBindGenApiReference>
+  ctor VeroScript.CSharpBindGen.CSharpBindGenApiReference(System.String InputPath, System.String OutputName, System.String Contents)
+  property System.String InputPath { get; init; }
+  property System.String OutputName { get; init; }
+  property System.String Contents { get; init; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpBindGen.CSharpBindGenApiReference? left, VeroScript.CSharpBindGen.CSharpBindGenApiReference? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpBindGen.CSharpBindGenApiReference? left, VeroScript.CSharpBindGen.CSharpBindGenApiReference? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpBindGen.CSharpBindGenApiReference? other)
+  method VeroScript.CSharpBindGen.CSharpBindGenApiReference <Clone>$()
+  method System.Void Deconstruct(out System.String InputPath, out System.String OutputName, out System.String Contents)
+
+type sealed class VeroScript.CSharpBindGen.CSharpBindGenOptions
+  ctor VeroScript.CSharpBindGen.CSharpBindGenOptions()
+  property System.Boolean EmitApiReference { get; init; }
+  property System.Boolean EmitRegistrationSource { get; init; }
+  property System.Boolean EmitAotBridgeSource { get; init; }
+  property System.String RegistrationNamespace { get; init; }
+  property System.String RegistrationClassName { get; init; }
+  property System.Boolean RequireBindingAttribute { get; init; }
+  property System.String BindingAttributeName { get; init; }
+  property System.String IgnoreAttributeName { get; init; }
+
+type sealed class VeroScript.CSharpBindGen.CSharpBindGenProjectLayout
+  ctor VeroScript.CSharpBindGen.CSharpBindGenProjectLayout()
+  property System.String CatalogPath { get; init; }
+  property System.String RegistrationPath { get; init; }
+  property System.String AotBridgePath { get; init; }
+  property System.String ApiReferenceDirectory { get; init; }
+
+type sealed class VeroScript.CSharpBindGen.CSharpBindGenProjectResult : System.IEquatable<VeroScript.CSharpBindGen.CSharpBindGenProjectResult>
+  ctor VeroScript.CSharpBindGen.CSharpBindGenProjectResult(System.String CatalogJson, System.String RegistrationSource, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpBindGen.CSharpBindGenApiReference> ApiReferences, System.String ManifestJson, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics)
+  property System.String CatalogJson { get; init; }
+  property System.String RegistrationSource { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpBindGen.CSharpBindGenApiReference> ApiReferences { get; init; }
+  property System.String ManifestJson { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics { get; init; }
+  property System.String AotBridgeSource { get; init; }
+  property System.Boolean Succeeded { get; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpBindGen.CSharpBindGenProjectResult? left, VeroScript.CSharpBindGen.CSharpBindGenProjectResult? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpBindGen.CSharpBindGenProjectResult? left, VeroScript.CSharpBindGen.CSharpBindGenProjectResult? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpBindGen.CSharpBindGenProjectResult? other)
+  method VeroScript.CSharpBindGen.CSharpBindGenProjectResult <Clone>$()
+  method System.Void Deconstruct(out System.String CatalogJson, out System.String RegistrationSource, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpBindGen.CSharpBindGenApiReference> ApiReferences, out System.String ManifestJson, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics)
+
+type sealed class VeroScript.CSharpBindGen.CSharpBindGenResult : System.IEquatable<VeroScript.CSharpBindGen.CSharpBindGenResult>
+  ctor VeroScript.CSharpBindGen.CSharpBindGenResult(System.String CatalogJson, System.String ApiReference, System.String RegistrationSource, System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics)
+  property System.String CatalogJson { get; init; }
+  property System.String ApiReference { get; init; }
+  property System.String RegistrationSource { get; init; }
+  property System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics { get; init; }
+  property System.String AotBridgeSource { get; init; }
+  property System.Boolean Succeeded { get; }
+  method System.String ToString()
+  method static System.Boolean op_Inequality(VeroScript.CSharpBindGen.CSharpBindGenResult? left, VeroScript.CSharpBindGen.CSharpBindGenResult? right)
+  method static System.Boolean op_Equality(VeroScript.CSharpBindGen.CSharpBindGenResult? left, VeroScript.CSharpBindGen.CSharpBindGenResult? right)
+  method System.Int32 GetHashCode()
+  method System.Boolean Equals(System.Object? obj)
+  method System.Boolean Equals(VeroScript.CSharpBindGen.CSharpBindGenResult? other)
+  method VeroScript.CSharpBindGen.CSharpBindGenResult <Clone>$()
+  method System.Void Deconstruct(out System.String CatalogJson, out System.String ApiReference, out System.String RegistrationSource, out System.Collections.Generic.IReadOnlyList<VeroScript.CSharpFrontend.CSharpDiagnostic> Diagnostics)

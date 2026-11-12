@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Package display messages",
+  "type": "object",
+  "additionalProperties": {
+    "oneOf": [
+      {
+        "type": "string"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "pattern": {
+            "type": "string"
+          },
+          "formatId": {
+            "enum": [
+              "literal",
+              "vero.named"
+            ]
+          }
+        },
+        "required": [
+          "pattern",
+          "formatId"
+        ],
+        "additionalProperties": false
+      }
+    ]
+  }
+}
